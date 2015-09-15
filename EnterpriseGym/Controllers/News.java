@@ -1,4 +1,6 @@
+
 import java.io.IOException;
+import java.util.StringTokenizer;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -41,10 +43,23 @@ public class News extends HttpServlet {
      * @throws IOException
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-    {
-                  RequestDispatcher dispatcher = request.getRequestDispatcher("news.jsp");
-                dispatcher.forward(request, response);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String a = request.getRequestURI();
+        if(a == null)
+        {
+            throw new IOException();
+        }
+        String [] parts = a.split("/");
+        if(parts.length < 4)
+        {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("news.jsp");
+            dispatcher.forward(request, response);
+        }
+        else
+        {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/newsStory.jsp");
+            dispatcher.forward(request, response);
+        }
     }
 
     /**
@@ -57,7 +72,6 @@ public class News extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException 
-    {
+            throws ServletException, IOException {
     }
 }
