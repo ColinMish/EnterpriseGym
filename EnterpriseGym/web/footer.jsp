@@ -6,6 +6,7 @@
 
 <footer>
     
+    <!-- TODO: Decide Footer Content -->
     <div class="navbar navbar-fixed-bottom"></div>
       <div class="container">
         <p class="text-muted">Contact Us</p>
