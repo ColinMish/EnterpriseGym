@@ -74,6 +74,8 @@ public class SignUp extends HttpServlet {
 		String password = request.getParameter("password");
 		String passwordcheck = request.getParameter("passwordcheck");
 		String email = request.getParameter("email");
+                
+               System.out.println("Testing.");
 
 		UserModel user = new UserModel();
 		
@@ -86,6 +88,7 @@ public class SignUp extends HttpServlet {
                                 
 					if(user.register(username,toSHA1(password.getBytes("UTF-8")),email) ==false)
 					{
+                                            System.out.println("false");
 						HttpSession session = request.getSession();
 						session.setAttribute("error", "The username is already taken.");
 						response.sendRedirect(request.getContextPath()+"/FailedSignUp.jsp");
@@ -108,6 +111,7 @@ public class SignUp extends HttpServlet {
 			//Reditect to the failed registration page.
 			HttpSession session = request.getSession();
 			session.setAttribute("error", "The passwords don't match.");
+                        System.out.println("false, exception");
 			response.sendRedirect(request.getContextPath()+"/FailedSignUp.jsp");
 		}
 	}
