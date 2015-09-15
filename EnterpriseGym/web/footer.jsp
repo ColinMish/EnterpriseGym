@@ -4,3 +4,11 @@
     Author     : Dave
 --%>
 
+<footer>
+    
+    <div class="navbar navbar-fixed-bottom"></div>
+      <div class="container">
+        <p class="text-muted">Contact Us</p>
+      </div>
+    
+</footer>
