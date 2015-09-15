@@ -60,12 +60,7 @@
             </div>
 
         <hr>
-
-        <!-- Footer -->
-        <div class="navbar navbar-fixed-bottom"></div>
-      <div class="container">
-        <p class="text-muted">Contact Us</p>
-      </div>
+        
     </div>
 
     </div>
