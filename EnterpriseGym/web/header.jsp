@@ -64,6 +64,9 @@
                     <li>
                         <a href="Connect">Connect</a>
                     </li>
+                    <li>
+                        <a href="Contact">Contact</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
