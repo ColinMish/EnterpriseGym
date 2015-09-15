@@ -61,31 +61,8 @@
 
         <hr>
 
-        <!-- Footer -->
-        <div class="navbar navbar-fixed-bottom"></div>
-      <div class="container">
-        <p class="text-muted">Contact Us</p>
-      </div>
-    </div>
-
-    </div>
-    <!-- /.container -->
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-    <!-- Script to Activate the Carousel -->
-    <script>
-    $('.carousel').carousel({
-        interval: 5000 //changes the speed
-    });
-    </script>
+     <%@include file ="footer.jsp" %>   
 
 </body>
-
-<%@include file ="footer.jsp" %>
 
 </html>
