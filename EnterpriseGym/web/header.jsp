@@ -53,6 +53,9 @@
                         <a href="About">About</a>
                     </li>
                     <li>
+                        <a href="News">News</a>
+                    </li>
+                    <li>
                         <a href="#">Help + Support</a>
                     </li>
                 </ul>
