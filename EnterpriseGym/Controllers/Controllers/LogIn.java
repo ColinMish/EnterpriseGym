@@ -1,3 +1,5 @@
+package Controllers;
+
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -13,14 +15,14 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Dave
  */
-@WebServlet(name = "About", urlPatterns = {"/About"})
+@WebServlet(name = "LogIn", urlPatterns = {"/LogIn"})
 @MultipartConfig
-public class About extends HttpServlet {
+public class LogIn extends HttpServlet {
 
     /**
      * Constructor
      */
-    public About() {
+    public LogIn() {
 
     }
 
@@ -44,7 +46,7 @@ public class About extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
-                  RequestDispatcher dispatcher = request.getRequestDispatcher("about.jsp");
+                  RequestDispatcher dispatcher = request.getRequestDispatcher("LogIn.jsp");
                 dispatcher.forward(request, response);
     }
 
@@ -60,5 +62,6 @@ public class About extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
+        
     }
 }
