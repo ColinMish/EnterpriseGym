@@ -47,7 +47,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <li class="active"><a href="home"><i class="icon-home icon-white"></i> Home</a></li>
+                        <li class="active"><a href="index.jsp"><span class="glyphicon glyphicon-home"></i> Home</a></li>
 <!--                        <a href="Home">Home</a>-->
                     </li>
                     <li>
@@ -64,10 +64,7 @@
                     </li>
                     <li>
                         <a href="Connect">Connect</a>
-                    </li>
-                    <li>
-                        <a href="Contact">Contact</a>
-                    </li>
+                    </li>                  
                     <li>
                         <a href="Activities">Activities</a>
                     </li>
@@ -146,5 +143,7 @@
         <a class="right carousel-control" href="#myCarousel" data-slide="next">
             <span class="icon-next"></span>
         </a>
+        
+ 
 
     </header>
