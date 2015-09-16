@@ -17,7 +17,7 @@ public class UserModel {
     	 public String user = "davidkenny";
         public String pass = "root1";
     
-    public boolean register(String username,String password,String email,String first,String last,String gender, String country, String university, String school, String subject, String year)
+    public boolean register(String username,String password,String email,String first,String last,String gender, String country, String university, String school, String subject, String year,String matriculation)
     {
     
 		//System.out.println("The email is:" + email);
@@ -31,31 +31,32 @@ public class UserModel {
 		try{
 		
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
-	    con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/enterprise_gym",user,pass);
+	    con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym",user,pass);
 	    
 	    PreparedStatement ps = null;
             PreparedStatement ps2 = null;
 	    
 	    
-	    String sqlOption= "INSERT INTO user_profile (username, password,email,first_name,last_name,gender,country,university,school,subject,year) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+	    String sqlOption= "INSERT INTO user (email,first_name,last_name,gender,country,university,school,subject,year,matriculation) VALUES (?,?,?,?,?,?,?,?,?,?)";
     	
 	ps = con.prepareStatement(sqlOption);
-    	ps.setString(1, username);
-    	ps.setString(2, password);
-    	ps.setString(3, email);
-        ps.setString(4, first);
-        ps.setString(5, last);
-        ps.setString(6, gender);
-        ps.setString(7, country);
-        ps.setString(8, university);
-        ps.setString(9, school);
-        ps.setString(10, subject);
-        ps.setString(11, year);
+ 
+    	ps.setString(1, email);
+        ps.setString(2, first);
+        ps.setString(3, last);
+        ps.setString(4, gender);
+        ps.setString(5, country);
+        ps.setString(6, university);
+        ps.setString(7, school);
+        ps.setString(8, subject);
+        ps.setString(9, year);
+        ps.setString(10,matriculation);
     	ps.executeUpdate();
         
-        String sqlOption2= "INSERT INTO user_points (username) VALUES (?)";
+        String sqlOption2= "INSERT INTO account (username,password) VALUES (?,?)";
         ps2 = con.prepareStatement(sqlOption2);
         ps2.setString(1, username);
+        ps2.setString(2, password);
         ps2.executeUpdate();
         
         con.close();

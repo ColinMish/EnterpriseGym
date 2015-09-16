@@ -45,16 +45,17 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
+               
+                <ul class="nav navbar-nav navbar-left">
+                    <li><img src="${pageContext.request.contextPath}/Pictures/logo-eg.png"></li>
+                </ul>
+                    <ul class="nav navbar-nav">
                     <li>
                         <li class="active"><a href="index.jsp"><span class="glyphicon glyphicon-home"></i> Home</a></li>
 <!--                        <a href="Home">Home</a>-->
                     </li>
                     <li>
                         <a href="About">About</a>
-                    </li>
-                    <li>
-                        <a href="SignUp">Sign Up</a>                     
                     </li>
                     <li>
                         <a href="Events">Events</a>
