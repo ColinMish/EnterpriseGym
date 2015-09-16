@@ -8,7 +8,7 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h1>News</h1>
+                <h1></h1>
                 <p></p>
             </div>
         </div>
