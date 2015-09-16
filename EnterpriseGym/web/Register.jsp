@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
+     
     <%@include file="header.jsp" %>
     
     <!-- Page Content -->
@@ -22,13 +22,13 @@
         
             <div class="container">   
                 
-            <form action="SignUp" method="POST" >
+            <form action="SignUp" id="SignUp" method="POST">
                 Username: <br>
-           <input name="username" type="text" id="userBox" maxlength="45"/>
+           <input name="username" type="text" id="username" maxlength="45"/>
            <br> Password: <br>
-           <input name="password" type="password" id="userBox" maxlength="45"/> 
+           <input name="password" type="text" id="userBox" maxlength="45"/> 
            <br> Password Check: <br>
-           <input name="passwordcheck" type="password" id="userBox" maxlength="45" />
+           <input name="passwordcheck" type="text" id="userBox" maxlength="45" />
            <br> First name: <br>
            <input name="first" type="text" id="userBox" maxlength="45" />
            <br> Last name: <br>
@@ -56,5 +56,6 @@
     
     <%@include file ="footer.jsp" %>
     </body>
+    
 </html>
 
