@@ -21,7 +21,7 @@
               $(".uname").change(function(){
                   var uname = $(this).val();
                   if(uname.length >= 3){
-                      $(".status").html("<img src='Pictures/loading.gif'><font color=gray> Checking availability...</font>");
+                      $(".status").html("<img src='${pageContext.request.contextPath}/Pictures/loading.gif'><font color=gray> Checking availability...</font>");
                        $.ajax({
                           type: "POST",
                           url: "CheckAvailability",
