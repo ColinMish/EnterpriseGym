@@ -53,10 +53,9 @@
                         <a href="About">About</a>
                     </li>
                     <li>
-<<<<<<< HEAD
+
                         <a href="SignUp">Help + Support</a>
-=======
-                        <a href="News">News</a>
+                        
                     </li>
                     <li>
                         <a href="Events">Events</a>
@@ -72,7 +71,6 @@
                     </li>
                     <li>
                         <a href="Activities">Activities</a>
->>>>>>> master
                     </li>
                 </ul>
             </div>
