@@ -70,6 +70,7 @@ CREATE TABLE IF NOT EXISTS `Enterprise_Gym`.`user` (
   `email` VARCHAR(45) NULL COMMENT '',
   `account_idaccount` INT UNSIGNED NOT NULL COMMENT '',
   `matriculation` INT NULL COMMENT '',
+  `points` INT NOT NULL DEFAULT 0 COMMENT '',
   PRIMARY KEY (`iduser`)  COMMENT '',
   UNIQUE INDEX `iduser_UNIQUE` (`iduser` ASC)  COMMENT '',
   INDEX `fk_user_account1_idx` (`account_idaccount` ASC)  COMMENT '',
