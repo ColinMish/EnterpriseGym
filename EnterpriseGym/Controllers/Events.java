@@ -44,7 +44,7 @@ public class Events extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
-                  RequestDispatcher dispatcher = request.getRequestDispatcher("events.jsp");
+                  RequestDispatcher dispatcher = request.getRequestDispatcher("Events.jsp");
                 dispatcher.forward(request, response);
     }
 
