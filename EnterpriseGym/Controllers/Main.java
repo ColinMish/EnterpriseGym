@@ -14,14 +14,14 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Dave
  */
-@WebServlet(name = "News", urlPatterns = {"/News/*"})
+@WebServlet(name = "Home", urlPatterns = {"/Home/*"})
 @MultipartConfig
-public class News extends HttpServlet {
+public class Main extends HttpServlet {
 
     /**
      * Constructor
      */
-    public News() {
+    public Main() {
 
     }
 
@@ -44,22 +44,8 @@ public class News extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String a = request.getRequestURI();
-        if(a == null)
-        {
-            throw new IOException();
-        }
-        String [] parts = a.split("/");
-        if(parts.length < 4)
-        {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("news.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
             dispatcher.forward(request, response);
-        }
-        else
-        {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/newsStory.jsp");
-            dispatcher.forward(request, response);
-        }
     }
 
     /**

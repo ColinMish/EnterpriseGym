@@ -47,7 +47,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">Home</a>
+                        <a href="Home">Home</a>
                     </li>
                     <li>
                         <a href="About">About</a>
@@ -56,13 +56,19 @@
                         <a href="News">News</a>
                     </li>
                     <li>
-                        <a href="#">Help + Support</a>
+                        <a href="Events">Events</a>
                     </li>
                     <li>
                         <a href="Trainers">Trainers</a>
                     </li>
                     <li>
                         <a href="Connect">Connect</a>
+                    </li>
+                    <li>
+                        <a href="Contact">Contact</a>
+                    </li>
+                    <li>
+                        <a href="Activities">Activities</a>
                     </li>
                 </ul>
             </div>

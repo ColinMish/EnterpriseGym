@@ -29,7 +29,7 @@
                     <div class="panel-body">
                         <p>
                             <a href="https://www.enterprise-gym.com/press-releases/former-teg-student-involved-innovative-start">Former TEG students involved in innovative start-up.</a>
-                            <a href="#" class="btn btn-default">Read More</a>
+                            <a href="News/Something" class="btn btn-default">Read More</a>
                         </p>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                     </div>
                     <div class="panel-body">
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
-                        <a href="#" class="btn btn-default">Read More</a>
+                        <a href="News/SomethingElse" class="btn btn-default">Read More</a>
                     </div>
                 </div>
             </div>
