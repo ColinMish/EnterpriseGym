@@ -53,7 +53,7 @@
                         <a href="About">About</a>
                     </li>
                     <li>
-                        <a href="#">Help + Support</a>
+                        <a href="SignUp">Help + Support</a>
                     </li>
                 </ul>
             </div>

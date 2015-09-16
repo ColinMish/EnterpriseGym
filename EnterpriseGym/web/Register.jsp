@@ -22,7 +22,7 @@
         
             <div class="container">   
                 
-            <form  action="SignUp" method="post" >
+            <form action="SignUp" method="POST" >
                 Username: <br>
            <input name="username" type="text" id="userBox" maxlength="45"/>
            <br> Password: <br>
@@ -46,14 +46,11 @@
            <br> Country: <br>
            <input name="country" type="text" id="userBox" maxlength="45" />
            <br>
-           <input type="submit" value="Sign In" />        
+           <input type="submit" value="Sign In">
+           <br><br><br><br>
           </form> 
                 
             </div>
-        
-        
-        
-    </div>
     
     <%@include file ="footer.jsp" %>
     </body>

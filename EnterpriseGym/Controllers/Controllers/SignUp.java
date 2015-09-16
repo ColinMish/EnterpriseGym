@@ -61,6 +61,8 @@ public class SignUp extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+                              RequestDispatcher dispatcher = request.getRequestDispatcher("Register.jsp");
+                dispatcher.forward(request, response);
 	}
 
 	/**
@@ -94,7 +96,7 @@ public class SignUp extends HttpServlet {
 			{
 				System.out.println("passwords match");
                                 
-					if(user.register(username,toSHA1(password.getBytes("UTF-8")),email,first,last,gender,country,university,school,subject,yearofstudy) ==false)
+					if(user.register(username,toSHA1(password.getBytes("UTF-8")),email,first,last,gender,country,university,school,subject,12) ==false)
 					{
                                             System.out.println("false");
 						HttpSession session = request.getSession();
