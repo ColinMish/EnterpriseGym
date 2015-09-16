@@ -33,6 +33,8 @@
            <input name="first" type="text" id="userBox" maxlength="45" />
            <br> Last name: <br>
            <input name="last" type="text" id="userBox" maxlength="45" />
+            <br> Email: <br>
+           <input name="email" type="text" id="userBox" maxlength="45" />
            <br> Gender: <br>
            <input name="gender" type="text" id="userBox" maxlength="45" />
            <br> Country: <br>
@@ -43,8 +45,8 @@
            <input name="school" type="text" id="userBox" maxlength="45" />
            <br> Subject: <br>
            <input name="subject" type="text" id="userBox" maxlength="45" />
-           <br> Country: <br>
-           <input name="country" type="text" id="userBox" maxlength="45" />
+           <br> year: <br>
+           <input name="year" type="text" id="userBox" maxlength="45" />
            <br>
            <input type="submit" value="Sign In">
            <br><br><br><br>

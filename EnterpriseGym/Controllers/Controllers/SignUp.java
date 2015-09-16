@@ -96,7 +96,7 @@ public class SignUp extends HttpServlet {
 			{
 				System.out.println("passwords match");
                                 
-					if(user.register(username,toSHA1(password.getBytes("UTF-8")),email,first,last,gender,country,university,school,subject,12) ==false)
+					if(user.register(username,toSHA1(password.getBytes("UTF-8")),email,first,last,gender,country,university,school,subject,yearofstudy) ==false)
 					{
                                             System.out.println("false");
 						HttpSession session = request.getSession();

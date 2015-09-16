@@ -23,11 +23,11 @@
         </div>
       
            <form  action="LogIn" method="post" >
-           <div><label>Username:</label></div>
-           <input name="username" type="text" id="userBox" maxlength="50" /></br>
-           <div><label>Password:</label></div>
-           <input name="password" type="password" id="userBox" maxlength="50" /></br>
-           <p></p>
+               <br>Username: <br>
+           <input name="username" type="text" id="userBox" maxlength="50" />
+           <br> Password: <br>
+           <input name="password" type="password" id="userBox" maxlength="50" />
+           <br>
            <input type="submit" value="Sign In"  />
           </form>                        
     </div>

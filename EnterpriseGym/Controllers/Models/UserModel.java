@@ -16,7 +16,7 @@ public class UserModel {
     	 public String user = "davidkenny";
         public String pass = "root1";
     
-    public boolean register(String username,String password,String email,String first,String last,String gender, String country, String university, String school, String subject, int year)
+    public boolean register(String username,String password,String email,String first,String last,String gender, String country, String university, String school, String subject, String year)
     {
     
 		//System.out.println("The email is:" + email);
@@ -35,7 +35,7 @@ public class UserModel {
 	    PreparedStatement ps = null;
 	    
 	    
-	    String sqlOption= "INSERT INTO user_profile (username, password,email,first,last,gender,country,university,school,subject,year) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+	    String sqlOption= "INSERT INTO user_profile (username, password,email,first_name,last_name,gender,country,university,school,subject,year) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
     	
 	ps = con.prepareStatement(sqlOption);
     	ps.setString(1, username);
@@ -48,7 +48,7 @@ public class UserModel {
         ps.setString(8, university);
         ps.setString(9, school);
         ps.setString(10, subject);
-        ps.setInt(11, year);
+        ps.setString(11, year);
     	ps.executeUpdate();
     	
     	return true;
