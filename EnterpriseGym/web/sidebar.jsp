@@ -19,7 +19,13 @@
                         <a href="https://www.facebook.com/EnterpriseGym"><img src='Pictures/icon_fb_small.png'></a>
                     </li>
                     <li>
-                        <a href="http://www.twitter.com/Enterprise_Gym"><img src='Pictures/TwitterIcon.jpg'</a>
+                        <a href="http://www.twitter.com/Enterprise_Gym"><img src='Pictures/TwitterIcon.png'></a>
+                    </li>
+                    <li>
+                        <a href="http://www.linkedin.com/groups?mostPopular&gid=3278209"><img src='Pictures/linkedin-icon-small.png'></a>
+                    </li>
+                    <li>
+                        <a href="http://www.youtube.com/EnterpriseGym"><img src='Pictures/youtube-icon-small.png'></a>
                     </li>
                 </ul>
             </div>

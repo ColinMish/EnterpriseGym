@@ -19,7 +19,6 @@
 
     <!-- Custom CSS -->
     <link href="css/half-slider.css" rel="stylesheet">
-    <link href=css/style.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -48,13 +47,30 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">Home</a>
+                        <a href="Home">Home</a>
                     </li>
                     <li>
                         <a href="About">About</a>
                     </li>
                     <li>
-                        <a href="#">Help + Support</a>
+
+                        <a href="SignUp">Help + Support</a>
+                        
+                    </li>
+                    <li>
+                        <a href="Events">Events</a>
+                    </li>
+                    <li>
+                        <a href="Trainers">Trainers</a>
+                    </li>
+                    <li>
+                        <a href="Connect">Connect</a>
+                    </li>
+                    <li>
+                        <a href="Contact">Contact</a>
+                    </li>
+                    <li>
+                        <a href="Activities">Activities</a>
                     </li>
                 </ul>
             </div>
