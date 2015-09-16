@@ -36,6 +36,7 @@ public class SignUp extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
     }
 
+    //Password encryption methods
     public static String toSHA1(byte[] convertme) {
 	    MessageDigest md = null;
 	    try {
@@ -55,10 +56,8 @@ public class SignUp extends HttpServlet {
 		  }
 		  return result;
 		}
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+	
+        
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
                               RequestDispatcher dispatcher = request.getRequestDispatcher("Register.jsp");
@@ -84,8 +83,6 @@ public class SignUp extends HttpServlet {
                 String school = request.getParameter("school");
                 String subject = request.getParameter("subject");
                 String yearofstudy = request.getParameter("year");
-                
-               System.out.println("Testing.");
 
 		UserModel user = new UserModel();
 		
@@ -99,12 +96,12 @@ public class SignUp extends HttpServlet {
 					if(user.register(username,toSHA1(password.getBytes("UTF-8")),email,first,last,gender,country,university,school,subject,yearofstudy) ==false)
 					{
                                             System.out.println("false");
-						HttpSession session = request.getSession();
-						session.setAttribute("error", "The username is already taken.");
+						//HttpSession session = request.getSession();
+						//session.setAttribute("error", "The username is already taken.");
 						response.sendRedirect(request.getContextPath()+"/FailedSignUp.jsp");
 					}
 					else{
-						System.out.println("true");	
+						//Log the new user into the system here. 
 						response.sendRedirect(request.getContextPath()+"/LogIn.jsp");
 					}
 		

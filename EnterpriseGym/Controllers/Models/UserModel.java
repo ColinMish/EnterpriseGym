@@ -7,6 +7,7 @@ package Models;
 
 
 import java.sql.*;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -33,6 +34,7 @@ public class UserModel {
 	    con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/enterprise_gym",user,pass);
 	    
 	    PreparedStatement ps = null;
+            PreparedStatement ps2 = null;
 	    
 	    
 	    String sqlOption= "INSERT INTO user_profile (username, password,email,first_name,last_name,gender,country,university,school,subject,year) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
@@ -50,6 +52,13 @@ public class UserModel {
         ps.setString(10, subject);
         ps.setString(11, year);
     	ps.executeUpdate();
+        
+        String sqlOption2= "INSERT INTO user_points (username) VALUES (?)";
+        ps2 = con.prepareStatement(sqlOption2);
+        ps2.setString(1, username);
+        ps2.executeUpdate();
+        
+        con.close();
     	
     	return true;
     	//}
@@ -72,25 +81,61 @@ public class UserModel {
             return false;
     	
     	}
-    	
-                //Closing the connection. 
-//    	try{
-//    		
-//    		if(con!=null)
-//    		{
-//    			con.close();
-//    		}
-//    	}
-//    	catch(Exception e)
-//    	{
-//    		System.out.println("oh dear");
-//    		e.printStackTrace();
-//               
-//    	}
 	    
-	
-
     }
     
+    public boolean login (String username,String password) throws SQLException
+    {		
+		Connection con = null;
+		try{
+		
+	    Class.forName("com.mysql.jdbc.Driver").newInstance();
+	    con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/enterprise_gym",user,pass);
+	    
+	    ResultSet rsdoLogin = null;
+	    PreparedStatement psdoLogin = null;
+
+	    	    
+	    	String sqlOption= "SELECT * FROM user_profile where username=? and password=?";
+	    	
+	    	psdoLogin = con.prepareStatement(sqlOption);
+	    	psdoLogin.setString(1, username);
+	    	psdoLogin.setString(2, password);
+	    	
+	    	rsdoLogin=psdoLogin.executeQuery();
+	    	
+	    	
+	    	if(rsdoLogin.next())
+	    	{
+                   
+	    	return true;	    	  	    	  	    		    	  
+	    	}
+	    	  else
+	    	  {
+                         
+	    		  return false;
+	    	  }
+	    	  
+	    	}
+	    	catch(Exception e)
+	    	{
+                   
+	    		e.printStackTrace();
+                         return false;
+	    	}
+	    	
+//	    	try{
+//	    		
+//	    		if(con!=null)
+//	    		{
+//	    			con.close();
+//	    		}
+//	    	}
+//	    	catch(Exception e)
+//	    	{
+//	    		e.printStackTrace();
+//	    	}
+
+    }
     
 }
