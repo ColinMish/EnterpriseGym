@@ -15,16 +15,18 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h1>Register</h1>
+                <h1>Sign Up</h1>
                 <p></p>
             </div>
         </div>
         
             <div class="container">   
                 
-            <form action="SignUp" id="SignUp" method="POST">
-                Username: <br>
-           <input name="username" type="text" id="username" maxlength="45"/>
+            <form action="SignUp" role="form" id="SignUp" method="POST">
+                <div class="form-group">
+                <label for="username">Username:</label>
+                <input name="username" type="text" class="form-control" id="username" maxlength="45" required/>
+                </div>
            <br> Password: <br>
            <input name="password" type="text" id="userBox" maxlength="45"/> 
            <br> Password Check: <br>
@@ -47,6 +49,8 @@
            <input name="subject" type="text" id="userBox" maxlength="45" />
            <br> year: <br>
            <input name="year" type="text" id="userBox" maxlength="45" />
+           <br> matriculation number: <br>
+           <input name="matric" type="text" id="userBox" maxlength="45" />
            <br>
            <input type="submit" value="Sign In">
            <br><br><br><br>

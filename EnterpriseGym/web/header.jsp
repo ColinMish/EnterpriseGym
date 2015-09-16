@@ -70,15 +70,26 @@
                     </li>
                 </ul>
                 
-                   <ul class="nav pull-right">
+                   <ul class="nav navbar-nav navbar-right">
           <% if (session.getAttribute("username") == null){ %>            
           <li class="dropdown" id="menuLogin">
             <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">Login</a>
             <div class="dropdown-menu" style="padding:17px;">
-              <form class="form" action="LogIn" method="post"  id="formLogin"> 
-                <input name="username" id="username" type="text" placeholder="Username"> 
-                <input name="password" id="password" type="password" placeholder="Password"><br>
-                <input type="submit" value="Sign In"  />
+                
+              <form role="form" action="LogIn" method="post"  id="formLogin"> 
+                  <div class="form_group">
+                      <label for="username">Username:</label>
+                <input name="username" id="username" class="form-control" type="text" placeholder="Username" required> 
+                  </div>
+                <div class="form_group">
+                    <label for="password"> Password:</label>
+                <input name="password" id="password" class="form-control" type="text" placeholder="Password" required> 
+                  </div>
+                <div class="form-group">        
+                    <br>
+                <button type="submit" class="btn btn-default">Submit</button>
+
+                </div>
               </form>
             </div>
           </li>
