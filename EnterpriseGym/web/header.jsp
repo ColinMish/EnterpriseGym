@@ -59,9 +59,6 @@
                         <a href="Events">Events</a>
                     </li>
                     <li>
-                        <a href="#">Help + Support</a>
-                    </li>
-                    <li>
                         <a href="Trainers">Trainers</a>
                     </li>
                     <li>
