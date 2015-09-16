@@ -27,14 +27,14 @@
                     </div>
                     <div class="panel-body">
                         <p>
-                            <span>The Enterprise Gym</span> is located on the ground floor at 2 Airlie Place within the main<br>
-                           university campus, just off the Perth Road at the <span>University of Dundee</span>. If you’re <br>
+                            <span class="red">The Enterprise Gym</span> is located on the ground floor at 2 Airlie Place within the main<br>
+                           university campus, just off the Perth Road at the <span class="red">University of Dundee</span>. If you’re <br>
                            passing feel free to drop in to find out more.<br><br>
                            
                            You can contact the team using the form below, or you can contact individual team <br>
-                           members by email – contact details on the <span>Management Team page</span>. <br><br>
+                           members by email – contact details on the <span class="red">Management Team page</span>. <br><br>
                            
-                           You can stay in touch with us using <span>facebook</span>, <span>twitter</span>, <span>youtube</span>, <span>linkedin</span> or <span>email</span>. <br>
+                           You can stay in touch with us using <span>facebook</span>, <span class="red">twitter</span>, <span class="red">youtube</span>, <span class="red">linkedin</span> or <span class="red">email</span>. <br>
                            You can also find us skype, our username is "enterprise.gym". <br><br> 
                            
                            If you want to speak to someone with an enquiry, please ring us on: 01382 384017.<br><br>
@@ -58,6 +58,12 @@
                         
                         <p>Message: *</p>
                         <textarea cols="60" rows="5" name="submitted[message]" id="edit-submitted-message" class="form-textarea resizable required textarea-processed"></textarea>
+                        <br><br>
+                        <p><span class="red">CAPTCHA</span></p><br>
+                        <p>This question is for testing whether you are a human visitor and to prevent automated spam<br>
+                            submissions.</p><br>
+                        
+                        <input type="submit" name="op" id="edit-submit" value="Submit" class="form-submit">
                     </div>
                 </div>
             </div>

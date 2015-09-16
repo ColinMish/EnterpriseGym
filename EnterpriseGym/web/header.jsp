@@ -67,6 +67,9 @@
                     <li>
                         <a href="Contact">Contact</a>
                     </li>
+                    <li>
+                        <a href="Activities">Activities</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
