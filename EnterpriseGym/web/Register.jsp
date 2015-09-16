@@ -19,21 +19,37 @@
                 <p></p>
             </div>
         </div>
-    
+        
+            <div class="container">   
+                
             <form  action="SignUp" method="post" >
-  <div><label>Username:</label></div>
-    <input name="username" type="text" id="userBox" maxlength="50" /></br>
-    <div><label>Password:</label></div>
-    <input name="password" type="text" id="userBox" maxlength="50" /></br>
-    <div><label>Password Check:</label></div>
-    <input name="passwordcheck" type="text" id="userBox" maxlength="50" /></br>
-    
-    <div><label>Email:</label></div>
-    <input name="email" type="text" id="userBox" maxlength="50" /></br>
-    
-    <p></p>
-    <input type="submit" id="signButton" value="Add User"  />
-</form>
+                Username: <br>
+           <input name="username" type="text" id="userBox" maxlength="45"/>
+           <br> Password: <br>
+           <input name="password" type="password" id="userBox" maxlength="45"/> 
+           <br> Password Check: <br>
+           <input name="passwordcheck" type="password" id="userBox" maxlength="45" />
+           <br> First name: <br>
+           <input name="first" type="text" id="userBox" maxlength="45" />
+           <br> Last name: <br>
+           <input name="last" type="text" id="userBox" maxlength="45" />
+           <br> Gender: <br>
+           <input name="gender" type="text" id="userBox" maxlength="45" />
+           <br> Country: <br>
+           <input name="country" type="text" id="userBox" maxlength="45" />
+           <br> University: <br>
+           <input name="university" type="text" id="userBox" maxlength="45" />
+           <br> School: <br>
+           <input name="school" type="text" id="userBox" maxlength="45" />
+           <br> Subject: <br>
+           <input name="subject" type="text" id="userBox" maxlength="45" />
+           <br> Country: <br>
+           <input name="country" type="text" id="userBox" maxlength="45" />
+           <br>
+           <input type="submit" value="Sign In" />        
+          </form> 
+                
+            </div>
         
         
         
