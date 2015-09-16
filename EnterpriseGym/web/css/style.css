@@ -4,14 +4,11 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : Sep 15, 2015, 1:13:12 PM
+    Created on : Sep 15, 2015, 2:30:52 PM
     Author     : colin
 */
 
-body {
-    background-color: #FDFDFD;
-}
-
-body p {
-    font-family: 'Open Sans', sans-serif;
+.content {
+    margin-left: 30%;
+    margin-right: 30%;
 }
