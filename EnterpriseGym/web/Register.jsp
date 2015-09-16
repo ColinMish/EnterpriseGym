@@ -47,8 +47,15 @@
            <input name="school" type="text" id="userBox" maxlength="45" />
            <br> Subject: <br>
            <input name="subject" type="text" id="userBox" maxlength="45" />
-           <br> year: <br>
-           <input name="year" type="text" id="userBox" maxlength="45" />
+           <div class="form-group">
+            <label for="sel1">Current year of study:</label>
+            <select class="form-control" id="sel1">
+             <option>1</option>
+             <option>2</option>
+             <option>3</option>
+             <option>4</option>
+            </select>
+           </div>
            <br> matriculation number: <br>
            <input name="matric" type="text" id="userBox" maxlength="45" />
            <br>
