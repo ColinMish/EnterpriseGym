@@ -53,7 +53,9 @@
                         <a href="About">About</a>
                     </li>
                     <li>
-                        <a href="News">News</a>
+
+                        <a href="SignUp">Help + Support</a>
+                        
                     </li>
                     <li>
                         <a href="Events">Events</a>
