@@ -53,12 +53,13 @@
                         <a href="About">About</a>
                     </li>
                     <li>
-
-                        <a href="SignUp">Help + Support</a>
-                        
+                        <a href="SignUp">Register</a>   
                     </li>
                     <li>
                         <a href="Events">Events</a>
+                    </li>
+                    <li>
+                        <a href="News">News</a>
                     </li>
                     <li>
                         <a href="Trainers">Trainers</a>
