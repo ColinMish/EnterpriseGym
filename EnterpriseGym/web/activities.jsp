@@ -6,9 +6,9 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <body>
+    
         <%@include file="header.jsp" %>
+        
     
             <!-- Page Content -->
     <div class="container">
@@ -155,5 +155,4 @@
     </div>
     
     <%@include file ="footer.jsp" %>
-    </body>
-</html>
+    
