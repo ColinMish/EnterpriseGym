@@ -1,6 +1,3 @@
-package Controllers;
-
-
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -10,19 +7,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 /**
  *
- * @author Dave
+ * @author kristiyangeorgiev
  */
-@WebServlet(name = "About", urlPatterns = {"/About"})
+@WebServlet(name = "Connect", urlPatterns = {"/Connect"})
 @MultipartConfig
-public class About extends HttpServlet {
+public class Connect extends HttpServlet {
 
     /**
      * Constructor
      */
-    public About() {
+    public Connect() {
 
     }
 
@@ -46,7 +42,7 @@ public class About extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
-                  RequestDispatcher dispatcher = request.getRequestDispatcher("about.jsp");
+                  RequestDispatcher dispatcher = request.getRequestDispatcher("connect.jsp");
                 dispatcher.forward(request, response);
     }
 
@@ -64,3 +60,4 @@ public class About extends HttpServlet {
     {
     }
 }
+

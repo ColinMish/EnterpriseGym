@@ -1,7 +1,6 @@
-package Controllers;
-
 
 import java.io.IOException;
+import java.util.StringTokenizer;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -15,14 +14,14 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Dave
  */
-@WebServlet(name = "About", urlPatterns = {"/About"})
+@WebServlet(name = "Home", urlPatterns = {"/Home/*"})
 @MultipartConfig
-public class About extends HttpServlet {
+public class Main extends HttpServlet {
 
     /**
      * Constructor
      */
-    public About() {
+    public Main() {
 
     }
 
@@ -44,10 +43,9 @@ public class About extends HttpServlet {
      * @throws IOException
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-    {
-                  RequestDispatcher dispatcher = request.getRequestDispatcher("about.jsp");
-                dispatcher.forward(request, response);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+            dispatcher.forward(request, response);
     }
 
     /**
@@ -60,7 +58,6 @@ public class About extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException 
-    {
+            throws ServletException, IOException {
     }
 }
