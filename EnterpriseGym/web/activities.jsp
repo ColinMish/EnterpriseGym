@@ -67,6 +67,49 @@
                               Aimed at 4th Years and those about to Graduate.<br><br>
                               
                         </p>
+                        
+                        <h4><i class="fa fa-fw fa-check"></i>Virtual Enterprise</h4> <br> 
+                        <p>
+                            This activity is only for current students and those who have graduated in the last<br>  
+                            two years who have earned a Blue or Gold award from The Enterprise Gym. If you <br> 
+                            have earned a Blue or a Gold and you successfully complete the Virtual Enterprise <br> 
+                            element you will be awarded a Platinum award. This is effectively a double Blue or<br>  
+                            double Gold. Virtual allows you to run your own virtual business using SimVenture<br> 
+                            software.<br> <br> 
+                            
+                            <a href="http://www.enterprise-gym.com/activities/virtual"><strong>Start your own Virtual business!</strong></a><br> <br> <br> 
+                            
+                        </p>   
+                        <h4><i class="fa fa-fw fa-check"></i>Enterprise Theory</h4><br>
+                        <p>
+                            Our online theory modules have been updated for the 2011 / 2012 academic <br> 
+                            year. This self-study activity, designed to deepen your understanding of enterprise <br> 
+                            and entrepreneurship, consists of 11 PowerPoint presentations and 11 quizzes, each <br> 
+                            with 10 questions.<br> <br> 
+                            
+                            <a href="http://www.enterprise-gym.com/activities/theory"><strong>Start Enterprise Theory now!</strong></a><br> <br> <br> 
+                        </p>
+                        
+                        <h4><i class="fa fa-fw fa-check"></i>Projects</h4><br>
+                        <p>
+                            Full details of <a href="http://www.enterprise-gym.com/activities/projects">The Enterprise Gym Projects</a> coming soon! Keep an eye on the<br>
+                            <a href="http://www.enterprise-gym.com">Enterprise Gym website</a>, <a href="https://www.facebook.com/EnterpriseGym">Enterprise Gym Facebook page</a>, or <a href="http://twitter.com/enterprise_gym">Enterprise Gym Twitter <br>
+                                feed</a> to keep up with the latest!<br><br><br>
+                        </p>
+                        
+                        
+                        <h4><i class="fa fa-fw fa-check"></i>The Enterprise Module</h4><br>
+                        
+                        The <a href="http://www.enterprise-gym.com/">Enterprise Gym</a> and Academic skills Centre will be delivering a <a href="http://enterprise-gym.com/activities/accredited-modules">Level 2<br>
+                        Enterprise Module</a>.<br><br>
+                        
+                        This module launches in semester 1 of 2014/15 and allows you to deepen your <br>
+                        understanding of entrepreneurship and innovation; while also providing teaching on <br>
+                        the practical elements of starting and running a business.<br><br><br>
+                        
+                        <h4><i class="fa fa-fw fa-check"></i>Mentoring</h4><br>
+                        
+                        Outcome focussed <a href="http://enterprise-gym.com/activities/pep-tocs">mentoring</a> for students with a start up idea.<br>
                     </div>
                 </div>
             </div>
