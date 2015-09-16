@@ -47,15 +47,14 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="Home">Home</a>
+                        <li class="active"><a href="home"><i class="icon-home icon-white"></i> Home</a></li>
+<!--                        <a href="Home">Home</a>-->
                     </li>
                     <li>
                         <a href="About">About</a>
                     </li>
                     <li>
-
-                        <a href="SignUp">Help + Support</a>
-                        
+                        <a href="SignUp">Sign Up</a>                     
                     </li>
                     <li>
                         <a href="Events">Events</a>
@@ -73,9 +72,36 @@
                         <a href="Activities">Activities</a>
                     </li>
                 </ul>
+                
+                   <ul class="nav pull-right">
+          <% if (session.getAttribute("username") == null){ %>            
+          <li class="dropdown" id="menuLogin">
+            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">Login</a>
+            <div class="dropdown-menu" style="padding:17px;">
+              <form class="form" action="LogIn" method="post"  id="formLogin"> 
+                <input name="username" id="username" type="text" placeholder="Username"> 
+                <input name="password" id="password" type="password" placeholder="Password"><br>
+                <input type="submit" value="Sign In"  />
+              </form>
             </div>
+          </li>
+          <%}else{%>
+          <li> Logged in as: <%=session.getAttribute("username")%> </li>
+          <%}%>
+          <li>
+              <% if (session.getAttribute("username") != null) { %>
+              <a href="LogOut">Log Out</a></li>
+             <%}else{%>
+          <a href="SignUp">Sign Up</a></li>
+                   <%}%>
+        </ul>
+         
+               
+            </div>
+          
             <!-- /.navbar-collapse -->
         </div>
+         
         <!-- /.container -->
     </nav>
 
