@@ -15,10 +15,10 @@
     <title>Enterprise Gym</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/half-slider.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/half-slider.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -87,14 +87,14 @@
         <div class="carousel-inner">
             <div class="item active">
                 <!-- Set the first background image using inline CSS below. -->
-                <div class="fill" style="background-image:url('Pictures/banner.jpg');"></div>
+                <div class="fill" style="background-image:url('${pageContext.request.contextPath}/Pictures/banner.jpg');"></div>
                 <div class="carousel-caption">
                     <h2></h2>
                 </div>
             </div>
             <div class="item">
                 <!-- Set the second background image using inline CSS below. -->
-                <div class="fill" style="background-image:url('Pictures/fun-people-only.png');"></div>
+                <div class="fill" style="background-image:url('${pageContext.request.contextPath}/Pictures/fun-people-only.png');"></div>
                 <div class="carousel-caption">
                     <h2></h2>
                 </div>

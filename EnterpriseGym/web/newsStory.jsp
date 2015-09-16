@@ -9,17 +9,17 @@
 <!DOCTYPE html>
 <html>
     <%@include file="header.jsp" %>
-    <% NewsEntity story = (NewsEntity) session.getAttribute("Story"); %>
+    <% NewsEntity story = (NewsEntity) request.getAttribute("Story"); %>
     <!-- Page Content -->
     
     <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h4><i class="fa fa-fw fa-gift"></i><%story.getTitle();%></h4>
+                <h4><i class="fa fa-fw fa-gift"></i><%=story.getTitle()%></h4>
             </div>
             <div class="panel-body">
-                <p><%story.getContent();%></p>
-                <a href="#" class="btn btn-default">Read More</a>
+                <p><%=story.getContent()%></p>
+                <a href="../News" class="btn btn-default">Back</a>
             </div>
         </div>
     </div>
