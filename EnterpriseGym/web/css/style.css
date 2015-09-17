@@ -35,3 +35,7 @@ and open the template in the editor.
     height: 100%;
     width: 100%;
 }
+
+a:link {
+    color:#9a2d43;
+}

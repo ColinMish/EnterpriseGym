@@ -35,7 +35,7 @@
                         <div class="panel-body">
                             <div class="usermenu">
                         
-                            <a class="btn btn-default one" href="points.jsp">My Points</a><br><br>
+                            <a class="btn btn-default one" href="editdetails.jsp">My Points</a><br><br>
                             
                             <a class="btn btn-default two" href="editdetails.jsp">Edit Details</a>
                             
