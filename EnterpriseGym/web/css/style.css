@@ -44,3 +44,8 @@ and open the template in the editor.
     color:white;
     top: 15px;
 }
+
+.loginfailed{
+    color:red;
+    size:10;
+}
