@@ -45,17 +45,25 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
+               
+                <ul class="nav navbar-nav navbar-left">
+                    <li><img src="${pageContext.request.contextPath}/Pictures/logo-eg.png"></li>
+                </ul>
+                    <ul class="nav navbar-nav">
                     <li>
-                        <a href="Home">Home</a>
+                        <li class="active"><a href="index.jsp"><span class="glyphicon glyphicon-home"></i> Home</a></li>
+<!--                        <a href="Home">Home</a>-->
                     </li>
                     <li>
                         <a href="About">About</a>
                     </li>
                     <li>
+<<<<<<< HEAD
+=======
                         <a href="SignUp">Register</a>   
                     </li>
                     <li>
+>>>>>>> master
                         <a href="Events">Events</a>
                     </li>
                     <li>
@@ -66,10 +74,7 @@
                     </li>
                     <li>
                         <a href="Connect">Connect</a>
-                    </li>
-                    <li>
-                        <a href="Contact">Contact</a>
-                    </li>
+                    </li>                  
                     <li>
                         <a href="Activities">Activities</a>
                     </li>
@@ -77,9 +82,47 @@
                         <a href="Quizes">Online Tests</a>
                     </li>
                 </ul>
+                
+                   <ul class="nav navbar-nav navbar-right">
+          <% if (session.getAttribute("username") == null){ %>            
+          <li class="dropdown" id="menuLogin">
+            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">Login</a>
+            <div class="dropdown-menu" style="padding:17px;">
+                
+              <form role="form" action="LogIn" method="post"  id="formLogin"> 
+                  <div class="form_group">
+                      <label for="username">Username:</label>
+                <input name="username" id="username" class="form-control" type="text" placeholder="Username" required> 
+                  </div>
+                <div class="form_group">
+                    <label for="password"> Password:</label>
+                <input name="password" id="password" class="form-control" type="text" placeholder="Password" required> 
+                  </div>
+                <div class="form-group">        
+                    <br>
+                <button type="submit" class="btn btn-default">Submit</button>
+
+                </div>
+              </form>
             </div>
+          </li>
+          <%}else{%>
+          <li> Logged in as: <%=session.getAttribute("username")%> </li>
+          <%}%>
+          <li>
+              <% if (session.getAttribute("username") != null) { %>
+              <a href="LogOut">Log Out</a></li>
+             <%}else{%>
+          <a href="SignUp">Sign Up</a></li>
+                   <%}%>
+        </ul>
+         
+               
+            </div>
+          
             <!-- /.navbar-collapse -->
         </div>
+         
         <!-- /.container -->
     </nav>
 
@@ -124,5 +167,7 @@
         <a class="right carousel-control" href="#myCarousel" data-slide="next">
             <span class="icon-next"></span>
         </a>
+        
+ 
 
     </header>
