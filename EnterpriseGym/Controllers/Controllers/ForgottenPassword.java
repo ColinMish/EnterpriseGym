@@ -51,6 +51,7 @@ public class ForgottenPassword extends HttpServlet {
             response.sendRedirect(request.getContextPath()+"/LogIn.jsp");
         } else {
             /* Sorry, not in database */
+             response.sendRedirect(request.getContextPath()+"/notRegistered.jsp");
         }
 
 
