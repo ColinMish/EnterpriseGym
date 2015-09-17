@@ -73,6 +73,9 @@
                     <li>
                         <a href="Activities">Activities</a>
                     </li>
+                    <li>
+                        <a href="Quizes">Online Tests</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
