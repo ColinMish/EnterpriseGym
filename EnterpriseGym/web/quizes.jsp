@@ -3,8 +3,11 @@
     Created on : 16-Sep-2015, 13:14:27
     Author     : kristiyangeorgiev
 --%>
-
+<%@page import="java.util.Map"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="Entities.QuizEntity" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% Map<String, QuizEntity> quizzes = (HashMap) request.getAttribute("quizzes"); %>
 <!DOCTYPE html>
 <html>
     <body>
@@ -59,17 +62,10 @@
                              
                              <h4><i class="fa fa-fw fa-check"></i><strong>All Quizes</strong></h4><br>
                              
-                             <a href="/activities/quiz/online-theory-quiz-1">Online Theory - Quiz 1</a><br>
-                             <a href="/activities/quiz/online-theory-quiz-2">Online Theory - Quiz 2</a><br>
-                             <a href="/activities/quiz/online-theory-quiz-3">Online Theory - Quiz 3</a><br>
-                             <a href="/activities/quiz/online-theory-quiz-4">Online Theory - Quiz 4</a><br>
-                             <a href="/activities/quiz/online-theory-quiz-5">Online Theory - Quiz 5</a><br>
-                             <a href="/activities/quiz/online-theory-quiz-6">Online Theory - Quiz 6</a><br>
-                             <a href="/activities/quiz/online-theory-quiz-7">Online Theory - Quiz 7</a><br>
-                             <a href="/activities/quiz/online-theory-quiz-8">Online Theory - Quiz 8</a><br>
-                             <a href="/activities/quiz/online-theory-quiz-9">Online Theory - Quiz 9</a><br>
-                             <a href="/activities/quiz/online-theory-quiz-10">Online Theory - Quiz 10</a><br>
-                             <a href="/activities/quiz/online-theory-quiz-11">Online Theory - Quiz 11</a><br>
+                             <%for(QuizEntity quiz : quizzes.values())
+                             {%>
+                                <%="<a href=\"Quizes/" + quiz.getQuizTitle() + "\">" + quiz.getQuizTitle() + "</a><br>"%>
+                             <%}%>
                         </p>
                     </div>
                 </div>
