@@ -12,8 +12,9 @@
  <% Map<String, NewsEntity> storys = (HashMap) request.getAttribute("Storys"); %>
 <!DOCTYPE html>
 <html>
-
+    
     <%@include file="header.jsp" %>
+    <%@include file="sidebar.jsp" %>
     
     <!-- Page Content -->
     <div class="container">

@@ -6,9 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-    
-        <%@include file="header.jsp" %>
-        
+        <%@include file="header.jsp" %>        
+        <%@include file="sidebar.jsp" %>
     
             <!-- Page Content -->
     <div class="container">
