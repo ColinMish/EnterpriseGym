@@ -9,6 +9,7 @@
 <html>
      
     <%@include file="header.jsp" %>
+    <%@include file="sidebar.jsp" %>
     <%@include file="registerscripts.jsp" %>
     
                 <script type="text/javascript">
