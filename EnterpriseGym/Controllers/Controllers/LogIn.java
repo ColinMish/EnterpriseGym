@@ -26,6 +26,8 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "LogIn", urlPatterns = {"/LogIn"})
 @MultipartConfig
 public class LogIn extends HttpServlet {
+    
+    int login_attempt_count;
 
     /**
      * Constructor
@@ -94,23 +96,38 @@ public class LogIn extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
-		UserModel user = new UserModel();						
-		
-        try {
-            if(user.login(username,toSHA1(password.getBytes("UTF-8")))==false)
-            {
-                response.sendRedirect(request.getContextPath()+"/LogInFailed.jsp");
-            }
-            else
-            {
-                HttpSession session = request.getSession();
-                session.setAttribute("username", username);
-                response.sendRedirect(request.getContextPath()+"/index.jsp");
+		UserModel user = new UserModel();
+                user.login_attempts = login_attempt_count;
+	
+               
+                        try {
+
+                            if(user.login(username,toSHA1(password.getBytes("UTF-8")))==false)
+                            {
+                                if(user.login_attempts == 2){
+                                     response.sendRedirect(request.getContextPath()+"/FailedLogin.jsp");
+                                } else {
+                                    
+                                user.login_attempts++;
+                                login_attempt_count = user.login_attempts;
+                                user.login_fail = true;
+                                response.sendRedirect(request.getContextPath()+"/LogIn.jsp");
+                               
+                                }
+                                
+                            }
+                            else
+                            {
+                                HttpSession session = request.getSession();
+                                session.setAttribute("username", username);
+                                response.sendRedirect(request.getContextPath()+"/index.jsp");
+
+                            }
+                        } catch (SQLException ex) {
+                            Logger.getLogger(LogIn.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                 
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(LogIn.class.getName()).log(Level.SEVERE, null, ex);
-        }
 	}
+            
     }
 
