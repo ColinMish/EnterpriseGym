@@ -9,7 +9,7 @@
 
 <% 
                     String sn=request.getParameter("ver");
-                    System.out.println(sn);
+                   
                     Class.forName("com.mysql.jdbc.Driver");
                     Connection con =DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym","davidkenny","root1");
                     Statement st=con.createStatement();
