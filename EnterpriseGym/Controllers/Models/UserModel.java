@@ -17,6 +17,11 @@ import java.util.Date;
 public class UserModel {
     	 public String user = "davidkenny";
         public String pass = "root1";
+        
+         public static java.sql.Date getCurrentDate() {
+            java.util.Date today = new java.util.Date();
+                return new java.sql.Date(today.getTime());
+            }
     
     public boolean register(String username,String password,String email,String first,String last,String gender, String country, String university, String school, String subject, String year,String matriculation)
     {
@@ -30,25 +35,41 @@ public class UserModel {
         
 		Connection con = null;
 		try{
+                    
+                    int yearint = Integer.parseInt(year); 
+                    int matric =Integer.parseInt(matriculation);
 		
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
 	    con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym",user,pass);
             
-            Date date = new Date();
+       
+           
 	    
 	    PreparedStatement ps = null;
             PreparedStatement ps2 = null;
             
-            String sqlOption2= "INSERT INTO account (username,password,date_joined) VALUES (?,?,?)";
+            String sqlOption2= "INSERT INTO account (username,password,date_joined,accessToken_idaccessToken) VALUES (?,?,?,?)";
             ps2 = con.prepareStatement(sqlOption2);
             ps2.setString(1, username);
             ps2.setString(2, password);
-            ps2.setDate(3, date);
+            ps2.setDate(3, getCurrentDate());
+            ps2.setInt(4,1);
             ps2.executeUpdate();
+            
+            //Find out the id of the new account to insert into user. 
+	    		PreparedStatement ps1 = null;
+			    String sqlOption1= "SELECT * FROM account WHERE username=?";
+
+			    ps1 = con.prepareStatement(sqlOption1);
+		    	ps1.setString(1, username);
+		    	
+		    	ResultSet rs1 = ps1.executeQuery();
+		    	rs1.next();
+                        int id = rs1.getInt("idaccount");
 	    
 	    
-	    String sqlOption= "INSERT INTO user (email,first_name,last_name,gender,country,university,school,subject,year,matriculation) VALUES (?,?,?,?,?,?,?,?,?,?)";
-    	
+	    String sqlOption= "INSERT INTO user (email,first_name,last_name,gender,country,university,school,subject,year,matriculation,account_idaccount) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+    	                    
             ps = con.prepareStatement(sqlOption);
  
             ps.setString(1, email);
@@ -59,8 +80,9 @@ public class UserModel {
             ps.setString(6, university);
             ps.setString(7, school);
             ps.setString(8, subject);
-            ps.setString(9, year);
-            ps.setString(10,matriculation);
+            ps.setInt(9, yearint);
+            ps.setInt(10,matric);
+            ps.setInt(11,id);
             ps.executeUpdate();
         
         
