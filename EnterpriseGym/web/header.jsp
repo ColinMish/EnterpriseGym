@@ -3,7 +3,7 @@
     Created on : 15-Sep-2015, 12:44:38
     Author     : Dave
 --%>
-
+   
 <head>
 
     <meta charset="utf-8">
@@ -11,6 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ 
 
     <title>Enterprise Gym</title>
 

@@ -10,27 +10,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <script type="text/javascript">
-          function validateForm()
-            {  
-            var x=document.forms["login"]["username"].value;
-            var y=document.getElementById('actual').value;            
-            
-                if (y=="taken")
-                {
-                       alert("Name already exist in database");
-                    return false;
-                }else
-                {
-                        alert("No name exist");
-                }
-                    
-                    
-             }
-        </script>
-        <script type="text/javascript">
+        <script type="text/javascript">                
 function loadXMLDoc()
 {
+
 var xmlhttp;
 var k=document.getElementById("username").value;
 var urls="checkusername.jsp?ver="+k;
@@ -52,6 +35,7 @@ xmlhttp.onreadystatechange=function()
   }
 xmlhttp.open("GET",urls,true);
 xmlhttp.send();
+
 }
 </script>
     </head>
@@ -59,7 +43,7 @@ xmlhttp.send();
         <form name="login" method="get" action="" >
         <p>
     <center>
-        <font color="white">User Name: </font><input type="text" name="username" id="username" onkeyup="loadXMLDoc()"><br>
+        <font color="white">User Name: </font><input type="text" id="username" onkeyup="loadXMLDoc()"><br>
         <span id="err"> </span>
     </center>
         </p>
