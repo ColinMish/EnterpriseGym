@@ -50,7 +50,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                
                     <ul class="nav navbar-nav">
-                    <li>
+                    <li class="active">
                         <a href="Home"><img src="${pageContext.request.contextPath}/Pictures/logo-eg.png"></a>
                     </li>
                     <li>
@@ -104,7 +104,7 @@
             </div>
           </li>
           <%}else{%>
-          <li> Logged in as: <%=session.getAttribute("username")%> </li>
+          <li class="logintext"> Logged in as: <%=session.getAttribute("username")%></li>
           <%}%>
           <li>
               <% if (session.getAttribute("username") != null) { %>

@@ -35,3 +35,8 @@ and open the template in the editor.
     height: 100%;
     width: 100%;
 }
+
+.logintext{
+    color:white;
+    top: 15px;
+}
