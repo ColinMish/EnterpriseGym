@@ -141,7 +141,7 @@ xmlhttp.send();
            </div>
            <div class="form-group">
                 <label for="matric">Matriculation Number:</label>
-                <input name="matric" type="number" class="form-control" id="matric" maxlength="45" required/>
+                <input name="matric" type="number" class="form-control" value="0" id="matric" maxlength="45" required/>
            </div>
            <br>
            <input class="btn btn-default" type="submit" value="Sign Up">
