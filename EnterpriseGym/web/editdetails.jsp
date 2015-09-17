@@ -16,6 +16,9 @@
         <%@include file="header.jsp" %>
         <%@include file="sidebar.jsp" %>
         
+        <article>
+            
+            <form name="myForm" method="post" action="EditDetails">
         <div class="container">
 
             <div class="row">
@@ -30,26 +33,26 @@
                    <div class="panel-body">
                             
                         <div class="form-group">
-                            <label for="usr">First Name:</label>
-                            <input type="text" class="form-control" id="usr">
+                            <label for="firstn">First Name:</label>
+                            <input type="text" name="firstn" class="form-control" id="firstn">
                         </div>
             
                         <div class="form-group">
-                            <label for="usr">Last Name:</label>
-                            <input type="text" class="form-control" id="usr">
+                            <label for="lastn">Last Name:</label>
+                            <input type="text" name="lastn" class="form-control" id="lastn">
                         </div>
             
                         <div class="form-group">
-                            <label for="usr">Email Address:</label>
-                            <input type="text" class="form-control" id="usr">
+                            <label for="email">Email Address:</label>
+                            <input type="text" name="email" class="form-control" id="email">
                         </div>
             
                         <div class="form-group">
-                            <label for="usr">Year of study:</label>
-                            <input type="text" class="form-control" id="usr">
+                            <label for="year">Year of study:</label>
+                            <input type="text" name="year" class="form-control" id="year">
                         </div>
             
-                        <a class="btn btn-primary" href="profile.jsp">Update</a><br><br>
+                        <input class="btn btn-primary" type="submit" value="Update"><br><br>
             
                     </div>
                 </div>
@@ -62,24 +65,28 @@
                        
                        <div class="form-group">
                             <label for="usr">Old Password:</label>
-                            <input type="text" class="form-control" id="usr">
+                            <input type="text" name="oldpass" class="form-control" id="usr">
                         </div>
                        
                        <div class="form-group">
                             <label for="usr">New Password:</label>
-                            <input type="text" class="form-control" id="usr">
+                            <input type="text" name="newpass" class="form-control" id="usr">
                         </div>
             
                         <div class="form-group">
                             <label for="usr">New Password Again:</label>
-                            <input type="text" class="form-control" id="usr">
+                            <input type="text" name="newpass" class="form-control" id="usr">
                         </div>
                        
-                        <a class="btn btn-primary" href="profile.jsp">Update</a><br><br>
+                       <input class="btn btn-primary" type="submit" value="Update"><br><br>
                    </div>
                 </div>
             </div>
         </div>
+                
+            </form>
+
+        </article>
         <%@include file ="footer.jsp" %>
     </body>
 </html>
