@@ -52,31 +52,31 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         
-                    <li class="homeButton${request.requestURI eq '/Enterprise/index.jsp' ? ' active' : ''}">
+                    <li class="homeButton${pageContext.request.getServletPath() eq '/index.jsp' ? ' active' : ''}">
                         <a href="Home"><img src="${pageContext.request.contextPath}/Pictures/logo-eg.png"></a>
                     </li>
-                    <li class="aboutButton${pageContext.request.requestURI eq '/Enterprise/about.jsp' ? ' active' : ''}">
+                    <li class="aboutButton${pageContext.request.getServletPath() eq '/about.jsp' ? ' active' : ''}">
                         <a href="About">About</a>
                     </li>
-                    <li class="eventsButton${pageContext.request.requestURI eq '/Enterprise/events.jsp' ? ' active' : ''}">
+                    <li class="eventsButton${pageContext.request.getServletPath() eq '/events.jsp' ? ' active' : ''}">
                         <a href="Events">Events</a>
                     </li>
-                    <li class="newsButton${pageContext.request.requestURI eq '/Enterprise/news.jsp' ? ' active' : ''}">
+                    <li class="newsButton${pageContext.request.getServletPath() eq '/news.jsp' ? ' active' : ''}">
                         <a href="News">News</a>
                     </li>
-                    <li class="trainersButton${pageContext.request.requestURI eq '/Enterprise/trainers.jsp' ? ' active' : ''}">
+                    <li class="trainersButton${pageContext.request.getServletPath() eq '/trainers.jsp' ? ' active' : ''}">
                         <a href="Trainers">Trainers</a>
                     </li>
-                    <li class="connectButton${pageContext.request.requestURI eq '/Enterprise/connect.jsp' ? ' active' : ''}">
+                    <li class="connectButton${pageContext.request.getServletPath() eq '/connect.jsp' ? ' active' : ''}">
                         <a href="Connect">Connect</a>
                     </li>                  
-                    <li class="activitesButton${pageContext.request.requestURI eq '/Enterprise/activities.jsp' ? ' active' : ''}">
+                    <li class="activitesButton${pageContext.request.getServletPath()eq '/activities.jsp' ? ' active' : ''}">
                         <a href="Activities">Activities</a>
                     </li>
-                    <li class="quizesButton${pageContext.request.requestURI eq '/Enterprise/quizes.jsp' ? ' active' : ''}">
+                    <li class="quizesButton${pageContext.request.getServletPath() eq '/quizes.jsp' ? ' active' : ''}">
                         <a href="Quizes">Online Tests</a>
                     </li>
-                    <li class="profileButton${pageContext.request.requestURI eq '/Enterprise/profile.jsp' ? ' active' : ''}">
+                    <li class="profileButton${pageContext.request.getServletPath() eq '/profile.jsp' ? ' active' : ''}">
                         <a href="Profile">My eGym</a>
                     </li>
                 </ul>
