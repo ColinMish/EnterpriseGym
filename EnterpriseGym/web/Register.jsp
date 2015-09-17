@@ -57,7 +57,7 @@
             </select>
            </div>
            <br> matriculation number: <br>
-           <input name="matric" type="text" id="userBox" maxlength="45" />
+           <input name="matric" type="number" id="userBox" maxlength="45" />
            <br>
            <input type="submit" value="Sign In">
            <br><br><br><br>

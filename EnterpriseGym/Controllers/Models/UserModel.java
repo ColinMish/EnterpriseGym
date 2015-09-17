@@ -35,10 +35,8 @@ public class UserModel {
         
 		Connection con = null;
 		try{
-                    
-                    int yearint = Integer.parseInt(year); 
-                    int matric =Integer.parseInt(matriculation);
-		
+       
+	
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
 	    con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym",user,pass);
             
@@ -66,6 +64,7 @@ public class UserModel {
 		    	ResultSet rs1 = ps1.executeQuery();
 		    	rs1.next();
                         int id = rs1.getInt("idaccount");
+                        System.out.println("The id is:"+id);
 	    
 	    
 	    String sqlOption= "INSERT INTO user (email,first_name,last_name,gender,country,university,school,subject,year,matriculation,account_idaccount) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
@@ -80,8 +79,8 @@ public class UserModel {
             ps.setString(6, university);
             ps.setString(7, school);
             ps.setString(8, subject);
-            ps.setInt(9, yearint);
-            ps.setInt(10,matric);
+            ps.setInt(9, 1);
+            ps.setInt(10,1);
             ps.setInt(11,id);
             ps.executeUpdate();
         
