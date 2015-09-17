@@ -26,6 +26,8 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "LogIn", urlPatterns = {"/LogIn"})
 @MultipartConfig
 public class LogIn extends HttpServlet {
+    
+    int failed_login_count;
 
     /**
      * Constructor
@@ -94,12 +96,21 @@ public class LogIn extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
-		UserModel user = new UserModel();						
+		UserModel user = new UserModel();	
+                
+                user.login_attempt = failed_login_count;
 		
         try {
             if(user.login(username,toSHA1(password.getBytes("UTF-8")))==false)
             {
-                response.sendRedirect(request.getContextPath()+"/LogInFailed.jsp");
+                if(user.login_attempt == 2){
+                    response.sendRedirect(request.getContextPath()+"/LogInFailed.jsp");
+                } else {
+                    user.login_attempt++;
+                    failed_login_count = user.login_attempt;
+                    response.sendRedirect(request.getContextPath()+"/LogIn.jsp");
+                }
+                
             }
             else
             {

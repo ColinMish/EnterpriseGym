@@ -18,6 +18,16 @@ public class UserModel {
     	 public String user = "davidkenny";
         public String pass = "root1";
         
+        public int login_attempt;
+        public boolean login_failed;
+        
+        public UserModel(){
+            
+            login_attempt = 0;
+            login_failed = false;
+            
+        }
+        
          public static java.sql.Date getCurrentDate() {
             java.util.Date today = new java.util.Date();
                 return new java.sql.Date(today.getTime());

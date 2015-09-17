@@ -1,3 +1,5 @@
+package Controllers;
+
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -8,9 +10,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 /**
  *
- * @author kristiyangeorgiev
+ * @author Kim
  */
 @WebServlet(name = "Trainers", urlPatterns = {"/Trainers"})
 @MultipartConfig
@@ -61,4 +64,3 @@ public class Trainers extends HttpServlet {
     {
     }
 }
-

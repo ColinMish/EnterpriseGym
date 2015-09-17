@@ -17,8 +17,8 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h1>Log In</h1>
-                <p></p>
+                <h1>Log In failed</h1>
+                <p>Either username or password was incorrect. Try again!</p>
              
             </div>
         </div>
