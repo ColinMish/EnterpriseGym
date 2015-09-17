@@ -74,6 +74,9 @@
                     <li>
                         <a href="Quizes">Online Tests</a>
                     </li>
+                    <li>
+                        <a href="Profile">My EGym</a>
+                    </li>
                 </ul>
 
                 
