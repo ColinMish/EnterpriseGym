@@ -11,6 +11,33 @@
     <%@include file="header.jsp" %>
     <%@include file="registerscripts.jsp" %>
     
+                <script type="text/javascript">
+function loadXMLDoc()
+{
+var xmlhttp;
+var k=document.getElementById("username1").value;
+var urls="checkusername.jsp?ver="+k;
+if (window.XMLHttpRequest)
+  {
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4)
+    {
+        document.getElementById("err").innerHTML=xmlhttp.responseText;
+     }
+  }
+xmlhttp.open("GET",urls,true);
+xmlhttp.send();
+    
+}
+</script>
+    
     <!-- Page Content -->
     <div class="container">
 
@@ -26,7 +53,8 @@
             <form action="SignUp" role="form" id="SignUp" method="POST">
                 <div class="form-group">
                 <label for="username">Username:</label>
-                <input name="username" type="text" class="form-control" id="username1" maxlength="45" required/>
+                <input name="username" type="text" class="form-control" id="username1" maxlength="45" onkeyup="loadXMLDoc()" required/>
+                 <span id="err"> </span>
                 </div>
            <div class="form-group">
                 <label for="password">Password:</label>
