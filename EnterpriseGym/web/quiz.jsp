@@ -25,7 +25,7 @@
         <div class="col-md-8" id="ConnectText">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4><i class="fa fa-fw fa-check"></i><strong><%=quiz.getQuizTitle()%></strong></h4><br>
+                    <h4 id="quizTitle"><i class="fa fa-fw fa-check"></i><strong><%=quiz.getQuizTitle()%></strong></h4><br>
                 </div>
                 <div class="panel-body">
                     <%LinkedList<QuizQuestionEntity> questions = (LinkedList) quiz.getQuestions();%>

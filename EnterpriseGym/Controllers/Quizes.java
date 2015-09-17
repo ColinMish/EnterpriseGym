@@ -98,10 +98,24 @@ public class Quizes extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String a = null;
-        String[] myJsonData = request.getParameterValues("answers");
-        for (int i = 0; i < myJsonData.length; ++i) {
-            System.out.println(myJsonData[i] + " --<br>");
+        String quizTitle = request.getParameter("quizTitle");
+        String[] answers = request.getParameterValues("answers[]");
+        Boolean [] results = CheckAnswers(quizTitle, answers);
+    }
+    
+    
+    private Boolean [] CheckAnswers(String quizTitle, String[] answers)
+    {
+        QuizEntity quiz = (QuizEntity) quizzes.get(quizTitle);
+        Boolean [] results = new Boolean [quiz.getQuestions().size()];
+        LinkedList<QuizQuestionEntity> questionList = (LinkedList<QuizQuestionEntity>) quiz.getQuestions();
+        
+        
+        for (int i = 1; i <= answers.length; i++)
+        {
+            int correctAnswer = questionList.get(i).getCorrectAnswer();
+            results[(i-1)] = answers[(i-1)].equals(questionList.get(i).getAnswer(correctAnswer));
         }
+        return results;
     }
 }

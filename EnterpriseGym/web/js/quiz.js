@@ -9,28 +9,20 @@ $(document).ready(function ()
     $("#quizForm").submit(function (e)
     {
         e.preventDefault();
-        var questions = [];
-        var answers = [];
-        $('input:radio').each(function ()
-        {
-            var $this = $(this), id = $this.attr('id');
-            if ($(this).prop('checked')) {
-                questions.push($this.attr('class'));
-                var answer = $("#A" + id).html();
-                answers.push(answer);
-                console.log(id);
-            }
-        });
-        GetResults(questions, answers);
+        var quizTitle = $("#quizTitle").text();
+        var answers = ValidateQuiz();
+        if(answers === null)
+            return;
+        GetResults(quizTitle, answers);
     });
 });
 
-function GetResults(questions, answers)
+function GetResults(quizTitle, answers)
 {
     $.ajax({
         type: "POST",
         url: "Result",
-        data: {anwers : answers, questions : questions},
+        data: {quizTitle: quizTitle, answers: answers},
         cache: false,
         success: function (data) {
             console.log("success");
@@ -39,4 +31,40 @@ function GetResults(questions, answers)
 
         }
     });
+}
+
+function ValidateQuiz()
+{
+    var answers = [];
+    var question;
+    var count = 0;
+    var valid = false;
+    $('input:radio').each(function ()
+    {
+        var $this = $(this), id = $this.attr('id');;
+        var thisQuestion = $this.attr('class');
+        if (question !== thisQuestion)
+        {
+            question = thisQuestion;
+            if (!valid && count !== 0)
+            {
+                answers = null;
+                return valid;
+            }
+            count++;
+            valid = false;
+        }
+
+        if ($(this).prop('checked'))
+        {        
+            valid = true;
+            var answer = $("#A" + id).html();
+            answers.push(answer);
+        }
+    });
+    if(answers === null)
+    {
+        alert("You must answer all questions to submit the quiz!");
+    }
+    return answers;
 }
