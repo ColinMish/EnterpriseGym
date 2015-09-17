@@ -19,6 +19,8 @@
 
     <!-- Custom CSS -->
     <link href="${pageContext.request.contextPath}/css/half-slider.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,6 +34,7 @@
 <body>
 
     <!-- Navigation -->
+    <div class="navigation-bar">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -46,24 +49,14 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                
-                <ul class="nav navbar-nav navbar-left">
-                    <li><img src="${pageContext.request.contextPath}/Pictures/logo-eg.png"></li>
-                </ul>
                     <ul class="nav navbar-nav">
                     <li>
-                        <li class="active"><a href="index.jsp"><span class="glyphicon glyphicon-home"></i> Home</a></li>
-<!--                        <a href="Home">Home</a>-->
+                        <a href="Home"><img src="${pageContext.request.contextPath}/Pictures/logo-eg.png"></a>
                     </li>
                     <li>
                         <a href="About">About</a>
                     </li>
                     <li>
-<<<<<<< HEAD
-=======
-                        <a href="SignUp">Register</a>   
-                    </li>
-                    <li>
->>>>>>> master
                         <a href="Events">Events</a>
                     </li>
                     <li>
@@ -82,8 +75,9 @@
                         <a href="Quizes">Online Tests</a>
                     </li>
                 </ul>
+
                 
-                   <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right">
           <% if (session.getAttribute("username") == null){ %>            
           <li class="dropdown" id="menuLogin">
             <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">Login</a>
@@ -115,6 +109,14 @@
              <%}else{%>
           <a href="SignUp">Sign Up</a></li>
                    <%}%>
+                   
+            <li id="calendar-drop">
+                <a data-toggle="collapse" data-target="#calendar" href="#calendar">
+                    <div class="header-calendar">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </div>
+                </a>
+            </li>
         </ul>
          
                
@@ -125,6 +127,18 @@
          
         <!-- /.container -->
     </nav>
+</div>
+                   
+            <div class="calendar">
+                <div id="calendar" class="collapse">
+                    <div class="pull-right">
+                    <div class="col-md-4">
+                        <iframe src="https://www.google.com/calendar/embed?showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=500&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=m9941bpd6nhji35pjjp3blv8do%40group.calendar.google.com&amp;color=%23853104&amp;ctz=Europe%2FLondon" style=" border-width:0 " width="400" height="500" frameborder="0" scrolling="no"></iframe>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
 
     <!-- Half Page Image Background Carousel Header -->
     <header id="myCarousel" class="carousel slide">

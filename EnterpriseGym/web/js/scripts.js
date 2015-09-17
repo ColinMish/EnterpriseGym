@@ -5,7 +5,5 @@
  */
 
 $(document).ready(function(){
-
-
 	
 });
