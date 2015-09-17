@@ -1,0 +1,37 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 15, 2015, 2:30:52 PM
+    Author     : colin
+*/
+
+.content {
+    margin-left: 10%;
+    margin-right: 10%;
+    z-index: 1;
+}
+
+.container {
+    z-index:1;
+}
+.navigation-bar {
+    z-index: 1;
+}
+
+.header-calendar {
+    font-size: 32px;
+    color: #cccccc;
+}
+
+.calendar {
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    height: 100%;
+    width: 100%;
+}

@@ -134,7 +134,7 @@ xmlhttp.send();
            </div>
            <br>
            <input type="submit" value="Sign Up">
-           <br><br><br><br>
+           <br/>
           </form> 
                 
             </div>

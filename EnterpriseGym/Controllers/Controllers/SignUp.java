@@ -82,8 +82,11 @@ public class SignUp extends HttpServlet {
                 String university = request.getParameter("university");
                 String school = request.getParameter("school");
                 String subject = request.getParameter("subject");
-                String yearofstudy = request.getParameter("year");
-                String matric = request.getParameter("matric");
+                //String yearofstudy = request.getParameter("year");
+                int yearofstudy = Integer.parseInt(request.getParameter("year"));
+                //System.out.println("The year of study"+yearofstudy);
+                int matric = Integer.parseInt(request.getParameter("matric"));
+                //String matric = request.getParameter("matric");
 
 		UserModel user = new UserModel();
 		
