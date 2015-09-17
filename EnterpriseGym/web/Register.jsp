@@ -9,7 +9,11 @@
 <html>
      
     <%@include file="header.jsp" %>
+<<<<<<< HEAD
     <%@include file="registerscripts.jsp" %>
+=======
+    <%@include file="sidebar.jsp" %>
+>>>>>>> LogIn
     
     <!-- Page Content -->
     <div class="container">
@@ -92,6 +96,7 @@
            </div>
            <div class="form-group">
             <label for="sel1">Current year of study:</label>
+<<<<<<< HEAD
             <select class="form-control" id="sel1">
              <option>1</option>
              <option>2</option>
@@ -104,6 +109,17 @@
                 <label for="matric">Matriculation Number:</label>
                 <input name="matric" type="text" class="form-control" id="matric" maxlength="45" required/>
            </div>
+=======
+            <select class="form-control" name="year" id="sel1">
+             <option value="1">1</option>
+             <option value="2">2</option>
+             <option value="3">3</option>
+             <option value="4">4</option>
+            </select>
+           </div>
+           <br> matriculation number: <br>
+           <input name="matric" type="number" id="userBox" maxlength="45" />
+>>>>>>> LogIn
            <br>
            <input type="submit" value="Sign Up">
            <br><br><br><br>

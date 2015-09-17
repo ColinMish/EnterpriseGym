@@ -2,8 +2,10 @@
 <html lang="en">
 
 <%@include file="header.jsp" %>
+<%@include file="sidebar.jsp" %>
 
     <!-- Page Content -->
+    <div class="content">
     <div class="container">
 
         <div class="row">
@@ -61,6 +63,7 @@
 
         <hr>
         
+    </div>
     </div>
     
     <%@include file ="footer.jsp" %>
