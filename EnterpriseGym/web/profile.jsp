@@ -35,9 +35,10 @@
                         <div class="panel-body">
                             <div class="usermenu">
                         
-                                <button type="button" class="btn btn-default one">My Points</button><br><br>
-                            <button type="button" class="btn btn-default two">Edit Details</button>
-                        
+                            <a class="btn btn-default one" href="points.jsp">My Points</a><br><br>
+                            
+                            <a class="btn btn-default two" href="editdetails.jsp">Edit Details</a>
+                            
                             </div>
                         </div>
                     
