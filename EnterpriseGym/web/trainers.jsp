@@ -10,6 +10,7 @@
 <html>
     <body>
         <%@include file="header.jsp" %>
+        <%@include file="sidebar.jsp" %>
     
             <!-- Page Content -->
     <div class="container">
