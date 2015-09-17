@@ -11,8 +11,10 @@
     <%@include file="header.jsp" %>
     <%@include file="sidebar.jsp" %>
     <%@include file="registerscripts.jsp" %>
+
+<script src="${pageContext.request.contextPath}/js/jquery.flagstrap.js"></script>
     
-                <script type="text/javascript">
+<script type="text/javascript">
 function loadXMLDoc()
 {
 var xmlhttp;
@@ -59,11 +61,11 @@ xmlhttp.send();
                 </div>
            <div class="form-group">
                 <label for="password">Password:</label>
-                <input name="password" type="text" class="form-control" id="password" maxlength="45" required/>
+                <input name="password" type="password" class="form-control" id="password" maxlength="45" required/>
            </div>
            <div class="form-group">
                 <label for="passwordCheck">Confirm Password:</label>
-                <input name="passwordCheck" type="text" class="form-control" id="confirmPassword" maxlength="45" required/>
+                <input name="passwordCheck" type="password" class="form-control" id="confirmPassword" maxlength="45" required/>
            </div>
            <div class="form-group">
                 <label for="firstName">First Name:</label>
@@ -75,11 +77,11 @@ xmlhttp.send();
            </div>
            <div class="form-group">
                 <label for="email">E-mail Address:</label>
-                <input name="email" type="text" class="form-control" id="email" maxlength="45" required/>
+                <input name="email" type="email" class="form-control" id="email" maxlength="45" required/>
            </div>
            <div class="form-group">
                 <label for="confirmEmail">Confirm E-mail Address:</label>
-                <input name="confirmEmail" type="text" class="form-control" id="confirmEmail" maxlength="45" required/>
+                <input name="confirmEmail" type="email" class="form-control" id="confirmEmail" maxlength="45" required/>
            </div>
            <div class="form-group">
                 <label for="gender">Gender:</label>
@@ -90,12 +92,20 @@ xmlhttp.send();
                     <option value="other">Other</option>
                 </select>
            </div>
+
            <div class="form-group">
-                <label for="country">Country:</label>
-                <select class="form-control" id="country">
-                    <option>-</option>
-                </select>
+                <label for="flagstrap">Country:</label>
+                <div class="flagstrap" data-input-name="country" data-selected-country="UK" data-scrollable-height="250px"></div>
            </div>
+            
+            <script>
+                $('.flagstrap').flagStrap();
+            </script> 
+            
+            <script src="https://code.jquery.com/jquery-1.11.2.js"></script>
+            <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+            <script src="http://blazeworx.com/jquery.flagstrap.min.js"></script>
+                
            <div class="form-group">
             <label for="university">University, H.E or F.E Institution:</label>
             <select class="form-control" id="university">
@@ -134,10 +144,10 @@ xmlhttp.send();
                 <input name="matric" type="text" class="form-control" id="matric" maxlength="45" required/>
            </div>
            <br>
-           <input type="submit" value="Sign Up">
+           <input class="btn btn-default" type="submit" value="Sign Up">
            <br/>
           </form> 
-                
+               
             </div>
     
     <%@include file ="footer.jsp" %>
