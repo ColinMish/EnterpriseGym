@@ -13,7 +13,7 @@
       <div class="container">
           
         <p class="text-muted">
-            <img src="Pictures/logo-eg.png" alt="The Enterprise Gym Logo"/><br/><br/>
+            <img src="${pageContext.request.contextPath}/Pictures/logo-eg.png" alt="The Enterprise Gym Logo"/><br/><br/>
             Copyright &copy; 2011 The Enterprise Gym. All rights reserved. <a href="Contact">Contact Us</a><br/>
             Website design, development and hosting by Team 5.<br/>
             This website is generously sponsored by <a href="http://www.commercial-properties-scotland.co.uk/">James Keiller Estates</a>.
@@ -24,10 +24,10 @@
 </footer>
 
 <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
     <!-- Script to Activate the Carousel -->
     <script>
