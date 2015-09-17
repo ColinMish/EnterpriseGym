@@ -65,15 +65,15 @@ xmlhttp.send();
            </div>
            <div class="form-group">
                 <label for="passwordCheck">Confirm Password:</label>
-                <input name="passwordCheck" type="password" class="form-control" id="confirmPassword" maxlength="45" required/>
+                <input name="passwordcheck" type="password" class="form-control" id="confirmPassword" maxlength="45" required/>
            </div>
            <div class="form-group">
                 <label for="firstName">First Name:</label>
-                <input name="firstName" type="text" class="form-control" id="firstName" maxlength="45" required/>
+                <input name="first" type="text" class="form-control" id="firstName" maxlength="45" required/>
            </div>
            <div class="form-group">
                 <label for="lastName">Last Name:</label>
-                <input name="lastName" type="text" class="form-control" id="lastName" maxlength="45" required/>
+                <input name="last" type="text" class="form-control" id="lastName" maxlength="45" required/>
            </div>
            <div class="form-group">
                 <label for="email">E-mail Address:</label>
@@ -85,7 +85,7 @@ xmlhttp.send();
            </div>
            <div class="form-group">
                 <label for="gender">Gender:</label>
-                <select class="form-control" id="gender">
+                <select class="form-control" name="gender" id="gender">
                     <option>-</option>
                     <option value="female">Female</option>
                     <option value="male">Male</option>
@@ -95,7 +95,7 @@ xmlhttp.send();
 
            <div class="form-group">
                 <label for="flagstrap">Country:</label>
-                <div class="flagstrap" data-input-name="country" data-selected-country="UK" data-scrollable-height="250px"></div>
+                <div class="flagstrap" data-input-name="country" data-selected-country="United Kingdom" data-scrollable-height="250px"></div>
            </div>
             
             <script>
@@ -108,7 +108,7 @@ xmlhttp.send();
                 
            <div class="form-group">
             <label for="university">University, H.E or F.E Institution:</label>
-            <select class="form-control" id="university">
+            <select class="form-control" id="university" name="university">
              <option>-</option>
              <option value="dundee">University of Dundee</option>
              <option value="abertay">University of Abertay</option>
@@ -119,13 +119,13 @@ xmlhttp.send();
            </div>
            <div class="form-group">
             <label for="school">School:</label>
-            <select class="form-control" id="school">
+            <select class="form-control" id="school" name="school">
              <option>-</option>
             </select>
            </div>
            <div class="form-group">
             <label for="subject">Subject:</label>
-            <select class="form-control" id="subject">
+            <select class="form-control" id="subject" name="subject">
              <option>-</option>
             </select>
            </div>
