@@ -9,7 +9,6 @@ $(document).ready(function ()
     $("#quizForm").submit(function (e)
     {
         e.preventDefault();
-        var results = [[],[]];
         var questions = [];
         var answers = [];
         $('input:radio').each(function ()
@@ -17,22 +16,24 @@ $(document).ready(function ()
             var $this = $(this), id = $this.attr('id');
             if ($(this).prop('checked')) {
                 questions.push($this.attr('class'));
-                answers.push($("A" + id).html);
+                var answer = $("#A" + id).html();
+                answers.push(answer);
                 console.log(id);
             }
         });
+        GetResults(questions, answers);
     });
 });
 
-function GetResults(size)
+function GetResults(questions, answers)
 {
-    this.collectAnswers(size);
     $.ajax({
         type: "POST",
         url: "Result",
-        data: string,
+        data: {anwers : answers, questions : questions},
         cache: false,
         success: function (data) {
+            console.log("success");
         },
         fail: function () {
 

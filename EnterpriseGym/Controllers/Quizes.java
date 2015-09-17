@@ -17,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 /**
  *
  * @author kristiyangeorgiev
@@ -25,8 +26,8 @@ import javax.servlet.http.HttpServletResponse;
 @MultipartConfig
 public class Quizes extends HttpServlet {
 
-    
     private HashMap quizzes;
+
     /**
      * Constructor
      */
@@ -35,11 +36,9 @@ public class Quizes extends HttpServlet {
         for (int quiz = 1; quiz < 12; quiz++)//create some news stories, will be from the database eventually
         {
             LinkedList questions = new LinkedList();
-            for(int question = 1; question < 11; question++)
-            {
-                String [] answers = new String [4];
-                for(int i = 0; i < 4; i++)
-                {
+            for (int question = 1; question < 11; question++) {
+                String[] answers = new String[4];
+                for (int i = 0; i < 4; i++) {
                     String answer = "answer " + (i + 1);
                     answers[i] = answer;
                 }
@@ -69,24 +68,19 @@ public class Quizes extends HttpServlet {
      * @throws IOException
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-    {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String a = request.getRequestURI();
-        if(a == null)
-        {
+        if (a == null) {
             throw new IOException();
         }
-        String [] parts = a.split("/");
-        if(parts.length < 4)
-        {
+        String[] parts = a.split("/");
+        if (parts.length < 4) {
             request.setAttribute("quizzes", quizzes);
             RequestDispatcher dispatcher = request.getRequestDispatcher("quizes.jsp");
             dispatcher.forward(request, response);
-        }
-        else
-        {
+        } else {
             String key = parts[3].replace("%20", " ");
-            QuizEntity quiz = (QuizEntity)quizzes.get(key);
+            QuizEntity quiz = (QuizEntity) quizzes.get(key);
             request.setAttribute("quiz", quiz);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/quiz.jsp");
             dispatcher.forward(request, response);
@@ -103,12 +97,11 @@ public class Quizes extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException 
-    {
-        String a = request.getParameter("Q1.A2");
-        String b = request.getParameter("Q2.A2");
-        String c = request.getParameter("Q3.A3");
-        
-        
+            throws ServletException, IOException {
+        String a = null;
+        String[] myJsonData = request.getParameterValues("answers");
+        for (int i = 0; i < myJsonData.length; ++i) {
+            System.out.println(myJsonData[i] + " --<br>");
+        }
     }
 }
