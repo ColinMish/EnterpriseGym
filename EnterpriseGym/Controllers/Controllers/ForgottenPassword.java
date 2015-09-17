@@ -13,8 +13,17 @@ import java.sql.SQLException;
 import java.io.EOFException;
 import java.sql.*;
 
+import java.util.*;
+//import java.mail.*;
+//import java.mail.internet.*;
+import javax.activation.*;
 
 
+    /* 
+    username: davidkenny
+    password: root1
+    Hostname:160.153.16.42
+    */
 
 /**
  *
@@ -25,6 +34,8 @@ import java.sql.*;
 @MultipartConfig
 public class ForgottenPassword extends HttpServlet {
     
+    public String user = "davidkenny";
+    public String pass = "root1"; 
 
     public ForgottenPassword(){
         
@@ -43,15 +54,33 @@ public class ForgottenPassword extends HttpServlet {
         
         /* Check if in database */
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-	   // con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym",email);
+	    con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
 	    
+            
+            String q = "SELECT user FROM Enterprise_Gym WHERE email=?";
+            
+            PreparedStatement s = null;
+            s = con.prepareCall(q);
+            s.setString(1, email);
+            
+            ResultSet r = null;
+            r = s.executeQuery();
+            
+            if(r.next()){
+                /* Reset password */
+               
+                
+                /* Send email */   
+            
+            
+            }
+            
+
         
-         /* Get password */
-        
-        
-         /* Send password */
+ 
             
             /* Go back to login page */
+            con.close();
             response.sendRedirect(request.getContextPath()+"/LogIn.jsp");
 
                     
@@ -63,6 +92,7 @@ public class ForgottenPassword extends HttpServlet {
     
     
     
+
     
     
     
