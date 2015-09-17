@@ -23,7 +23,7 @@ public class UserModel {
                 return new java.sql.Date(today.getTime());
             }
     
-    public boolean register(String username,String password,String email,String first,String last,String gender, String country, String university, String school, String subject, String year,String matriculation)
+    public boolean register(String username,String password,String email,String first,String last,String gender, String country, String university, String school, String subject, int year,int matriculation)
     {
     
 		//System.out.println("The email is:" + email);
@@ -80,8 +80,8 @@ public class UserModel {
             ps.setString(7, school);
             ps.setString(8, subject);
             //Default values
-            ps.setInt(9, 1);
-            ps.setInt(10,1);
+            ps.setInt(9, year);
+            ps.setInt(10,matriculation);
             ps.setInt(11,id);
             ps.executeUpdate();
         
