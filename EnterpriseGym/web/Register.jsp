@@ -131,17 +131,17 @@ xmlhttp.send();
            </div>
            <div class="form-group">
             <label for="sel1">Current year of study:</label>
-            <select class="form-control" id="sel1">
-             <option>1</option>
-             <option>2</option>
-             <option>3</option>
-             <option>4</option>
-             <option>>4</option>
+            <select name="year" class="form-control" id="sel1">
+             <option value="1">1</option>
+             <option value="2">2</option>
+             <option value="3">3</option>
+             <option value="4">4</option>
+             <option value="5">>4</option>
             </select>
            </div>
            <div class="form-group">
                 <label for="matric">Matriculation Number:</label>
-                <input name="matric" type="text" class="form-control" id="matric" maxlength="45" required/>
+                <input name="matric" type="number" class="form-control" id="matric" maxlength="45" required/>
            </div>
            <br>
            <input class="btn btn-default" type="submit" value="Sign Up">
