@@ -21,7 +21,7 @@
             </div>
         </div>
     
-        <div class="col-md-4" id="AboutText">
+        <div class="col-md-12" id="AboutText">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i>About the Enterprise Gym</h4>
