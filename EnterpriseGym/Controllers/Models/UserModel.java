@@ -79,6 +79,7 @@ public class UserModel {
             ps.setString(6, university);
             ps.setString(7, school);
             ps.setString(8, subject);
+            //Default values
             ps.setInt(9, 1);
             ps.setInt(10,1);
             ps.setInt(11,id);
@@ -118,10 +119,11 @@ public class UserModel {
 		try{
 		
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
-	    con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/enterprise_gym",user,pass);
+	    con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym",user,pass);
 	    
 	    ResultSet rsdoLogin = null;
 	    PreparedStatement psdoLogin = null;
+            PreparedStatement ps2 = null;
 
 	    	    
 	    	String sqlOption= "SELECT * FROM account where username=? and password=?";
@@ -135,6 +137,26 @@ public class UserModel {
 	    	
 	    	if(rsdoLogin.next())
 	    	{
+                    String sqlOption2 ="UPDATE account SET date_active=? WHERE username=?";
+	   // String sqlOption ="UPDATE fault set summary=? WHERE idfault=?";
+	    
+	    //is NULL
+	    
+	    
+	   // System.out.println("Statementprepd");
+	    
+	    ps2 = con.prepareStatement(sqlOption2); 
+	   
+	    	//use the result set to get the old values
+                ps2.setDate(1,getCurrentDate());
+	    	ps2.setString(2,username);
+	
+            ps2.executeUpdate();
+    	//ps.executeUpdate();
+
+	    
+                    
+                    
                    
 	    	return true;	    	  	    	  	    		    	  
 	    	}
