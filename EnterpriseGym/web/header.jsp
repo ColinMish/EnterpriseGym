@@ -19,6 +19,7 @@
 
     <!-- Custom CSS -->
     <link href="${pageContext.request.contextPath}/css/half-slider.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,6 +33,7 @@
 <body>
 
     <!-- Navigation -->
+    <div class="navigation-bar">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -77,12 +79,31 @@
                         <a href="Quizes">Online Tests</a>
                     </li>
                 </ul>
+                <ul class="pull-right">
+                    <a data-toggle="collapse" data-target="#calendar" href="#calendar">
+                        <li>
+                            <div class="header-calendar">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </div>
+                        </li>
+                    </a>
+                </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
     </nav>
-
+            <div class="calendar">
+                <div id="calendar" class="collapse">
+                    <div class="pull-right">
+                    <div class="col-md-4">
+                        <iframe src="https://www.google.com/calendar/embed?showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=500&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=m9941bpd6nhji35pjjp3blv8do%40group.calendar.google.com&amp;color=%23853104&amp;ctz=Europe%2FLondon" style=" border-width:0 " width="400" height="500" frameborder="0" scrolling="no"></iframe>
+                    </div>
+                    </div>
+                </div>
+            </div>
+</div>
+    
     <!-- Half Page Image Background Carousel Header -->
     <header id="myCarousel" class="carousel slide">
         <!-- Indicators -->

@@ -9,6 +9,28 @@ and open the template in the editor.
 */
 
 .content {
-    margin-left: 30%;
-    margin-right: 30%;
+    margin-left: 10%;
+    margin-right: 10%;
+    z-index: 0;
+}
+
+.container {
+    z-index:1;
+}
+.navigation-bar {
+    z-index: 1;
+}
+
+.header-calendar {
+    font-size: 32px;
+    color: #cccccc;
+}
+
+.calendar {
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
 }
