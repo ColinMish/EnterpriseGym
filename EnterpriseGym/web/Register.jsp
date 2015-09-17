@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
+     
     <%@include file="header.jsp" %>
     <%@include file="sidebar.jsp" %>
     
@@ -16,20 +16,22 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h1>Register</h1>
+                <h1>Sign Up</h1>
                 <p></p>
             </div>
         </div>
         
             <div class="container">   
                 
-            <form action="SignUp" method="POST" >
-                Username: <br>
-           <input name="username" type="text" id="userBox" maxlength="45"/>
+            <form action="SignUp" role="form" id="SignUp" method="POST">
+                <div class="form-group">
+                <label for="username">Username:</label>
+                <input name="username" type="text" class="form-control" id="username" maxlength="45" required/>
+                </div>
            <br> Password: <br>
-           <input name="password" type="password" id="userBox" maxlength="45"/> 
+           <input name="password" type="text" id="userBox" maxlength="45"/> 
            <br> Password Check: <br>
-           <input name="passwordcheck" type="password" id="userBox" maxlength="45" />
+           <input name="passwordcheck" type="text" id="userBox" maxlength="45" />
            <br> First name: <br>
            <input name="first" type="text" id="userBox" maxlength="45" />
            <br> Last name: <br>
@@ -46,8 +48,17 @@
            <input name="school" type="text" id="userBox" maxlength="45" />
            <br> Subject: <br>
            <input name="subject" type="text" id="userBox" maxlength="45" />
-           <br> year: <br>
-           <input name="year" type="text" id="userBox" maxlength="45" />
+           <div class="form-group">
+            <label for="sel1">Current year of study:</label>
+            <select class="form-control" name="year" id="sel1">
+             <option value="1">1</option>
+             <option value="2">2</option>
+             <option value="3">3</option>
+             <option value="4">4</option>
+            </select>
+           </div>
+           <br> matriculation number: <br>
+           <input name="matric" type="number" id="userBox" maxlength="45" />
            <br>
            <input type="submit" value="Sign In">
            <br><br><br><br>
@@ -57,5 +68,6 @@
     
     <%@include file ="footer.jsp" %>
     </body>
+    
 </html>
 
