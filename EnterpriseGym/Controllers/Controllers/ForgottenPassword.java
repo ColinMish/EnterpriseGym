@@ -14,8 +14,8 @@ import java.io.EOFException;
 import java.sql.*;
 
 import java.util.*;
-//import java.mail.*;
-//import java.mail.internet.*;
+import javax.mail.*;
+import javax.mail.internet.*;
 import javax.activation.*;
 
 
@@ -67,17 +67,34 @@ public class ForgottenPassword extends HttpServlet {
             r = s.executeQuery();
             
             if(r.next()){
-                /* Reset password */
+                /* Get link to reset password */
                
                 
                 /* Send email */   
-            
-            
+                String send_to = email;
+                String from = "test";
+                String host = "EnterpriseGym";
+                
+                Properties prop = System.getProperties();
+                prop.setProperty("mail.smtp.host", host);
+                
+                Session session = Session.getDefaultInstance(prop);
+                
+                try{
+                    /* Setting up the mail */
+                    MimeMessage m = new MimeMessage(session);
+                    m.setFrom(new InternetAddress(from));
+                    m.addRecipient(Message.RecipientType.TO, new InternetAddress(send_to));
+                    m.setSubject("Password reset requet");
+                    
+                    m.setText("NEW TEMP PASSWORD");
+                    
+                    /* Send the email */
+                    Transport.send(m);                    
+                    
+                } catch (Exception e) {}
+                
             }
-            
-
-        
- 
             
             /* Go back to login page */
             con.close();
