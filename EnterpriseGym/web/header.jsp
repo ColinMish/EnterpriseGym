@@ -48,34 +48,34 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-               
                     <ul class="nav navbar-nav">
-                    <li class="active">
+                        
+                    <li class="homeButton${request.requestURI eq '/Enterprise/index.jsp' ? ' active' : ''}">
                         <a href="Home"><img src="${pageContext.request.contextPath}/Pictures/logo-eg.png"></a>
                     </li>
-                    <li>
+                    <li class="aboutButton${pageContext.request.requestURI eq '/Enterprise/about.jsp' ? ' active' : ''}">
                         <a href="About">About</a>
                     </li>
-                    <li>
+                    <li class="eventsButton${pageContext.request.requestURI eq '/Enterprise/events.jsp' ? ' active' : ''}">
                         <a href="Events">Events</a>
                     </li>
-                    <li>
+                    <li class="newsButton${pageContext.request.requestURI eq '/Enterprise/news.jsp' ? ' active' : ''}">
                         <a href="News">News</a>
                     </li>
-                    <li>
+                    <li class="trainersButton${pageContext.request.requestURI eq '/Enterprise/trainers.jsp' ? ' active' : ''}">
                         <a href="Trainers">Trainers</a>
                     </li>
-                    <li>
+                    <li class="connectButton${pageContext.request.requestURI eq '/Enterprise/connect.jsp' ? ' active' : ''}">
                         <a href="Connect">Connect</a>
                     </li>                  
-                    <li>
+                    <li class="activitesButton${pageContext.request.requestURI eq '/Enterprise/activities.jsp' ? ' active' : ''}">
                         <a href="Activities">Activities</a>
                     </li>
-                    <li>
+                    <li class="quizesButton${pageContext.request.requestURI eq '/Enterprise/quizes.jsp' ? ' active' : ''}">
                         <a href="Quizes">Online Tests</a>
                     </li>
-                    <li>
-                        <a href="Profile">My EGym</a>
+                    <li class="profileButton${pageContext.request.requestURI eq '/Enterprise/profile.jsp' ? ' active' : ''}">
+                        <a href="Profile">My eGym</a>
                     </li>
                 </ul>
 
