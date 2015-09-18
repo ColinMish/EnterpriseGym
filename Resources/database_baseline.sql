@@ -166,6 +166,46 @@ CREATE TABLE IF NOT EXISTS `Enterprise_Gym`.`event_has_user` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `Enterprise_Gym`.`Quiz`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `Enterprise_Gym`.`Quiz` ;
+
+CREATE TABLE IF NOT EXISTS `Enterprise_Gym`.`Quiz` (
+  `idQuiz` INT NOT NULL AUTO_INCREMENT COMMENT '',
+  `title` VARCHAR(45) NULL COMMENT '',
+  `points` INT UNSIGNED NULL COMMENT '',
+  PRIMARY KEY (`idQuiz`)  COMMENT '',
+  UNIQUE INDEX `idQuiz_UNIQUE` (`idQuiz` ASC)  COMMENT '')
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Enterprise_Gym`.`Question`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `Enterprise_Gym`.`Question` ;
+
+CREATE TABLE IF NOT EXISTS `Enterprise_Gym`.`Question` (
+  `idQuestion` INT NOT NULL AUTO_INCREMENT COMMENT '',
+  `question` VARCHAR(500) NOT NULL COMMENT '',
+  `number` INT UNSIGNED NOT NULL COMMENT '',
+  `answerOne` VARCHAR(500) NOT NULL COMMENT '',
+  `answerTwo` VARCHAR(500) NOT NULL COMMENT '',
+  `answerThree` VARCHAR(500) NOT NULL COMMENT '',
+  `answerFour` VARCHAR(500) NOT NULL COMMENT '',
+  `correctAnswer` INT NOT NULL COMMENT '',
+  `Quiz_idQuiz` INT NOT NULL COMMENT '',
+  PRIMARY KEY (`idQuestion`)  COMMENT '',
+  UNIQUE INDEX `idQuestion_UNIQUE` (`idQuestion` ASC)  COMMENT '',
+  INDEX `fk_Question_Quiz1_idx` (`Quiz_idQuiz` ASC)  COMMENT '',
+  CONSTRAINT `fk_Question_Quiz1`
+    FOREIGN KEY (`Quiz_idQuiz`)
+    REFERENCES `Enterprise_Gym`.`Quiz` (`idQuiz`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

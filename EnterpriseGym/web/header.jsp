@@ -12,6 +12,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <!-- jQuery -->
+    <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
+    
     <title>Enterprise Gym</title>
 
     <!-- Bootstrap Core CSS -->
@@ -52,41 +55,36 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <div class="position">
                     <ul class="nav navbar-nav">
                         
-                    <li class="homeButton${pageContext.request.getServletPath() eq '/index.jsp' ? ' active' : ''}">
+                    <li id="image" class="homeButton${pageContext.request.getServletPath() eq '/index.jsp' ? ' active' : ''}">
                         <a href="${pageContext.request.contextPath}/Home"><img src="${pageContext.request.contextPath}/Pictures/logo-eg.png"></a>
                     </li>
-                    <li class="aboutButton${pageContext.request.getServletPath() eq '/about.jsp' ? ' active' : ''}">
+                    <li id="headermenu" class="aboutButton${pageContext.request.getServletPath() eq '/about.jsp' ? ' active' : ''}">
                         <a href="${pageContext.request.contextPath}/About">About</a>
                     </li>
-                    <li class="eventsButton${pageContext.request.getServletPath() eq '/events.jsp' ? ' active' : ''}">
+                    <li id="headermenu" class="eventsButton${pageContext.request.getServletPath() eq '/events.jsp' ? ' active' : ''}">
                         <a href="${pageContext.request.contextPath}/Events">Events</a>
                     </li>
-                    <li class="newsButton${pageContext.request.getServletPath() eq '/news.jsp' ? ' active' : ''}">
+                    <li id="headermenu" class="newsButton${pageContext.request.getServletPath() eq '/news.jsp' ? ' active' : ''}">
                         <a href="${pageContext.request.contextPath}/News">News</a>
-                    </li>
-                    <li class="trainersButton${pageContext.request.getServletPath() eq '/trainers.jsp' ? ' active' : ''}">
-                        <a href="${pageContext.request.contextPath}/Trainers">Trainers</a>
-                    </li>
-                    <li class="connectButton${pageContext.request.getServletPath() eq '/connect.jsp' ? ' active' : ''}">
-                        <a href="${pageContext.request.contextPath}/Connect">Connect</a>
-                    </li>                  
-                    <li class="activitesButton${pageContext.request.getServletPath()eq '/activities.jsp' ? ' active' : ''}">
+                    </li>               
+                    <li id="headermenu" class="activitesButton${pageContext.request.getServletPath()eq '/activities.jsp' ? ' active' : ''}">
                         <a href="${pageContext.request.contextPath}/Activities">Activities</a>
                     </li>
-                    <li class="quizesButton${pageContext.request.getServletPath() eq '/quizes.jsp' ? ' active' : ''}">
+                    <li id="headermenu" class="quizesButton${pageContext.request.getServletPath() eq '/quizes.jsp' ? ' active' : ''}">
                         <a href="${pageContext.request.contextPath}/Quizes">Online Tests</a>
                     </li>
-                    <li class="profileButton${pageContext.request.getServletPath() eq '/profile.jsp' ? ' active' : ''}">
+                    <li id="headermenu" class="profileButton${pageContext.request.getServletPath() eq '/profile.jsp' ? ' active' : ''}">
                         <a href="${pageContext.request.contextPath}/Profile">My eGym</a>
                     </li>
                 </ul>
-
+                </div>
                 
         <ul class="nav navbar-nav navbar-right">
           <% if (session.getAttribute("username") == null){ %>            
-          <li class="dropdown" id="menuLogin">
+          <li id="headermenu" class="dropdown" id="menuLogin">
             <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">Login</a>
             <div class="dropdown-menu" style="padding:17px;">
                 
@@ -110,7 +108,7 @@
           <%}else{%>
           <li class="logintext"> Logged in as: <%=session.getAttribute("username")%></li>
           <%}%>
-          <li>
+          <li id="headermenu">
               <% if (session.getAttribute("username") != null) { %>
               <a href="LogOut">Log Out</a></li>
              <%}else{%>
