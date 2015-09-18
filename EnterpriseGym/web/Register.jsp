@@ -59,29 +59,42 @@ xmlhttp.send();
                 <input name="username" type="text" class="form-control" id="username1" maxlength="45" onkeyup="loadXMLDoc()" required/>
                  <span id="err"> </span>
                 </div>
-           <div class="form-group">
-                <label for="password">Password:</label>
-                <input name="password" type="password" class="form-control" id="password" maxlength="45" required/>
+                
+           <div class="col-xs-6">
+            <div class="form-group">
+                 <label for="password">Password:</label>
+                 <input name="password" type="password" class="form-control" id="password" maxlength="45" required/>
+            </div>
            </div>
-           <div class="form-group">
-                <label for="passwordCheck">Confirm Password:</label>
-                <input name="passwordcheck" type="password" class="form-control" id="confirmPassword" maxlength="45" required/>
+           <div class="col-xs-6">
+            <div class="form-group">
+                 <label for="passwordCheck">Confirm Password:</label>
+                 <input name="passwordcheck" type="password" class="form-control" id="confirmPassword" maxlength="45" required/>
+            </div>
            </div>
-           <div class="form-group">
-                <label for="firstName">First Name:</label>
-                <input name="first" type="text" class="form-control" id="firstName" maxlength="45" required/>
+           <div class="col-xs-6">
+            <div class="form-group">
+                 <label for="firstName">First Name:</label>
+                 <input name="first" type="text" class="form-control" id="firstName" maxlength="45" required/>
+            </div>
            </div>
-           <div class="form-group">
-                <label for="lastName">Last Name:</label>
-                <input name="last" type="text" class="form-control" id="lastName" maxlength="45" required/>
+           <div class="col-xs-6">
+            <div class="form-group">
+                 <label for="lastName">Last Name:</label>
+                 <input name="last" type="text" class="form-control" id="lastName" maxlength="45" required/>
+            </div>
            </div>
-           <div class="form-group">
-                <label for="email">E-mail Address:</label>
-                <input name="email" type="email" class="form-control" id="email" maxlength="45" required/>
+           <div class="col-xs-6">
+            <div class="form-group">
+                 <label for="email">E-mail Address:</label>
+                 <input name="email" type="email" class="form-control" id="email" maxlength="45" required/>
+            </div>
            </div>
-           <div class="form-group">
-                <label for="confirmEmail">Confirm E-mail Address:</label>
-                <input name="confirmEmail" type="email" class="form-control" id="confirmEmail" maxlength="45" required/>
+           <div class="col-xs-6">
+            <div class="form-group">
+                 <label for="confirmEmail">Confirm E-mail Address:</label>
+                 <input name="confirmEmail" type="email" class="form-control" id="confirmEmail" maxlength="45" required/>
+            </div>
            </div>
            <div class="form-group">
                 <label for="gender">Gender:</label>
@@ -95,7 +108,7 @@ xmlhttp.send();
 
            <div class="form-group">
                 <label for="flagstrap">Country:</label>
-                <div class="flagstrap" data-input-name="country" data-selected-country="United Kingdom" data-scrollable-height="250px"></div>
+                <div class="flagstrap" data-input-name="country" data-selected-country="GB" data-scrollable-height="250px"></div>
            </div>
             
             <script>
