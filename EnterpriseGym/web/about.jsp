@@ -101,9 +101,9 @@
                         <div class="panel-body">
                             <div class="usermenu">
                         
-                            <a class="btn btn-primary one" href="${pageContext.request.contextPath}/Trainers">Trainers</a><br><br>
+                            <a class="btn btn-primary" href="${pageContext.request.contextPath}/Trainers">Trainers</a><br><br>
                             
-                            <a class="btn btn-primary two" href="${pageContext.request.contextPath}/Connect">Connect</a>
+                            <a class="btn btn-primary" href="${pageContext.request.contextPath}/Connect">Connect</a>
                             
                             </div>
                         </div>
