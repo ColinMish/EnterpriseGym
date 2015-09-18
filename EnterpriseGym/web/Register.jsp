@@ -159,8 +159,12 @@ xmlhttp.send();
                 <input name="matric" type="number" class="form-control" value="0" id="matric" maxlength="45" required/>
            </div>
            <div class="form-group">
+               <label for="yesociety" class="checkbox" style="padding-left: 20px;"><input name="yesociety" type="checkbox" id="yessociety"/> Check this box if you would like to become a member of the <a href="http://www.youngentrepreneursociety.org.uk/" target="_blank">Young Entrepreneurs Society</a>.</label>
+           </div>
+           <div class="form-group">
                <label for="terms" class="checkbox" style="padding-left: 20px;"><input name="terms" type="checkbox" id="terms" required/> I have read and accept The Enterprise Gym <a href="${pageContext.request.contextPath}/Terms" target="_blank">Terms of Use</a></label>
            </div>
+           <div class="g-recaptcha" data-sitekey="6Ld5GQ0TAAAAAJbwITxGPXJfEyfkB2p2b6JjxazP"></div>
            <br>
            <input class="btn btn-default" type="submit" value="Sign Up">
            <br/>
