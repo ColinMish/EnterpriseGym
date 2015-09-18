@@ -66,13 +66,7 @@
                     </li>
                     <li id="headermenu" class="newsButton${pageContext.request.getServletPath() eq '/news.jsp' ? ' active' : ''}">
                         <a href="${pageContext.request.contextPath}/News">News</a>
-                    </li>
-                    <li id="headermenu" class="trainersButton${pageContext.request.getServletPath() eq '/trainers.jsp' ? ' active' : ''}">
-                        <a href="${pageContext.request.contextPath}/Trainers">Trainers</a>
-                    </li>
-                    <li id="headermenu" class="connectButton${pageContext.request.getServletPath() eq '/connect.jsp' ? ' active' : ''}">
-                        <a href="${pageContext.request.contextPath}/Connect">Connect</a>
-                    </li>                  
+                    </li>               
                     <li id="headermenu" class="activitesButton${pageContext.request.getServletPath()eq '/activities.jsp' ? ' active' : ''}">
                         <a href="${pageContext.request.contextPath}/Activities">Activities</a>
                     </li>
