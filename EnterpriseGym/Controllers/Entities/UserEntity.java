@@ -12,19 +12,18 @@ import java.util.List;
  * @author Kim
  */
 public class UserEntity {
-     String name, lastname, username, email, university, course, status, country, password;
+     String name, lastname, username, email, university, status, country, password,school,subject;
     int matriculation_nr, year_of_study, user_type, action_points, practice_points, theory_points, virtual_points, project_points, total_points;
     String gender;
     boolean profile_complete;
     List <EventEntity> event_list;
     
-    public UserEntity(String name, String lastname, String username, String email, String university, String course, String status, String country, String password, int matriculation_nr, int year_of_study, int user_type, String gender){
+    public UserEntity(String name, String lastname, String username, String email, String university, String status, String country, String password, int matriculation_nr, int year_of_study, int user_type, String gender,String school,String subject){
         this.name = name;
         this.lastname = lastname;
         this.username = username;
         this.email = email;
         this.university = university;
-        this.course = course;
         this.country = country;
         this.status = status;
         this.password = password;
@@ -32,6 +31,8 @@ public class UserEntity {
         this.year_of_study = year_of_study;
         this.user_type = user_type;
         this.gender = gender;
+        this.subject = subject;
+        this.school = school;
         
         action_points = 0;
         practice_points = 0;
@@ -55,12 +56,12 @@ public class UserEntity {
     public String getName(){
         return name;
     }
-    
-    public void setLastame(String new_lastname){
+       
+    public void setLastname(String new_lastname){
         lastname = new_lastname;
     }
     
-    public String getLastame(){
+    public String getLastname(){
         return lastname;
     } 
 
@@ -96,14 +97,25 @@ public class UserEntity {
         return university;
         
     }
-
-    public void setCorse(String new_course){
-        course = new_course;
+    
+    public void setSchool(String new_school)
+    {
+        school = new_school;
     }
     
-    public String getCourse(){
-        return course;
-        
+    public String getSchool()
+    {
+        return school;
+    }
+    
+    public void setSubject(String new_subject)
+    {
+        subject = new_subject;
+    }
+    
+    public String getSubject()
+    {
+        return subject;
     }
 
     public void setCountry(String new_country){
@@ -136,6 +148,12 @@ public class UserEntity {
     
     
   /* Only get method as these are less likely to need changing */  
+    
+    public void setGender(String new_gender)
+    {
+        gender = new_gender;
+    }
+      
     public String getGender(){
         return gender;
     }
