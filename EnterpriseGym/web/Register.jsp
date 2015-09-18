@@ -69,7 +69,7 @@ xmlhttp.send();
            <div class="col-xs-6">
             <div class="form-group">
                  <label for="passwordCheck">Confirm Password:</label>
-                 <input name="passwordCheck" type="password" class="form-control" id="confirmPassword" maxlength="45" required onkeyup="checkPassword();"/>
+                 <input name="passwordcheck" type="password" class="form-control" id="confirmPassword" maxlength="45" required onkeyup="checkPassword();"/>
                  <div id="passwordError"></div>
             </div>
            </div>
@@ -132,13 +132,13 @@ xmlhttp.send();
              <option value="none">None</option>
             </select>
            </div>
-           <div class="form-group">
+           <div id="schoolSection" class="form-group hidden">
             <label for="school">School:</label>
             <select class="form-control" id="school" name="school">
              <option>-</option>
             </select>
            </div>
-           <div class="form-group">
+           <div id="subjectSection" class="form-group hidden">
             <label for="subject">Subject:</label>
             <select class="form-control" id="subject" name="subject">
              <option>-</option>
@@ -154,9 +154,12 @@ xmlhttp.send();
              <option value="5">>4</option>
             </select>
            </div>
-           <div class="form-group">
+           <div id="matricSection" class="form-group hidden">
                 <label for="matric">Matriculation Number:</label>
                 <input name="matric" type="number" class="form-control" value="0" id="matric" maxlength="45" required/>
+           </div>
+           <div class="form-group">
+               <label for="terms" class="checkbox" style="padding-left: 20px;"><input name="terms" type="checkbox" id="terms" required/> I have read and accept The Enterprise Gym <a href="${pageContext.request.contextPath}/Terms" target="_blank">Terms of Use</a></label>
            </div>
            <br>
            <input class="btn btn-default" type="submit" value="Sign Up">
