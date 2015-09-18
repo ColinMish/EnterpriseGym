@@ -49,3 +49,23 @@ and open the template in the editor.
     color:red;
     size:10;
 }
+
+.position {
+    position: relative !important;
+    right: 28.3em;
+}
+
+.position #image {
+    padding: 0em 0.2em 0em 0em;
+    margin-right: 2em;
+}
+
+.position img {
+    padding:0.2em;
+}
+
+#headermenu a{
+    
+   padding-top: 1.6em;
+   padding-bottom: 1.6em;
+}
