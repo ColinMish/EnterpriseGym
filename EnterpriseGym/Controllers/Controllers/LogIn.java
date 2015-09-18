@@ -105,6 +105,7 @@ public class LogIn extends HttpServlet {
             {
                 if(user.login_attempt == 2){
                     response.sendRedirect(request.getContextPath()+"/LogInFailed.jsp");
+                    user.login_attempt = 0;
                 } else {
                     user.login_attempt++;
                     failed_login_count = user.login_attempt;

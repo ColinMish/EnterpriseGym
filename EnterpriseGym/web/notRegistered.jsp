@@ -25,6 +25,7 @@
            <input type="submit" value="Register now!"  />
           </form>  
         
+        
     <%@include file ="footer.jsp" %>
    
     

@@ -1,6 +1,6 @@
 package Controllers;
 
-import Models.ResetPasswordModel;
+import Models.SendEmailModel;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -20,12 +20,6 @@ import javax.mail.internet.*;
 import javax.activation.*;
 
 
-    /* 
-    username: davidkenny
-    password: root1
-    Hostname:160.153.16.42
-    */
-
 /**
  *
  * @author Kim
@@ -34,28 +28,22 @@ import javax.activation.*;
 @WebServlet(name = "ForgottenPassword", urlPatterns = {"/ForgottenPassword"})
 @MultipartConfig
 public class ForgottenPassword extends HttpServlet {
-    
-    public String user = "davidkenny";
-    public String pass = "root1"; 
-
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
         /* Get email address */
-        String e = request.getParameter("email_address");
+        String e = request.getParameter("email");
         
-        ResetPasswordModel reset = new ResetPasswordModel();
+        SendEmailModel reset = new SendEmailModel();
         
         if(reset.checkDB(e)){
-            response.sendRedirect(request.getContextPath()+"/LogIn.jsp");
+            response.sendRedirect(request.getContextPath()+"/resetPass.jsp");
         } else {
             /* Sorry, not in database */
-             response.sendRedirect(request.getContextPath()+"/notRegistered.jsp");
-        }
-
-
-                      
+           //  response.sendRedirect(request.getContextPath()+"/notRegistered.jsp");
+             response.sendRedirect(request.getContextPath()+"/resetPass.jsp");
+        }               
     }   
 }
 
