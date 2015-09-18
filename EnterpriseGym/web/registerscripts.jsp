@@ -125,17 +125,28 @@ $(document).ready(function() {
 
 <script type="text/javascript">
     
+    var passwordValid;
+    
     function checkPassword()
     {
         var password = $("#password1").val();
         var confirmPassword = $("#confirmPassword").val();
         
         if(password == '' && confirmPassword == '')
-            $("#passwordError").html("<div class='alert alert-warning fade in'><p>Please Enter a Password.</p></div>");
+        {
+            $("#passwordError").html("<div class='alert alert-warning fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Please Enter a Password.</p></div>");
+            passwordValid = false;
+        }
         else if(password != confirmPassword)
-            $("#passwordError").html("<div class='alert alert-danger fade in'><p>Passwords Do Not Match.</p></div>");
+        {
+            $("#passwordError").html("<div class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Passwords Do Not Match.</p></div>");
+            passwordValid = false;
+        }
         else if(password == confirmPassword)
-            $("#passwordError").html("<div class='alert alert-success fade in'><p>Passwords Match.</p></div>");
+        {
+            $("#passwordError").html("<div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Passwords Match.</p></div>");
+            passwordValid = true;
+        }
     }
     $(document).ready(function()
     {
@@ -146,23 +157,72 @@ $(document).ready(function() {
 
 <script type="text/javascript">
     
+    var emailValid;
+    
     function checkEmail()
     {
         var email = $("#email").val();
         var confirmEmail = $("#confirmEmail").val();
         
         if(email == '' && confirmEmail == '')
-            $("#emailError").html("<div class='alert alert-warning fade in'><p>Please Enter an E-mail Address.</p></div>");
+        {
+            $("#emailError").html("<div class='alert alert-warning fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Please Enter an E-mail Address.</p></div>");
+            emailValid = false;
+        }
         else if(email != confirmEmail)
-            $("#emailError").html("<div class='alert alert-danger fade in'><p>E-mail Addresses Do Not Match.</p></div>");
+        {
+            $("#emailError").html("<div class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>E-mail Addresses Do Not Match.</p></div>");
+            emailValid = false;
+        }
         else if(email == confirmEmail)
-            $("#emailError").html("<div class='alert alert-success fade in'><p>E-mail Addresses Match.</p></div>");
+        {
+            $("#emailError").html("<div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>E-mail Addresses Match.</p></div>");
+            emailValid = true;
+        }
     }
     $(document).ready(function()
     {
         $("#confirmEmail").keyup(checkEmail);
     })
     
+</script>
+
+<script type="text/javascript">
+    
+    var usernameValid;
+    
+    function checkUsername()
+    {
+        var username = $("#username1").val();
+        
+        if(username == '')
+        {
+            usernameValid = false;
+        }
+        else
+        {
+            usernameValid = true;
+        }
+    }
+    $(document).ready(function()
+    {
+        $("#username1").keyup(checkUsername);
+    })
+    
+</script>
+
+<script type="text/javascript">
+    function validateForm()
+    {
+        if(emailValid && passwordValid && usernameValid)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 </script>
 
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>

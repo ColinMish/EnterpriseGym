@@ -53,10 +53,10 @@ xmlhttp.send();
         
             <div class="container">   
                 
-            <form action="SignUp" role="form" id="SignUp" method="POST">
+            <form onsubmit="return validateForm()" action="SignUp" role="form" id="SignUp" method="POST">
                 <div class="form-group">
                 <label for="username">Username:</label>
-                <input name="username" type="text" class="form-control" id="username1" maxlength="45" onkeyup="loadXMLDoc();" required/>
+                <input name="username" type="text" class="form-control" id="username1" maxlength="45" onkeyup="loadXMLDoc(); checkUsername();" required/>
                  <span id="err"> </span>
                 </div>
                 
@@ -134,13 +134,13 @@ xmlhttp.send();
            </div>
            <div id="schoolSection" class="form-group hidden">
             <label for="school">School:</label>
-            <select class="form-control" id="school" name="school">
+            <select class="form-control" id="school" name="school" value="-">
              <option>-</option>
             </select>
            </div>
            <div id="subjectSection" class="form-group hidden">
             <label for="subject">Subject:</label>
-            <select class="form-control" id="subject" name="subject">
+            <select class="form-control" id="subject" name="subject" value="-">
              <option>-</option>
             </select>
            </div>

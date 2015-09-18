@@ -13,7 +13,7 @@
       <div class="container">
           
         <p class="text-muted">
-            <img src="${pageContext.request.contextPath}/Pictures/logo-eg.png" alt="The Enterprise Gym Logo"/><br/><br/>
+            <a href="${pageContext.request.contextPath}/Home"><img src="${pageContext.request.contextPath}/Pictures/logo-eg.png" alt="The Enterprise Gym Logo"/></a><br/><br/>
             Copyright &copy; 2011 The Enterprise Gym. All rights reserved. <a href="Contact">Contact Us</a><br/>
             Website design, development and hosting by Team 5.<br/>
             This website is generously sponsored by <a href="http://www.commercial-properties-scotland.co.uk/">James Keiller Estates</a>.
