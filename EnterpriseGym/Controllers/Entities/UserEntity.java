@@ -215,9 +215,33 @@ public class UserEntity {
    }
 
    public int getTotalPoints(){
-      return total_points;
+      return action_points+practice_points+theory_points+virtual_points+project_points;
+    }
+   
+   //Set methods for the points. 
+   public void setActionPoints(int new_actionpoints){
+       action_points = new_actionpoints;
+   }
+
+
+    public void setTheory_points(int theory_points) {
+        this.theory_points = theory_points;
     }
 
+
+    public void setVirtual_points(int virtual_points) {
+        this.virtual_points = virtual_points;
+    }
+
+     public void setProject_points(int Project_points) {
+        this.project_points = Project_points;
+    }
+     
+      public void setPractice_points(int Practice_points) {
+        this.practice_points = Practice_points;
+    }
+   
+   
 
    public void addEvent(EventEntity add_to_list){
        event_list.add(add_to_list);       

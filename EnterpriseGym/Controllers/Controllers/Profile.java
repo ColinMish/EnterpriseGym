@@ -112,7 +112,15 @@ public class Profile extends HttpServlet {
     
     private void displaypoints(HttpServletResponse response,HttpServletRequest request) throws ServletException, IOException
     {
+        //Populate the points entity.
+          UserModel model = new UserModel();
+        HttpSession session = request.getSession();
+        //Need to pass the profile attributes accross here.
+        java.util.LinkedList<UserEntity> points = model.getPoints((String)session.getAttribute("username"));
+        
+        
         RequestDispatcher dispatcher = request.getRequestDispatcher("/mypoints.jsp");
+        request.setAttribute("points", points);
         dispatcher.forward(request,response);
         return;
     }

@@ -4,10 +4,12 @@
     Author     : davidkenny
 --%>
 
+<%@page import="java.util.Iterator"%>
+<%@page import="Entities.UserEntity"%>
 <html>
 
      <%@include file="header.jsp" %>
-    <%@include file="sidebar.jsp" %>
+    <%--<%@include file="sidebar.jsp" %>--%>
     
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
@@ -46,26 +48,35 @@
             }
         },
         series: [{
+                    <%
+                            java.util.LinkedList<UserEntity> points = (java.util.LinkedList<UserEntity>) request.getAttribute("points");
+                            Iterator<UserEntity> iterator;
+           iterator = points.iterator();
+            while (iterator.hasNext()) {
+                UserEntity p = (UserEntity) iterator.next();         
+                      %>    
+                
             name: "Points",
             colorByPoint: true,
             data: [{
                 name: "Action",
-                y: 70
+                y: <%=p.getActionPoints()%>
             }, {
                 name: "Project",
-                y: 70,
+                y: <%=p.getProjectPoints()%>,
                 sliced: true,
                 selected: true
             }, {
                 name: "Virtual",
-                y: 70
+                y: <%=p.getVitrualPoints()%>
             }, {
                 name: "Practice",
-                y: 70
+                y: <%=p.getPracticePoints()%>
             }, {
                 name: "Theory",
-                y: 70
+                y: <%=p.getTheoryPoints()%>
             }]
+            <%}%>
         }]
     });
 });
