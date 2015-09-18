@@ -12,9 +12,20 @@ and open the template in the editor.
 }
 
 .content {
-    margin-left: 10%;
-    margin-right: 10%;
     z-index: 1;
+}
+@media screen and (min-width: 480px) {
+      .content{
+        margin-left: 10%;
+        margin-right: 10%;
+      }
+}
+
+@media screen and (max-width: 481px) {
+      .content{
+        margin-left: 3%;
+        margin-right: 3%;
+      }
 }
 
 .container {
@@ -94,53 +105,14 @@ and open the template in the editor.
   padding-bottom: 1.1em;
 }
 
-@media only screen and (max-width: 600px)
-  and (min-device-width: 320px) 
-  and (max-device-width: 480px)
-  and (-webkit-min-device-pixel-ratio: 2) {
+@media screen and (max-width: 480px) {
       body{
         margin-left: 4%;
         margin-right: 4%;
       }
 }
 
-/* Portrait and Landscape iPhone 5/s */
-@media only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 568px)
-  and (-webkit-min-device-pixel-ratio: 2) {
-      body{
-        margin-left: 4%;
-        margin-right: 4%;
-      }
-}
-
-/* Portrait and Landscape iPhone 6/s */
-@media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 667px) 
-  and (-webkit-min-device-pixel-ratio: 2) { 
-      body{
-        margin-left: 5%;
-        margin-right: 5%;
-      }
-}
-/* Portrait and Landscape iPhone 6+ */
-@media only screen 
-  and (min-device-width: 414px) 
-  and (max-device-width: 736px) 
-  and (-webkit-min-device-pixel-ratio: 3) { 
-      body{
-        margin-left: 4%;
-        margin-right: 4%;
-      }
-}
-
-/* Portrait and Landscape */
-@media screen 
-  and (device-width: 320px) 
-  and (device-height: 640px) 
-  and (-webkit-device-pixel-ratio: 2) {
+@media screen and (max-width: 480px) {
       body{
         margin-left: 4%;
         margin-right: 4%;
