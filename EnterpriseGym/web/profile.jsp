@@ -4,6 +4,8 @@
     Author     : kristiyangeorgiev
 --%>
 
+<%@page import="java.util.Iterator"%>
+<%@page import="Entities.UserEntity"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -76,6 +78,13 @@
                     </div>
                     <div class="panel-body">
                         <table class="table table-hover">
+                            <%
+                            java.util.LinkedList<UserEntity> user = (java.util.LinkedList<UserEntity>) request.getAttribute("userdetails");
+                            Iterator<UserEntity> iterator;
+           iterator = user.iterator();
+            while (iterator.hasNext()) {
+                UserEntity p = (UserEntity) iterator.next();         
+                      %>      
                         <thead>
                            <tr>
                             <th>Firstname:</th>
@@ -107,14 +116,14 @@
                            </tr>
                            <tr>
                             <th>Year:</th>
-                            <th>4th</th>
+                            <th><%=p.getYearOfStudy()%></th>
                            </tr>
                            <tr>
                             <th>Matriculation Number:</th>
                             <th>120013755</th>
                            </tr>
                         </thead>
-                        
+                        <%}%>
                         </table>
                         </div>
 

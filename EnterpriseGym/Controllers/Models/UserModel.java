@@ -6,6 +6,7 @@
 package Models;
 
 
+import Entities.UserEntity;
 import java.sql.*;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
@@ -174,18 +175,54 @@ public class UserModel {
                          return false;
 	    	}
 	    	
-//	    	try{
-//	    		
-//	    		if(con!=null)
-//	    		{
-//	    			con.close();
-//	    		}
-//	    	}
-//	    	catch(Exception e)
-//	    	{
-//	    		e.printStackTrace();
-//	    	}
-
     }
+    
+    public java.util.LinkedList<UserEntity> getDetails(String username)
+    {
+        java.util.LinkedList<UserEntity> userdetails = new java.util.LinkedList<>();
+        
+        	Connection con = null;
+		try{		
+	    Class.forName("com.mysql.jdbc.Driver").newInstance();
+	    con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym",user,pass);
+            
+            PreparedStatement ps1 = null;
+			    String sqlOption1= "SELECT * FROM account WHERE username=?";
+
+			    ps1 = con.prepareStatement(sqlOption1);
+		    	ps1.setString(1, username);
+		    	
+		    	ResultSet rs1 = ps1.executeQuery();
+		    	rs1.next();
+                        int id = rs1.getInt("idaccount");
+                        System.out.println("The id is:"+id);
+            
+            PreparedStatement ps = null;
+             String sqlOption= "SELECT * FROM user WHERE account_idaccount=?";
+
+			    ps = con.prepareStatement(sqlOption);
+		    	ps.setInt(1, id);
+		    	
+		    	ResultSet rs = ps.executeQuery(); 
+                        UserEntity user = new UserEntity(); 
+		    	rs.next();
+                        user.setYearOfStudy(rs.getInt("year"));
+                        userdetails.add(user);
+            
+            return userdetails;
+            
+                }
+            	catch(Exception e)
+    	{
+		System.out.println("connection to db failed");
+    		e.printStackTrace();
+            return null;
+    	
+    	}
+	    
+        
+    }
+    
+    
     
 }

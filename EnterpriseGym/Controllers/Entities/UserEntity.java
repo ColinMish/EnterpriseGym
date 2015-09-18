@@ -14,11 +14,11 @@ import java.util.List;
 public class UserEntity {
      String name, lastname, username, email, university, course, status, country, password;
     int matriculation_nr, year_of_study, user_type, action_points, practice_points, theory_points, virtual_points, project_points, total_points;
-    char gender;
+    String gender;
     boolean profile_complete;
     List <EventEntity> event_list;
     
-    public UserEntity(String name, String lastname, String username, String email, String university, String course, String status, String country, String password, int matriculation_nr, int year_of_study, int user_type, char gender){
+    public UserEntity(String name, String lastname, String username, String email, String university, String course, String status, String country, String password, int matriculation_nr, int year_of_study, int user_type, String gender){
         this.name = name;
         this.lastname = lastname;
         this.username = username;
@@ -41,6 +41,11 @@ public class UserEntity {
         total_points = 0;
         
         event_list = null;
+    }
+    
+    public UserEntity()
+    {
+        
     }
     
      public void setName(String new_name){
@@ -131,7 +136,7 @@ public class UserEntity {
     
     
   /* Only get method as these are less likely to need changing */  
-    public char getGender(){
+    public String getGender(){
         return gender;
     }
     
