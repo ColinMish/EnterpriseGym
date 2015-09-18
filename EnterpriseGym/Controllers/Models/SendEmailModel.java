@@ -5,8 +5,8 @@ import java.io.EOFException;
 import java.sql.*;
 
 import java.util.*;
-import javax.mail.*;
-import javax.mail.internet.*;
+//import javax.mail.*;
+//import javax.mail.internet.*;
 import javax.activation.*;
 
 /**
@@ -59,33 +59,33 @@ public class SendEmailModel {
     
     
     
-    public void sendEmail(String email) {
-
-
-        /* Send email */
-        String send_to = email;
-        String from = "test";
-        String host = "EnterpriseGym";
-
-        Properties prop = System.getProperties();
-        prop.setProperty("mail.smtp.host", host);
-
-        Session session = Session.getDefaultInstance(prop);
-
-        try {
-            /* Setting up the mail */
-            MimeMessage m = new MimeMessage(session);
-            m.setFrom(new InternetAddress(from));
-            m.addRecipient(Message.RecipientType.TO, new InternetAddress(send_to));
-            m.setSubject("Password reset requet");
-
-            m.setText("NEW TEMP PASSWORD");
-
-            /* Send the email */
-            Transport.send(m);
-        } catch (Exception e) {
-
-        }
-    }
+//    public void sendEmail(String email) {
+//
+//
+//        /* Send email */
+//        String send_to = email;
+//        String from = "test";
+//        String host = "EnterpriseGym";
+//
+//        Properties prop = System.getProperties();
+//        prop.setProperty("mail.smtp.host", host);
+//
+//        Session session = Session.getDefaultInstance(prop);
+//
+//        try {
+//            /* Setting up the mail */
+//            MimeMessage m = new MimeMessage(session);
+//            m.setFrom(new InternetAddress(from));
+//            m.addRecipient(Message.RecipientType.TO, new InternetAddress(send_to));
+//            m.setSubject("Password reset requet");
+//
+//            m.setText("NEW TEMP PASSWORD");
+//
+//            /* Send the email */
+//            Transport.send(m);
+//        } catch (Exception e) {
+//
+//        }
+//    }
 
 }

@@ -9,7 +9,7 @@
 
     <%@include file="header.jsp" %>
     <%@include file="sidebar.jsp" %>
-    
+    <script src="${pageContext.request.contextPath}/js/login.js"></script>
     
   
     <!-- Page Content -->
@@ -17,20 +17,24 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h1>Log In failed</h1>
-                <p>Either username or password was incorrect. Try again!</p>
+                <h1 id="logInTitle">Log In</h1>
+                <p id="logInMessage">Please Log In</p>
              
             </div>
         </div>
       
-           <form  action="LogIn" method="post" >
+           <form id="logInForm" action="LogIn" method="post" >
                <br>Username: <br>
-           <input name="username" type="text" id="userBox" maxlength="50" />
+           <input id="un" name="Username" type="text" maxlength="50" />
            <br> Password: <br>
-           <input name="password" type="password" id="userBox" maxlength="50" />
+           <input id="pw" name="Password" type="password" maxlength="50" />
            <br>
+           <div class="forgotPassword">
+               <p><a href="Reset">Forgotten password?</a></p>
+           </div>
            <input type="submit" value="Sign In"  />
-          </form>                        
+          </form> 
+        <br>
     </div>
       
     <%@include file ="footer.jsp" %>

@@ -112,7 +112,7 @@
               <% if (session.getAttribute("username") != null) { %>
               <a href="LogOut">Log Out</a></li>
              <%}else{%>
-          <a href="SignUp">Sign Up</a></li>
+          <a href="LogIn">Login Test</a></li>
                    <%}%>
                    
             <li id="calendar-drop">
