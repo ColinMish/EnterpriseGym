@@ -82,7 +82,11 @@ public class SignUp extends HttpServlet {
                 String university = request.getParameter("university");
                 String school = request.getParameter("school");
                 String subject = request.getParameter("subject");
-                String yearofstudy = request.getParameter("year");
+                //String yearofstudy = request.getParameter("year");
+                int yearofstudy = Integer.parseInt(request.getParameter("year"));
+                //System.out.println("The year of study"+yearofstudy);
+                int matric = Integer.parseInt(request.getParameter("matric"));
+                //String matric = request.getParameter("matric");
 
 		UserModel user = new UserModel();
 		
@@ -93,7 +97,7 @@ public class SignUp extends HttpServlet {
 			{
 				System.out.println("passwords match");
                                 
-					if(user.register(username,toSHA1(password.getBytes("UTF-8")),email,first,last,gender,country,university,school,subject,yearofstudy) ==false)
+					if(user.register(username,toSHA1(password.getBytes("UTF-8")),email,first,last,gender,country,university,school,subject,yearofstudy,matric) ==false)
 					{
                                             System.out.println("false");
 						//HttpSession session = request.getSession();

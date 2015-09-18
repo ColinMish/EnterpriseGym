@@ -9,6 +9,43 @@ and open the template in the editor.
 */
 
 .content {
-    margin-left: 30%;
-    margin-right: 30%;
+    margin-left: 10%;
+    margin-right: 10%;
+    z-index: 1;
+}
+
+.container {
+    z-index:1;
+}
+.navigation-bar {
+    z-index: 1;
+}
+
+.header-calendar {
+    font-size: 32px;
+    color: #cccccc;
+}
+
+.active > a {
+    color: red;
+}
+
+.calendar {
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    height: 100%;
+    width: 100%;
+}
+
+.logintext{
+    color:white;
+    top: 15px;
+}
+
+.loginfailed{
+    color:red;
+    size:10;
 }
