@@ -3,8 +3,9 @@
     Created on : 16-Sep-2015, 13:14:27
     Author     : kristiyangeorgiev
 --%>
-
+<%@page import="java.util.LinkedList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% LinkedList<String> quizNames = (LinkedList) request.getAttribute("quizNames"); %>
 <!DOCTYPE html>
 <html>
     <body>
@@ -32,15 +33,15 @@
                             raise your awareness of enterprise. You can complete these from any computer (on <br>
                             campus or remotely) and in your own time.<br><br>
                             
-                            Points gained from the quizzes count towards the <a href="http://enterprise-gym.com/activities/awards">Enterprise Gym Awards</a>.<br><br>
+                            Points gained from the quizzes count towards the <a id="redlink" href="http://enterprise-gym.com/activities/awards">Enterprise Gym Awards</a>.<br><br>
                             
                             Each quiz has 10 questions and each question is worth 1 point. There are a total of <br>
                             110 points available if all quizzes are completed. The pass mark to qualify for awards <br>
                             is 80% per quiz. All 11 quizzes must be completed and in less than 110 minutes to <br>
                             qualify for a Marathon rating – the top rating that can be gained from any single <br>
-                            activity at the <a href="http://enterprise-gym.com">Enterprise Gym</a>.<br><br>
+                            activity at the <a id="redlink" href="http://enterprise-gym.com">Enterprise Gym</a>.<br><br>
                             
-                            <a href="http://enterprise-gym.com/activities/awards"><em><strong> Find out more about our awards and how to get them! </strong></em></a><br><br>
+                            <a id="redlink" href="http://enterprise-gym.com/activities/awards"><em><strong> Find out more about our awards and how to get them! </strong></em></a><br><br>
                             
                             You’ll need to sign-up and login to access the quizzes. Please study the PowerPoint<br>
                             presentation attached to each quiz – containing the required material for the <br>
@@ -50,8 +51,8 @@
                             <strong>So what are you waiting for? Get started on your Enterprise Theory now!</strong><br><br>
                             
                             <span style="font-size: 11px;">
-                                The materials and resources presented here are the property of the <em><a href="http://enterprise-gym.com">University of Dundee Enterprise Gym</a></em><br>
-                                and are solely for the use of <em><a href="http://www.enterprise-gym.com">Enterprise Gym</a></em> members. They should not be distributed to others.</span><br><br>
+                                The materials and resources presented here are the property of the <em><a id="redlink" href="http://enterprise-gym.com">University of Dundee Enterprise Gym</a></em><br>
+                                and are solely for the use of <em><a id="redlink" href="http://www.enterprise-gym.com">Enterprise Gym</a></em> members. They should not be distributed to others.</span><br><br>
                             
                             
                              <h4><i class="fa fa-fw fa-check"></i><strong>Quizes you have taken</strong></h4><br>
@@ -60,17 +61,10 @@
                              
                              <h4><i class="fa fa-fw fa-check"></i><strong>All Quizes</strong></h4><br>
                              
-                             <a href="/activities/quiz/online-theory-quiz-1">Online Theory - Quiz 1</a><br>
-                             <a href="/activities/quiz/online-theory-quiz-2">Online Theory - Quiz 2</a><br>
-                             <a href="/activities/quiz/online-theory-quiz-3">Online Theory - Quiz 3</a><br>
-                             <a href="/activities/quiz/online-theory-quiz-4">Online Theory - Quiz 4</a><br>
-                             <a href="/activities/quiz/online-theory-quiz-5">Online Theory - Quiz 5</a><br>
-                             <a href="/activities/quiz/online-theory-quiz-6">Online Theory - Quiz 6</a><br>
-                             <a href="/activities/quiz/online-theory-quiz-7">Online Theory - Quiz 7</a><br>
-                             <a href="/activities/quiz/online-theory-quiz-8">Online Theory - Quiz 8</a><br>
-                             <a href="/activities/quiz/online-theory-quiz-9">Online Theory - Quiz 9</a><br>
-                             <a href="/activities/quiz/online-theory-quiz-10">Online Theory - Quiz 10</a><br>
-                             <a href="/activities/quiz/online-theory-quiz-11">Online Theory - Quiz 11</a><br>
+                             <%for(String quizName : quizNames)
+                             {%>
+                                <%="<a href=\"Quizes/" + quizName + "\">" + quizName + "</a><br>"%>
+                             <%}%>
                         </p>
                     </div>
                 </div>

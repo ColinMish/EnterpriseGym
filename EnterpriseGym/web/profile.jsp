@@ -4,6 +4,8 @@
     Author     : kristiyangeorgiev
 --%>
 
+<%@page import="java.util.Iterator"%>
+<%@page import="Entities.UserEntity"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -76,45 +78,52 @@
                     </div>
                     <div class="panel-body">
                         <table class="table table-hover">
+                            <%
+                            java.util.LinkedList<UserEntity> user = (java.util.LinkedList<UserEntity>) request.getAttribute("userdetails");
+                            Iterator<UserEntity> iterator;
+           iterator = user.iterator();
+            while (iterator.hasNext()) {
+                UserEntity p = (UserEntity) iterator.next();         
+                      %>      
                         <thead>
                            <tr>
                             <th>Firstname:</th>
-                            <th>Kristiyan</th>
+                            <th><%=p.getName()%></th>
                            </tr>
                            <tr>
                             <th>LastName:</th>
-                            <th>Georgiev</th>
+                            <th><%=p.getLastname()%></th>
                            </tr>
                            <tr>
                             <th>Gender:</th>
-                            <th>Male</th>
+                            <th><%=p.getGender()%></th>
                            </tr>
                            <tr>
                             <th>Country:</th>
-                            <th>Bulgaria</th>
+                            <th><%=p.getCountry()%></th>
                            </tr>
                            <tr>
                             <tr>
                             <th>Email:</th>
-                            <th>test@gmail.com</th>
+                            <th><%=p.getEmail()%></th>
                            </tr>
                             <th>University:</th>
-                            <th>Dundee University</th>
+                            <th><%=p.getUniversity()%></th>
                            </tr>
                            <tr>
                             <th>School:</th>
-                            <th>School of Computing</th>
+                            <th><%=p.getSchool()%></th>
                            </tr>
                            <tr>
                             <th>Year:</th>
-                            <th>4th</th>
+                            <th><%=p.getYearOfStudy()%></th>
                            </tr>
                            <tr>
                             <th>Matriculation Number:</th>
-                            <th>120013755</th>
+                            <th><%=p.getMatric()%></th>
                            </tr>
                         </thead>
-                        
+                        <%}%>
                         </table>
                         </div>
 
