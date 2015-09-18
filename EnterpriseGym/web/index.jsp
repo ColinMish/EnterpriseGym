@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <%@include file="header.jsp" %>
+    <% if (session.getAttribute("username") == null){ %>
+         <%@include file="header.jsp" %>
+   <% }else{ %>
+     <%@include file="headerloggedin.jsp" %> <%}%>
+   
     <%@include file="sidebar.jsp" %>
 
     <!-- Page Content -->

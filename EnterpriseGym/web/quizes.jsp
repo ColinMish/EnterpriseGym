@@ -9,7 +9,10 @@
 <!DOCTYPE html>
 <html>
     <body>
-        <%@include file="header.jsp" %>
+           <% if (session.getAttribute("username") == null){ %>
+         <%@include file="header.jsp" %>
+   <% }else{ %>
+     <%@include file="headerloggedin.jsp" %> <%}%>
         <%@include file="sidebar.jsp" %>
     
             <!-- Page Content -->
@@ -22,7 +25,7 @@
             </div>
         </div>
     
-        <div class="col-md-8" id="ConnectText">
+        <div class="col-md-12" id="ConnectText">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i><strong>Theory</strong></h4><br>

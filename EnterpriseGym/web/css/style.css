@@ -84,10 +84,16 @@ and open the template in the editor.
 
 }
 
-#headermenu a{
-    
-   padding-top: 1.6em;
-   padding-bottom: 1.6em;
+#imagehead{
+    display: block;
+    padding-top: 17px;
+    padding-bottom: 17px;
+}
+
+#head{
+    display: block;
+    padding-top: 21px;
+    padding-bottom: 21px;
 }
 
 .footer {
