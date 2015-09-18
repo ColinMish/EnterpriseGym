@@ -8,7 +8,10 @@
 <%@page import="Entities.UserEntity"%>
 <html>
 
-     <%@include file="header.jsp" %>
+        <% if (session.getAttribute("username") == null){ %>
+         <%@include file="header.jsp" %>
+   <% }else{ %>
+     <%@include file="headerloggedin.jsp" %> <%}%>
     <%--<%@include file="sidebar.jsp" %>--%>
     
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
