@@ -62,7 +62,7 @@ function getHtmlResult(results)
         }
         html = html + "<li> Answer = " + mark + "</li><br>";
     });
-    html = html + "</ol></div>";
+    html = html + "</ol><a href=\"../Quizes\" class=\"btn btn-default\">Back</a></div>";
     return html;
 }
 

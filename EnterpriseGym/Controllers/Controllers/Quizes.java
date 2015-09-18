@@ -31,12 +31,14 @@ import javax.servlet.http.HttpServletResponse;
 public class Quizes extends HttpServlet {
 
     private HashMap quizzes;
+    private LinkedList quizNames;
 
     /**
      * Constructor
      */
     public Quizes() {
         this.quizzes = new HashMap();
+        this.quizNames = new LinkedList();
         for (int quiz = 1; quiz < 12; quiz++)//create some news stories, will be from the database eventually
         {
             LinkedList questions = new LinkedList();
@@ -51,6 +53,7 @@ public class Quizes extends HttpServlet {
             }
             QuizEntity myQuiz = new QuizEntity("Online Theory - Quiz " + quiz, questions, 10);
             quizzes.put(myQuiz.getQuizTitle(), myQuiz);
+            quizNames.add(myQuiz.getQuizTitle());
         }
     }
 
@@ -79,7 +82,7 @@ public class Quizes extends HttpServlet {
         }
         String[] parts = a.split("/");
         if (parts.length < 4) {
-            request.setAttribute("quizzes", quizzes);
+            request.setAttribute("quizNames", quizNames);
             RequestDispatcher dispatcher = request.getRequestDispatcher("quizes.jsp");
             dispatcher.forward(request, response);
         } else {

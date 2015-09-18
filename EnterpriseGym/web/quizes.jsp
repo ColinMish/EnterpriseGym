@@ -3,11 +3,9 @@
     Created on : 16-Sep-2015, 13:14:27
     Author     : kristiyangeorgiev
 --%>
-<%@page import="java.util.Map"%>
-<%@page import="java.util.HashMap"%>
-<%@page import="Entities.QuizEntity" %>
+<%@page import="java.util.LinkedList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<% Map<String, QuizEntity> quizzes = (HashMap) request.getAttribute("quizzes"); %>
+<% LinkedList<String> quizNames = (LinkedList) request.getAttribute("quizNames"); %>
 <!DOCTYPE html>
 <html>
     <body>
@@ -63,9 +61,9 @@
                              
                              <h4><i class="fa fa-fw fa-check"></i><strong>All Quizes</strong></h4><br>
                              
-                             <%for(QuizEntity quiz : quizzes.values())
+                             <%for(String quizName : quizNames)
                              {%>
-                                <%="<a href=\"Quizes/" + quiz.getQuizTitle() + "\">" + quiz.getQuizTitle() + "</a><br>"%>
+                                <%="<a href=\"Quizes/" + quizName + "\">" + quizName + "</a><br>"%>
                              <%}%>
                         </p>
                     </div>
