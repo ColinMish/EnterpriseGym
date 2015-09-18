@@ -22,7 +22,7 @@
             </div>
         </div>
     
-        <div class="col-md-8" id="ConnectText">
+        <div class="col-md-12" id="ConnectText">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i><strong>Theory</strong></h4><br>

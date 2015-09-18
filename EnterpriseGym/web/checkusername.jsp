@@ -13,20 +13,19 @@
                     Class.forName("com.mysql.jdbc.Driver");
                     Connection con =DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym","davidkenny","root1");
                     Statement st=con.createStatement();
-                    ResultSet rs = st.executeQuery("select * from account where username='"+sn+"'");  // this is for name
-                    if(rs.next())
+                    ResultSet rs = st.executeQuery("select * from account where username='"+sn+"'");  // this is for name   
+                    
+                    if(sn == "")
+                    { %>
+                        <div class='alert alert-warning fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Please Enter a Username.</p></div>
+                    <%}
+                    else if(rs.next())
                     {   %>
-                        <font color=red>
-                        Name taken
-                        <input type="hidden" id="actual" name="actual" value="taken">
-                        </font>
-
-                   <% }else {%>
-                        <font color=green>
-                        <input type="hidden" id="actual" name="actual" value="available">
-                        Available
-                        </font>
-                   <% }%>
+                        <div class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Username already exists.</p></div>
+                   <%}
+                    else if(sn != "") {%>
+                        <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Username is available.</p></div>
+                   <%}%>
                     
      <%               
 rs.close();
