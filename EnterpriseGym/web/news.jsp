@@ -35,7 +35,7 @@
                     <%="</div>"%>
                     <%="<div class=\"panel-body\">"%>
                         <%="<p>"%>
-                        <% String brief = story.getContent().substring(0, 30);%>
+                        <% String brief = story.getContent().substring(0, 500) + "...";%>
                             <%=brief + "</p>"%>
                         <%="<a href=\"News/" + story.getTitle() + "\" class=\"btn btn-default\">Read More</a>"%>
                     <%="</div>"%>
