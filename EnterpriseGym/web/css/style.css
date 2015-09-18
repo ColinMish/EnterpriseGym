@@ -33,6 +33,10 @@ and open the template in the editor.
     color: red;
 }
 
+#redlink{
+    color:#9a2d43 !important;
+}
+
 .calendar {
     z-index: 2;
     position: fixed;

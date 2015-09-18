@@ -45,23 +45,23 @@
                             very generous support of our financial sponsors who allow us to develop the <br>
                             Enterprise Gym programmes and events.<br><br>
                             
-                            <strong><a href="https://www.enterprise-gym.com/patrons/entrepreneur-residence">Entrepreneur in Residence</a></strong><br>
+                            <strong><a id="redlink" href="https://www.enterprise-gym.com/patrons/entrepreneur-residence">Entrepreneur in Residence</a></strong><br>
                             The University of Dundee's first entrepreneur-in-residence has now stood down <br>
                             with a replacement to be announced soon. They will be appointed to advise <br>
                             students and graduates with ambitions of commercialising their talents and ideas.<br><br>
                             
-                            <strong><a href="https://www.enterprise-gym.com/patrons/supercoaches">Learn from the Best Trainers</a></strong><br>
+                            <strong><a id="redlink" href="https://www.enterprise-gym.com/patrons/supercoaches">Learn from the Best Trainers</a></strong><br>
                             Industry leading professionals and award-winning entrepreneurs.<br><br>
                             
-                            <strong><a href="https://www.enterprise-gym.com/patrons/trainers">Training for Success Mentors</a></strong><br>
+                            <strong><a id="redlink" href="https://www.enterprise-gym.com/patrons/trainers">Training for Success Mentors</a></strong><br>
                             Senior business Executives and Directors who lead our Enterprise Challenge and<br>
                             Training Workshops.<br><br>
                             
-                            <strong><a href="https://www.enterprise-gym.com/patrons/coaches">Coaches</a></strong><br>
+                            <strong><a id="redlink" href="https://www.enterprise-gym.com/patrons/coaches">Coaches</a></strong><br>
                             Experienced business advisors who lead our Business Surgeries.<br>
                             Our generous financial supporters.<br><br>
                             
-                            <strong><a href="https://www.enterprise-gym.com/patrons/sponsors">Sponsors</a></strong><br>
+                            <strong><a id="redlink" href="https://www.enterprise-gym.com/patrons/sponsors">Sponsors</a></strong><br>
                             Our generous financial supporters.<br>
                             
                         </p>
