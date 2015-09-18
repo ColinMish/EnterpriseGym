@@ -113,7 +113,9 @@ function ValidateQuiz()
     });
     if (answers === null)
     {
-        alert("You must answer all questions to submit the quiz!");
+        $("#modalHeader").text("Error!");
+        $("#modalText").text("You must answer all the qustions to submit the quiz.");
+        $('#myModal').modal('show');
     }
     return answers;
 }
