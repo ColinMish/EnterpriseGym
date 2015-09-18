@@ -30,7 +30,8 @@ public class News extends HttpServlet {
         this.newsStories = new HashMap();
         for (int i = 1; i < 6; i++)//create some news stories, will be from the database eventually
         {
-            NewsEntity myStory = new NewsEntity("News Story " + i, "");
+            NewsEntity myStory = new NewsEntity("News Story " + i, 
+                                                "Question");
             newsStories.put(myStory.getTitle(), myStory);
         }
     }

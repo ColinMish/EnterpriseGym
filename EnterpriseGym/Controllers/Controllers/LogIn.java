@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Models.UserModel;
+import static java.lang.System.out;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
@@ -26,8 +27,6 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "LogIn", urlPatterns = {"/LogIn"})
 @MultipartConfig
 public class LogIn extends HttpServlet {
-    
-    int failed_login_count;
 
     /**
      * Constructor
@@ -96,22 +95,12 @@ public class LogIn extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
-		UserModel user = new UserModel();	
-                
-                user.login_attempt = failed_login_count;
+		UserModel user = new UserModel();						
 		
         try {
             if(user.login(username,toSHA1(password.getBytes("UTF-8")))==false)
-            {
-                if(user.login_attempt == 2){
-                    response.sendRedirect(request.getContextPath()+"/LogInFailed.jsp");
-                    user.login_attempt = 0;
-                } else {
-                    user.login_attempt++;
-                    failed_login_count = user.login_attempt;
-                    response.sendRedirect(request.getContextPath()+"/LogIn.jsp");
-                }
-                
+            {              
+                response.sendRedirect(request.getContextPath()+"/LogInFailed.jsp");
             }
             else
             {

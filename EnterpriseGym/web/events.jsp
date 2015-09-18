@@ -6,7 +6,12 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
+    
+    <head>
+      <link href='css/style.css' rel='stylesheet' type='text/css'>
+    </head>
+    
+    <body>
 <%@include file="header.jsp" %>
 <%@include file="sidebar.jsp" %>
 
@@ -65,6 +70,9 @@
                 &nbsp;</p>
                     </div>
                 </div>
+            </div>
+            <div class="col-md-4">
+                <iframe src="https://www.google.com/calendar/embed?showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=500&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=m9941bpd6nhji35pjjp3blv8do%40group.calendar.google.com&amp;color=%23853104&amp;ctz=Europe%2FLondon" style=" border-width:0 " width="400" height="500" frameborder="0" scrolling="no"></iframe>
             </div>
             <div class="col-md-4">
                     <div class="panel-body">
@@ -144,11 +152,6 @@
 
     
     
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
 
     <!-- Script to Activate the Carousel -->
     <script>

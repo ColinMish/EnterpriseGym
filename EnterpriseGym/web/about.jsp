@@ -7,7 +7,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
+    
+   <head>
+      <link href='css/style.css' rel='stylesheet' type='text/css'>
+    </head> 
+   
+    <body>
     <%@include file="header.jsp" %>
     <%@include file="sidebar.jsp" %>
     
@@ -20,8 +25,10 @@
                 <p></p>
             </div>
         </div>
-    
-        <div class="col-md-4" id="AboutText">
+                
+ 
+                                         
+        <div class="col-md-8" id="AboutText">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i>About the Enterprise Gym</h4>
@@ -83,6 +90,28 @@
                     </div>
                 </div>
             </div>
+        
+              <div class="col-md-4" id="ConnectText">
+                <div class="panel panel-default">
+                    
+                        <div class="panel-heading">
+                        <h4><i class="fa fa-fw fa-check"></i><strong>Available Options</strong></h4><br>
+                        </div>
+                    
+                        <div class="panel-body">
+                            <div class="usermenu">
+                        
+                            <a class="btn btn-primary one" href="${pageContext.request.contextPath}/Trainers">Trainers</a><br><br>
+                            
+                            <a class="btn btn-primary two" href="${pageContext.request.contextPath}/Connect">Connect</a>
+                            
+                            </div>
+                        </div>
+                    
+                    
+                   
+                </div>
+        </div>
     </div>
     
     <%@include file ="footer.jsp" %>

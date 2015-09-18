@@ -9,10 +9,11 @@
 
 <% 
                     String sn=request.getParameter("ver");
+                   
                     Class.forName("com.mysql.jdbc.Driver");
-                    Connection con =DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/enterprise_gym","davidkenny","root1");
+                    Connection con =DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym","davidkenny","root1");
                     Statement st=con.createStatement();
-                    ResultSet rs = st.executeQuery("select * from user_profile where username='"+sn+"'");  // this is for name
+                    ResultSet rs = st.executeQuery("select * from account where username='"+sn+"'");  // this is for name
                     if(rs.next())
                     {   %>
                         <font color=red>

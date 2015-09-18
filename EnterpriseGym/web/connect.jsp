@@ -7,6 +7,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    <head>
+      <link href='css/style.css' rel='stylesheet' type='text/css'>
+      <link href='css/profile.css' rel='stylesheet' type='text/css'>
+    </head>
     <body>
         <%@include file="header.jsp" %>
         <%@include file="sidebar.jsp" %>
@@ -57,6 +61,28 @@
                     </div>
                 </div>
             </div>
+        
+               <div class="col-md-4" id="ConnectText">
+                <div class="panel panel-default">
+                    
+                        <div class="panel-heading">
+                        <h4><i class="fa fa-fw fa-check"></i><strong>Available Options</strong></h4><br>
+                        </div>
+                    
+                        <div class="panel-body">
+                            <div class="usermenu">
+                        
+                            <a class="btn btn-primary trabout" href="${pageContext.request.contextPath}/About">About</a><br><br>
+                            
+                            <a class="btn btn-primary" href="${pageContext.request.contextPath}/Trainers">Trainers</a>
+                            
+                            </div>
+                        </div>
+                    
+                    
+                   
+                </div>
+              </div>
     </div>
     
     <%@include file ="footer.jsp" %>

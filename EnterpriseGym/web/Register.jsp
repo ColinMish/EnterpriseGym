@@ -10,6 +10,36 @@
      
     <%@include file="header.jsp" %>
     <%@include file="sidebar.jsp" %>
+    <%@include file="registerscripts.jsp" %>
+
+<script src="${pageContext.request.contextPath}/js/jquery.flagstrap.js"></script>
+    
+<script type="text/javascript">
+function loadXMLDoc()
+{
+var xmlhttp;
+var k=document.getElementById("username1").value;
+var urls="checkusername.jsp?ver="+k;
+if (window.XMLHttpRequest)
+  {
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4)
+    {
+        document.getElementById("err").innerHTML=xmlhttp.responseText;
+     }
+  }
+xmlhttp.open("GET",urls,true);
+xmlhttp.send();
+    
+}
+</script>
     
     <!-- Page Content -->
     <div class="container">
@@ -26,44 +56,98 @@
             <form action="SignUp" role="form" id="SignUp" method="POST">
                 <div class="form-group">
                 <label for="username">Username:</label>
-                <input name="username" type="text" class="form-control" id="username" maxlength="45" required/>
+                <input name="username" type="text" class="form-control" id="username1" maxlength="45" onkeyup="loadXMLDoc()" required/>
+                 <span id="err"> </span>
                 </div>
-           <br> Password: <br>
-           <input name="password" type="text" id="userBox" maxlength="45"/> 
-           <br> Password Check: <br>
-           <input name="passwordcheck" type="text" id="userBox" maxlength="45" />
-           <br> First name: <br>
-           <input name="first" type="text" id="userBox" maxlength="45" />
-           <br> Last name: <br>
-           <input name="last" type="text" id="userBox" maxlength="45" />
-            <br> Email: <br>
-           <input name="email" type="text" id="userBox" maxlength="45" />
-           <br> Gender: <br>
-           <input name="gender" type="text" id="userBox" maxlength="45" />
-           <br> Country: <br>
-           <input name="country" type="text" id="userBox" maxlength="45" />
-           <br> University: <br>
-           <input name="university" type="text" id="userBox" maxlength="45" />
-           <br> School: <br>
-           <input name="school" type="text" id="userBox" maxlength="45" />
-           <br> Subject: <br>
-           <input name="subject" type="text" id="userBox" maxlength="45" />
+           <div class="form-group">
+                <label for="password">Password:</label>
+                <input name="password" type="password" class="form-control" id="password" maxlength="45" required/>
+           </div>
+           <div class="form-group">
+                <label for="passwordCheck">Confirm Password:</label>
+                <input name="passwordcheck" type="password" class="form-control" id="confirmPassword" maxlength="45" required/>
+           </div>
+           <div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input name="first" type="text" class="form-control" id="firstName" maxlength="45" required/>
+           </div>
+           <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input name="last" type="text" class="form-control" id="lastName" maxlength="45" required/>
+           </div>
+           <div class="form-group">
+                <label for="email">E-mail Address:</label>
+                <input name="email" type="email" class="form-control" id="email" maxlength="45" required/>
+           </div>
+           <div class="form-group">
+                <label for="confirmEmail">Confirm E-mail Address:</label>
+                <input name="confirmEmail" type="email" class="form-control" id="confirmEmail" maxlength="45" required/>
+           </div>
+           <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select class="form-control" name="gender" id="gender">
+                    <option>-</option>
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                    <option value="other">Other</option>
+                </select>
+           </div>
+
+           <div class="form-group">
+                <label for="flagstrap">Country:</label>
+                <div class="flagstrap" data-input-name="country" data-selected-country="United Kingdom" data-scrollable-height="250px"></div>
+           </div>
+            
+            <script>
+                $('.flagstrap').flagStrap();
+            </script> 
+            
+            <script src="https://code.jquery.com/jquery-1.11.2.js"></script>
+            <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+            <script src="http://blazeworx.com/jquery.flagstrap.min.js"></script>
+                
+           <div class="form-group">
+            <label for="university">University, H.E or F.E Institution:</label>
+            <select class="form-control" id="university" name="university">
+             <option>-</option>
+             <option value="dundee">University of Dundee</option>
+             <option value="abertay">University of Abertay</option>
+             <option value="dundeeCol">Dundee College</option>
+             <option value="other">Other</option>
+             <option value="none">None</option>
+            </select>
+           </div>
+           <div class="form-group">
+            <label for="school">School:</label>
+            <select class="form-control" id="school" name="school">
+             <option>-</option>
+            </select>
+           </div>
+           <div class="form-group">
+            <label for="subject">Subject:</label>
+            <select class="form-control" id="subject" name="subject">
+             <option>-</option>
+            </select>
+           </div>
            <div class="form-group">
             <label for="sel1">Current year of study:</label>
-            <select class="form-control" name="year" id="sel1">
+            <select name="year" class="form-control" id="sel1">
              <option value="1">1</option>
              <option value="2">2</option>
              <option value="3">3</option>
              <option value="4">4</option>
+             <option value="5">>4</option>
             </select>
            </div>
-           <br> matriculation number: <br>
-           <input name="matric" type="number" id="userBox" maxlength="45" />
+           <div class="form-group">
+                <label for="matric">Matriculation Number:</label>
+                <input name="matric" type="number" class="form-control" value="0" id="matric" maxlength="45" required/>
+           </div>
            <br>
-           <input type="submit" value="Sign In">
-           <br><br><br><br>
+           <input class="btn btn-default" type="submit" value="Sign Up">
+           <br/>
           </form> 
-                
+               
             </div>
     
     <%@include file ="footer.jsp" %>
