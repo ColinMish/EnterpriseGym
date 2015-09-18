@@ -12,6 +12,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <!-- jQuery -->
+    <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
+    
     <title>Enterprise Gym</title>
 
     <!-- Bootstrap Core CSS -->
