@@ -69,39 +69,20 @@
                     </li>                 
                     <li class="activitesButton${pageContext.request.getServletPath()eq '/activities.jsp' ? ' active' : ''}">
                         <a href="${pageContext.request.contextPath}/Activities">Activities</a>
-                    </li>                
+                    </li>
+                    <li class="quizesButton${pageContext.request.getServletPath() eq '/quizes.jsp' ? ' active' : ''}">
+                        <a href="${pageContext.request.contextPath}/Quizes">Online Tests</a>
+                    </li>
+                    <li class="profileButton${pageContext.request.getServletPath() eq '/profile.jsp' ? ' active' : ''}">
+                        <a href="${pageContext.request.contextPath}/Profile">My eGym</a>
+                    </li>
                 </ul>
 
                 
-        <ul class="nav navbar-nav navbar-right">         
-          <li class="dropdown" id="menuLogin">
-            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">Login</a>
-            <div class="dropdown-menu" style="padding:17px;">
-                
-              <form role="form" action="LogIn" method="post"  id="formLogin"> 
-                  <div class="form_group">
-                      <label for="username">Username:</label>
-                <input name="username" id="username" class="form-control" type="text" placeholder="Username" required> 
-                  </div>
-                <div class="form_group">
-                    <label for="password"> Password:</label>
-                <input name="password" id="password" class="form-control" type="text" placeholder="Password" required> 
-                  </div>
-                <div class="form-group">        
-                    <br>
-                <button type="submit" class="btn btn-default">Submit</button>
-
-                </div>
-              </form>
-            </div>
-          </li>
-
-              
-             
-  
-          <li><a href="SignUp">Sign Up</a></li>
-                   
-                   
+        <ul class="nav navbar-nav navbar-right">        
+          <li class="logintext"> Logged in as: <%=session.getAttribute("username")%></li>
+          <li>
+              <a href="${pageContext.request.contextPath}/LogOut">Log Out</a></li>                  
             <li id="calendar-drop">
                 <a data-toggle="collapse" data-target="#calendar" href="#calendar">
                     <div class="header-calendar">
