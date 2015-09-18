@@ -75,10 +75,7 @@
                     </li>
                     <li class="profileButton${pageContext.request.getServletPath() eq '/profile.jsp' ? ' active' : ''}">
                         <a id="head" href="${pageContext.request.contextPath}/Profile">My eGym</a>
-                    </li>                
-                    <li class="activitesButton${pageContext.request.getServletPath()eq '/activities.jsp' ? ' active' : ''}">
-                        <a id="head" href="${pageContext.request.contextPath}/Activities">Activities</a>
-                    </li>                
+                    </li>                               
                 </ul>
 
                 
