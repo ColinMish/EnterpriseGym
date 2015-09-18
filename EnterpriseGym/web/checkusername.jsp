@@ -16,16 +16,9 @@
                     ResultSet rs = st.executeQuery("select * from account where username='"+sn+"'");  // this is for name
                     if(rs.next())
                     {   %>
-                        <font color=red>
-                        Name taken
-                        <input type="hidden" id="actual" name="actual" value="taken">
-                        </font>
-
+                        <div class='alert alert-danger fade in'><p>Username already exists.</p></div>
                    <% }else {%>
-                        <font color=green>
-                        <input type="hidden" id="actual" name="actual" value="available">
-                        Available
-                        </font>
+                        <div class='alert alert-success fade in'><p>Username is available.</p></div>
                    <% }%>
                     
      <%               

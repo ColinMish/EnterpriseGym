@@ -101,6 +101,48 @@ $(document).ready(function() {
 });
 </script>
 
+<script type="text/javascript">
+    
+    function checkPassword()
+    {
+        var password = $("#password1").val();
+        var confirmPassword = $("#confirmPassword").val();
+        
+        if(password == '' && confirmPassword == '')
+            $("#passwordError").html("<div class='alert alert-warning fade in'><p>Please Enter a Password.</p></div>");
+        else if(password != confirmPassword)
+            $("#passwordError").html("<div class='alert alert-danger fade in'><p>Passwords Do Not Match.</p></div>");
+        else if(password == confirmPassword)
+            $("#passwordError").html("<div class='alert alert-success fade in'><p>Passwords Match.</p></div>");
+    }
+    $(document).ready(function()
+    {
+        $("#confirmPassword").keyup(checkPassword);
+    })
+    
+</script>
+
+<script type="text/javascript">
+    
+    function checkEmail()
+    {
+        var email = $("#email").val();
+        var confirmEmail = $("#confirmEmail").val();
+        
+        if(email == '' && confirmEmail == '')
+            $("#emailError").html("<div class='alert alert-warning fade in'><p>Please Enter an E-mail Address.</p></div>");
+        else if(email != confirmEmail)
+            $("#emailError").html("<div class='alert alert-danger fade in'><p>E-mail Addresses Do Not Match.</p></div>");
+        else if(email == confirmEmail)
+            $("#emailError").html("<div class='alert alert-success fade in'><p>E-mail Addresses Match.</p></div>");
+    }
+    $(document).ready(function()
+    {
+        $("#confirmEmail").keyup(checkEmail);
+    })
+    
+</script>
+
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="js/jquery.flagstrap.js"></script>

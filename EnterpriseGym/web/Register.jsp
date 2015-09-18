@@ -56,20 +56,21 @@ xmlhttp.send();
             <form action="SignUp" role="form" id="SignUp" method="POST">
                 <div class="form-group">
                 <label for="username">Username:</label>
-                <input name="username" type="text" class="form-control" id="username1" maxlength="45" onkeyup="loadXMLDoc()" required/>
+                <input name="username" type="text" class="form-control" id="username1" maxlength="45" onkeyup="loadXMLDoc();" required/>
                  <span id="err"> </span>
                 </div>
                 
            <div class="col-xs-6">
             <div class="form-group">
                  <label for="password">Password:</label>
-                 <input name="password" type="password" class="form-control" id="password" maxlength="45" required/>
+                 <input name="password" type="password" class="form-control" id="password1" maxlength="45" required onkeyup="checkPassword();"/>
             </div>
            </div>
            <div class="col-xs-6">
             <div class="form-group">
                  <label for="passwordCheck">Confirm Password:</label>
-                 <input name="passwordcheck" type="password" class="form-control" id="confirmPassword" maxlength="45" required/>
+                 <input name="passwordCheck" type="password" class="form-control" id="confirmPassword" maxlength="45" required onkeyup="checkPassword();"/>
+                 <div id="passwordError"></div>
             </div>
            </div>
            <div class="col-xs-6">
@@ -87,13 +88,14 @@ xmlhttp.send();
            <div class="col-xs-6">
             <div class="form-group">
                  <label for="email">E-mail Address:</label>
-                 <input name="email" type="email" class="form-control" id="email" maxlength="45" required/>
+                 <input name="email" type="email" class="form-control" id="email" maxlength="45" required onkeyup="checkEmail();"/>
             </div>
            </div>
            <div class="col-xs-6">
             <div class="form-group">
                  <label for="confirmEmail">Confirm E-mail Address:</label>
-                 <input name="confirmEmail" type="email" class="form-control" id="confirmEmail" maxlength="45" required/>
+                 <input name="confirmEmail" type="email" class="form-control" id="confirmEmail" maxlength="45" required onkeyup="checkEmail();"/>
+                 <div id="emailError"></div>
             </div>
            </div>
            <div class="form-group">
