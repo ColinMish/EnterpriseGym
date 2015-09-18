@@ -81,19 +81,9 @@ public class EventEntity {
     public void viewList(){
         
         for(int i = 0; i <= participants.size(); i++){
-            System.out.println(i + ". " + participants.get(i).getName() + " " + participants.get(i).getLastame());
+            System.out.println(i + ". " + participants.get(i).getName() + " " + participants.get(i).getLastname());
         }
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 }
