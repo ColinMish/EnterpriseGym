@@ -9,7 +9,10 @@
 <%@page import="Entities.QuizEntity" %>
 <!DOCTYPE html>
 <html>
-    <%@include file="header.jsp" %>  
+       <% if (session.getAttribute("username") == null){ %>
+         <%@include file="header.jsp" %>
+   <% }else{ %>
+     <%@include file="headerloggedin.jsp" %> <%}%> 
     <script src="${pageContext.request.contextPath}/js/quiz.js"></script>
     <% QuizEntity quiz = (QuizEntity) request.getAttribute("quiz");%>
     <!--Content-->
