@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Models.UserModel;
+import com.google.gson.Gson;
+import java.io.PrintWriter;
 import static java.lang.System.out;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -92,22 +94,17 @@ public class LogIn extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-//		UserModel user = new UserModel();						
-//		
-//        try {
-//            if(user.login(username,toSHA1(password.getBytes("UTF-8")))==false)
-//            {              
-//                response.sendRedirect(request.getContextPath()+"/LogInFailed.jsp");
-//            }
-//            else
-//            {
-//                HttpSession session = request.getSession();
-//                session.setAttribute("username", username);
-//                response.sendRedirect(request.getContextPath()+"/index.jsp");
-//                
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(LogIn.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        UserModel user = new UserModel();
+
+        try {
+            if (!user.login(username, toSHA1(password.getBytes("UTF-8"))) == false) {
+                HttpSession session = request.getSession();
+                session.setAttribute("username", username);
+                response.sendRedirect(request.getContextPath() + "/index.jsp");
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(LogIn.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

@@ -36,7 +36,7 @@
             <br> Password confirmation: <br>
            <input name="passwordCheck" type="password" id="userBox" maxlength="50" />
            <br>
-           <input type="submit" value="Reset"  />
+           <br><input type="submit" value="Reset"  />
           </form>                        
     </div>
       

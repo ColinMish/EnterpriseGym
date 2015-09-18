@@ -20,11 +20,7 @@ $(document).ready(function ()
         else
         {
             loginCount++;
-            if (LogIn())
-            {
-
-            }
-            else
+            if (!LogIn())
             {
                 $("#logInTitle").text("Log In Failed");
                 $("#logInMessage").text("Please try again");
@@ -41,14 +37,12 @@ $(document).ready(function ()
         $.ajax({
             type: "POST",
             url: "LogIn",
-            data: {username: username, pasword: password},
+            data: {password: password, username: username}, 
             cache: false,
-            success: function (success) {
-                console.log("yeay");
+            success: function (fail) {
                 return false;
             },
             fail: function () {
-                console.log("boo");
                 return false;
             }
         });

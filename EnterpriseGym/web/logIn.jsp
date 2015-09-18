@@ -30,7 +30,7 @@
            <input id="pw" name="Password" type="password" maxlength="50" />
            <br>
            <div class="forgotPassword">
-               <p><a href="Reset">Forgotten password?</a></p>
+               <p><a href="ResetPassword">Forgotten password?</a></p>
            </div>
            <input type="submit" value="Sign In"  />
           </form> 

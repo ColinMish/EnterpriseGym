@@ -6,6 +6,7 @@ import Models.NewPassModel;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -21,6 +22,13 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "ResetPassword", urlPatterns = {"/ResetPassword"})
 @MultipartConfig
 public class ResetPassword extends HttpServlet {
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+    {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("resetPass.jsp");
+        dispatcher.forward(request, response);
+    }
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
