@@ -17,7 +17,7 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h1>Theory</h1>
+                <h1 id="MainTitle">Theory</h1>
                 <p></p>
             </div>
         </div>

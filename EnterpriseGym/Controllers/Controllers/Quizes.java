@@ -1,3 +1,5 @@
+package Controllers;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,7 +8,9 @@
 
 import Entities.QuizEntity;
 import Entities.QuizQuestionEntity;
+import com.google.gson.Gson;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.LinkedList;
 import javax.servlet.RequestDispatcher;
@@ -98,9 +102,15 @@ public class Quizes extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("application/json");
         String quizTitle = request.getParameter("quizTitle");
         String[] answers = request.getParameterValues("answers[]");
         Boolean [] results = CheckAnswers(quizTitle, answers);
+        String json = new Gson().toJson(results);
+        try (PrintWriter out = response.getWriter()) {
+            out.println(json);
+            out.flush();
+        }
     }
     
     
@@ -113,8 +123,8 @@ public class Quizes extends HttpServlet {
         
         for (int i = 1; i <= answers.length; i++)
         {
-            int correctAnswer = questionList.get(i).getCorrectAnswer();
-            results[(i-1)] = answers[(i-1)].equals(questionList.get(i).getAnswer(correctAnswer));
+            int correctAnswer = questionList.get(i-1).getCorrectAnswer();
+            results[(i-1)] = answers[(i-1)].equals(questionList.get(i-1).getAnswer(correctAnswer-1));
         }
         return results;
     }

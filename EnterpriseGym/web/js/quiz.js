@@ -11,7 +11,7 @@ $(document).ready(function ()
         e.preventDefault();
         var quizTitle = $("#quizTitle").text();
         var answers = ValidateQuiz();
-        if(answers === null)
+        if (answers === null)
             return;
         GetResults(quizTitle, answers);
     });
@@ -25,12 +25,60 @@ function GetResults(quizTitle, answers)
         data: {quizTitle: quizTitle, answers: answers},
         cache: false,
         success: function (data) {
-            console.log("success");
+            var results = $.map(data, function (el) {
+                return el;
+            });
+            var ps = getScore(results);
+            $("#mainTitle").text("Results");
+            var percent = ((ps[0] / ps[1]) * 100);
+            if (percent >= 80)
+            {
+                $("#quizTitle").text("Pass " + ps[0] + "\\" + ps[1] + " (" + percent + "%)");
+            }
+            else
+            {
+                $("#quizTitle").text("Fail " + ps[0] + "\\" + ps[1] + " (" + percent + "%)");
+            }
+            var html = getHtmlResult(results);
+            $(".panel-body").replaceWith(html);
         },
         fail: function () {
 
         }
     });
+}
+
+function getHtmlResult(results)
+{
+    var count = 0;
+    var html = "<div class=\"panel-body\"><ol>";
+    results.forEach(function (i)
+    {
+        var mark = "correct";
+        count++;
+        if(i === false)
+        {
+            mark = "incorrect";
+        }
+        html = html + "<li> Answer = " + mark + "</li><br>";
+    });
+    html = html + "</ol></div>";
+    return html;
+}
+
+function getScore(results)
+{
+    var total = results.length;
+    var correct = 0;
+    results.forEach(function (i)
+    {
+        if (i)
+        {
+            correct++;
+        }
+    });
+    var score = [correct, total];
+    return score;
 }
 
 function ValidateQuiz()
@@ -41,7 +89,8 @@ function ValidateQuiz()
     var valid = false;
     $('input:radio').each(function ()
     {
-        var $this = $(this), id = $this.attr('id');;
+        var $this = $(this), id = $this.attr('id');
+        ;
         var thisQuestion = $this.attr('class');
         if (question !== thisQuestion)
         {
@@ -56,13 +105,13 @@ function ValidateQuiz()
         }
 
         if ($(this).prop('checked'))
-        {        
+        {
             valid = true;
             var answer = $("#A" + id).html();
             answers.push(answer);
         }
     });
-    if(answers === null)
+    if (answers === null)
     {
         alert("You must answer all questions to submit the quiz!");
     }
