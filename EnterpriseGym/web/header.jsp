@@ -12,6 +12,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <!-- jQuery -->
+    <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
+    
     <title>Enterprise Gym</title>
 
     <!-- Bootstrap Core CSS -->
@@ -19,7 +22,13 @@
 
     <!-- Custom CSS -->
     <link href="${pageContext.request.contextPath}/css/half-slider.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 
+    <!-- Country Drop-down CSS -->
+    <link href="${pageContext.request.contextPath}/css/flags.css" rel="stylesheet">
+    
+    <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
+    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -32,6 +41,7 @@
 <body>
 
     <!-- Navigation -->
+    <div class="navigation-bar">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -45,40 +55,100 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="Home">Home</a>
+                <div class="position">
+                    <ul class="nav navbar-nav">
+                        
+                    <li id="image" class="homeButton${pageContext.request.getServletPath() eq '/index.jsp' ? ' active' : ''}">
+                        <a href="${pageContext.request.contextPath}/Home"><img src="${pageContext.request.contextPath}/Pictures/logo-eg.png"></a>
                     </li>
-                    <li>
-                        <a href="About">About</a>
+                    <li id="headermenu" class="aboutButton${pageContext.request.getServletPath() eq '/about.jsp' ? ' active' : ''}">
+                        <a href="${pageContext.request.contextPath}/About">About</a>
                     </li>
-                    <li>
-                        <a href="SignUp">Register</a>   
+                    <li id="headermenu" class="eventsButton${pageContext.request.getServletPath() eq '/events.jsp' ? ' active' : ''}">
+                        <a href="${pageContext.request.contextPath}/Events">Events</a>
                     </li>
-                    <li>
-                        <a href="Events">Events</a>
+                    <li id="headermenu" class="newsButton${pageContext.request.getServletPath() eq '/news.jsp' ? ' active' : ''}">
+                        <a href="${pageContext.request.contextPath}/News">News</a>
                     </li>
-                    <li>
-                        <a href="News">News</a>
+                    <li id="headermenu" class="trainersButton${pageContext.request.getServletPath() eq '/trainers.jsp' ? ' active' : ''}">
+                        <a href="${pageContext.request.contextPath}/Trainers">Trainers</a>
                     </li>
-                    <li>
-                        <a href="Trainers">Trainers</a>
+                    <li id="headermenu" class="connectButton${pageContext.request.getServletPath() eq '/connect.jsp' ? ' active' : ''}">
+                        <a href="${pageContext.request.contextPath}/Connect">Connect</a>
+                    </li>                  
+                    <li id="headermenu" class="activitesButton${pageContext.request.getServletPath()eq '/activities.jsp' ? ' active' : ''}">
+                        <a href="${pageContext.request.contextPath}/Activities">Activities</a>
                     </li>
-                    <li>
-                        <a href="Connect">Connect</a>
+                    <li id="headermenu" class="quizesButton${pageContext.request.getServletPath() eq '/quizes.jsp' ? ' active' : ''}">
+                        <a href="${pageContext.request.contextPath}/Quizes">Online Tests</a>
                     </li>
-                    <li>
-                        <a href="Contact">Contact</a>
-                    </li>
-                    <li>
-                        <a href="Activities">Activities</a>
+                    <li id="headermenu" class="profileButton${pageContext.request.getServletPath() eq '/profile.jsp' ? ' active' : ''}">
+                        <a href="${pageContext.request.contextPath}/Profile">My eGym</a>
                     </li>
                 </ul>
+                </div>
+                
+        <ul class="nav navbar-nav navbar-right">
+          <% if (session.getAttribute("username") == null){ %>            
+          <li id="headermenu" class="dropdown" id="menuLogin">
+            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">Login</a>
+            <div class="dropdown-menu" style="padding:17px;">
+                
+              <form role="form" action="LogIn" method="post"  id="formLogin"> 
+                  <div class="form_group">
+                      <label for="username">Username:</label>
+                <input name="username" id="username" class="form-control" type="text" placeholder="Username" required> 
+                  </div>
+                <div class="form_group">
+                    <label for="password"> Password:</label>
+                <input name="password" id="password" class="form-control" type="text" placeholder="Password" required> 
+                  </div>
+                <div class="form-group">        
+                    <br>
+                <button type="submit" class="btn btn-default">Submit</button>
+
+                </div>
+              </form>
             </div>
+          </li>
+          <%}else{%>
+          <li class="logintext"> Logged in as: <%=session.getAttribute("username")%></li>
+          <%}%>
+          <li id="headermenu">
+              <% if (session.getAttribute("username") != null) { %>
+              <a href="LogOut">Log Out</a></li>
+             <%}else{%>
+          <a href="SignUp">Sign Up</a></li>
+                   <%}%>
+                   
+            <li id="calendar-drop">
+                <a data-toggle="collapse" data-target="#calendar" href="#calendar">
+                    <div class="header-calendar">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+         
+               
+            </div>
+          
             <!-- /.navbar-collapse -->
         </div>
+         
         <!-- /.container -->
     </nav>
+</div>
+                   
+            <div class="calendar">
+                <div id="calendar" class="collapse">
+                    <div class="pull-right">
+                        <iframe src="https://www.google.com/calendar/embed?showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=500&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=m9941bpd6nhji35pjjp3blv8do%40group.calendar.google.com&amp;color=%23853104&amp;ctz=Europe%2FLondon" style=" border-width:0 " width="400" height="500" frameborder="0" scrolling="no"></iframe>
+                    
+                    </div>
+                </div>
+            </div>
+
 
     <!-- Half Page Image Background Carousel Header -->
     <header id="myCarousel" class="carousel slide">
@@ -121,5 +191,7 @@
         <a class="right carousel-control" href="#myCarousel" data-slide="next">
             <span class="icon-next"></span>
         </a>
+        
+ 
 
     </header>

@@ -12,8 +12,9 @@
  <% Map<String, NewsEntity> storys = (HashMap) request.getAttribute("Storys"); %>
 <!DOCTYPE html>
 <html>
-
+    
     <%@include file="header.jsp" %>
+    <%@include file="sidebar.jsp" %>
     
     <!-- Page Content -->
     <div class="container">
@@ -42,19 +43,6 @@
             <%="</div>"%>
         <%}%>
         
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4><i class="fa fa-fw fa-gift"></i>Some news</h4>
-                    </div>
-                    <div class="panel-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
-                        <a href="News/SomethingElse" class="btn btn-default">Read More</a>
-                    </div>
-                </div>
-            </div>
-
-    
     <%@include file ="footer.jsp" %>
     </body>
 </html>

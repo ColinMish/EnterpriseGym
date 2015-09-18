@@ -8,8 +8,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    
+    <head>
+      <link href='css/style.css' rel='stylesheet' type='text/css'>
+    </head>
+    
     <body>
         <%@include file="header.jsp" %>
+        <%@include file="sidebar.jsp" %>
     
             <!-- Page Content -->
     <div class="container">

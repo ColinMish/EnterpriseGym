@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html>
     <%@include file="header.jsp" %>
+   
     <% NewsEntity story = (NewsEntity) request.getAttribute("Story"); %>
     <!-- Page Content -->
     

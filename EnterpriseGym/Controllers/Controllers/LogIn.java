@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Models.UserModel;
+import static java.lang.System.out;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
@@ -98,7 +99,7 @@ public class LogIn extends HttpServlet {
 		
         try {
             if(user.login(username,toSHA1(password.getBytes("UTF-8")))==false)
-            {
+            {              
                 response.sendRedirect(request.getContextPath()+"/LogInFailed.jsp");
             }
             else
