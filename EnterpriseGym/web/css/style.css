@@ -7,6 +7,9 @@ and open the template in the editor.
     Created on : Sep 15, 2015, 2:30:52 PM
     Author     : colin
 */
+#myCarousel {
+    height:25em;
+}
 
 .content {
     margin-left: 10%;
