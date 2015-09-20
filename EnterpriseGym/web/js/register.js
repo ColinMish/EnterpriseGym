@@ -17,15 +17,8 @@ $(document).ready(function () {
 
     ///username loose focus
     $("#username1").focusout(function () {
-        var exists = checkUsername($("#username1").val());
-        if (exists)
-        {
-            $("#err").append("<div id='errMessage' class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Username already exists.</p></div>");
-        }
-        else
-        {
-            $("#err").append("<div id='errMessage' class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Username is available.</p></div>");
-        }
+        var html = checkUsername($("#username1").val());
+        $("#err").html(html);
     });
 
     ///university change
@@ -146,9 +139,10 @@ $(document).ready(function () {
 
 function checkUsername(username)
 {
+    var message;
     if (username === '')
     {
-        $("#err").html("<div class='alert alert-warning fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Please Enter a Username.</p></div>");
+        message = "<div class='alert alert-warning fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Please Enter a Username.</p></div>";
         usernameValid = false;
     }
     else
@@ -166,9 +160,17 @@ function checkUsername(username)
                 console.log("Error in ajax call");
             }
         });
+        if (exists)
+        {
+            message = "<div id='errMessage' class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Username already exists.</p></div>";
+        }
+        else
+        {
+            message = "<div id='errMessage' class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Username is available.</p></div>";
+        }
     }
     usernameValid = exists;
-    return exists;
+    return message;
 }
 
 function checkPassword()
