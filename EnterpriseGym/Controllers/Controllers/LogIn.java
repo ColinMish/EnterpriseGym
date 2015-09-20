@@ -1,6 +1,6 @@
 package Controllers;
 
-
+import Entities.Account;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Models.UserModel;
-import static java.lang.System.out;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
@@ -34,26 +33,25 @@ public class LogIn extends HttpServlet {
     public LogIn() {
 
     }
-    
+
     public static String toSHA1(byte[] convertme) {
-	    MessageDigest md = null;
-	    try {
-	        md = MessageDigest.getInstance("SHA1");
-	    }
-	    catch(NoSuchAlgorithmException e) {
-	        e.printStackTrace();
-	    } 
-	    return byteArrayToHexString(md.digest(convertme));
-	}
-	
-	public static String byteArrayToHexString(byte[] b) {
-		  String result = "";
-		  for (int i=0; i < b.length; i++) {
-		    result +=
-		          Integer.toString( ( b[i] & 0xff ) + 0x100, 16).substring( 1 );
-		  }
-		  return result;
-		}
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("SHA1");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return byteArrayToHexString(md.digest(convertme));
+    }
+
+    public static String byteArrayToHexString(byte[] b) {
+        String result = "";
+        for (int i = 0; i < b.length; i++) {
+            result
+                    += Integer.toString((b[i] & 0xff) + 0x100, 16).substring(1);
+        }
+        return result;
+    }
 
     /**
      *
@@ -73,8 +71,7 @@ public class LogIn extends HttpServlet {
      * @throws IOException
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-    {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
@@ -88,30 +85,24 @@ public class LogIn extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException 
-    {
+            throws ServletException, IOException {
         
-		// TODO Auto-generated method stub
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		
-		UserModel user = new UserModel();						
-		
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
+        UserModel user = new UserModel();
+
         try {
-            if(user.login(username,toSHA1(password.getBytes("UTF-8")))==false)
-            {              
-                response.sendRedirect(request.getContextPath()+"/LogInFailed.jsp");
-            }
-            else
-            {
+            if (user.login(username, toSHA1(password.getBytes("UTF-8"))) == false) {
+                response.sendRedirect(request.getContextPath() + "/LogInFailed.jsp");
+            } else {
                 HttpSession session = request.getSession();
                 session.setAttribute("username", username);
-                response.sendRedirect(request.getContextPath()+"/index.jsp");
-                
+                response.sendRedirect(request.getContextPath() + "/index.jsp");
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(LogIn.class.getName()).log(Level.SEVERE, null, ex);
         }
-	}
     }
-
+}
