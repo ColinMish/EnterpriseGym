@@ -12,17 +12,14 @@
     </head>
     
     <body>
-   <% if (session.getAttribute("username") == null){ %>
-         <%@include file="header.jsp" %>
-   <% }else{ %>
-     <%@include file="headerloggedin.jsp" %> <%}%>
-<div class="hidden-xs">
-    <%@include file="sidebar.jsp"%>
-     </div>
+   <%@include file="header.jsp" %>
+    <div class="hidden-xs">
+        <%@include file="sidebar.jsp"%>
+    </div>
 
     <!-- Page Content -->
     <div class="container">
-
+        <a href="newEvent.jsp"<button type="button" class="btn btn-default">Create Event</button></a>
         <div class="row">
             <div class="col-lg-12">
                 <h1>Events & Activities</h1>
