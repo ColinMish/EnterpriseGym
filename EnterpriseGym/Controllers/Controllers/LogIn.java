@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
+import lib.Security;
 
 /**
  *
@@ -51,7 +52,7 @@ public class LogIn extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("LogIn.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("logIn.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -69,18 +70,16 @@ public class LogIn extends HttpServlet {
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-<<<<<<< HEAD
-
-=======
         
         
->>>>>>> master
         UserModel user = new UserModel();
         String salt = user.getSalt(username);
         password = Security.hashPassword(password, salt);
         try {
             if (user.login(username, password) == false || salt == null) {
-                response.sendRedirect(request.getContextPath() + "/LogInFailed.jsp");
+                request.setAttribute("failed", true);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("logIn.jsp");
+                dispatcher.forward(request, response);
             } else {
                 Account login = user.getAccount(username);
                 HttpSession session = request.getSession();
