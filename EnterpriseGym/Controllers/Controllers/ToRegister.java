@@ -15,14 +15,14 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Kim
  */
-@WebServlet(name = "Trainers", urlPatterns = {"/Trainers"})
+@WebServlet(name = "ToRegister", urlPatterns = {"/ToRegister"})
 @MultipartConfig
-public class Trainers extends HttpServlet {
+public class ToRegister extends HttpServlet {
 
     /**
      * Constructor
      */
-    public Trainers() {
+    public ToRegister() {
 
     }
 
@@ -46,7 +46,7 @@ public class Trainers extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
-                  RequestDispatcher dispatcher = request.getRequestDispatcher("trainers.jsp");
+                  RequestDispatcher dispatcher = request.getRequestDispatcher("userregistration.jsp");
                 dispatcher.forward(request, response);
     }
 
