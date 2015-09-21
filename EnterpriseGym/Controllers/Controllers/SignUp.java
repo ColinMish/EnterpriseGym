@@ -99,7 +99,8 @@ public class SignUp extends HttpServlet {
                     dispatcher.forward(request, response);
                 } else {
                     //Log the new user into the system here. 
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+                    request.setAttribute("registered", true);
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("logIn.jsp");
                     dispatcher.forward(request, response);
                 }
 

@@ -8,8 +8,6 @@ package Models;
 import Entities.Account;
 import Entities.UserEntity;
 import java.sql.*;
-import javax.servlet.http.HttpSession;
-import java.util.Date;
 import java.util.LinkedList;
 
 /**
@@ -78,6 +76,20 @@ public class UserModel {
             ps.setInt(11, id);
             ps.executeUpdate();
 
+            PreparedStatement getDefaultPermision = null;
+            String getDefaultPermisionString = "SELECT idaccessToken FROM accessToken WHERE description=?";
+            getDefaultPermision = con.prepareStatement(getDefaultPermisionString);
+            getDefaultPermision.setString(1, "admin");//TODO Change!
+            ResultSet accessLevel = getDefaultPermision.executeQuery();
+            accessLevel.next();
+            int access = accessLevel.getInt("idaccessToken");
+            String addPermisions = "INSERT INTO accessToken_has_account (accessToken_idaccessToken, account_idaccount) VALUES (?,?)";
+            ps = null;
+            ps = con.prepareStatement(addPermisions);
+            ps.setInt(1, access);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+            
             con.close();
 
             return true;
@@ -279,7 +291,6 @@ public class UserModel {
             Statement st;
             int userId = 0;
             ResultSet accessTokens;
-            LinkedList accessLevels = new LinkedList();
             Connection con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
             st = con.createStatement();
             accessTokens = st.executeQuery("select idaccount from account where username='" + username + "'");
@@ -289,8 +300,9 @@ public class UserModel {
             st = con.createStatement();
             accessTokens = st.executeQuery("SELECT * FROM accessToken_has_account WHERE account_idaccount='" + userId + "'");
             while (accessTokens.next()) {
-                accessLevels.add(accessTokens.getInt("accessToken_idaccessToken"));
+                accountTokens.add(accessTokens.getInt("accessToken_idaccessToken"));
             }
+            con.close();
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
         }
         return new Account(username, accountTokens);
