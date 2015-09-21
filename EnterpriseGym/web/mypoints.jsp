@@ -9,10 +9,7 @@
 <html>
 
     <%@include file="header.jsp" %>
-    <div class="hidden-xs">
-        <%@include file="sidebar.jsp"%>
-    </div>
-    
+ 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
     <script src="http://code.highcharts.com/highcharts.js" type="text/javascript"></script>

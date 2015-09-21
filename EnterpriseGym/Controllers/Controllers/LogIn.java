@@ -72,7 +72,7 @@ public class LogIn extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("logIn.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("LogIn.jsp");
         dispatcher.forward(request, response);
     }
 
