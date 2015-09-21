@@ -1,7 +1,5 @@
-
 package Entities;
 
-import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 
@@ -14,16 +12,15 @@ public class EventEntity {
     String name, description, location;
     int event_type, points_given;
     List <UserEntity> participants;
-    Date date;
-    Time time;
+    Date dateTime;
     
-    public EventEntity (String name, int event_type, String description, int points_given, Date date, Time time, String location) {
+    public EventEntity (String name, int event_type, String description, int points_given, Date dateTime, String location) 
+    {
         this.name = name;
         this.event_type = event_type;
         this.description = description;
         this.points_given = points_given;
-        this.date = date;
-        this.time = time;
+        this.dateTime = dateTime;
         this.location = location;
 
     }
@@ -60,20 +57,12 @@ public class EventEntity {
         return points_given;
     }
     
-    public void setDate(Date new_date){
-        date = new_date;
+    public void setDateTime(Date new_dateTime){
+        this.dateTime = new_dateTime;
     }
     
     public Date getDate(){
-        return date;
-    }
-    
-    public void setTime(Time new_time){
-        time = new_time;
-    }
-    
-    public Time getTime(){
-        return time;
+        return this.dateTime;
     }
     
     public void setLocation(String new_location){
@@ -88,22 +77,13 @@ public class EventEntity {
         participants.add(add_to_list);
     }
     
+    /* add participant to the list */
     public void viewList(){
         
         for(int i = 0; i <= participants.size(); i++){
-            System.out.println(i + ". " + participants.get(i).getName() + " " + participants.get(i).getLastame());
+            System.out.println(i + ". " + participants.get(i).getName() + " " + participants.get(i).getLastname());
         }
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 }

@@ -1,3 +1,13 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author kristiyangeorgiev
+ */
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -11,14 +21,14 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author kristiyangeorgiev
  */
-@WebServlet(name = "Connect", urlPatterns = {"/Connect"})
+@WebServlet(name = "Contact", urlPatterns = {"/Contact"})
 @MultipartConfig
-public class Connect extends HttpServlet {
+public class Contact extends HttpServlet {
 
     /**
      * Constructor
      */
-    public Connect() {
+    public Contact() {
 
     }
 
@@ -42,7 +52,7 @@ public class Connect extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
-                  RequestDispatcher dispatcher = request.getRequestDispatcher("connect.jsp");
+                  RequestDispatcher dispatcher = request.getRequestDispatcher("contact.jsp");
                 dispatcher.forward(request, response);
     }
 
@@ -60,4 +70,3 @@ public class Connect extends HttpServlet {
     {
     }
 }
-

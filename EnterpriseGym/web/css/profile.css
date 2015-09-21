@@ -1,0 +1,39 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 17-Sep-2015, 11:35:38
+    Author     : kristiyangeorgiev
+*/
+
+.one{
+    font-size: 1.5em !important;
+    padding:0.4em 5.2em 0.4em 5.2em !important;
+    border-radius: 1em !important;
+    border-width:0.2em !important;
+}
+
+.two {
+    font-size: 1.5em !important;
+    padding: 0.4em 4.9em 0.4em 4.9em !important;
+    border-radius: 1em !important;
+    border-width:0.2em !important;
+}
+
+.three:hover {
+   border-color: #9a2d43 !important;
+}
+
+.one:hover{
+    border-color: #9a2d43 !important;
+}
+
+.two:hover{
+    border-color: #9a2d43 !important;
+}
+
+.trabout {  
+   padding: 0.5em 1.3em 0.5em 1.3em !important;
+}

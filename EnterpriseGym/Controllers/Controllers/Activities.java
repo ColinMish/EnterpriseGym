@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -12,14 +17,14 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author kristiyangeorgiev
  */
-@WebServlet(name = "Trainers", urlPatterns = {"/Trainers"})
+@WebServlet(name = "Activities", urlPatterns = {"/Activities"})
 @MultipartConfig
-public class Trainers extends HttpServlet {
+public class Activities extends HttpServlet {
 
     /**
      * Constructor
      */
-    public Trainers() {
+    public Activities() {
 
     }
 
@@ -43,7 +48,7 @@ public class Trainers extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
-                  RequestDispatcher dispatcher = request.getRequestDispatcher("trainers.jsp");
+                  RequestDispatcher dispatcher = request.getRequestDispatcher("activities.jsp");
                 dispatcher.forward(request, response);
     }
 
@@ -61,4 +66,3 @@ public class Trainers extends HttpServlet {
     {
     }
 }
-
