@@ -43,8 +43,9 @@ public class ResetPassword extends HttpServlet {
         if(pass1.equals(pass2)){
             
             /* Encrypt password */           
+
           String pass = Security.toSHA2(pass1.getBytes("UTF-8"));
-          
+
           reset.resetPass(e, pass);
            
           response.sendRedirect(request.getContextPath()+"/LogIn.jsp");

@@ -9,10 +9,7 @@
 <html>
 
     <%@include file="header.jsp" %>
-    <div class="hidden-xs">
-        <%@include file="sidebar.jsp"%>
-    </div>
-    
+ 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
     <script src="http://code.highcharts.com/highcharts.js" type="text/javascript"></script>
@@ -43,7 +40,7 @@
                 cursor: 'pointer',
                 dataLabels: {
                     enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    format: '<b>{point.name}</b>: {point.y:.0f}',
                     style: {
                         color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                     }
@@ -84,39 +81,14 @@
     });
 });
 
-$(function () {
-    $('#container2').highcharts({
-        data: {
-            table: 'datatable2'
-        },
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'Points Bar Chart'
-        },
-        yAxis: {
-            allowDecimals: false,
-            title: {
-                text: 'Units'
-            }
-        },
-        tooltip: {
-            formatter: function () {
-                return '<b>' + this.series.name + '</b><br/>' +
-                    this.point.y + ' ' + this.point.name.toLowerCase();
-            }
-        }
-    });
-});
     </script>
   </head>
   <body>
     <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
     
        
-    
-    <div class="col-md-8" id="ConnectText">
+
+    <div class="col-md-4" id="ConnectText">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i><strong>Points Table</strong></h4><br>
@@ -168,8 +140,83 @@ $(function () {
                 </div>
         </div>
         
-     <div id="container2" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-    
+        <div class="col-md-8" id="ConnectText2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-fw fa-check"></i><strong>Progress Tracker</strong></h4><br>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-hover" id="datatable2">
+                            <%
+                            java.util.LinkedList<UserEntity> points3 = (java.util.LinkedList<UserEntity>) request.getAttribute("points");
+                            Iterator<UserEntity> iterator3;
+           iterator3 = points3.iterator();
+            while (iterator3.hasNext()) {
+               UserEntity p3 = (UserEntity) iterator3.next();         
+                      %>       
+                        <thead>
+                            
+                            <tr>
+                                <th></th>
+                                <th>Silver Progress</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                           <tr>
+                            <th>Virtual Points:</th>
+                            <td class="col-md-8"><div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="<%=p3.getVirtualPercentage()%>"
+                                aria-valuemin="0" aria-valuemax="100" style="width:<%=p3.getVirtualPercentage()%>%">
+                                 <%=p3.getVirtualPercentage()%>%
+                                </div>
+                            </div></td>
+                           </tr>
+                           <tr>
+                            <th>Project Points:</th>
+                            <td class="col-md-8"><div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="<%=p3.getProjectPercentage()%>"
+                                aria-valuemin="0" aria-valuemax="100" style="width:<%=p3.getProjectPercentage()%>%">
+                                 <%=p3.getProjectPercentage()%>%
+                                </div>
+                            </div></td>
+                           </tr>
+                           <tr>
+                            <th>Practice Points:</th>
+                            <td class="col-md-8"><div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="<%=p3.getPracticePercentage()%>"
+                                aria-valuemin="0" aria-valuemax="100" style="width:<%=p3.getPracticePercentage()%>%">
+                                 <%=p3.getPracticePercentage()%>%
+                                </div>
+                            </div></td>
+                           </tr>
+                           <tr>
+                            <th>Theory Points:</th>
+                            <td class="col-md-8"><div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="<%=p3.getTheoryPercentage()%>"
+                                aria-valuemin="0" aria-valuemax="100" style="width:<%=p3.getTheoryPercentage()%>%">
+                                 <%=p3.getTheoryPercentage()%>%
+                                </div>
+                            </div></td>
+                           </tr>
+                           <tr>
+                            <th>Action Points:</th>
+                            <td class="col-md-8"><div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="<%=p3.getActionPercentage()%>"
+                                aria-valuemin="0" aria-valuemax="100" style="width:<%=p3.getActionPercentage()%>%">
+                                 <%=p3.getActionPercentage()%>%
+                                </div>
+                            </div></td>
+                           </tr>                      
+                            </tbody>
+                        <%}%>
+                        </table>
+                        </div>
+
+       
+                    </div>
+                </div>
+        </div>
+  
     
     
     <%@include file ="footer.jsp" %>

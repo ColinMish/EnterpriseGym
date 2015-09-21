@@ -77,7 +77,9 @@ public class LogIn extends HttpServlet {
         password = Security.hashPassword(password, salt);
         try {
             if (user.login(username, password) == false || salt == null) {
-                response.sendRedirect(request.getContextPath() + "/LogInFailed.jsp");
+                request.setAttribute("failed", true);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("logIn.jsp");
+                dispatcher.forward(request, response);
             } else {
                 Account login = user.getAccount(username);
                 HttpSession session = request.getSession();
