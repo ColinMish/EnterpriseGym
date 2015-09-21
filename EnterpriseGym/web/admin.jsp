@@ -8,8 +8,8 @@
 <!DOCTYPE html>
 <html>
     
-   <head>
-      <link href='css/style.css' rel='stylesheet' type='text/css'>
+    <head>
+        <link href='css/style.css' rel='stylesheet' type='text/css'>
     </head> 
    
     <body>
@@ -28,46 +28,74 @@
             </div>
         </div>
         
-        <div class="col-md-12" id="AdminText">
+        <div class="col-md-12" id="newsPanel">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4><i class="fa fa-fw fa-check"></i>News Editor</h4>
                 </div>
-                <div class="panel-body">
+                <div id="newsEditor" class="panel-body" hidden>
 
                 </div>
             </div>
         </div>
-        <div class="col-md-12" id="AdminText">
+        <script>
+            $("#newsPanel").click(function() {
+                $("#newsEditor").toggle( "fast", function() {
+                  // Animation complete.
+                });
+            });
+        </script>
+        <div class="col-md-12" id="userPanel">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4><i class="fa fa-fw fa-check"></i>User Management</h4>
                 </div>
-                <div class="panel-body">
+                <div id="userEditor" class="panel-body" hidden>
 
                 </div>
             </div>
         </div>
-        <div class="col-md-12" id="AdminText">
+        <script>
+            $("#userPanel").click(function() {
+                $("#userEditor").toggle( "fast", function() {
+                  // Animation complete.
+                });
+            });
+        </script>
+        <div class="col-md-12" id="eventsPanel">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4><i class="fa fa-fw fa-check"></i>Events Management</h4>
                 </div>
-                <div class="panel-body">
+                <div id="eventsEditor" class="panel-body" hidden>
 
                 </div>
             </div>
         </div>
-        <div class="col-md-12" id="AdminText">
+        <script>
+            $("#eventsPanel").click(function() {
+                $("#eventsEditor").toggle( "fast", function() {
+                  // Animation complete.
+                });
+            });
+        </script>
+        <div class="col-md-12" id="quizPanel">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4><i class="fa fa-fw fa-check"></i>Quiz Management</h4>
                 </div>
-                <div class="panel-body">
+                <div id="quizEditor" class="panel-body" hidden>
 
                 </div>
             </div>
         </div>
+        <script>
+            $("#quizPanel").click(function() {
+                $("#quizEditor").toggle( "fast", function() {
+                  // Animation complete.
+                });
+            });
+        </script>
     </div>
     
     <%@include file ="footer.jsp" %>
