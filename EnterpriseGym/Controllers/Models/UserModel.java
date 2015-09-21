@@ -8,8 +8,6 @@ package Models;
 import Entities.Account;
 import Entities.UserEntity;
 import java.sql.*;
-import javax.servlet.http.HttpSession;
-import java.util.Date;
 import java.util.LinkedList;
 
 /**
@@ -26,43 +24,78 @@ public class UserModel {
         return new java.sql.Date(today.getTime());
     }
 
-    public boolean register(String username, String password, String email, String first, String last, String gender, String country, String university, String school, String subject, int year, int matriculation) {
-
-        //System.out.println("The email is:" + email);
-        //response.sendRedirect("FaultInsert.jsp");
-        //System.out.println("method called");
-        //HttpSession session = request.getSession();
+    public boolean register(String username, String password, String email, String first,
+            String last, String gender, String country, String university, String school,
+            String subject, int year, int matriculation, byte[] salt) {
         Connection con = null;
         try {
+            int id = createAccount(username, password, salt);
+            return createUser(id, username, email, first, last, gender, country, university, school, subject, year, matriculation);
+        } catch (Exception e) {
+            System.out.println("connection to db failed");
+            e.printStackTrace();
+            return false;
 
+        }
+
+    }
+
+    public int createAccount(String username, String password, byte[] salt) {
+        Connection con = null;
+        int id = 0;
+        try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
 
             PreparedStatement ps = null;
-            PreparedStatement ps2 = null;
+            PreparedStatement addAccount = null;
 
-            String sqlOption2 = "INSERT INTO account (username,password,date_joined) VALUES (?,?,?)";
-            ps2 = con.prepareStatement(sqlOption2);
-            ps2.setString(1, username);
-            ps2.setString(2, password);
-            ps2.setDate(3, getCurrentDate());
-            ps2.executeUpdate();
+            String InsertIntoAccount = "INSERT INTO account (username,password,date_joined) VALUES (?,?,?)";
+            addAccount = con.prepareStatement(InsertIntoAccount);
+            addAccount.setString(1, username);
+            addAccount.setString(2, password);
+            //TODO Add the salt here
+            addAccount.setDate(3, getCurrentDate());
+            addAccount.executeUpdate();
 
-            //Find out the id of the new account to insert into user. 
-            PreparedStatement ps1 = null;
-            String sqlOption1 = "SELECT * FROM account WHERE username=?";
+            //Find out the id of the new account 
+            PreparedStatement getAccountID = null;
+            String selectAccount = "SELECT * FROM account WHERE username=?";
 
-            ps1 = con.prepareStatement(sqlOption1);
-            ps1.setString(1, username);
+            getAccountID = con.prepareStatement(selectAccount);
+            getAccountID.setString(1, username);
 
-            ResultSet rs1 = ps1.executeQuery();
-            rs1.next();
-            int id = rs1.getInt("idaccount");
-            System.out.println("The id is:" + id);
+            ResultSet rs = getAccountID.executeQuery();
+            if (rs.next()) {
+                id = rs.getInt("idaccount");
+                PreparedStatement getDefaultPermision = null;
+                String getDefaultPermisionString = "SELECT idaccessToken FROM accessToken WHERE description=?";
+                getDefaultPermision = con.prepareStatement(getDefaultPermisionString);
+                getDefaultPermision.setString(1, "admin");//TODO Change!
+                ResultSet accessLevel = getDefaultPermision.executeQuery();
+                accessLevel.next();
+                int access = accessLevel.getInt("idaccessToken");
+                String addPermisions = "INSERT INTO accessToken_has_account (accessToken_idaccessToken, account_idaccount) VALUES (?,?)";
+                ps = null;
+                ps = con.prepareStatement(addPermisions);
+                ps.setInt(1, access);
+                ps.setInt(2, id);
+                ps.executeUpdate();
+            }
 
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+
+        }
+        return id;
+    }
+
+    public boolean createUser(int accountid, String username, String email, String first, String last, String gender, String country, String university, String school, String subject, int year, int matriculation) {
+        Connection con = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
             String sqlOption = "INSERT INTO user (email,first_name,last_name,gender,country,university,school,subject,year,matriculation, account_idaccount) VALUES (?,?,?,?,?,?,?,?,?,?, ?)";
-
-            ps = con.prepareStatement(sqlOption);
+            PreparedStatement ps = con.prepareStatement(sqlOption);
 
             ps.setString(1, email);
             ps.setString(2, first);
@@ -75,9 +108,8 @@ public class UserModel {
             //Default values
             ps.setInt(9, year);
             ps.setInt(10, matriculation);
-            ps.setInt(11, id);
+            ps.setInt(11, accountid);
             ps.executeUpdate();
-
             con.close();
 
             return true;
@@ -93,9 +125,7 @@ public class UserModel {
             System.out.println("connection to db failed");
             e.printStackTrace();
             return false;
-
         }
-
     }
 
     public boolean login(String username, String password) throws SQLException {
@@ -279,7 +309,6 @@ public class UserModel {
             Statement st;
             int userId = 0;
             ResultSet accessTokens;
-            LinkedList accessLevels = new LinkedList();
             Connection con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
             st = con.createStatement();
             accessTokens = st.executeQuery("select idaccount from account where username='" + username + "'");
@@ -289,8 +318,9 @@ public class UserModel {
             st = con.createStatement();
             accessTokens = st.executeQuery("SELECT * FROM accessToken_has_account WHERE account_idaccount='" + userId + "'");
             while (accessTokens.next()) {
-                accessLevels.add(accessTokens.getInt("accessToken_idaccessToken"));
+                accountTokens.add(accessTokens.getInt("accessToken_idaccessToken"));
             }
+            con.close();
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
         }
         return new Account(username, accountTokens);
