@@ -90,25 +90,19 @@ public class SignUp extends HttpServlet {
         //System.out.println("The year of study"+yearofstudy);
         int matric = Integer.parseInt(request.getParameter("matric"));
         //String matric = request.getParameter("matric");
-
-        byte[] hash = new byte[password.getBytes("UTF-8").length + salt.length]; //Salt password
+        password = Security.hashPassword(password, salt);
+        String saltAsString = Convertors.byteArrayToHexString(salt);
         UserModel user = new UserModel();
 
         try {
-            if (password.equals(passwordcheck)) {
-                System.out.println("passwords match");
-                if (user.register(username, Convertors.toSHA2(password.getBytes("UTF-8")), email, first, last, gender, country, university, school, subject, yearofstudy, matric, salt) == false) {
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("logInFailed.jsp");
-                    dispatcher.forward(request, response);
-                } else {
-                    //Log the new user into the system here. 
-                    request.setAttribute("registered", true);
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("logIn.jsp");
-                    dispatcher.forward(request, response);
-                }
-
+            if (user.register(username, password, email, first, last, gender, country, university, school, subject, yearofstudy, matric, saltAsString) == false) {
+                RequestDispatcher dispatcher = request.getRequestDispatcher("logInFailed.jsp");
+                dispatcher.forward(request, response);
             } else {
-                throw new IllegalArgumentException("The passwords don't match");
+                //Log the new user into the system here. 
+                request.setAttribute("registered", true);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("logIn.jsp");
+                dispatcher.forward(request, response);
             }
         } catch (IOException | ServletException | IllegalArgumentException e) {
             //At this point you need to tell the user that the passwords don't match
