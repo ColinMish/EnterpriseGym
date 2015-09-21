@@ -51,7 +51,7 @@
             </div>
         </div>  
 
-            <form onsubmit="return validateForm()" action="createEvent" role="form" id="createEvent" method="POST">
+            <form action="NewEvent" role="form" id="NewEvent" method="POST">
                 <div class="form-group">
                     <label for="eventTitle">Event Title:</label>
                     <input name="eventTitle" type="text" class="form-control" id="title1" maxlength="45"/>

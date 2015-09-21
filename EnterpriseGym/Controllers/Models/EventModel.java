@@ -29,7 +29,7 @@ public class EventModel {
         return new java.sql.Date(today.getTime());
     }
         
-    public boolean newEvent(String title, String description, Date date, int eventcol, int theme) {
+    public boolean newEvent(String title, String description, Date date, int theme) {
 
     //System.out.println("The email is:" + email);
     //response.sendRedirect("FaultInsert.jsp");
@@ -43,13 +43,12 @@ public class EventModel {
 
         PreparedStatement ps2 = null;
 
-        String sqlOption = "INSERT INTO event (title,description,date,eventcol, theme) VALUES (?,?,?,?,?)";
+        String sqlOption = "INSERT INTO event (title,decription,date,theme_idtheme) VALUES (?,?,?,?)";
         ps2 = con.prepareStatement(sqlOption);
         ps2.setString(1, title);
         ps2.setString(2, description);
         ps2.setDate(3, date);
-        ps2.setInt(4, eventcol);
-        ps2.setInt(5, theme);
+        ps2.setInt(4, theme);
         ps2.executeUpdate();
 
         //Find out the id of the new account to insert into user. 
