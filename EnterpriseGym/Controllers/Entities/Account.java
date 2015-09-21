@@ -5,6 +5,8 @@
  */
 package Entities;
 
+import java.util.LinkedList;
+
 /**
  *
  * @author Dave
@@ -12,9 +14,9 @@ package Entities;
 public class Account {
     
     private String username;
-    private int accessLevel;
+    private LinkedList accessLevel;
 
-    public Account(String username, int accessLevel) {
+    public Account(String username, LinkedList accessLevel) {
         this.username = username;
         this.accessLevel = accessLevel;
     }
@@ -27,11 +29,11 @@ public class Account {
         this.username = username;
     }
 
-    public int getAccessLevel() {
+    public LinkedList getAllAccessLevels() {
         return accessLevel;
     }
 
-    public void setAccessLevel(int accessLevel) {
+    public void setAccessLevel(LinkedList accessLevel) {
         this.accessLevel = accessLevel;
     }
     

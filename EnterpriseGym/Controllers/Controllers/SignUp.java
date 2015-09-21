@@ -66,7 +66,7 @@ public class SignUp extends HttpServlet {
                 registerNewUser(request, response);
                 break;
             case "CheckUsername":
-                checkUsername(request,response);
+                checkUsername(request, response);
                 break;
         }
     }
@@ -94,21 +94,19 @@ public class SignUp extends HttpServlet {
         try {
             if (password.equals(passwordcheck)) {
                 System.out.println("passwords match");
-
                 if (user.register(username, Convertors.toSHA1(password.getBytes("UTF-8")), email, first, last, gender, country, university, school, subject, yearofstudy, matric) == false) {
-                    System.out.println("false");
-                    //HttpSession session = request.getSession();
-                    //session.setAttribute("error", "The username is already taken.");
-                    response.sendRedirect(request.getContextPath() + "/FailedSignUp.jsp");
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("LogInFailed.jsp");
+                    dispatcher.forward(request, response);
                 } else {
                     //Log the new user into the system here. 
-                    response.sendRedirect(request.getContextPath() + "/LogIn.jsp");
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+                    dispatcher.forward(request, response);
                 }
 
             } else {
                 throw new IllegalArgumentException("The passwords don't match");
             }
-        } catch (IOException | IllegalArgumentException e) {
+        } catch (IOException | ServletException | IllegalArgumentException e) {
             //At this point you need to tell the user that the passwords don't match
             System.out.println("expection thrown");
             //Reditect to the failed registration page.
