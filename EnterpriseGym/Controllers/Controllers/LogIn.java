@@ -72,7 +72,8 @@ public class LogIn extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        RequestDispatcher dispatcher = request.getRequestDispatcher("logIn.jsp");
+        dispatcher.forward(request, response);
     }
 
     /**
@@ -86,7 +87,7 @@ public class LogIn extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
@@ -96,6 +97,7 @@ public class LogIn extends HttpServlet {
             if (user.login(username, toSHA1(password.getBytes("UTF-8"))) == false) {
                 response.sendRedirect(request.getContextPath() + "/LogInFailed.jsp");
             } else {
+                Account login = user.getAccount(username);
                 HttpSession session = request.getSession();
                 session.setAttribute("username", username);
                 response.sendRedirect(request.getContextPath() + "/index.jsp");

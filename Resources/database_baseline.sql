@@ -19,20 +19,6 @@ CREATE SCHEMA IF NOT EXISTS `Enterprise_Gym` ;
 USE `Enterprise_Gym` ;
 
 -- -----------------------------------------------------
--- Table `Enterprise_Gym`.`accessToken`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `Enterprise_Gym`.`accessToken` ;
-
-CREATE TABLE IF NOT EXISTS `Enterprise_Gym`.`accessToken` (
-  `idaccessToken` INT NOT NULL AUTO_INCREMENT COMMENT '',
-  `level` INT NULL COMMENT '',
-  `description` VARCHAR(500) NULL COMMENT '',
-  PRIMARY KEY (`idaccessToken`)  COMMENT '',
-  UNIQUE INDEX `idaccessToken_UNIQUE` (`idaccessToken` ASC)  COMMENT '')
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `Enterprise_Gym`.`account`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `Enterprise_Gym`.`account` ;
@@ -41,15 +27,10 @@ CREATE TABLE IF NOT EXISTS `Enterprise_Gym`.`account` (
   `idaccount` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '',
   `username` VARCHAR(200) NOT NULL COMMENT '',
   `password` VARCHAR(500) NOT NULL COMMENT '',
-  `accessToken_idaccessToken` INT NOT NULL COMMENT '',
-  PRIMARY KEY (`idaccount`, `accessToken_idaccessToken`)  COMMENT '',
-  UNIQUE INDEX `username_UNIQUE` (`username` ASC)  COMMENT '',
-  INDEX `fk_account_accessToken1_idx` (`accessToken_idaccessToken` ASC)  COMMENT '',
-  CONSTRAINT `fk_account_accessToken1`
-    FOREIGN KEY (`accessToken_idaccessToken`)
-    REFERENCES `Enterprise_Gym`.`accessToken` (`idaccessToken`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  `date_joined` DATE NOT NULL COMMENT '',
+  `date_active` DATE NULL COMMENT '',
+  PRIMARY KEY (`idaccount`)  COMMENT '',
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC)  COMMENT '')
 ENGINE = InnoDB;
 
 
@@ -60,8 +41,8 @@ DROP TABLE IF EXISTS `Enterprise_Gym`.`user` ;
 
 CREATE TABLE IF NOT EXISTS `Enterprise_Gym`.`user` (
   `iduser` INT NOT NULL AUTO_INCREMENT COMMENT '',
-  `first name` VARCHAR(45) NOT NULL COMMENT '',
-  `last name` VARCHAR(45) NOT NULL COMMENT '',
+  `first_name` VARCHAR(45) NOT NULL COMMENT '',
+  `last_name` VARCHAR(45) NOT NULL COMMENT '',
   `gender` VARCHAR(6) NOT NULL COMMENT '',
   `country` VARCHAR(45) NULL COMMENT '',
   `university` VARCHAR(45) NULL COMMENT '',
@@ -70,7 +51,12 @@ CREATE TABLE IF NOT EXISTS `Enterprise_Gym`.`user` (
   `email` VARCHAR(45) NULL COMMENT '',
   `account_idaccount` INT UNSIGNED NOT NULL COMMENT '',
   `matriculation` INT NULL COMMENT '',
-  `points` INT NOT NULL DEFAULT 0 COMMENT '',
+  `action_points` INT NOT NULL DEFAULT 0 COMMENT '',
+  `practice_points` INT NOT NULL DEFAULT 0 COMMENT '',
+  `virtual_points` INT NOT NULL DEFAULT 0 COMMENT '',
+  `project_points` INT NOT NULL DEFAULT 0 COMMENT '',
+  `theory_points` INT NOT NULL DEFAULT 0 COMMENT '',
+  `subject` VARCHAR(500) NULL COMMENT '',
   PRIMARY KEY (`iduser`)  COMMENT '',
   UNIQUE INDEX `iduser_UNIQUE` (`iduser` ASC)  COMMENT '',
   INDEX `fk_user_account1_idx` (`account_idaccount` ASC)  COMMENT '',
@@ -106,7 +92,6 @@ CREATE TABLE IF NOT EXISTS `Enterprise_Gym`.`event` (
   `title` VARCHAR(45) NULL COMMENT '',
   `decription` VARCHAR(1000) NULL COMMENT '',
   `date` DATE NULL COMMENT '',
-  `eventcol` INT NULL COMMENT '',
   `theme_idtheme` INT NOT NULL COMMENT '',
   PRIMARY KEY (`idevent`)  COMMENT '',
   UNIQUE INDEX `idevent_UNIQUE` (`idevent` ASC)  COMMENT '',
@@ -167,6 +152,20 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `Enterprise_Gym`.`accessToken`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `Enterprise_Gym`.`accessToken` ;
+
+CREATE TABLE IF NOT EXISTS `Enterprise_Gym`.`accessToken` (
+  `idaccessToken` INT NOT NULL AUTO_INCREMENT COMMENT '',
+  `level` INT NULL COMMENT '',
+  `description` VARCHAR(500) NULL COMMENT '',
+  PRIMARY KEY (`idaccessToken`)  COMMENT '',
+  UNIQUE INDEX `idaccessToken_UNIQUE` (`idaccessToken` ASC)  COMMENT '')
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `Enterprise_Gym`.`Quiz`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `Enterprise_Gym`.`Quiz` ;
@@ -201,6 +200,30 @@ CREATE TABLE IF NOT EXISTS `Enterprise_Gym`.`Question` (
   CONSTRAINT `fk_Question_Quiz1`
     FOREIGN KEY (`Quiz_idQuiz`)
     REFERENCES `Enterprise_Gym`.`Quiz` (`idQuiz`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Enterprise_Gym`.`accessToken_has_account`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `Enterprise_Gym`.`accessToken_has_account` ;
+
+CREATE TABLE IF NOT EXISTS `Enterprise_Gym`.`accessToken_has_account` (
+  `accessToken_idaccessToken` INT NOT NULL COMMENT '',
+  `account_idaccount` INT UNSIGNED NOT NULL COMMENT '',
+  PRIMARY KEY (`accessToken_idaccessToken`, `account_idaccount`)  COMMENT '',
+  INDEX `fk_accessToken_has_account_account1_idx` (`account_idaccount` ASC)  COMMENT '',
+  INDEX `fk_accessToken_has_account_accessToken1_idx` (`accessToken_idaccessToken` ASC)  COMMENT '',
+  CONSTRAINT `fk_accessToken_has_account_accessToken1`
+    FOREIGN KEY (`accessToken_idaccessToken`)
+    REFERENCES `Enterprise_Gym`.`accessToken` (`idaccessToken`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_accessToken_has_account_account1`
+    FOREIGN KEY (`account_idaccount`)
+    REFERENCES `Enterprise_Gym`.`account` (`idaccount`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
