@@ -37,19 +37,19 @@
                     </div>
                     <div class="panel-body">
                         <p>
-                            The Enterprise Gym could not exist without the kind and generous support of our<br>
-                            business patrons. Our achievements and growing engagement with the student<br>
-                            population of the University of Dundee is a testament to the calibre of support we<br>
-                            receive from our patrons; all of whom have a wealth of business experience and<br>
+                            The Enterprise Gym could not exist without the kind and generous support of our
+                            business patrons. Our achievements and growing engagement with the student
+                            population of the University of Dundee is a testament to the calibre of support we
+                            receive from our patrons; all of whom have a wealth of business experience and
                             hold senior positions in their organisations.<br><br>
                             
-                            Alongside our trainers, mentors, and coaches, we are also extremely grateful to the <br>
-                            very generous support of our financial sponsors who allow us to develop the <br>
+                            Alongside our trainers, mentors, and coaches, we are also extremely grateful to the
+                            very generous support of our financial sponsors who allow us to develop the
                             Enterprise Gym programmes and events.<br><br>
                             
                             <strong><a href="https://www.enterprise-gym.com/patrons/entrepreneur-residence">Entrepreneur in Residence</a></strong><br>
-                            The University of Dundee's first entrepreneur-in-residence has now stood down <br>
-                            with a replacement to be announced soon. They will be appointed to advise <br>
+                            The University of Dundee's first entrepreneur-in-residence has now stood down
+                            with a replacement to be announced soon. They will be appointed to advise 
                             students and graduates with ambitions of commercialising their talents and ideas.<br><br>
                             
                             <strong><a href="https://www.enterprise-gym.com/patrons/supercoaches">Learn from the Best Trainers</a></strong><br>

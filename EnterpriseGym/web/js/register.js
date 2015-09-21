@@ -1,24 +1,37 @@
-<%-- 
-    Document   : registerscripts
-    Created on : 17-Sep-2015, 11:24:07
-    Author     : Andy
---%>
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+var usernameValid = false;
+var passwordValid = false;
+var emailValid = false;
 
-<!--Populate School Drop-down Based on University Choice-->
-<script type="text/javascript">
-$(document).ready(function() {
-    $("#university").change(function() {
+$(document).ready(function () {
+
+    ///username gain focus
+    $("#username1").focus(function () {
+        $("#err div").remove();
+    });
+
+    ///username loose focus
+    $("#username1").focusout(function () {
+        var html = checkUsername($("#username1").val());
+        $("#err").html(html);
+    });
+
+    ///university change
+    $("#university").change(function () {
         var val = $(this).val();
-        if (val == "dundee") {
+        if (val === "dundee") {
             $("#school").html("<option vaue='N/A'>-</option><option value='art'>Art & Design (DJCAD)</option><option value='dentistry'>Dentistry</option><option value='education'>Education & Social Work</option><option value='humanities'>Humanities</option>\n\
                                <option value='lifeSciences'>Life Sciences</option><option value='medicine'>Medicine</option><option value='nursing'>Nursing & Midwifery</option><option value='scienceDundee'>Science & Engineering</option>\n\
                                <option value='socialSciences'>Social Sciences</option>");
             document.getElementById("matricSection").className = "form-group";
             document.getElementById("schoolSection").className = "form-group";
             document.getElementById("subjectSection").className = "form-group hidden";
-        } else if (val == "abertay") {
+        } else if (val === "abertay") {
             $("#school").html("<option vaue='N/A'>-</option><option value='artAbertay'>Arts, Media and Computer Games</option><option value='business'>Dundee Business School</option><option value='scienceAbertay'>Science, Engineering and Technology</option>\n\
                                <option value='socialHealth'>Social & Health Sciences</option>");
             document.getElementById("matricSection").className = "form-group hidden";
@@ -31,13 +44,9 @@ $(document).ready(function() {
             document.getElementById("subjectSection").className = "form-group hidden";
         }
     });
-});
-</script>
 
-<!--Populate Subject Drop-down Based on School Choice-->
-<script type="text/javascript">
-$(document).ready(function() {
-    $("#school").change(function() {
+    ///School change
+    $("#school").change(function () {
         var val = $(this).val();
         if (val == "art") {
             document.getElementById("subjectSection").className = "form-group";
@@ -120,100 +129,90 @@ $(document).ready(function() {
             $("#subject").html("<option vaue='N/A'>-</option>");
         }
     });
+
+    ///Password check
+    $("#confirmPassword").keyup(checkPassword);
+
+    ///email Check
+    $("#confirmEmail").keyup(checkEmail);
 });
-</script>
 
-<script type="text/javascript">
-    
-    var passwordValid;
-    
-    function checkPassword()
+function checkUsername(username)
+{
+    var message;
+    if (username === '')
     {
-        var password = $("#password1").val();
-        var confirmPassword = $("#confirmPassword").val();
-        
-        if(password == '' && confirmPassword == '')
-        {
-            $("#passwordError").html("<div class='alert alert-warning fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Please Enter a Password.</p></div>");
-            passwordValid = false;
-        }
-        else if(password != confirmPassword)
-        {
-            $("#passwordError").html("<div class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Passwords Do Not Match.</p></div>");
-            passwordValid = false;
-        }
-        else if(password == confirmPassword)
-        {
-            $("#passwordError").html("<div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Passwords Match.</p></div>");
-            passwordValid = true;
-        }
+        message = "<div class='alert alert-warning fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Please Enter a Username.</p></div>";
+        usernameValid = false;
     }
-    $(document).ready(function()
+    else
     {
-        $("#confirmPassword").keyup(checkPassword);
-    })
-    
-</script>
-
-<script type="text/javascript">
-    
-    var emailValid;
-    
-    function checkEmail()
-    {
-        var email = $("#email").val();
-        var confirmEmail = $("#confirmEmail").val();
-        
-        if(email == '' && confirmEmail == '')
+        var exists = false;
+        $.ajax({
+            type: "POST",
+            url: "CheckUsername",
+            data: {username: username},
+            cache: false,
+            success: function (result) {
+                exists = result;
+            },
+            fail: function () {
+                console.log("Error in ajax call");
+            }
+        });
+        if (exists)
         {
-            $("#emailError").html("<div class='alert alert-warning fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Please Enter an E-mail Address.</p></div>");
-            emailValid = false;
-        }
-        else if(email != confirmEmail)
-        {
-            $("#emailError").html("<div class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>E-mail Addresses Do Not Match.</p></div>");
-            emailValid = false;
-        }
-        else if(email == confirmEmail)
-        {
-            $("#emailError").html("<div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>E-mail Addresses Match.</p></div>");
-            emailValid = true;
-        }
-    }
-    $(document).ready(function()
-    {
-        $("#confirmEmail").keyup(checkEmail);
-    })
-    
-</script>
-
-<script type="text/javascript">
-    
-    var usernameValid;
-    
-    function checkUsername()
-    {
-        var username = $("#username1").val();
-        
-        if(username == '')
-        {
-            usernameValid = false;
+            message = "<div id='errMessage' class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Username already exists.</p></div>";
         }
         else
         {
-            usernameValid = true;
+            message = "<div id='errMessage' class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Username is available.</p></div>";
         }
     }
-    $(document).ready(function()
-    {
-        $("#username1").keyup(checkUsername);
-    })
-    
-</script>
+    usernameValid = exists;
+    return message;
+}
 
-<script type="text/javascript">
-    function validateForm()
+function checkPassword()
+{
+    var password = $("#password1").val();
+    var confirmPassword = $("#confirmPassword").val();
+
+    if (password === '' && confirmPassword === '')
     {
+        $("#passwordError").html("<div class='alert alert-warning fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Please Enter a Password.</p></div>");
+        passwordValid = false;
+    }
+    else if (password !== confirmPassword)
+    {
+        $("#passwordError").html("<div class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Passwords Do Not Match.</p></div>");
+        passwordValid = false;
+    }
+    else if (password === confirmPassword)
+    {
+        $("#passwordError").html("<div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Passwords Match.</p></div>");
+        passwordValid = true;
+    }
+}
+
+function checkEmail()
+{
+    var email = $("#email").val();
+    var confirmEmail = $("#confirmEmail").val();
+
+    if (email === '' && confirmEmail === '')
+    {
+        $("#emailError").html("<div class='alert alert-warning fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Please Enter an E-mail Address.</p></div>");
+        emailValid = false;
+    }
+    else if (email !== confirmEmail)
+    {
+        $("#emailError").html("<div class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>E-mail Addresses Do Not Match.</p></div>");
+        emailValid = false;
+    }
+    else if (email === confirmEmail)
+    {
+<<<<<<< HEAD:EnterpriseGym/web/registerscripts.jsp
         //Need to also add a check for the username. 
         if(emailValid && passwordValid && usernameValid)
         {
@@ -226,9 +225,21 @@ $(document).ready(function() {
         $('#myModal').modal('show');
             return false;
         }
+=======
+        $("#emailError").html("<div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>E-mail Addresses Match.</p></div>");
+        emailValid = true;
+>>>>>>> master:EnterpriseGym/web/js/register.js
     }
-</script>
+}
 
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="js/jquery.flagstrap.js"></script>
+function validateForm()
+{
+    if (emailValid && passwordValid && usernameValid)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
