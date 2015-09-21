@@ -20,7 +20,7 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h1><% if(registered) {%>Registration Successful - Please <% } %>Log In</h1>
+                <h1><% if(registered!=null) {%>Registration Successful - Please <% } %>Log In</h1>
                 <p></p>
              
             </div>
