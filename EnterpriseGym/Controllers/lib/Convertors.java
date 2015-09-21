@@ -161,16 +161,6 @@ public final class Convertors {
         return new StringTokenizer(str, "/");
 
     }
-
-        public static String toSHA2(byte[] convertme) {
-	    MessageDigest md = null;
-	    try {
-	        md = MessageDigest.getInstance("SHA-256");
-	    }
-	    catch(NoSuchAlgorithmException e) {
-	    } 
-	    return byteArrayToHexString(md.digest(convertme));
-	}
 	
 	public static String byteArrayToHexString(byte[] b) {
 		  String result = "";
