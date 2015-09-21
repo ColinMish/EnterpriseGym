@@ -279,7 +279,7 @@ public class UserModel {
             Statement st;
             int userId = 0;
             ResultSet accessTokens;
-            LinkedList accessLevels;
+            LinkedList accessLevels = new LinkedList();
             Connection con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
             st = con.createStatement();
             accessTokens = st.executeQuery("select idaccount from account where username='" + username + "'");
@@ -288,6 +288,9 @@ public class UserModel {
             }
             st = con.createStatement();
             accessTokens = st.executeQuery("SELECT * FROM accessToken_has_account WHERE account_idaccount='" + userId + "'");
+            while (accessTokens.next()) {
+                accessLevels.add(accessTokens.getInt("accessToken_idaccessToken"));
+            }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
         }
         return new Account(username, accountTokens);

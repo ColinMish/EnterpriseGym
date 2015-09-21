@@ -4,6 +4,7 @@
     Author     : Dave
 --%>
 
+<%@page import="Entities.Account"%>
 <head>
 
     <meta charset="utf-8">
@@ -36,6 +37,14 @@
     <![endif]-->
 
 </head>
+
+<%
+    Boolean loggedIn = false;
+    Account account = (Account) session.getAttribute("account");;
+    if (account != null) {
+        loggedIn = true;
+    }
+%>
 
 <body>
 
@@ -70,9 +79,31 @@
                         </li>       
                         <li class="activitesButton${pageContext.request.getServletPath()eq '/activities.jsp' ? ' active' : ''}">
                             <a id="head" href="${pageContext.request.contextPath}/Activities">Activities</a>
-                        </li>                             
+                        </li>
+                        <%if (loggedIn) {%>
+                        <li class="quizesButton${pageContext.request.getServletPath() eq '/quizes.jsp' ? ' active' : ''}">
+                            <a href="${pageContext.request.contextPath}/Quizes">Online Tests</a>
+                        </li>
+                        <li class="profileButton${pageContext.request.getServletPath() eq '/profile.jsp' ? ' active' : ''}">
+                            <a href="${pageContext.request.contextPath}/Profile">My eGym</a>
+                        </li>
                     </ul>
 
+                    <ul class="nav navbar-nav navbar-right">        
+                        <li class="logintext"> Logged in as: <%=account.getUsername()%></li>
+                        <li>
+                            <a href="${pageContext.request.contextPath}/LogOut">Log Out</a></li>                  
+                        <li id="calendar-drop" class="visible-lg">
+                            <a data-toggle="collapse" data-target="#calendar" href="#calendar">
+                                <div class="header-calendar">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <%} else {%>
+                    </ul>
 
                     <ul class="nav navbar-nav navbar-right">         
                         <li><a href="LogIn">Log In</a></li>
@@ -87,8 +118,7 @@
                             </a>
                         </li>
                     </ul>
-
-
+                    <%}%>
                 </div>
 
                 <!-- /.navbar-collapse -->
