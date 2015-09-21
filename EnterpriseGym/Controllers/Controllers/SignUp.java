@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import Models.UserModel;
 import java.io.PrintWriter;
 import lib.Convertors;
+import lib.Security;
 
 /**
  *
@@ -72,6 +73,7 @@ public class SignUp extends HttpServlet {
     }
 
     private void registerNewUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        byte[] salt = Security.generateSalt();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String passwordcheck = request.getParameter("passwordcheck");
@@ -89,12 +91,13 @@ public class SignUp extends HttpServlet {
         int matric = Integer.parseInt(request.getParameter("matric"));
         //String matric = request.getParameter("matric");
 
+        byte[] hash = new byte[password.getBytes("UTF-8").length + salt.length]; //Salt password
         UserModel user = new UserModel();
 
         try {
             if (password.equals(passwordcheck)) {
                 System.out.println("passwords match");
-                if (user.register(username, Convertors.toSHA1(password.getBytes("UTF-8")), email, first, last, gender, country, university, school, subject, yearofstudy, matric) == false) {
+                if (user.register(username, Convertors.toSHA2(password.getBytes("UTF-8")), email, first, last, gender, country, university, school, subject, yearofstudy, matric, salt) == false) {
                     RequestDispatcher dispatcher = request.getRequestDispatcher("logInFailed.jsp");
                     dispatcher.forward(request, response);
                 } else {
