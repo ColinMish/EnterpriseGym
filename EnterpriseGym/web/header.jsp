@@ -24,10 +24,10 @@
 
     <!-- Country Drop-down CSS -->
     <link href="${pageContext.request.contextPath}/css/flags.css" rel="stylesheet">
-    
+
     <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
     <script src='https://www.google.com/recaptcha/api.js'></script>
-    
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -41,92 +41,71 @@
 
     <!-- Navigation -->
     <div class="navigation-bar">
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        
-                    <li class="homeButton${pageContext.request.getServletPath() eq '/index.jsp' ? ' active' : ''}">
-                        <a id="imagehead" href="${pageContext.request.contextPath}/Home"><img src="${pageContext.request.contextPath}/Pictures/logo-eg.png"></a>
-                    </li>
-                    <li class="aboutButton${pageContext.request.getServletPath() eq '/about.jsp' ? ' active' : ''}">
-                        <a id="head" href="${pageContext.request.contextPath}/About">About</a>
-                    </li>
-                    <li class="eventsButton${pageContext.request.getServletPath() eq '/events.jsp' ? ' active' : ''}">
-                        <a id="head" href="${pageContext.request.contextPath}/Events">Events</a>
-                    </li>
-                    <li class="newsButton${pageContext.request.getServletPath() eq '/news.jsp' ? ' active' : ''}">
-                        <a id="head" href="${pageContext.request.contextPath}/News">News</a>
-                    </li>       
-                    <li class="activitesButton${pageContext.request.getServletPath()eq '/activities.jsp' ? ' active' : ''}">
-                        <a id="head" href="${pageContext.request.contextPath}/Activities">Activities</a>
-                    </li>                             
-                </ul>
 
-                
-        <ul class="nav navbar-nav navbar-right">         
-          <li class="dropdown" id="menuLogin">
-            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">Login</a>
-            <div class="dropdown-menu" style="padding:17px;">
-                
-              <form role="form" action="LogIn" method="post"  id="formLogin"> 
-                  <div class="form_group">
-                      <label for="username">Username:</label>
-                <input name="username" id="username" class="form-control" type="text" placeholder="Username" required> 
-                  </div>
-                <div class="form_group">
-                    <label for="password"> Password:</label>
-                <input name="password" id="password" class="form-control" type="text" placeholder="Password" required> 
-                  </div>
-                <div class="form-group">        
-                    <br>
-                <button type="submit" class="btn btn-default">Submit</button>
+                        <li class="homeButton${pageContext.request.getServletPath() eq '/index.jsp' ? ' active' : ''}">
+                            <a id="imagehead" href="${pageContext.request.contextPath}/Home"><img src="${pageContext.request.contextPath}/Pictures/logo-eg.png"></a>
+                        </li>
+                        <li class="aboutButton${pageContext.request.getServletPath() eq '/about.jsp' ? ' active' : ''}">
+                            <a id="head" href="${pageContext.request.contextPath}/About">About</a>
+                        </li>
+                        <li class="eventsButton${pageContext.request.getServletPath() eq '/events.jsp' ? ' active' : ''}">
+                            <a id="head" href="${pageContext.request.contextPath}/Events">Events</a>
+                        </li>
+                        <li class="newsButton${pageContext.request.getServletPath() eq '/news.jsp' ? ' active' : ''}">
+                            <a id="head" href="${pageContext.request.contextPath}/News">News</a>
+                        </li>       
+                        <li class="activitesButton${pageContext.request.getServletPath()eq '/activities.jsp' ? ' active' : ''}">
+                            <a id="head" href="${pageContext.request.contextPath}/Activities">Activities</a>
+                        </li>                             
+                    </ul>
+
+
+                    <ul class="nav navbar-nav navbar-right">         
+                        <li><a href="LogIn">Log In</a></li>
+                        <li><a href="SignUp">Sign Up</a></li>
+
+
+                        <li id="calendar-drop" class="visible-lg">
+                            <a data-toggle="collapse" data-target="#calendar" href="#calendar">
+                                <div class="header-calendar">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+
 
                 </div>
-              </form>
-            </div>
-          </li>
 
-          <li><a href="SignUp">Sign Up</a></li>
-                   
-                   
-            <li id="calendar-drop" class="visible-lg">
-                <a data-toggle="collapse" data-target="#calendar" href="#calendar">
-                    <div class="header-calendar">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </div>
-                </a>
-            </li>
-        </ul>
-         
-               
+                <!-- /.navbar-collapse -->
             </div>
-          
-            <!-- /.navbar-collapse -->
+
+            <!-- /.container -->
+        </nav>
+    </div>
+
+    <div class="calendar">
+        <div id="calendar" class="collapse">
+            <div class="pull-right">
+                <iframe src="https://www.google.com/calendar/embed?showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=500&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=m9941bpd6nhji35pjjp3blv8do%40group.calendar.google.com&amp;color=%23853104&amp;ctz=Europe%2FLondon" style=" border-width:0 " width="400" height="500" frameborder="0" scrolling="no"></iframe>
+
+            </div>
         </div>
-         
-        <!-- /.container -->
-    </nav>
-</div>
-                   
-            <div class="calendar">
-                <div id="calendar" class="collapse">
-                    <div class="pull-right">
-                        <iframe src="https://www.google.com/calendar/embed?showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=500&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=m9941bpd6nhji35pjjp3blv8do%40group.calendar.google.com&amp;color=%23853104&amp;ctz=Europe%2FLondon" style=" border-width:0 " width="400" height="500" frameborder="0" scrolling="no"></iframe>
-                    
-                    </div>
-                </div>
-            </div>
+    </div>
 
 
     <!-- Half Page Image Background Carousel Header -->
@@ -170,11 +149,11 @@
         <a class="right carousel-control visible-lg" href="#myCarousel" data-slide="next">
             <span class="icon-next"></span>
         </a>
-        
- 
+
+
 
     </header>
-                
-                <header class="hidden-lg hidden-md hidden-sm"> 
-                    <div style="height:50px"></div>
-                </header>
+
+    <header class="hidden-lg hidden-md hidden-sm"> 
+        <div style="height:50px"></div>
+    </header>
