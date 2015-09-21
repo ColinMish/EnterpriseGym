@@ -5,10 +5,12 @@
  */
 package Models;
 
+import Entities.Account;
 import Entities.UserEntity;
 import java.sql.*;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
+import java.util.LinkedList;
 
 /**
  *
@@ -26,7 +28,7 @@ public class UserModel {
 
     public boolean register(String username, String password, String email, String first, String last, String gender, String country, String university, String school, String subject, int year, int matriculation) {
 
-		//System.out.println("The email is:" + email);
+        //System.out.println("The email is:" + email);
         //response.sendRedirect("FaultInsert.jsp");
         //System.out.println("method called");
         //HttpSession session = request.getSession();
@@ -39,12 +41,11 @@ public class UserModel {
             PreparedStatement ps = null;
             PreparedStatement ps2 = null;
 
-            String sqlOption2 = "INSERT INTO account (username,password,date_joined,accessToken_idaccessToken) VALUES (?,?,?,?)";
+            String sqlOption2 = "INSERT INTO account (username,password,date_joined) VALUES (?,?,?)";
             ps2 = con.prepareStatement(sqlOption2);
             ps2.setString(1, username);
             ps2.setString(2, password);
             ps2.setDate(3, getCurrentDate());
-            ps2.setInt(4, 1);
             ps2.executeUpdate();
 
             //Find out the id of the new account to insert into user. 
@@ -59,7 +60,7 @@ public class UserModel {
             int id = rs1.getInt("idaccount");
             System.out.println("The id is:" + id);
 
-            String sqlOption = "INSERT INTO user (email,first_name,last_name,gender,country,university,school,subject,year,matriculation,account_idaccount) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+            String sqlOption = "INSERT INTO user (email,first_name,last_name,gender,country,university,school,subject,year,matriculation, account_idaccount) VALUES (?,?,?,?,?,?,?,?,?,?, ?)";
 
             ps = con.prepareStatement(sqlOption);
 
@@ -120,7 +121,7 @@ public class UserModel {
                 String sqlOption2 = "UPDATE account SET date_active=? WHERE username=?";
 	   // String sqlOption ="UPDATE fault set summary=? WHERE idfault=?";
 
-	    //is NULL
+                //is NULL
                 // System.out.println("Statementprepd");
                 ps2 = con.prepareStatement(sqlOption2);
 
@@ -249,27 +250,46 @@ public class UserModel {
             Connection con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", "davidkenny", "root1");
             st = con.createStatement();
             rs = st.executeQuery("select * from account where username='" + userName + "'");
-                       
-            if(rs.next())
-            {
+
+            if (rs.next()) {
                 System.out.println("true");
                 rs.close();
                 st.close();
                 con.close();
-               return true; 
-               
-            }
-            else{
+                return true;
+
+            } else {
                 System.out.println("false:");
                 rs.close();
                 st.close();
                 con.close();
-              return false;  
+                return false;
             }
-            
+
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
             System.out.println(e.getMessage());
             return false;
         }
+    }
+
+    public Account getAccount(String username) {
+        LinkedList accountTokens = new LinkedList();
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Statement st;
+            int userId = 0;
+            ResultSet accessTokens;
+            LinkedList accessLevels;
+            Connection con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+            st = con.createStatement();
+            accessTokens = st.executeQuery("select idaccount from account where username='" + username + "'");
+            if (accessTokens.next()) {
+                userId = accessTokens.getInt(1);
+            }
+            st = con.createStatement();
+            accessTokens = st.executeQuery("SELECT * FROM accessToken_has_account WHERE account_idaccount='" + userId + "'");
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+        }
+        return new Account(username, accountTokens);
     }
 }
