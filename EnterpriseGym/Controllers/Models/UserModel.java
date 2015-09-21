@@ -26,12 +26,32 @@ public class UserModel {
         return new java.sql.Date(today.getTime());
     }
 
+<<<<<<< HEAD
     public boolean register(String username, String password, String email, String first, String last, String gender, String country, String university, String school, String subject, int year, int matriculation) {
 
         //System.out.println("The email is:" + email);
         //response.sendRedirect("FaultInsert.jsp");
         //System.out.println("method called");
         //HttpSession session = request.getSession();
+=======
+    public boolean register(String username, String password, String email, String first,
+            String last, String gender, String country, String university, String school,
+            String subject, int year, int matriculation, String salt) {
+        Connection con = null;
+        try {
+            int id = createAccount(username, password, salt);
+            return createUser(id, username, email, first, last, gender, country, university, school, subject, year, matriculation);
+        } catch (Exception e) {
+            System.out.println("connection to db failed");
+            e.printStackTrace();
+            return false;
+
+        }
+
+    }
+
+    public int createAccount(String username, String password, String salt) {
+>>>>>>> master
         Connection con = null;
         try {
 
@@ -39,7 +59,24 @@ public class UserModel {
             con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
 
             PreparedStatement ps = null;
+<<<<<<< HEAD
             PreparedStatement ps2 = null;
+=======
+            PreparedStatement addAccount = null;
+
+            String InsertIntoAccount = "INSERT INTO account (username,password,salt, date_joined) VALUES (?,?,?,?)";
+            addAccount = con.prepareStatement(InsertIntoAccount);
+            addAccount.setString(1, username);
+            addAccount.setString(2, password);
+            addAccount.setString(3, salt);
+            //TODO Add the salt here
+            addAccount.setDate(4, getCurrentDate());
+            addAccount.executeUpdate();
+
+            //Find out the id of the new account 
+            PreparedStatement getAccountID = null;
+            String selectAccount = "SELECT * FROM account WHERE username=?";
+>>>>>>> master
 
             String sqlOption2 = "INSERT INTO account (username,password,date_joined) VALUES (?,?,?)";
             ps2 = con.prepareStatement(sqlOption2);
@@ -294,5 +331,24 @@ public class UserModel {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
         }
         return new Account(username, accountTokens);
+    }
+
+    public String getSalt(String username) 
+    {
+            String salt = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Statement st;
+            ResultSet rs;
+            Connection con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+            st = con.createStatement();
+            rs = st.executeQuery("SELECT salt from account where username='" + username + "'");
+            if (rs.next()) {
+                salt = rs.getString("salt");
+            }
+            con.close();
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+        }
+        return salt;
     }
 }

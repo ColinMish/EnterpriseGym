@@ -88,6 +88,7 @@ public class SignUp extends HttpServlet {
         //System.out.println("The year of study"+yearofstudy);
         int matric = Integer.parseInt(request.getParameter("matric"));
         //String matric = request.getParameter("matric");
+<<<<<<< HEAD
 
         UserModel user = new UserModel();
 
@@ -103,8 +104,21 @@ public class SignUp extends HttpServlet {
                     dispatcher.forward(request, response);
                 }
 
+=======
+        password = Security.hashPassword(password, salt);
+        String saltAsString = Convertors.byteArrayToHexString(salt);
+        UserModel user = new UserModel();
+
+        try {
+            if (user.register(username, password, email, first, last, gender, country, university, school, subject, yearofstudy, matric, saltAsString) == false) {
+                RequestDispatcher dispatcher = request.getRequestDispatcher("logInFailed.jsp");
+                dispatcher.forward(request, response);
+>>>>>>> master
             } else {
-                throw new IllegalArgumentException("The passwords don't match");
+                //Log the new user into the system here. 
+                request.setAttribute("registered", true);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("logIn.jsp");
+                dispatcher.forward(request, response);
             }
         } catch (IOException | ServletException | IllegalArgumentException e) {
             //At this point you need to tell the user that the passwords don't match

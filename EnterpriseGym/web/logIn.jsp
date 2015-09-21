@@ -20,7 +20,11 @@
 
         <div class="row">
             <div class="col-lg-12">
+<<<<<<< HEAD
                 <h1>Log In</h1>
+=======
+                <h1><% if(registered!=null) {%>Registration Successful - Please <% } %>Log In</h1>
+>>>>>>> master
                 <p></p>
              
             </div>
