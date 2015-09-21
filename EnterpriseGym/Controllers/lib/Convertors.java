@@ -161,6 +161,7 @@ public final class Convertors {
         return new StringTokenizer(str, "/");
 
     }
+<<<<<<< HEAD
 
         public static String toSHA1(byte[] convertme) {
 	    MessageDigest md = null;
@@ -172,6 +173,8 @@ public final class Convertors {
 	    } 
 	    return byteArrayToHexString(md.digest(convertme));
 	}
+=======
+>>>>>>> master
 	
 	public static String byteArrayToHexString(byte[] b) {
 		  String result = "";
