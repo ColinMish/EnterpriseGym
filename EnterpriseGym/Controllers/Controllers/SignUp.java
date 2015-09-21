@@ -46,7 +46,7 @@ public class SignUp extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("Register.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("register.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -95,7 +95,7 @@ public class SignUp extends HttpServlet {
             if (password.equals(passwordcheck)) {
                 System.out.println("passwords match");
                 if (user.register(username, Convertors.toSHA1(password.getBytes("UTF-8")), email, first, last, gender, country, university, school, subject, yearofstudy, matric) == false) {
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("LogInFailed.jsp");
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("logInFailed.jsp");
                     dispatcher.forward(request, response);
                 } else {
                     //Log the new user into the system here. 
