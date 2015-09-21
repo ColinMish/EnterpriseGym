@@ -117,7 +117,7 @@ $(function () {
     
        
     
-    <div class="col-md-8" id="ConnectText">
+    <div class="col-md-4" id="ConnectText">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i><strong>Points Table</strong></h4><br>
@@ -158,6 +158,63 @@ $(function () {
                            <tr>
                             <th>Action Points:</th>
                             <td><%=p2.getActionPoints()%></td>
+                           </tr>                      
+                            </tbody>
+                        <%}%>
+                        </table>
+                        </div>
+
+       
+                    </div>
+                </div>
+        </div>
+        
+        <div class="col-md-8" id="ConnectText">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-fw fa-check"></i><strong>Progress Tracker</strong></h4><br>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-hover" id="datatable2">
+                            <%
+                            java.util.LinkedList<UserEntity> points3 = (java.util.LinkedList<UserEntity>) request.getAttribute("points");
+                            Iterator<UserEntity> iterator3;
+           iterator3 = points3.iterator();
+            while (iterator3.hasNext()) {
+               UserEntity p3 = (UserEntity) iterator3.next();         
+                      %>       
+                        <thead>
+                            
+                            <tr>
+                                <th></th>
+                                <th>Silver Progress</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                           <tr>
+                            <th>Virtual Points:</th>
+                            <td><%=p3.getVitrualPoints()%></td>
+                           </tr>
+                           <tr>
+                            <th>Project Points:</th>
+                            <td><%=p3.getProjectPoints()%></td>
+                           </tr>
+                           <tr>
+                            <th>Practice Points:</th>
+                            <td><%=p3.getPracticePoints()%></td>
+                           </tr>
+                           <tr>
+                            <th>Theory Points:</th>
+                            <td><%=p3.getTheoryPoints()%></td>
+                           </tr>
+                           <tr>
+                            <th>Action Points: <%=p3.getActionPercentage()%></th>
+                            <td class="col-md-8"><div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="<%=p3.getActionPercentage()%>"
+                                aria-valuemin="0" aria-valuemax="70" style="width:<%=p3.getActionPercentage()%>">
+                                 <%=p3.getActionPercentage()%>%
+                                </div>
+                            </div></td>
                            </tr>                      
                             </tbody>
                         <%}%>

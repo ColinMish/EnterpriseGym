@@ -161,7 +161,7 @@ function checkUsername(username)
                 console.log("Error in ajax call");
             }
         });
-        if (exists)
+        if (exists =="true")
         {
             message = "<div id='errMessage' class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Username already exists.</p></div>";
         }
