@@ -214,12 +214,16 @@ $(document).ready(function() {
 <script type="text/javascript">
     function validateForm()
     {
+        //Need to also add a check for the username. 
         if(emailValid && passwordValid && usernameValid)
         {
             return true;
         }
         else
         {
+             $("#modalHeader").text("Error!");
+        $("#modalText").text("Invalid input.");
+        $('#myModal').modal('show');
             return false;
         }
     }

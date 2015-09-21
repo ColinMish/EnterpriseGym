@@ -6,7 +6,9 @@
    <% }else{ %>
      <%@include file="headerloggedin.jsp" %> <%}%>
    
-    <%@include file="sidebar.jsp" %>
+     <div class="visible-lg">
+    <%@include file="sidebar.jsp"%>
+     </div>
 
     <!-- Page Content -->
     <div class="content">
@@ -39,7 +41,7 @@
                     </div>
                     <div class="panel-body">
                         <p>The Enterprise Gym has been awarded a High Impact Host award for the activities it ran during the 2014 Global Entrepreneurship Week held in November 2014. The three events held were: TEG Talks - a series of 5 short snappy talks from entrepreneurs about their respective journey's to where they are today; a networking event bringing together enterprising students, business people, academics and support agencies and professionals; a joint event held with DUSA where current students who are starting of have started a business shared their experiences with an audience of interested students. We are already looking for to and planning for GEW 2015.</p>
-                        <img alt="" src="${pageContext.request.contextPath}/Pictures/HighImpactBadge2014.png" style="width: 500px; height: 211px;">
+                        <img alt="" class="img-responsive" src="${pageContext.request.contextPath}/Pictures/HighImpactBadge2014.png"/>
                     </div>
                 </div>
             </div>
