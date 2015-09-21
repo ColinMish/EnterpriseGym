@@ -18,6 +18,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
+import lib.Security;
 
 /**
  *
@@ -90,7 +91,7 @@ public class LogIn extends HttpServlet {
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-
+        
         UserModel user = new UserModel();
 
         try {
