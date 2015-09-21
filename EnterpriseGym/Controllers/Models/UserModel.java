@@ -5,6 +5,7 @@
  */
 package Models;
 
+import Entities.Account;
 import Entities.UserEntity;
 import java.sql.*;
 import javax.servlet.http.HttpSession;
@@ -26,7 +27,7 @@ public class UserModel {
 
     public boolean register(String username, String password, String email, String first, String last, String gender, String country, String university, String school, String subject, int year, int matriculation) {
 
-		//System.out.println("The email is:" + email);
+        //System.out.println("The email is:" + email);
         //response.sendRedirect("FaultInsert.jsp");
         //System.out.println("method called");
         //HttpSession session = request.getSession();
@@ -120,7 +121,7 @@ public class UserModel {
                 String sqlOption2 = "UPDATE account SET date_active=? WHERE username=?";
 	   // String sqlOption ="UPDATE fault set summary=? WHERE idfault=?";
 
-	    //is NULL
+                //is NULL
                 // System.out.println("Statementprepd");
                 ps2 = con.prepareStatement(sqlOption2);
 
@@ -249,27 +250,35 @@ public class UserModel {
             Connection con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", "davidkenny", "root1");
             st = con.createStatement();
             rs = st.executeQuery("select * from account where username='" + userName + "'");
-                       
-            if(rs.next())
-            {
+
+            if (rs.next()) {
                 System.out.println("true");
                 rs.close();
                 st.close();
                 con.close();
-               return true; 
-               
-            }
-            else{
+                return true;
+
+            } else {
                 System.out.println("false:");
                 rs.close();
                 st.close();
                 con.close();
-              return false;  
+                return false;
             }
-            
+
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
             System.out.println(e.getMessage());
             return false;
         }
+    }
+
+    public Account getAccount(String username) 
+    {
+        Class.forName("com.mysql.jdbc.Driver").newInstance();
+        Statement st;
+        ResultSet rs;
+        Connection con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", "davidkenny", "root1");
+        st = con.createStatement();
+        rs = st.executeQuery("select * from account where username='" + username + "'");
     }
 }
