@@ -11,8 +11,10 @@
          <%@include file="header.jsp" %>
    <% }else{ %>
      <%@include file="headerloggedin.jsp" %> <%}%>
-    <%@include file="sidebar.jsp" %>
-    <script src="${pageContext.request.contextPath}/js/login.js"></script>
+    <div class="hidden-xs">
+    <%@include file="sidebar.jsp"%>
+     </div>
+    
     
   
     <!-- Page Content -->
@@ -20,24 +22,20 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h1 id="logInTitle">Log In</h1>
-                <p id="logInMessage">Please Log In</p>
+                <h1>Log In</h1>
+                <p></p>
              
             </div>
         </div>
       
-           <form id="logInForm" action="LogIn" method="post" >
+           <form  action="LogIn" method="post" >
                <br>Username: <br>
-           <input id="un" name="Username" type="text" maxlength="50" />
+           <input name="username" type="text" id="userBox" maxlength="50" />
            <br> Password: <br>
-           <input id="pw" name="Password" type="password" maxlength="50" />
+           <input name="password" type="password" id="userBox" maxlength="50" />
            <br>
-           <div class="forgotPassword">
-               <p><a href="ResetPassword">Forgotten password?</a></p>
-           </div>
            <input type="submit" value="Sign In"  />
-          </form> 
-        <br>
+          </form>                        
     </div>
       
     <%@include file ="footer.jsp" %>

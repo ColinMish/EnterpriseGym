@@ -249,9 +249,24 @@ public class UserModel {
             Connection con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", "davidkenny", "root1");
             st = con.createStatement();
             rs = st.executeQuery("select * from account where username='" + userName + "'");
-            st.close();
-            rs.close();
-            return rs != null;
+                       
+            if(rs.next())
+            {
+                System.out.println("true");
+                rs.close();
+                st.close();
+                con.close();
+               return true; 
+               
+            }
+            else{
+                System.out.println("false:");
+                rs.close();
+                st.close();
+                con.close();
+              return false;  
+            }
+            
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
             System.out.println(e.getMessage());
             return false;

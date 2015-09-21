@@ -66,6 +66,7 @@ public class SignUp extends HttpServlet {
                 registerNewUser(request, response);
                 break;
             case "CheckUsername":
+                checkUsername(request,response);
                 break;
         }
     }
@@ -121,8 +122,10 @@ public class SignUp extends HttpServlet {
     private void checkUsername(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String userName = request.getParameter("username");
         UserModel user = new UserModel();
+        Boolean a = user.checkUserExists(userName);
+        System.out.println("Controller " + a);
         try (PrintWriter out = response.getWriter()) {
-            out.print(user.checkUserExists(userName));
+            out.print(a);
             out.flush();
             out.close();
         }
