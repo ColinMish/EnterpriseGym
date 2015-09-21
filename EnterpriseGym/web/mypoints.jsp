@@ -44,7 +44,7 @@
                 cursor: 'pointer',
                 dataLabels: {
                     enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    format: '<b>{point.name}</b>: {point.y:.0f}',
                     style: {
                         color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                     }
@@ -85,31 +85,6 @@
     });
 });
 
-$(function () {
-    $('#container2').highcharts({
-        data: {
-            table: 'datatable2'
-        },
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'Points Bar Chart'
-        },
-        yAxis: {
-            allowDecimals: false,
-            title: {
-                text: 'Units'
-            }
-        },
-        tooltip: {
-            formatter: function () {
-                return '<b>' + this.series.name + '</b><br/>' +
-                    this.point.y + ' ' + this.point.name.toLowerCase();
-            }
-        }
-    });
-});
     </script>
   </head>
   <body>
@@ -245,10 +220,7 @@ $(function () {
                     </div>
                 </div>
         </div>
-        
-        
-     <div id="container2" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-    
+  
     
     
     <%@include file ="footer.jsp" %>
