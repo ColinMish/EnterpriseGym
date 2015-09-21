@@ -203,7 +203,7 @@
                             </div></td>
                            </tr>
                            <tr>
-                            <th>Action Points: <%=p3.getActionPercentage()%></th>
+                            <th>Action Points:</th>
                             <td class="col-md-8"><div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-valuenow="<%=p3.getActionPercentage()%>"
                                 aria-valuemin="0" aria-valuemax="100" style="width:<%=p3.getActionPercentage()%>%">
