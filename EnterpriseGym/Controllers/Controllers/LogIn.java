@@ -99,7 +99,7 @@ public class LogIn extends HttpServlet {
             } else {
                 Account login = user.getAccount(username);
                 HttpSession session = request.getSession();
-                session.setAttribute("username", username);
+                session.setAttribute("account", login);
                 response.sendRedirect(request.getContextPath() + "/index.jsp");
 
             }
