@@ -84,17 +84,17 @@
                         </li>
                         <%if (loggedIn) {%>
                         <li class="quizesButton${pageContext.request.getServletPath() eq '/quizes.jsp' ? ' active' : ''}">
-                            <a href="${pageContext.request.contextPath}/Quizes">Online Tests</a>
+                            <a id="head" href="${pageContext.request.contextPath}/Quizes">Online Tests</a>
                         </li>
                         <li class="profileButton${pageContext.request.getServletPath() eq '/profile.jsp' ? ' active' : ''}">
-                            <a href="${pageContext.request.contextPath}/Profile">My eGym</a>
+                            <a id="head" href="${pageContext.request.contextPath}/Profile">My eGym</a>
                         </li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">        
                         <li class="logintext"> Logged in as: <%=account.getUsername()%></li>
                         <li>
-                            <a href="${pageContext.request.contextPath}/LogOut">Log Out</a></li>                  
+                            <a id="head" href="${pageContext.request.contextPath}/LogOut">Log Out</a></li>                  
                         <li id="calendar-drop" class="visible-lg">
                             <a data-toggle="collapse" data-target="#calendar" href="#calendar">
                                 <div class="header-calendar">
@@ -108,8 +108,8 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">         
-                        <li><a href="LogIn">Log In</a></li>
-                        <li><a href="SignUp">Sign Up</a></li>
+                        <li><a id="head" href="LogIn">Log In</a></li>
+                        <li><a id="head" href="SignUp">Sign Up</a></li>
 
 
                         <li id="calendar-drop" class="visible-lg">
