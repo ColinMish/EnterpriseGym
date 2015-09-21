@@ -73,8 +73,18 @@ public class LogIn extends HttpServlet {
         
         
         UserModel user = new UserModel();
+        
         String salt = user.getSalt(username);
+        //Can't do this is salt is null
+        if(salt !=null)
+        {
         password = Security.hashPassword(password, salt);
+        }
+        else
+        {
+            request.setAttribute("invalid",true);
+        }
+        
         try {
             if (user.login(username, password) == false || salt == null) {
                 request.setAttribute("failed", true);

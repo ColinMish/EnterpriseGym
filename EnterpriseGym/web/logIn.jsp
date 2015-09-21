@@ -14,7 +14,7 @@
      </div>
      <% Boolean registered = (Boolean) request.getAttribute("registered"); %>
      <% Boolean loginfailed =(Boolean) request.getAttribute("failed"); %>
-    
+     <% Boolean invalid =(Boolean) request.getAttribute("invalid");%>
     
   
     <!-- Page Content -->
@@ -25,7 +25,7 @@
                 <h1><% if(registered!=null) {%>Registration Successful - Please <% } %>Log In</h1>
                 <p></p>
                 <h2 class="loginfailed"><% if(loginfailed!=null) {%>Log In failed please try again <% } %> </h2>
-             
+                <h2 class="loginfailed"><% if(invalid!=null) { %> The username entered is invalid. <% } %> </h2>
             </div>
         </div>
       
