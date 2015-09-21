@@ -7,6 +7,9 @@ and open the template in the editor.
     Created on : Sep 15, 2015, 2:30:52 PM
     Author     : colin
 */
+#myCarousel {
+    height:25em;
+}
 
 .content {
     margin-left: 10%;
@@ -28,6 +31,10 @@ and open the template in the editor.
 
 .active > a {
     color: red;
+}
+
+#redlink{
+    color:#9a2d43 !important;
 }
 
 .calendar {
@@ -66,10 +73,16 @@ and open the template in the editor.
 
 }
 
-#headermenu a{
-    
-   padding-top: 1.6em;
-   padding-bottom: 1.6em;
+#imagehead{
+    display: block;
+    padding-top: 17px;
+    padding-bottom: 17px;
+}
+
+#head{
+    display: block;
+    padding-top: 21px;
+    padding-bottom: 21px;
 }
 
 .footer {

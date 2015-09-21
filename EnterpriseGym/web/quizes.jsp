@@ -9,7 +9,10 @@
 <!DOCTYPE html>
 <html>
     <body>
-        <%@include file="header.jsp" %>
+           <% if (session.getAttribute("username") == null){ %>
+         <%@include file="header.jsp" %>
+   <% }else{ %>
+     <%@include file="headerloggedin.jsp" %> <%}%>
         <%@include file="sidebar.jsp" %>
     
             <!-- Page Content -->
@@ -22,7 +25,7 @@
             </div>
         </div>
     
-        <div class="col-md-8" id="ConnectText">
+        <div class="col-md-12" id="ConnectText">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i><strong>Theory</strong></h4><br>
@@ -33,15 +36,15 @@
                             raise your awareness of enterprise. You can complete these from any computer (on <br>
                             campus or remotely) and in your own time.<br><br>
                             
-                            Points gained from the quizzes count towards the <a href="http://enterprise-gym.com/activities/awards">Enterprise Gym Awards</a>.<br><br>
+                            Points gained from the quizzes count towards the <a id="redlink" href="http://enterprise-gym.com/activities/awards">Enterprise Gym Awards</a>.<br><br>
                             
                             Each quiz has 10 questions and each question is worth 1 point. There are a total of <br>
                             110 points available if all quizzes are completed. The pass mark to qualify for awards <br>
                             is 80% per quiz. All 11 quizzes must be completed and in less than 110 minutes to <br>
                             qualify for a Marathon rating – the top rating that can be gained from any single <br>
-                            activity at the <a href="http://enterprise-gym.com">Enterprise Gym</a>.<br><br>
+                            activity at the <a id="redlink" href="http://enterprise-gym.com">Enterprise Gym</a>.<br><br>
                             
-                            <a href="http://enterprise-gym.com/activities/awards"><em><strong> Find out more about our awards and how to get them! </strong></em></a><br><br>
+                            <a id="redlink" href="http://enterprise-gym.com/activities/awards"><em><strong> Find out more about our awards and how to get them! </strong></em></a><br><br>
                             
                             You’ll need to sign-up and login to access the quizzes. Please study the PowerPoint<br>
                             presentation attached to each quiz – containing the required material for the <br>
@@ -51,8 +54,8 @@
                             <strong>So what are you waiting for? Get started on your Enterprise Theory now!</strong><br><br>
                             
                             <span style="font-size: 11px;">
-                                The materials and resources presented here are the property of the <em><a href="http://enterprise-gym.com">University of Dundee Enterprise Gym</a></em><br>
-                                and are solely for the use of <em><a href="http://www.enterprise-gym.com">Enterprise Gym</a></em> members. They should not be distributed to others.</span><br><br>
+                                The materials and resources presented here are the property of the <em><a id="redlink" href="http://enterprise-gym.com">University of Dundee Enterprise Gym</a></em><br>
+                                and are solely for the use of <em><a id="redlink" href="http://www.enterprise-gym.com">Enterprise Gym</a></em> members. They should not be distributed to others.</span><br><br>
                             
                             
                              <h4><i class="fa fa-fw fa-check"></i><strong>Quizes you have taken</strong></h4><br>

@@ -6,6 +6,8 @@ package Controllers;
  * and open the template in the editor.
  */
 
+import Entities.UserEntity;
+import Models.UserModel;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -16,6 +18,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
+import java.util.Iterator;
+import javax.servlet.http.HttpSession;
 import lib.Convertors;
 /**
  *
@@ -88,14 +92,35 @@ public class Profile extends HttpServlet {
 
     private void displayprofile(HttpServletResponse response,HttpServletRequest request) throws ServletException, IOException
     {
+        UserModel model = new UserModel();
+        HttpSession session = request.getSession();
+        //Need to pass the profile attributes accross here.
+        java.util.LinkedList<UserEntity> userdetails = model.getDetails((String)session.getAttribute("username"));
+        
+  
+//         Iterator<UserEntity> iterator;
+//            iterator = userdetails.iterator();
+//            while (iterator.hasNext()) {
+//                UserEntity p = (UserEntity) iterator.next();
+//                System.out.println(p.getYearOfStudy());
+//            }
         RequestDispatcher dispatcher = request.getRequestDispatcher("/profile.jsp");
+        request.setAttribute("userdetails", userdetails);
         dispatcher.forward(request,response);
         return;
     }
     
     private void displaypoints(HttpServletResponse response,HttpServletRequest request) throws ServletException, IOException
     {
+        //Populate the points entity.
+          UserModel model = new UserModel();
+        HttpSession session = request.getSession();
+        //Need to pass the profile attributes accross here.
+        java.util.LinkedList<UserEntity> points = model.getPoints((String)session.getAttribute("username"));
+        
+        
         RequestDispatcher dispatcher = request.getRequestDispatcher("/mypoints.jsp");
+        request.setAttribute("points", points);
         dispatcher.forward(request,response);
         return;
     }

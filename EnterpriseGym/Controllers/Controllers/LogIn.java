@@ -1,5 +1,6 @@
 package Controllers;
 
+import Entities.Account;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -11,9 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Models.UserModel;
-import com.google.gson.Gson;
-import java.io.PrintWriter;
-import static java.lang.System.out;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
@@ -74,8 +72,7 @@ public class LogIn extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("logIn.jsp");
-        dispatcher.forward(request, response);
+
     }
 
     /**
@@ -89,15 +86,16 @@ public class LogIn extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        // TODO Auto-generated method stub
+        
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
         UserModel user = new UserModel();
 
         try {
-            if (!user.login(username, toSHA1(password.getBytes("UTF-8"))) == false) {
+            if (user.login(username, toSHA1(password.getBytes("UTF-8"))) == false) {
+                response.sendRedirect(request.getContextPath() + "/LogInFailed.jsp");
+            } else {
                 HttpSession session = request.getSession();
                 session.setAttribute("username", username);
                 response.sendRedirect(request.getContextPath() + "/index.jsp");

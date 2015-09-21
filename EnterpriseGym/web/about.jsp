@@ -13,7 +13,10 @@
     </head> 
    
     <body>
-    <%@include file="header.jsp" %>
+       <% if (session.getAttribute("username") == null){ %>
+         <%@include file="header.jsp" %>
+   <% }else{ %>
+     <%@include file="headerloggedin.jsp" %> <%}%>
     <%@include file="sidebar.jsp" %>
     
     <!-- Page Content -->
@@ -57,26 +60,26 @@
                                     really help make you stand out.
                         </p>
                         <p>
-                            <strong><a href="https://www.youtube.com/watch?v=bGHy1ruVLEE">Chris Calder </a></strong>Enterprise Gym <a href="http://www.enterprise-gym.com/activities/discovery-challenge">Enterprise Challenge</a>
-                            alumni, <a href="https://www.youtube.com/watch?v=bGHy1ruVLEE">tells us how his experiences</a> at the Enterprise Gym helped him stand out in his quest for a graduate job. Among 3000 applicants, he landed one of the 10 jobs 
+                            <strong><a id="redlink" href="https://www.youtube.com/watch?v=bGHy1ruVLEE">Chris Calder </a></strong>Enterprise Gym <a id="redlink" href="http://www.enterprise-gym.com/activities/discovery-challenge">Enterprise Challenge</a>
+                            alumni, <a id="redlink" href="https://www.youtube.com/watch?v=bGHy1ruVLEE">tells us how his experiences</a> at the Enterprise Gym helped him stand out in his quest for a graduate job. Among 3000 applicants, he landed one of the 10 jobs 
                             available!
                         </p>
                         <p>
                             Our workshops help you to improve your presentation skills, gain confidence, learn a bit about business and enterprise, and make yourself more (self) employable. Participating in our range of free workshop and entrepreneurial 
-                            activities is also a lot of fun and a great way to meet new people! To top it all off we give out a range of <a href="http://enterprise-gym.com/activities/awards">awards</a>, and there is also £4000 of prize money (yes, actual cash) to be won!</br>
+                            activities is also a lot of fun and a great way to meet new people! To top it all off we give out a range of <a id="redlink" href="http://enterprise-gym.com/activities/awards">awards</a>, and there is also £4000 of prize money (yes, actual cash) to be won!</br>
 
-                            <br><br><strong>Find out more about our range of <a href="http://enterprise-gym.com/activities">activities</a> and <a href="http://www.enterprise-gym.com/user/register">sign-up online</a> to join in the fun!</strong></br></br>
+                            <br><br><strong>Find out more about our range of <a id="redlink" href="http://enterprise-gym.com/activities">activities</a> and <a id="redlink" href="http://www.enterprise-gym.com/user/register">sign-up online</a> to join in the fun!</strong></br></br>
 
                             Members have access to exclusive online training materials, our full range of events (including the 
-                            <a href="#">Enterprise Challenge</a>, 
-                            <a href="#">Learn from the Best Event</a>, 
-                            <a href="#">Training for Success Workshops, and our annual</a>
-                            <a href="#">DS3C Conference</a>), and the chance to attend Business Surgeries for free one-to-one business advice.
+                            <a id="redlink" href="#">Enterprise Challenge</a>, 
+                            <a id="redlink" href="#">Learn from the Best Event</a>, 
+                            <a id="redlink" href="#">Training for Success Workshops, and our annual</a>
+                            <a id="redlink" href="#">DS3C Conference</a>), and the chance to attend Business Surgeries for free one-to-one business advice.
                         </p>
                         <p>
                            Our top students are honoured at our Annual Awards Ceremony – an evening of incredible food, live entertainment, and the chance to network with our business patrons. 
                         </p>
-                        <p><a href="https://www.facebook.com/media/set/?set=a.10152060121628811.1073741902.177840983810&type=3">View photos from our previous awards ceremonies.</a>
+                        <p><a id="redlink" href="https://www.facebook.com/media/set/?set=a.10152060121628811.1073741902.177840983810&type=3">View photos from our previous awards ceremonies.</a>
                         </p>
                         <p>
                             <strong>The Enterprise Gym</strong> was created by the University of Dundee in 2005 in response to government concern over graduate "business readiness". Its mission is to help students from all disciplines to improve their enterprise skills, self-reliance and employability through engaging with business enterprise and developing entrepreneurial skills. Key to this is the deep involvement and support of the business community helping to deliver learning that is fun, interactive and rewarding.
@@ -101,9 +104,9 @@
                         <div class="panel-body">
                             <div class="usermenu">
                         
-                            <a class="btn btn-primary one" href="${pageContext.request.contextPath}/Trainers">Trainers</a><br><br>
+                            <a class="btn btn-primary" href="${pageContext.request.contextPath}/Trainers">Trainers</a><br><br>
                             
-                            <a class="btn btn-primary two" href="${pageContext.request.contextPath}/Connect">Connect</a>
+                            <a class="btn btn-primary" href="${pageContext.request.contextPath}/Connect">Connect</a>
                             
                             </div>
                         </div>
