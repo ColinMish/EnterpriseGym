@@ -113,7 +113,6 @@ public class Quizes extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             out.println(json);
             out.flush();
-            out.close();
         }
     }
     

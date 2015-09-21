@@ -1,8 +1,6 @@
 package lib;
 
 import java.net.URLDecoder;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.StringTokenizer;
 //import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +10,9 @@ public final class Convertors {
     public void Convertors() {
 
     }
+
+    
+    
 
     public static byte[] asByteArray(java.util.UUID uuid) {
 
@@ -162,23 +163,4 @@ public final class Convertors {
 
     }
 
-        public static String toSHA1(byte[] convertme) {
-	    MessageDigest md = null;
-	    try {
-	        md = MessageDigest.getInstance("SHA1");
-	    }
-	    catch(NoSuchAlgorithmException e) {
-	        e.printStackTrace();
-	    } 
-	    return byteArrayToHexString(md.digest(convertme));
-	}
-	
-	public static String byteArrayToHexString(byte[] b) {
-		  String result = "";
-		  for (int i=0; i < b.length; i++) {
-		    result +=
-		          Integer.toString( ( b[i] & 0xff ) + 0x100, 16).substring( 1 );
-		  }
-		  return result;
-		}
 }
