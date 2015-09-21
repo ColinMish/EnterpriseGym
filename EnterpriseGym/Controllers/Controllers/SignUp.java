@@ -16,7 +16,6 @@ import javax.servlet.http.HttpSession;
 import Models.UserModel;
 import java.io.PrintWriter;
 import lib.Convertors;
-import lib.Security;
 
 /**
  *
@@ -47,7 +46,7 @@ public class SignUp extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("register.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Register.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -73,7 +72,6 @@ public class SignUp extends HttpServlet {
     }
 
     private void registerNewUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        byte[] salt = Security.generateSalt();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String passwordcheck = request.getParameter("passwordcheck");
@@ -91,19 +89,17 @@ public class SignUp extends HttpServlet {
         int matric = Integer.parseInt(request.getParameter("matric"));
         //String matric = request.getParameter("matric");
 
-        byte[] hash = new byte[password.getBytes("UTF-8").length + salt.length]; //Salt password
         UserModel user = new UserModel();
 
         try {
             if (password.equals(passwordcheck)) {
                 System.out.println("passwords match");
-                if (user.register(username, Convertors.toSHA2(password.getBytes("UTF-8")), email, first, last, gender, country, university, school, subject, yearofstudy, matric, salt) == false) {
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("logInFailed.jsp");
+                if (user.register(username, Convertors.toSHA1(password.getBytes("UTF-8")), email, first, last, gender, country, university, school, subject, yearofstudy, matric) == false) {
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("LogInFailed.jsp");
                     dispatcher.forward(request, response);
                 } else {
                     //Log the new user into the system here. 
-                    request.setAttribute("registered", true);
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("logIn.jsp");
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
                     dispatcher.forward(request, response);
                 }
 

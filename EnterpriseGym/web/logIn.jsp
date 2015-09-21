@@ -12,7 +12,7 @@
     <div class="hidden-xs">
      <%@include file="sidebar.jsp"%>
      </div>
-    <% Boolean registered = (Boolean) request.getAttribute("registered"); %>
+    
     
   
     <!-- Page Content -->
@@ -20,7 +20,7 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h1><% if(registered) {%>Registration Successful - Please <% } %>Log In</h1>
+                <h1>Log In</h1>
                 <p></p>
              
             </div>

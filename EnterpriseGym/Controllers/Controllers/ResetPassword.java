@@ -43,7 +43,7 @@ public class ResetPassword extends HttpServlet {
         if(pass1.equals(pass2)){
             
             /* Encrypt password */           
-          String pass = Convertors.toSHA2(pass1.getBytes("UTF-8"));
+          String pass = Convertors.toSHA1(pass1.getBytes("UTF-8"));
           
           reset.resetPass(e, pass);
            
