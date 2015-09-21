@@ -92,7 +92,7 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">        
-                        <li class="logintext"> Logged in as: <%=account.getUsername()%></li>
+                        <li id="head" class="logintext"> Logged in as: <%=account.getUsername()%></li>
                         <li>
                             <a id="head" href="${pageContext.request.contextPath}/LogOut">Log Out</a></li>                  
                         <li id="calendar-drop" class="visible-lg">
@@ -141,8 +141,9 @@
 
 
     <!-- Half Page Image Background Carousel Header -->
-
-        <div data-interval="false" data-wrap="false" id="myCarousel" class="carousel slide visible-lg visible-md visible-sm">
+        
+    
+        <header data-interval="false" data-wrap="false" id="myCarousel" class="carousel slide visible-lg visible-md visible-sm">
 
         <!-- Indicators -->
         <ol class="carousel-indicators">
@@ -150,6 +151,7 @@
             <li data-target="#myCarousel" data-slide-to="1"></li>
             <li data-target="#myCarousel" data-slide-to="2"></li>
         </ol>
+        
 
         <!-- Wrapper for Slides -->
         <div class="carousel-inner" class="visible-lg">
@@ -193,7 +195,7 @@
             <span class="icon-next"></span>
         </a>
 
-
+        </header>
 
 
    
@@ -202,8 +204,7 @@
         <div style="height:50px"></div>
     </header>
 
-        
-    </div>          
+                
 <script type="text/javascript">
 $(document).ready(function() {
     $('.carousel').each(function(){
