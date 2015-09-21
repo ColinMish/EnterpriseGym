@@ -83,7 +83,7 @@
           <li class="logintext"> Logged in as: <%=session.getAttribute("username")%></li>
           <li>
               <a href="${pageContext.request.contextPath}/LogOut">Log Out</a></li>                  
-            <li id="calendar-drop">
+            <li id="calendar-drop" class="visible-lg">
                 <a data-toggle="collapse" data-target="#calendar" href="#calendar">
                     <div class="header-calendar">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -113,7 +113,7 @@
 
 
     <!-- Half Page Image Background Carousel Header -->
-    <header id="myCarousel" class="carousel slide">
+    <header id="myCarousel" class="carousel slide visible-lg visible-md visible-sm">
         <!-- Indicators -->
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -139,7 +139,7 @@
             </div>
             <div class="item">
                 <!-- Set the third background image using inline CSS below. -->
-                <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Three');"></div>
+                <div class="fill" style="background-image:url('${pageContext.request.contextPath}/Pictures/TEG_Logo_07crop.png');"></div>
                 <div class="carousel-caption">
                     <h2></h2>
                 </div>
@@ -153,7 +153,10 @@
         <a class="right carousel-control" href="#myCarousel" data-slide="next">
             <span class="icon-next"></span>
         </a>
-        
  
 
     </header>
+                
+                <header class="hidden-lg hidden-md hidden-sm"> 
+                    <div style="height:50px"></div>
+                </header>
