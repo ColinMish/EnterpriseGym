@@ -1,11 +1,8 @@
 
 package Controllers;
 
-import static Controllers.SignUp.toSHA1;
 import Models.NewPassModel;
 import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -13,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import lib.Convertors;
 
 /**
  *
@@ -45,7 +43,7 @@ public class ResetPassword extends HttpServlet {
         if(pass1.equals(pass2)){
             
             /* Encrypt password */           
-          String pass = SignUp.toSHA1(pass1.getBytes("UTF-8"));
+          String pass = Convertors.toSHA1(pass1.getBytes("UTF-8"));
           
           reset.resetPass(e, pass);
            
