@@ -3,6 +3,8 @@
     Created on : 15-Sep-2015, 12:44:38
     Author     : Dave
 --%>
+<html>
+    
 
 <%@page import="Entities.Account"%>
 <head>
@@ -17,7 +19,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
-
+    
     <!-- Custom CSS -->
     <link href="${pageContext.request.contextPath}/css/half-slider.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
@@ -139,7 +141,9 @@
 
 
     <!-- Half Page Image Background Carousel Header -->
-    <header id="myCarousel" class="carousel slide visible-lg visible-md visible-sm">
+
+        <div data-interval="false" data-wrap="false" id="myCarousel" class="carousel slide visible-lg visible-md visible-sm">
+
         <!-- Indicators -->
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -170,7 +174,16 @@
                     <h2></h2>
                 </div>
             </div>
-        </div>
+            <div class="item">
+                <!-- Set the first background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('${pageContext.request.contextPath}/Pictures/banner.jpg');"></div> 
+                <div class="carousel-caption">
+                    <h2></h2>
+                </div>
+            </div>
+            </div>
+                
+           
 
         <!-- Controls -->
         <a class="left carousel-control visible-lg" href="#myCarousel" data-slide="prev">
@@ -182,8 +195,26 @@
 
 
 
-    </header>
+
+   
 
     <header class="hidden-lg hidden-md hidden-sm"> 
         <div style="height:50px"></div>
     </header>
+
+        
+    </div>          
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.carousel').each(function(){
+        $(this).carousel({
+            pause: true,
+            interval: false,
+            wrap:false
+        });
+    });
+});?
+</script>
+</body>
+</html>
+
