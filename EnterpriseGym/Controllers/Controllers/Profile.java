@@ -65,11 +65,11 @@ public class Profile extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
 
-     HttpSession session = request.getSession();    
-    Account account = (Account) session.getAttribute("account");;
-    if (account == null) {
-        notloggedin(response,request);
-    }
+//     HttpSession session = request.getSession();    
+//    Account account = (Account) session.getAttribute("account");
+//    if (account == null) {
+//        notloggedin(response,request);
+//    }else{
         
         
         String args[] = Convertors.SplitRequestPath(request);
@@ -98,18 +98,19 @@ public class Profile extends HttpServlet {
             	//Error message here.
         }
     }
+    //}
     
-    private void notloggedin(HttpServletResponse response,HttpServletRequest request) throws ServletException, IOException
-    {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("LogIn.jsp");
-        dispatcher.forward(request, response);
-    }
+//    private void notloggedin(HttpServletResponse response,HttpServletRequest request) throws ServletException, IOException
+//    {
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("LogIn.jsp");
+//        dispatcher.forward(request, response);
+//    }
 
     private void displayprofile(HttpServletResponse response,HttpServletRequest request) throws ServletException, IOException
     {
         UserModel model = new UserModel();
         HttpSession session = request.getSession();
-          Account account = (Account) session.getAttribute("account");;
+          Account account = (Account) session.getAttribute("account");
         //Need to pass the profile attributes accross here.
         java.util.LinkedList<UserEntity> userdetails = model.getDetails(account.getUsername());
         
@@ -131,7 +132,7 @@ public class Profile extends HttpServlet {
         //Populate the points entity.
           UserModel model = new UserModel();
           HttpSession session = request.getSession();
-          Account account = (Account) session.getAttribute("account");;
+          Account account = (Account) session.getAttribute("account");
         
         //Need to pass the profile attributes accross here.
         java.util.LinkedList<UserEntity> points = model.getPoints(account.getUsername());
