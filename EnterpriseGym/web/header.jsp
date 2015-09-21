@@ -21,6 +21,7 @@
     <link href="${pageContext.request.contextPath}/css/half-slider.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 
+
     <!-- Country Drop-down CSS -->
     <link href="${pageContext.request.contextPath}/css/flags.css" rel="stylesheet">
     
@@ -96,13 +97,10 @@
             </div>
           </li>
 
-              
-             
-  
           <li><a href="SignUp">Sign Up</a></li>
                    
                    
-            <li id="calendar-drop">
+            <li id="calendar-drop" class="visible-lg">
                 <a data-toggle="collapse" data-target="#calendar" href="#calendar">
                     <div class="header-calendar">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -132,7 +130,7 @@
 
 
     <!-- Half Page Image Background Carousel Header -->
-    <header id="myCarousel" class="carousel slide">
+    <header id="myCarousel" class="carousel slide visible-lg visible-md visible-sm">
         <!-- Indicators -->
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -141,7 +139,7 @@
         </ol>
 
         <!-- Wrapper for Slides -->
-        <div class="carousel-inner">
+        <div class="carousel-inner" class="visible-lg">
             <div class="item active">
                 <!-- Set the first background image using inline CSS below. -->
                 <div class="fill" style="background-image:url('${pageContext.request.contextPath}/Pictures/banner.jpg');"></div>
@@ -166,13 +164,17 @@
         </div>
 
         <!-- Controls -->
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <a class="left carousel-control visible-lg" href="#myCarousel" data-slide="prev">
             <span class="icon-prev"></span>
         </a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <a class="right carousel-control visible-lg" href="#myCarousel" data-slide="next">
             <span class="icon-next"></span>
         </a>
         
  
 
     </header>
+                
+                <header class="hidden-lg hidden-md hidden-sm"> 
+                    <div style="height:50px"></div>
+                </header>

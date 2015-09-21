@@ -6,7 +6,9 @@
    <% }else{ %>
      <%@include file="headerloggedin.jsp" %> <%}%>
    
-    <%@include file="sidebar.jsp" %>
+     <div class="hidden-xs">
+    <%@include file="sidebar.jsp"%>
+     </div>
 
     <!-- Page Content -->
     <div class="content">

@@ -151,6 +151,7 @@ function checkUsername(username)
         $.ajax({
             type: "POST",
             url: "CheckUsername",
+            async: false,
             data: {username: username},
             cache: false,
             success: function (result) {
@@ -225,6 +226,9 @@ function validateForm()
     }
     else
     {
-        return false;
+                     $("#modalHeader").text("Error!");
+        $("#modalText").text("Invalid input.");
+        $('#myModal').modal('show');
+        return false;      
     }
 }
