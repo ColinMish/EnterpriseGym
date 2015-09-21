@@ -13,13 +13,10 @@
       <link href='css/profile.css' rel='stylesheet' type='text/css'>
     </head>
     <body>
-           <% if (session.getAttribute("username") == null){ %>
-         <%@include file="header.jsp" %>
-   <% }else{ %>
-     <%@include file="headerloggedin.jsp" %> <%}%>
-        <div class="hidden-xs">
-    <%@include file="sidebar.jsp"%>
-     </div>
+    <%@include file="header.jsp" %>
+    <div class="hidden-xs">
+        <%@include file="sidebar.jsp"%>
+    </div>
     
             <!-- Page Content -->
     <div class="container">
