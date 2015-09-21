@@ -8,14 +8,10 @@
 <!DOCTYPE html>
 <html>
 
-    <% if (session.getAttribute("username") == null) { %>
     <%@include file="header.jsp" %>
-    <% } else { %>
-    <%@include file="headerloggedin.jsp" %> <%}%>
-    
     <div class="hidden-xs">
-    <%@include file="sidebar.jsp"%>
-     </div>
+        <%@include file="sidebar.jsp"%>
+    </div>
      
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script><!--do we need this?-->
