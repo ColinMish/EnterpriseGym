@@ -116,7 +116,7 @@ $(function () {
     <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
     
        
-    
+
     <div class="col-md-4" id="ConnectText">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -169,7 +169,7 @@ $(function () {
                 </div>
         </div>
         
-        <div class="col-md-8" id="ConnectText">
+        <div class="col-md-8" id="ConnectText2">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i><strong>Progress Tracker</strong></h4><br>
@@ -193,25 +193,45 @@ $(function () {
                             <tbody>
                            <tr>
                             <th>Virtual Points:</th>
-                            <td><%=p3.getVitrualPoints()%></td>
+                            <td class="col-md-8"><div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="<%=p3.getVirtualPercentage()%>"
+                                aria-valuemin="0" aria-valuemax="100" style="width:<%=p3.getVirtualPercentage()%>%">
+                                 <%=p3.getVirtualPercentage()%>%
+                                </div>
+                            </div></td>
                            </tr>
                            <tr>
                             <th>Project Points:</th>
-                            <td><%=p3.getProjectPoints()%></td>
+                            <td class="col-md-8"><div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="<%=p3.getProjectPercentage()%>"
+                                aria-valuemin="0" aria-valuemax="100" style="width:<%=p3.getProjectPercentage()%>%">
+                                 <%=p3.getProjectPercentage()%>%
+                                </div>
+                            </div></td>
                            </tr>
                            <tr>
                             <th>Practice Points:</th>
-                            <td><%=p3.getPracticePoints()%></td>
+                            <td class="col-md-8"><div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="<%=p3.getPracticePercentage()%>"
+                                aria-valuemin="0" aria-valuemax="100" style="width:<%=p3.getPracticePercentage()%>%">
+                                 <%=p3.getPracticePercentage()%>%
+                                </div>
+                            </div></td>
                            </tr>
                            <tr>
                             <th>Theory Points:</th>
-                            <td><%=p3.getTheoryPoints()%></td>
+                            <td class="col-md-8"><div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="<%=p3.getTheoryPercentage()%>"
+                                aria-valuemin="0" aria-valuemax="100" style="width:<%=p3.getTheoryPercentage()%>%">
+                                 <%=p3.getTheoryPercentage()%>%
+                                </div>
+                            </div></td>
                            </tr>
                            <tr>
                             <th>Action Points: <%=p3.getActionPercentage()%></th>
                             <td class="col-md-8"><div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-valuenow="<%=p3.getActionPercentage()%>"
-                                aria-valuemin="0" aria-valuemax="70" style="width:<%=p3.getActionPercentage()%>">
+                                aria-valuemin="0" aria-valuemax="100" style="width:<%=p3.getActionPercentage()%>%">
                                  <%=p3.getActionPercentage()%>%
                                 </div>
                             </div></td>
@@ -225,6 +245,7 @@ $(function () {
                     </div>
                 </div>
         </div>
+        
         
      <div id="container2" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
     

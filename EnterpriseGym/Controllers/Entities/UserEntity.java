@@ -219,29 +219,69 @@ public class UserEntity {
     }
    
    public int getProjectPercentage(){
-       return (project_points /70  * 100);
+        float ap = project_points;
+       int percent =0;
+       float points = ap/70;  
+       points = points *100;    
+       percent = (int)points;
+       if(percent>100)
+       {
+           return 100;
+       }
+       return percent;
    }
    
    public int getActionPercentage(){
        float ap = action_points;
        int percent =0;
-       float points = ap/70;      
-       points = points *100;
-       System.out.println(points);     
-       percent = (int)points;
+       float points = ap/70;  
+       points = points *100;    
+       percent = (int)points;       
+       if(percent>100)
+       {
+           return 100;
+       }
+       
        return percent;
    }
    
-   public int getVirtualPoints(){
-       return (virtual_points /70  * 100);
+   public int getVirtualPercentage(){
+        float ap = virtual_points;
+       int percent =0;
+       float points = ap/70;  
+       points = points *100;    
+       percent = (int)points;
+       if(percent>100)
+       {
+           return 100;
+       }
+       return percent;
    }
    
    public int getPracticePercentage(){
-       return (practice_points /70  * 100);
+        float ap = practice_points;
+       int percent =0;
+       float points = ap/70;  
+       points = points *100;    
+       percent = (int)points;
+       if(percent>100)
+       {
+           return 100;
+       }
+       return percent;
    }
    
    public int getTheoryPercentage(){
-       return (theory_points /70  * 100);
+        float ap = theory_points;
+       int percent =0;
+       float points = ap/70;  
+       points = points *100;    
+       percent = (int)points;
+       if(percent>100)
+       {
+           return 100;
+       }
+       return percent;
    }
    
    //Set methods for the points. 
