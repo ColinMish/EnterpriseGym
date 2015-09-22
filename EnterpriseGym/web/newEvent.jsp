@@ -7,10 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <% if (session.getAttribute("username") == null) { %>
     <%@include file="header.jsp" %>
-    <% } else { %>
-    <%@include file="headerloggedin.jsp" %> <%}%>
     
     <div class="hidden-xs">
     <%@include file="sidebar.jsp"%>
