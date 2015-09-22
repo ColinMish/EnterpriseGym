@@ -7,7 +7,7 @@
 $(document).ready(function ()
 {
     loadColumns("user");
-    displayUserchart("Total site users", "users");
+    pie("Total site users", "users", "[{name: \"total\", y: 100}]");
 
     //eventHandlers
     $("#userproperty").change(function (e) {
@@ -36,20 +36,13 @@ function getUsersBy(field)
 {
     $.ajax({
         type: "GET",
-        url: "Data/User/" + field,
+        url: "Data/user/" + field,
         success: function (data) {
             console.log(data);
-            convertJsonHighChartsData(data);
+            pie("users by " + field, field, data);
         },
         fail: function () {
             console.log("Ajax error");
         }
-    });
-}
-
-function convertJsonHighChartsData(json)
-{
-    $.each($.parseJSON(json), function (idx, obj) {
-        console.log("idx = " + idx + " obj = " + obj.tag);
     });
 }

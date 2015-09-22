@@ -6,8 +6,12 @@
 package Models;
 
 import java.sql.*;
-import lib.Tuple;
+import java.util.ArrayList;
+import java.util.HashMap;
+import lib.JsonHighChartConvertor;
 import java.util.LinkedList;
+import java.util.Map;
+
 /**
  *
  * @author Andy
@@ -88,9 +92,9 @@ public class AdminModel {
         return tableColumns;
     }
 
-    public LinkedList getDatabyFieldAsPercent(String field, String table) {
+    public ArrayList getDatabyFieldAsPercent(String field, String table) {
         Connection con = null;
-        LinkedList results = new LinkedList();
+        ArrayList data = new ArrayList();
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
@@ -98,28 +102,23 @@ public class AdminModel {
             PreparedStatement ps = null;
             PreparedStatement resetPoints = null;
 
-            String getColumnNames = "SELECT ?, count(*) as 'Count' FROM ? GROUP BY ?";
+            String getCount = "select " + field + ", count(*) as 'Count' FROM " + table + " GROUP BY " + field;
 
-            resetPoints = con.prepareStatement(getColumnNames);
-            resetPoints.setString(1, field);
-            resetPoints.setString(2, table);
-            resetPoints.setString(2, field);
+            resetPoints = con.prepareStatement(getCount);
             ResultSet rs = resetPoints.executeQuery();
             while (rs.next()) {
-                Tuple item = new Tuple(rs.getString(field), rs.getInt("Count"));
-                results.add(item);
+                data.add(new JsonHighChartConvertor(rs.getString(field), rs.getInt("Count")));
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
             System.out.println("expection thrown");
             System.out.println("false, exception");
         }
-        return results;
+        return data;
     }
-    
-    public boolean deleteUser(String username)
-    {
+
+    public boolean deleteUser(String username) {
         Connection con = null;
-        
+
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
@@ -140,9 +139,9 @@ public class AdminModel {
             enableFKCheck.executeUpdate();
             return true;
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
-             System.out.println("expection thrown");
-             System.out.println("false, exception");
-             e.printStackTrace();
+            System.out.println("expection thrown");
+            System.out.println("false, exception");
+            e.printStackTrace();
             return false;
         }
     }

@@ -1,9 +1,6 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-function displayUserchart(title, slices, data) {
+function pie(title, label, data) {
+
+    // Build the chart
     $('#userchart').highcharts({
         chart: {
             plotBackgroundColor: null,
@@ -18,39 +15,29 @@ function displayUserchart(title, slices, data) {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
         },
         plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: false
-                },
-                showInLegend: true
-            }
-        },
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
         series: [{
-                name: slices,
-                colorByPoint: true,
-                data: [{
-                        name: "Microsoft Internet Explorer",
-                        y: 56.33
-                    }, {
-                        name: "Chrome",
-                        y: 24.03,
+                type: 'pie',
+                name: label,
+                data: [
+                    ['Brute Force', 25],
+                    ['XXS', 25],
+                    {
+                        name: 'Injection',
+                        y: 25,
                         sliced: true,
                         selected: true
-                    }, {
-                        name: "Firefox",
-                        y: 10.38
-                    }, {
-                        name: "Safari",
-                        y: 4.77
-                    }, {
-                        name: "Opera",
-                        y: 0.91
-                    }, {
-                        name: "Proprietary or Undetectable",
-                        y: 0.2
-                    }]
+                    },
+                    ['Indirect Object Reference', 25],
+                ]
             }]
     });
-};
+}

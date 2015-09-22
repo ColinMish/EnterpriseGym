@@ -9,18 +9,18 @@ package lib;
  *
  * @author Dave
  */
-public class Tuple<X, Y> {
+public class JsonHighChartConvertor<X, Y> {
 
-    private X x;
+    private X name;
     private Y y;
 
-    public Tuple(X x, Y y) {
-        this.x = x;
+    public JsonHighChartConvertor(X name, Y y) {
+        this.name = name;
         this.y = y;
     }
 
     public X item1() {
-        return x;
+        return name;
     }
 
     public Y item2() {
@@ -28,7 +28,7 @@ public class Tuple<X, Y> {
     }
 
     public void setItem1(X x) {
-        this.x = x;
+        this.name = x;
     }
 
     public void setItem2(Y y) {

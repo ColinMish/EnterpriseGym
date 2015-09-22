@@ -37,11 +37,6 @@
                         <select id="userproperty">
                             <option selected="selected"></option>
                         </select>
-
-                        <label>Value</label>
-                        <select id="uservalue">
-                            <option selected="selected"></option>
-                        </select>
                     </div>
                     <div class="panel-body">
                         <div id="userchart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>

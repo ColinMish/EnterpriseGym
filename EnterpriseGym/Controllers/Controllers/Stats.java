@@ -9,7 +9,9 @@ import Models.AdminModel;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -64,8 +66,8 @@ public class Stats extends HttpServlet {
         } else if (parts.length == 4 && parts[1].equals("Data")) {
             resultsAsJson = getUserData(parts[3], parts[2]);
         }
-        try (PrintWriter out = response.getWriter()) {
-            out.println(resultsAsJson);
+        try (PrintWriter out = response.getWriter()) {         
+            out.print(resultsAsJson);
             out.flush();
             out.close();
         }
@@ -93,7 +95,7 @@ public class Stats extends HttpServlet {
 
     private String getUserData(String field, String table) {
         AdminModel aModel = new AdminModel();
-        LinkedList results = aModel.getDatabyFieldAsPercent(field, table);
+        ArrayList results = aModel.getDatabyFieldAsPercent(field, table);
         String json = new Gson().toJson(results);
         return json;
     }
