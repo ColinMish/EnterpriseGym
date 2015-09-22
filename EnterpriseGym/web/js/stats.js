@@ -10,8 +10,8 @@ $(document).ready(function ()
     displayUserchart("Total site users", "users");
 
     //eventHandlers
-    $("#userproperty").change(function () {
-        getUsersBy($("userproperty").val());
+    $("#userproperty").change(function (e) {
+        getUsersBy(e.target.options[e.target.selectedIndex].text);
     });
 });
 
@@ -36,7 +36,7 @@ function getUsersBy(field)
 {
     $.ajax({
         type: "GET",
-        url: "../Data/User/" + field,
+        url: "Data/User/" + field,
         success: function (data) {
             console.log(data);
             convertJsonHighChartsData(data);

@@ -24,7 +24,7 @@ import lib.Convertors;
  *
  * @author Dave
  */
-@WebServlet(name = "Stats", urlPatterns = {"/Stats/*", "Data/*"})
+@WebServlet(name = "Stats", urlPatterns = {"/Stats/*", "/Data/*"})
 @MultipartConfig
 public class Stats extends HttpServlet {
 
