@@ -29,13 +29,16 @@ public class AdminModel {
     {
         
         InputStream inputStream = null;
+        int length=0;
+        String type=null;
         
          if (filepart != null) {
             // prints out some information for debugging
             System.out.println(filepart.getName());
             System.out.println(filepart.getSize());
             System.out.println(filepart.getContentType());
-             
+            length=(int) filepart.getSize();
+            type = filepart.getContentType();
             // obtains input stream of the upload file
             inputStream = filepart.getInputStream();
         }
@@ -49,12 +52,14 @@ public class AdminModel {
             PreparedStatement ps = null;
             PreparedStatement addNewsStory = null;
 
-            String InsertIntoNews = "INSERT INTO newsItem (story,image,dateAdded,title) VALUES (?,?,?,?)";
+            String InsertIntoNews = "INSERT INTO newsItem (story,image,dateAdded,title,image_length,image_type) VALUES (?,?,?,?,?,?)";
             addNewsStory = con.prepareStatement(InsertIntoNews);
             addNewsStory.setString(1, newsContent);
               if (inputStream != null) {
                 // fetches input stream of the upload file for the blob column
                 addNewsStory.setBlob(2, inputStream);
+                addNewsStory.setInt(5,length);
+                addNewsStory.setString(6,type);
             }
               addNewsStory.setDate(3, getCurrentDate());
               addNewsStory.setString(4, title);

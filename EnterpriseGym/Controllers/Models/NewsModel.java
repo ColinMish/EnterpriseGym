@@ -115,10 +115,10 @@ public class NewsModel {
                  byte[] nameByteArray = rs.getBytes("image");
                  bImage = bImage.wrap(nameByteArray);
                   
-                 //length = rs.getInt("length");
-                 //type = rs.getString("type");
+                 length = rs.getInt("image_length");
+                 type = rs.getString("image_type");
                     Picture p = new Picture();
-                    p.setPic(bImage, 19034, "image/jpeg");
+                    p.setPic(bImage, length, type);
                     return p;
 
                 }
