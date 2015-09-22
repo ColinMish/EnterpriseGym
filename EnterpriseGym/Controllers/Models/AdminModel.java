@@ -34,6 +34,9 @@ public class AdminModel {
             addNewsStory.executeUpdate();
             return true;
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+             System.out.println("expection thrown");
+             System.out.println("false, exception");
+             e.printStackTrace();
             return false;
         }
     }

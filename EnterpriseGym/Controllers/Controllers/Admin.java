@@ -87,8 +87,14 @@ public class Admin extends HttpServlet {
         String content = request.getParameter("editor1");
         AdminModel admin = new AdminModel();
         
-        admin.addNewsStory(content);
-        System.out.print("News Story Added.");
+        if(admin.addNewsStory(content)==true)
+        {
+              System.out.println("News Story Added.");
+        }else{
+            System.out.println("News Story failed");
+        }
+        
+      
     }
     
     private void resetPoints(HttpServletRequest request, HttpServletResponse response)
