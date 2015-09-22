@@ -1,7 +1,9 @@
 package Controllers;
 
 
+import Entities.EventEntity;
 import java.io.IOException;
+import java.util.HashMap;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -15,15 +17,20 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Dave
  */
-@WebServlet(name = "Events", urlPatterns = {"/Events"})
+@WebServlet(name = "Events", urlPatterns = {"/Events/*"})
 @MultipartConfig
 public class Events extends HttpServlet {
 
     /**
      * Constructor
      */
-    public Events() {
+    private HashMap eventItems;
+    
+    public Events() 
+    {
+        this.eventItems = new HashMap();
 
+        //TODO: Populate eventItems with events from the database
     }
 
     /**
@@ -44,10 +51,27 @@ public class Events extends HttpServlet {
      * @throws IOException
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-    {
-                  RequestDispatcher dispatcher = request.getRequestDispatcher("events.jsp");
-                dispatcher.forward(request, response);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String a = request.getRequestURI();
+        if(a == null)
+        {
+            throw new IOException();
+        }
+        String [] parts = a.split("/");
+        if(parts.length < 4)
+        {
+            request.setAttribute("Events", eventItems);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("events.jsp");
+            dispatcher.forward(request, response);
+        }
+        else
+        {
+            String key = parts[3].replace("%20", " ");
+            EventEntity eventItem = (EventEntity)eventItems.get(key);
+            request.setAttribute("Events", eventItem);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/eventItems.jsp");
+            dispatcher.forward(request, response);
+        }
     }
 
     /**
