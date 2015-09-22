@@ -18,6 +18,7 @@ public class NewsEntity {
     private byte[] image;
     private int id;
     private Date dateAdded;
+    private int length;
 
     public NewsEntity(String tile, String Content) {
         this.title = tile;
@@ -41,6 +42,16 @@ public class NewsEntity {
     public Date getDate(){
         return dateAdded;
     }
+
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+    
+    
    
     public void setId(int new_id)
     {
