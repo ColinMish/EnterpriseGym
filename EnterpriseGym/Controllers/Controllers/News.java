@@ -1,4 +1,5 @@
 
+import Entities.Account;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -9,7 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Entities.NewsEntity;
+import Entities.UserEntity;
+import Models.UserModel;
+import Models.NewsModel;
 import java.util.HashMap;
+import java.util.Iterator;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -50,11 +55,21 @@ public class News extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        
         //Get the 6 most recent stories then show them to the user on the news page. 
-
+             NewsModel model = new NewsModel();
+       
+        //Need to pass the profile attributes accross here.
+        java.util.LinkedList<NewsEntity> newsitems = model.getNewsHome();
         
-            RequestDispatcher dispatcher = request.getRequestDispatcher("news.jsp");
-            dispatcher.forward(request, response);
-
+//                 Iterator<NewsEntity> iterator;
+//            iterator = newsitems.iterator();
+//            while (iterator.hasNext()) {
+//                NewsEntity p = (NewsEntity) iterator.next();
+//                System.out.println(p.getId());
+//            }
+  
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/news.jsp");
+        request.setAttribute("news", newsitems);
+        dispatcher.forward(request,response);
     }
 
     /**
