@@ -1,6 +1,5 @@
 package Controllers;
 
-
 import Models.AdminModel;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -46,10 +45,9 @@ public class Admin extends HttpServlet {
      * @throws IOException
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-    {
-                RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
-                dispatcher.forward(request, response);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
+        dispatcher.forward(request, response);
     }
 
     /**
@@ -62,8 +60,7 @@ public class Admin extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException 
-    {
+            throws ServletException, IOException {
         String[] parts = Convertors.SplitRequestPath(request);
         switch (parts[1]) {
             case "AddNews":
@@ -80,55 +77,55 @@ public class Admin extends HttpServlet {
                 break;
         }
     }
-    
+
     private void addNews(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException 
-    {
+            throws ServletException, IOException {
         String content = request.getParameter("editor1");
         AdminModel admin = new AdminModel();
-        
-        if(admin.addNewsStory(content)==true)
-        {
+
+        if (admin.addNewsStory(content) == true) {
             request.setAttribute("storyAdded", true);
             RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
             dispatcher.forward(request, response);
             System.out.println("News Story Added.");
-        }else{
+        } else {
             request.setAttribute("storyNotAdded", true);
             RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
             dispatcher.forward(request, response);
             System.out.println("News Story failed");
         }
     }
-    
+
     private void resetPoints(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException 
-    {
+            throws ServletException, IOException {
         AdminModel admin = new AdminModel();
-        
-        if(admin.resetPoints()==true)
-        {
+
+        if (admin.resetPoints() == true) {
             request.setAttribute("pointsReset", true);
             RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
             dispatcher.forward(request, response);
             System.out.println("Points Successfully Reset.");
-        }else{
+        } else {
             request.setAttribute("pointsNotReset", true);
             RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
             dispatcher.forward(request, response);
             System.out.println("Error Resetting Points.");
         }
     }
-    
+
     private void addEvent(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException 
-    {
-        
+            throws ServletException, IOException {
+
     }
-    
+
     private void editQuiz(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException 
-    {
-        
+            throws ServletException, IOException {
+
+    }
+
+    private void showStats(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("stats.jsp");
+        dispatcher.forward(request, response);
     }
 }

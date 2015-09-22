@@ -1,3 +1,4 @@
+package Controllers;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -24,14 +25,12 @@ public class News extends HttpServlet {
      * Constructor
      */
     private HashMap newsStories;
-    
-    public News() 
-    {
+
+    public News() {
         this.newsStories = new HashMap();
         for (int i = 1; i < 6; i++)//create some news stories, will be from the database eventually
         {
-            NewsEntity myStory = new NewsEntity("News Story " + i, 
-                                                "Question");
+            NewsEntity myStory = new NewsEntity("News Story " + i, "Question");
             newsStories.put(myStory.getTitle(), myStory);
         }
     }
@@ -56,21 +55,17 @@ public class News extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String a = request.getRequestURI();
-        if(a == null)
-        {
+        if (a == null) {
             throw new IOException();
         }
-        String [] parts = a.split("/");
-        if(parts.length < 4)
-        {
+        String[] parts = a.split("/");
+        if (parts.length < 4) {
             request.setAttribute("Storys", newsStories);
             RequestDispatcher dispatcher = request.getRequestDispatcher("news.jsp");
             dispatcher.forward(request, response);
-        }
-        else
-        {
+        } else {
             String key = parts[3].replace("%20", " ");
-            NewsEntity story = (NewsEntity)newsStories.get(key);
+            NewsEntity story = (NewsEntity) newsStories.get(key);
             request.setAttribute("Story", story);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/newsStory.jsp");
             dispatcher.forward(request, response);
