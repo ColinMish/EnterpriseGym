@@ -48,13 +48,13 @@
          %>
         <div class="col-md-4" id="AboutText">
                 <div class="panel panel-default">
-                    <div class=\"panel-heading\">
+                    <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i><%=p.getTitle()%></h4>
                     </div>
                     <div class="panel-body">
                         <p>
-                        <% String brief = p.getContent().substring(0, 500) + "...";%>
-                            <%=brief%> </p>
+                            
+                        </p>
                         <a href="News/<%=p.getTitle()%>" class="btn btn-default">Read More</a>
                     </div>
                 </div>
