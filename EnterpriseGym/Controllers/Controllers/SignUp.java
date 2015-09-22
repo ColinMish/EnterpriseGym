@@ -76,7 +76,6 @@ public class SignUp extends HttpServlet {
         byte[] salt = Security.generateSalt();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        String passwordcheck = request.getParameter("passwordcheck");
         String email = request.getParameter("email");
         String first = request.getParameter("first");
         String last = request.getParameter("last");
@@ -89,7 +88,6 @@ public class SignUp extends HttpServlet {
         int yearofstudy = Integer.parseInt(request.getParameter("year"));
         //System.out.println("The year of study"+yearofstudy);
         int matric = Integer.parseInt(request.getParameter("matric"));
-        //String matric = request.getParameter("matric");
         String saltAsString = Convertors.byteArrayToHexString(salt);
         password = Security.hashPassword(password, saltAsString);
         UserModel user = new UserModel();

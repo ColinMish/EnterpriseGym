@@ -7,44 +7,61 @@
 $(document).ready(function ()
 {
     $(".forgotPassword").hide();
+    $("#fail").hide();
+    $("#invalid").hide();
     var loginCount = 0;
 
     $("#logInForm").submit(function (e)
     {
         e.preventDefault();
-        if (loginCount === 3)
+        var username = $("#un").val();
+        var password = $("#pw").val();
+        if (username === '' || password === '')
         {
-            $(".forgotPassword").show();
+            $("#invalid").show();
+        }
+        else if (loginCount === 3)
+        {
+            $("#forgotPassword").show();
             loginCount = 0;
         }
         else
         {
             loginCount++;
-            if (!LogIn())
+            if (!LogIn(password, username))
             {
-                $("#logInTitle").text("Log In Failed");
-                $("#logInMessage").text("Please try again");
+                $("#fail").show();
+            }
+            else
+            {
+                window.location = "Home";
             }
         }
     });
 
 
-    function LogIn()
+    function LogIn(password, username)
     {
-        var username = $("#un").val();
-        var password = $("#pw").val();
-
-        $.ajax({
+        var returnValue = $.ajax({
             type: "POST",
             url: "LogIn",
-            data: {password: password, username: username}, 
+            async: false,
+            data: {password: password, username: username},
             cache: false,
-            success: function (fail) {
-                return false;
+            success: function (result) {
+                if (result === "failed")
+                {
+                    return false;
+                }
+                else if (result === "success")
+                {
+                    return true;
+                } 
             },
             fail: function () {
                 return false;
             }
         });
+        return returnValue;
     }
 });

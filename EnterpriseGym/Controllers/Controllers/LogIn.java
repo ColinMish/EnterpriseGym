@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Models.UserModel;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -67,38 +68,37 @@ public class LogIn extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        String result = "failed";
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        
-        
+
         UserModel user = new UserModel();
-        
+
         String salt = user.getSalt(username);
         //Can't do this is salt is null
-        if(salt !=null)
-        {
-        password = Security.hashPassword(password, salt);
+        if (salt != null) {
+            password = Security.hashPassword(password, salt);
+        } else {
+            request.setAttribute("invalid", true);
         }
-        else
-        {
-            request.setAttribute("invalid",true);
-        }
-        
+
         try {
             if (user.login(username, password) == false || salt == null) {
                 request.setAttribute("failed", true);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("logIn.jsp");
-                dispatcher.forward(request, response);
             } else {
                 Account login = user.getAccount(username);
                 HttpSession session = request.getSession();
                 session.setAttribute("account", login);
-                response.sendRedirect(request.getContextPath() + "/index.jsp");
-
+                result = "success";
             }
         } catch (SQLException ex) {
             Logger.getLogger(LogIn.class.getName()).log(Level.SEVERE, null, ex);
         }
+        try (PrintWriter out = response.getWriter()) {
+            out.print(result);
+            out.flush();
+            out.close();
+        }
     }
+
 }
