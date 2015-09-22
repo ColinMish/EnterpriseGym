@@ -99,3 +99,19 @@ and open the template in the editor.
   padding-bottom: 1.1em;
 }
 
+.col-lg-12 h1 {
+   margin-left: 0.6em;
+}
+
+.panabout {
+    width:15em;
+}
+
+.panhome img{
+    width: 36em; 
+    height: 15em;
+}
+        
+.btns {
+    width:12em;
+}
