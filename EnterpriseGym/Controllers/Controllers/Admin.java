@@ -19,13 +19,11 @@ import lib.Convertors;
  *
  * @author Andy
  */
-<<<<<<< HEAD
+
 @WebServlet(name = "Admin", urlPatterns = {"/Admin", "/AddNews"})
 @MultipartConfig (maxFileSize = 16177215) //Set the pictures size up to 16MB  
-=======
-@WebServlet(name = "Admin", urlPatterns = {"/Admin", "/AddNews", "/ResetPoints", "/DeleteUser"})
-@MultipartConfig
->>>>>>> master
+
+
 public class Admin extends HttpServlet {
 
     /**
