@@ -41,6 +41,11 @@ and open the template in the editor.
             width: 4em;
             left: 16.7em;
         }
+        
+        .panhome img{
+            height:6em;
+            width:12em;
+        }
     } 
       
     

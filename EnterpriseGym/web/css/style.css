@@ -103,10 +103,15 @@ and open the template in the editor.
    margin-left: 0.6em;
 }
 
-.pan {
+.panabout {
     width:15em;
 }
 
+.panhome img{
+    width: 36em; 
+    height: 15em;
+}
+        
 .btns {
     width:12em;
 }

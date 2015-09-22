@@ -94,7 +94,7 @@
             </div>
         
               <div class="col-md-4" id="ConnectText">
-                <div class="panel panel-default pan">
+                <div class="panel panel-default panabout">
                     
                         <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i><strong>Available Options</strong></h4><br>
