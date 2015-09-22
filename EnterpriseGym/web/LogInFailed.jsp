@@ -7,12 +7,10 @@
 <!DOCTYPE html>
 <html>
 
-       <% if (session.getAttribute("username") == null){ %>
-         <%@include file="header.jsp" %>
-   <% }else{ %>
-     <%@include file="headerloggedin.jsp" %> <%}%>
+    
+     <%@include file="header.jsp" %>
     <div class="hidden-xs">
-    <%@include file="sidebar.jsp"%>
+        <%@include file="sidebar.jsp"%>
      </div>
     
     

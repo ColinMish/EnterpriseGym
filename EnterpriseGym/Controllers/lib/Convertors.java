@@ -161,7 +161,6 @@ public final class Convertors {
         return new StringTokenizer(str, "/");
 
     }
-
         public static String toSHA1(byte[] convertme) {
 	    MessageDigest md = null;
 	    try {

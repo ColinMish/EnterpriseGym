@@ -9,8 +9,9 @@
 <html>
 
     <%@include file="header.jsp" %>
-    <%@include file="sidebar.jsp" %>
-    
+    <div class="hidden-xs">
+        <%@include file="sidebar.jsp"%>
+    </div>
     
   
     <!-- Page Content -->

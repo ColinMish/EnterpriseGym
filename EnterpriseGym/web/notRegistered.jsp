@@ -8,7 +8,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <%@include file="header.jsp" %>
+   <%@include file="header.jsp" %>
+    <div class="hidden-xs">
+        <%@include file="sidebar.jsp"%>
+    </div>
     
     <!-- Page Content -->
     <div class="container">

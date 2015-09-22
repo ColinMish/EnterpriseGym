@@ -3,7 +3,10 @@
     Created on : 15-Sep-2015, 12:44:38
     Author     : Dave
 --%>
+<html>
+    
 
+<%@page import="Entities.Account"%>
 <head>
 
     <meta charset="utf-8">
@@ -16,7 +19,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
-
+    
     <!-- Custom CSS -->
     <link href="${pageContext.request.contextPath}/css/half-slider.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
@@ -37,26 +40,39 @@
 
 </head>
 
+<%
+    Boolean loggedIn = false;
+    Account account = (Account) session.getAttribute("account");;
+    if (account != null) {
+        loggedIn = true;
+    }
+%>
+
 <body>
 
     <!-- Navigation -->
     <div class="navigation-bar">
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
+             
+            <div class="container">              
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">                       
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
+                     <a class="navbar-brand visible-xs" href="${pageContext.request.contextPath}/Home"><img src="${pageContext.request.contextPath}/Pictures/logo-eg.png"></a>
                 </div>
+                
+                
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
 
-                        <li class="homeButton${pageContext.request.getServletPath() eq '/index.jsp' ? ' active' : ''}">
+                        <li class="hidden-xs homeButton${pageContext.request.getServletPath() eq '/index.jsp' ? ' active' : ''}">
                             <a id="imagehead" href="${pageContext.request.contextPath}/Home"><img src="${pageContext.request.contextPath}/Pictures/logo-eg.png"></a>
                         </li>
                         <li class="aboutButton${pageContext.request.getServletPath() eq '/about.jsp' ? ' active' : ''}">
@@ -70,13 +86,35 @@
                         </li>       
                         <li class="activitesButton${pageContext.request.getServletPath()eq '/activities.jsp' ? ' active' : ''}">
                             <a id="head" href="${pageContext.request.contextPath}/Activities">Activities</a>
-                        </li>                             
+                        </li>
+                        <%if (loggedIn) {%>
+                        <li class="quizesButton${pageContext.request.getServletPath() eq '/quizes.jsp' ? ' active' : ''}">
+                            <a id="head" href="${pageContext.request.contextPath}/Quizes">Online Tests</a>
+                        </li>
+                        <li class="profileButton${pageContext.request.getServletPath() eq '/profile.jsp' ? ' active' : ''}">
+                            <a id="head" href="${pageContext.request.contextPath}/Profile">My eGym</a>
+                        </li>
                     </ul>
 
+                    <ul class="nav navbar-nav navbar-right">        
+                        <li id="head" class="logintext"> Logged in as: <%=account.getUsername()%></li>
+                        <li>
+                            <a id="head" href="${pageContext.request.contextPath}/LogOut">Log Out</a></li>                  
+                        <li id="calendar-drop" class="visible-lg">
+                            <a data-toggle="collapse" data-target="#calendar" href="#calendar">
+                                <div class="header-calendar">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <%} else {%>
+                    </ul>
 
                     <ul class="nav navbar-nav navbar-right">         
-                        <li><a href="LogIn">Log In</a></li>
-                        <li><a href="SignUp">Sign Up</a></li>
+                        <li><a id="head" href="LogIn">Log In</a></li>
+                        <li><a id="head" href="SignUp">Sign Up</a></li>
 
 
                         <li id="calendar-drop" class="visible-lg">
@@ -87,8 +125,7 @@
                             </a>
                         </li>
                     </ul>
-
-
+                    <%}%>
                 </div>
 
                 <!-- /.navbar-collapse -->
@@ -109,13 +146,17 @@
 
 
     <!-- Half Page Image Background Carousel Header -->
-    <header id="myCarousel" class="carousel slide visible-lg visible-md visible-sm">
+        
+    
+        <header data-interval="false" data-wrap="false" id="myCarousel" class="carousel slide visible-lg visible-md visible-sm">
+
         <!-- Indicators -->
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
             <li data-target="#myCarousel" data-slide-to="1"></li>
             <li data-target="#myCarousel" data-slide-to="2"></li>
         </ol>
+        
 
         <!-- Wrapper for Slides -->
         <div class="carousel-inner" class="visible-lg">
@@ -140,7 +181,16 @@
                     <h2></h2>
                 </div>
             </div>
-        </div>
+            <div class="item">
+                <!-- Set the first background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('${pageContext.request.contextPath}/Pictures/banner.jpg');"></div> 
+                <div class="carousel-caption">
+                    <h2></h2>
+                </div>
+            </div>
+            </div>
+                
+           
 
         <!-- Controls -->
         <a class="left carousel-control visible-lg" href="#myCarousel" data-slide="prev">
@@ -150,10 +200,27 @@
             <span class="icon-next"></span>
         </a>
 
+        </header>
 
 
-    </header>
+   
 
     <header class="hidden-lg hidden-md hidden-sm"> 
         <div style="height:50px"></div>
     </header>
+
+                
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.carousel').each(function(){
+        $(this).carousel({
+            pause: true,
+            interval: false,
+            wrap:false
+        });
+    });
+});?
+</script>
+</body>
+</html>
+

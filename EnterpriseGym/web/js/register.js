@@ -161,7 +161,9 @@ function checkUsername(username)
                 console.log("Error in ajax call");
             }
         });
+
         if (exists === "true")
+
         {
             message = "<div id='errMessage' class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Username already exists.</p></div>";
         }
@@ -187,6 +189,11 @@ function checkPassword()
     else if (password !== confirmPassword)
     {
         $("#passwordError").html("<div class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Passwords Do Not Match.</p></div>");
+        passwordValid = false;
+    }
+    else if (password.length < 8)
+    {
+        $("#passwordError").html("<div class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Password must be at least 8 characters long.</p></div>");
         passwordValid = false;
     }
     else if (password === confirmPassword)

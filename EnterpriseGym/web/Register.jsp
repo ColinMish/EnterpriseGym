@@ -8,14 +8,10 @@
 <!DOCTYPE html>
 <html>
 
-    <% if (session.getAttribute("username") == null) { %>
     <%@include file="header.jsp" %>
-    <% } else { %>
-    <%@include file="headerloggedin.jsp" %> <%}%>
-    
     <div class="hidden-xs">
-    <%@include file="sidebar.jsp"%>
-     </div>
+        <%@include file="sidebar.jsp"%>
+    </div>
      
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script><!--do we need this?-->
@@ -162,7 +158,7 @@
                 <div class="form-group">
                     <label for="terms" class="checkbox" style="padding-left: 20px;"><input name="terms" type="checkbox" id="terms" required/> I have read and accept The Enterprise Gym <a href="${pageContext.request.contextPath}/Terms" target="_blank">Terms of Use</a></label>
                 </div>
-                <div class="g-recaptcha" data-sitekey="6Ld5GQ0TAAAAAJbwITxGPXJfEyfkB2p2b6JjxazP"></div>
+                <div class="g-recaptcha" data-sitekey="6LfgPw0TAAAAANks7kqyif1IyoDAV-JpkCtTSB5q"></div>
                 <br>
                 <input class="btn btn-default" type="submit" value="Sign Up">
                 <br/>

@@ -13,13 +13,10 @@
       <link href='css/profile.css' rel='stylesheet' type='text/css'>
     </head>
     <body>
-           <% if (session.getAttribute("username") == null){ %>
-         <%@include file="header.jsp" %>
-   <% }else{ %>
-     <%@include file="headerloggedin.jsp" %> <%}%>
-        <div class="hidden-xs">
-    <%@include file="sidebar.jsp"%>
-     </div>
+    <%@include file="header.jsp" %>
+    <div class="hidden-xs">
+        <%@include file="sidebar.jsp"%>
+    </div>
     
             <!-- Page Content -->
     <div class="container">
@@ -36,15 +33,15 @@
                 <div class="panel panel-default">
                     
                         <div class="panel-heading">
-                        <h4><i class="fa fa-fw fa-check"></i><strong>Available Options</strong></h4><br>
+                        <h4><i class="fa fa-fw fa-check"></i><strong></strong></h4><br>
                         </div>
                     
                         <div class="panel-body">
                             <div class="usermenu">
                         
-                            <a class="btn btn-default one" href="${pageContext.request.contextPath}/Profile/Points">My Points</a><br><br>
+                            <a class="btn btn-default one col-lg-12" href="${pageContext.request.contextPath}/Profile/Points">My Points</a><br><br>
                             
-                            <a class="btn btn-default two" href="${pageContext.request.contextPath}/Profile/EditProfile">Edit Details</a>
+                            <a class="btn btn-default two col-lg-12" href="${pageContext.request.contextPath}/Profile/EditProfile">Edit Details</a>
                             
                             </div>
                         </div>
@@ -54,27 +51,7 @@
                 </div>
         </div>
         
-        <div class="col-md-8" id="ConnectText">
-                <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4><i class="fa fa-fw fa-check"></i><strong>Profile Picture</strong></h4><br>
-                        </div>
-                    
-                    <div class="panel-body">
-                        <div class="profpicture">
-                            <table class="table table-hover">
-                            <thead>
-                            <tr>
-                                <th><input name="photo" type="file"></th>
-                            </tr>
-                            </thead>
-                            </table>
-                            <button type="button" class="btn btn-default three">Upload an Image</button><br>
-                           
-                        </div>
-                    </div>
-                  </div>
-                </div>
+        
             
         <div class="col-md-8" id="ConnectText">
                 <div class="panel panel-default">

@@ -12,12 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Models.UserModel;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
+import lib.Security;
 
 /**
  *
@@ -32,25 +31,6 @@ public class LogIn extends HttpServlet {
      */
     public LogIn() {
 
-    }
-
-    public static String toSHA1(byte[] convertme) {
-        MessageDigest md = null;
-        try {
-            md = MessageDigest.getInstance("SHA1");
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        return byteArrayToHexString(md.digest(convertme));
-    }
-
-    public static String byteArrayToHexString(byte[] b) {
-        String result = "";
-        for (int i = 0; i < b.length; i++) {
-            result
-                    += Integer.toString((b[i] & 0xff) + 0x100, 16).substring(1);
-        }
-        return result;
     }
 
     /**
@@ -90,16 +70,30 @@ public class LogIn extends HttpServlet {
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-
+        
+        
         UserModel user = new UserModel();
-
+        
+        String salt = user.getSalt(username);
+        //Can't do this is salt is null
+        if(salt !=null)
+        {
+        password = Security.hashPassword(password, salt);
+        }
+        else
+        {
+            request.setAttribute("invalid",true);
+        }
+        
         try {
-            if (user.login(username, toSHA1(password.getBytes("UTF-8"))) == false) {
-                response.sendRedirect(request.getContextPath() + "/LogInFailed.jsp");
+            if (user.login(username, password) == false || salt == null) {
+                request.setAttribute("failed", true);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("logIn.jsp");
+                dispatcher.forward(request, response);
             } else {
                 Account login = user.getAccount(username);
                 HttpSession session = request.getSession();
-                session.setAttribute("username", username);
+                session.setAttribute("account", login);
                 response.sendRedirect(request.getContextPath() + "/index.jsp");
 
             }
