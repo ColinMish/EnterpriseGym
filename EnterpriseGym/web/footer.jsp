@@ -3,7 +3,12 @@
     Created on : 15-Sep-2015, 12:49:29
     Author     : Dave
 --%>
-
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    	
+        <link href='${pageContext.request.contextPath}/css/media.css' rel='stylesheet' type='text/css'>
+        <title>JSP Page</title>
+    </head>
 <footer>
     
     <!-- TODO: Decide Footer Content -->
@@ -18,7 +23,13 @@
             Website design, development and hosting by Team 5.<br/>
             This website is generously sponsored by <a href="http://www.commercial-properties-scotland.co.uk/">James Keiller Estates</a>.
         </p>
+        <div id="mobile">
         
+        <a href="https://www.facebook.com/EnterpriseGym"><img src='${pageContext.request.contextPath}/Pictures/icon_fb_small.png'></a>
+        <a href="http://www.twitter.com/Enterprise_Gym"><img src='${pageContext.request.contextPath}/Pictures/TwitterIcon.png'></a>
+        <a href="http://www.linkedin.com/groups?mostPopular&gid=3278209"><img src='${pageContext.request.contextPath}/Pictures/linkedin-icon-small.png'></a>
+        <a href="http://www.youtube.com/EnterpriseGym"><img src='${pageContext.request.contextPath}/Pictures/youtube-icon-small.png'></a>
+        </div>
       </div>
     
 </footer>
@@ -27,7 +38,7 @@
     <!--<script src="${pageContext.request.contextPath}/js/jquery.js"></script>-->
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+
 
     <!-- Script to Activate the Carousel -->
     <script>
@@ -35,3 +46,4 @@
         interval: 5000; //changes the speed
     });
     </script>
+    

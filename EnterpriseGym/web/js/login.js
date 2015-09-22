@@ -7,12 +7,21 @@
 $(document).ready(function ()
 {
     $(".forgotPassword").hide();
+    $("#fail").hide();
+    $("#invalid").hide();
     var loginCount = 0;
 
     $("#logInForm").submit(function (e)
     {
         e.preventDefault();
-        if (loginCount === 3)
+        var username = $("#un").val();
+        var password = $("#pw").val();
+        console.log(loginCount);
+        if (username === '' || password === '')
+        {
+            $("#invalid").show();
+        }
+        else if (loginCount === 3)
         {
             $(".forgotPassword").show();
             loginCount = 0;
@@ -20,31 +29,37 @@ $(document).ready(function ()
         else
         {
             loginCount++;
-            if (!LogIn())
+            if (!LogIn(password, username))
             {
-                $("#logInTitle").text("Log In Failed");
-                $("#logInMessage").text("Please try again");
+                $("#fail").show();
+            }
+            else
+            {
+                window.location = "Home";
             }
         }
     });
 
 
-    function LogIn()
+    function LogIn(password, username)
     {
-        var username = $("#un").val();
-        var password = $("#pw").val();
-
+        var returnValue = false;
         $.ajax({
             type: "POST",
             url: "LogIn",
-            data: {password: password, username: username}, 
+            async: false,
+            data: {password: password, username: username},
             cache: false,
-            success: function (fail) {
-                return false;
+            success: function (result) {
+                if (result === "success")
+                {
+                    returnValue = true;
+                }
             },
             fail: function () {
-                return false;
+                console.log("Ajax error");
             }
         });
+        return returnValue;
     }
 });
