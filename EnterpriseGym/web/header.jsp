@@ -228,14 +228,12 @@ $(document).ready(function() {
             wrap:false
         });
     });
-<<<<<<< HEAD
+
        
 });
 
-
-=======
 });
->>>>>>> master
+
 </script>
 </body>
 </html>
