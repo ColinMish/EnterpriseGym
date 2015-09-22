@@ -53,21 +53,26 @@
     <!-- Navigation -->
     <div class="navigation-bar">
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
+             
+            <div class="container">              
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">                       
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
+                     <a class="navbar-brand visible-xs" href="${pageContext.request.contextPath}/Home"><img src="${pageContext.request.contextPath}/Pictures/logo-eg.png"></a>
                 </div>
+                
+                
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
 
-                        <li class="homeButton${pageContext.request.getServletPath() eq '/index.jsp' ? ' active' : ''}">
+                        <li class="hidden-xs homeButton${pageContext.request.getServletPath() eq '/index.jsp' ? ' active' : ''}">
                             <a id="imagehead" href="${pageContext.request.contextPath}/Home"><img src="${pageContext.request.contextPath}/Pictures/logo-eg.png"></a>
                         </li>
                         <li class="aboutButton${pageContext.request.getServletPath() eq '/about.jsp' ? ' active' : ''}">
@@ -84,17 +89,17 @@
                         </li>
                         <%if (loggedIn) {%>
                         <li class="quizesButton${pageContext.request.getServletPath() eq '/quizes.jsp' ? ' active' : ''}">
-                            <a href="${pageContext.request.contextPath}/Quizes">Online Tests</a>
+                            <a id="head" href="${pageContext.request.contextPath}/Quizes">Online Tests</a>
                         </li>
                         <li class="profileButton${pageContext.request.getServletPath() eq '/profile.jsp' ? ' active' : ''}">
-                            <a href="${pageContext.request.contextPath}/Profile">My eGym</a>
+                            <a id="head" href="${pageContext.request.contextPath}/Profile">My eGym</a>
                         </li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">        
-                        <li class="logintext"> Logged in as: <%=account.getUsername()%></li>
+                        <li id="head" class="logintext"> Logged in as: <%=account.getUsername()%></li>
                         <li>
-                            <a href="${pageContext.request.contextPath}/LogOut">Log Out</a></li>                  
+                            <a id="head" href="${pageContext.request.contextPath}/LogOut">Log Out</a></li>                  
                         <li id="calendar-drop" class="visible-lg">
                             <a data-toggle="collapse" data-target="#calendar" href="#calendar">
                                 <div class="header-calendar">
@@ -108,8 +113,8 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">         
-                        <li><a href="LogIn">Log In</a></li>
-                        <li><a href="SignUp">Sign Up</a></li>
+                        <li><a id="head" href="LogIn">Log In</a></li>
+                        <li><a id="head" href="SignUp">Sign Up</a></li>
 
 
                         <li id="calendar-drop" class="visible-lg">
@@ -141,8 +146,9 @@
 
 
     <!-- Half Page Image Background Carousel Header -->
-
-        <div data-interval="false" data-wrap="false" id="myCarousel" class="carousel slide visible-lg visible-md visible-sm">
+        
+    
+        <header data-interval="false" data-wrap="false" id="myCarousel" class="carousel slide visible-lg visible-md visible-sm">
 
         <!-- Indicators -->
         <ol class="carousel-indicators">
@@ -150,6 +156,7 @@
             <li data-target="#myCarousel" data-slide-to="1"></li>
             <li data-target="#myCarousel" data-slide-to="2"></li>
         </ol>
+        
 
         <!-- Wrapper for Slides -->
         <div class="carousel-inner" class="visible-lg">
@@ -193,7 +200,7 @@
             <span class="icon-next"></span>
         </a>
 
-
+        </header>
 
 
    
@@ -202,8 +209,7 @@
         <div style="height:50px"></div>
     </header>
 
-        
-    </div>          
+                
 <script type="text/javascript">
 $(document).ready(function() {
     $('.carousel').each(function(){

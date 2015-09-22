@@ -6,6 +6,7 @@ package Controllers;
  * and open the template in the editor.
  */
 
+import Entities.Account;
 import Entities.UserEntity;
 import Models.UserModel;
 import java.io.IOException;
@@ -63,6 +64,14 @@ public class Profile extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
+
+//     HttpSession session = request.getSession();    
+//    Account account = (Account) session.getAttribute("account");
+//    if (account == null) {
+//        notloggedin(response,request);
+//    }else{
+        
+        
         String args[] = Convertors.SplitRequestPath(request);
         
         if(args.length==2)
@@ -89,13 +98,21 @@ public class Profile extends HttpServlet {
             	//Error message here.
         }
     }
+    //}
+    
+//    private void notloggedin(HttpServletResponse response,HttpServletRequest request) throws ServletException, IOException
+//    {
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("LogIn.jsp");
+//        dispatcher.forward(request, response);
+//    }
 
     private void displayprofile(HttpServletResponse response,HttpServletRequest request) throws ServletException, IOException
     {
         UserModel model = new UserModel();
         HttpSession session = request.getSession();
+          Account account = (Account) session.getAttribute("account");
         //Need to pass the profile attributes accross here.
-        java.util.LinkedList<UserEntity> userdetails = model.getDetails((String)session.getAttribute("username"));
+        java.util.LinkedList<UserEntity> userdetails = model.getDetails(account.getUsername());
         
   
 //         Iterator<UserEntity> iterator;
@@ -114,9 +131,11 @@ public class Profile extends HttpServlet {
     {
         //Populate the points entity.
           UserModel model = new UserModel();
-        HttpSession session = request.getSession();
+          HttpSession session = request.getSession();
+          Account account = (Account) session.getAttribute("account");
+        
         //Need to pass the profile attributes accross here.
-        java.util.LinkedList<UserEntity> points = model.getPoints((String)session.getAttribute("username"));
+        java.util.LinkedList<UserEntity> points = model.getPoints(account.getUsername());
         
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("/mypoints.jsp");

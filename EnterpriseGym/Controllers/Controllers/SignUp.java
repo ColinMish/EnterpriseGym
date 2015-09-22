@@ -90,8 +90,8 @@ public class SignUp extends HttpServlet {
         //System.out.println("The year of study"+yearofstudy);
         int matric = Integer.parseInt(request.getParameter("matric"));
         //String matric = request.getParameter("matric");
-        password = Security.hashPassword(password, salt);
         String saltAsString = Convertors.byteArrayToHexString(salt);
+        password = Security.hashPassword(password, saltAsString);
         UserModel user = new UserModel();
 
         try {

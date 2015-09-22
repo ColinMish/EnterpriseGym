@@ -73,11 +73,23 @@ public class LogIn extends HttpServlet {
         
         
         UserModel user = new UserModel();
+        
         String salt = user.getSalt(username);
+        //Can't do this is salt is null
+        if(salt !=null)
+        {
         password = Security.hashPassword(password, salt);
+        }
+        else
+        {
+            request.setAttribute("invalid",true);
+        }
+        
         try {
             if (user.login(username, password) == false || salt == null) {
-                response.sendRedirect(request.getContextPath() + "/LogInFailed.jsp");
+                request.setAttribute("failed", true);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("logIn.jsp");
+                dispatcher.forward(request, response);
             } else {
                 Account login = user.getAccount(username);
                 HttpSession session = request.getSession();

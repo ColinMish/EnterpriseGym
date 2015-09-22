@@ -6,9 +6,11 @@
 package lib;
 
 import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
+import static lib.Convertors.byteArrayToHexString;
 
 /**
  *
@@ -35,13 +37,22 @@ public class Security {
         return salt;
     }
 
-    public static String hashPassword(String password, byte[] salt) throws UnsupportedEncodingException {
-        byte[] hash = new byte[password.getBytes("UTF-8").length + salt.length]; //Salt password
-        return Convertors.byteArrayToHexString(hash);
-    }
+//    public static String hashPassword(String password, byte[] salt) throws UnsupportedEncodingException {
+//        byte[] hash = new byte[password.getBytes("UTF-8").length + salt.length]; //Salt password
+//        return toSHA2(hash);
+//    }
 
     public static String hashPassword(String password, String salt) throws UnsupportedEncodingException {
         byte[] hash = new byte[password.getBytes("UTF-8").length + salt.getBytes("UTF-8").length]; //Salt password
-        return Convertors.byteArrayToHexString(hash);
+        return toSHA2(hash);
+    }
+
+    public static String toSHA2(byte[] convertme) {
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {
+        }
+        return byteArrayToHexString(md.digest(convertme));
     }
 }
