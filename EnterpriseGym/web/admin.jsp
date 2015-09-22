@@ -10,14 +10,24 @@
     
     <head>
         <link href='css/style.css' rel='stylesheet' type='text/css'>
+        <link href='css/media.css' rel='stylesheet' type='text/css'>
         <script src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
     </head> 
    
     <body>
     <%@include file="header.jsp" %>
-    <div class="hidden-xs">
-        <%@include file="sidebar.jsp"%>
+    <div class ="mobile">
+    <%@include file="sidebar.jsp"%>
     </div>
+    
+    <% Boolean storyAdded = (Boolean) request.getAttribute("storyAdded"); %>
+    <% Boolean storyNotAdded = (Boolean) request.getAttribute("storyNotAdded"); %>
+    
+    <% Boolean pointsReset = (Boolean) request.getAttribute("pointsReset"); %>
+    <% Boolean pointsNotReset = (Boolean) request.getAttribute("pointsNotReset"); %>
+    
+    <% Boolean accountDeleted = (Boolean) request.getAttribute("accountDeleted"); %>
+    <% Boolean accountNotDeleted = (Boolean) request.getAttribute("accountNotDeleted"); %>
     
     <!-- Page Content -->
     <div class="container">
@@ -25,6 +35,18 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1>Admin Panel</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <% if(storyAdded != null) { %> <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>News Story Posted Successfully.</p></div> <% } %>
+                <% if(storyNotAdded != null) { %> <div class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Error Posting News Story.</p></div> <% } %>
+                
+                <% if(pointsReset != null) { %> <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Points Successfully Reset.</p></div> <% } %>
+                <% if(pointsNotReset != null) { %> <div class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Error Resetting Points.</p></div> <% } %>
+                
+                <% if(accountDeleted != null) { %> <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Account Successfully Deleted.</p></div> <% } %>
+                <% if(accountNotDeleted != null) { %> <div class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Error Deleting Account.</p></div> <% } %>
             </div>
         </div>
         
@@ -43,7 +65,7 @@
                         
                         <textarea name="editor1" id="editor1" rows="10" cols="80"></textarea>
                         <script>
-                            CKEDITOR.replace('editornews1');
+                            CKEDITOR.replace('editor1');
                         </script>
                         <br/>
                         <span class="btn btn-default btn-file">
@@ -68,7 +90,18 @@
                     <h4><i class="fa fa-fw fa-check"></i>User Management</h4>
                 </div>
                 <div id="userEditor" class="panel-body" hidden>
-                    <div class="alert-danger">Warning: The button below will reset the points of all users in the database.</div>
+                    <div class='alert alert-danger'>Warning: The button below will reset the points of all users in the database. This action cannot be reversed.</div>
+                    <form action="ResetPoints" method="POST">
+                        <input class="btn btn-danger" type="submit" value="Reset ALL Points">
+                    </form>
+                    <br/>
+                    <div class='alert alert-danger'>Warning: The form below will completely remove the specified account from the database. This action cannot be reversed.</div>
+                    <form action="DeleteUser" method="POST">
+                        <label for="usernameField">Username:</label>
+                        <input name="usernameField" type="text" class="form-control" id="usernameField" maxlength="45" required/>
+                        <br/>
+                        <input class="btn btn-danger" type="submit" value="Delete Account">
+                    </form>
                 </div>
             </div>
         </div>

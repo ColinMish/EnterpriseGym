@@ -17,11 +17,12 @@
 <html>
     <head>
         <link href='css/profile.css' rel='stylesheet' type='text/css'>
+        <link href='css/media.css' rel='stylesheet' type='text/css'>
     </head>
-</body>
-      <%@include file="header.jsp" %>
-    <div class="hidden-xs">
-        <%@include file="sidebar.jsp"%>
+<body>
+     <%@include file="header.jsp" %>
+    <div class="mobile">
+    <%@include file="sidebar.jsp"%>
     </div>
     
     <!-- Page Content -->

@@ -19,8 +19,13 @@ import lib.Convertors;
  *
  * @author Andy
  */
+<<<<<<< HEAD
 @WebServlet(name = "Admin", urlPatterns = {"/Admin", "/AddNews"})
 @MultipartConfig (maxFileSize = 16177215) //Set the pictures size up to 16MB  
+=======
+@WebServlet(name = "Admin", urlPatterns = {"/Admin", "/AddNews", "/ResetPoints", "/DeleteUser"})
+@MultipartConfig
+>>>>>>> master
 public class Admin extends HttpServlet {
 
     /**
@@ -50,7 +55,7 @@ public class Admin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
-                  RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
                 dispatcher.forward(request, response);
     }
 
@@ -74,6 +79,9 @@ public class Admin extends HttpServlet {
             case "ResetPoints":
                 resetPoints(request, response);
                 break;
+            case "DeleteUser":
+                deleteUser(request, response);
+                break;
             case "AddEvent":
                 addEvent(request, response);
                 break;
@@ -96,18 +104,55 @@ public class Admin extends HttpServlet {
         
         if(admin.addNewsStory(filePart,content,title)==true)
         {
-              System.out.println("News Story Added.");
+            request.setAttribute("storyAdded", true);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
+            dispatcher.forward(request, response);
+            System.out.println("News Story Added.");
         }else{
+            request.setAttribute("storyNotAdded", true);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
+            dispatcher.forward(request, response);
             System.out.println("News Story failed");
         }
-        
-      
     }
     
     private void resetPoints(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
+        AdminModel admin = new AdminModel();
         
+        if(admin.resetPoints()==true)
+        {
+            request.setAttribute("pointsReset", true);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
+            dispatcher.forward(request, response);
+            System.out.println("Points Successfully Reset.");
+        }else{
+            request.setAttribute("pointsNotReset", true);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
+            dispatcher.forward(request, response);
+            System.out.println("Error Resetting Points.");
+        }
+    }
+    
+    private void deleteUser(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException 
+    {
+        String username = request.getParameter("usernameField");
+        AdminModel admin = new AdminModel();
+        
+        if(admin.deleteUser(username)==true)
+        {
+            request.setAttribute("accountDeleted", true);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
+            dispatcher.forward(request, response);
+            System.out.println("Account Successfully Deleted.");
+        }else{
+            request.setAttribute("accountNotDeleted", true);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
+            dispatcher.forward(request, response);
+            System.out.println("Error Deleting Account.");
+        }
     }
     
     private void addEvent(HttpServletRequest request, HttpServletResponse response)

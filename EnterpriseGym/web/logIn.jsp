@@ -7,11 +7,13 @@
 <!DOCTYPE html>
 <html>
 
-     
+    <head>
+        <link href='css/media.css' rel='stylesheet' type='text/css'>
+    </head>
     <%@include file="header.jsp" %>
-    <div class="hidden-xs">
-     <%@include file="sidebar.jsp"%>
-     </div>
+    <div class ="mobile">
+    <%@include file="sidebar.jsp"%>
+    </div>
      <% Boolean registered = (Boolean) request.getAttribute("registered"); %>
      <% Boolean loginfailed =(Boolean) request.getAttribute("failed"); %>
      <% Boolean invalid =(Boolean) request.getAttribute("invalid");%>
@@ -22,10 +24,10 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h1><% if(registered!=null) {%>Registration Successful - Please <% } %>Log In</h1>
-                <p></p>
-                <h2 class="loginfailed"><% if(loginfailed!=null) {%>Log In failed please try again <% } %> </h2>
-                <h2 class="loginfailed"><% if(invalid!=null) { %> The username entered is invalid. <% } %> </h2>
+                <% if(registered!=null) {%> <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Registration Successful - Please Log In</p></div><% } %>
+                <br/>
+                <% if(loginfailed!=null) {%><div class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Log In failed please try again</p></div><% } %>
+                <% if(invalid!=null) { %> <div class='alert alert-warning fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>The username entered is invalid.</p></div><% } %>
             </div>
         </div>
       

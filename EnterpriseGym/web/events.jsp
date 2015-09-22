@@ -9,16 +9,14 @@
     
     <head>
       <link href='css/style.css' rel='stylesheet' type='text/css'>
+      <link href='css/media.css' rel='stylesheet' type='text/css'>
     </head>
     
     <body>
-   <% if (session.getAttribute("username") == null){ %>
          <%@include file="header.jsp" %>
-   <% }else{ %>
-     <%@include file="headerloggedin.jsp" %> <%}%>
-<div class="hidden-xs">
+    <div class ="mobile">
     <%@include file="sidebar.jsp"%>
-     </div>
+    </div>
      <%@page import="java.util.Map"%>
     <%@page import="java.util.HashMap"%>
     <%@page import="Entities.EventEntity" %>
@@ -33,6 +31,23 @@
                 <p></p>
             </div>
         </div>
+        
+        <%for(EventEntity event : events.values())
+        { %>
+        <%="<div class=\"col-md-4\" id=\"AboutText\">"%>
+                <%="<div class=\"panel panel-default\">"%>
+                    <%="<div class=\"panel-heading\">"%>
+                        <%="<h4><i class=\"fa fa-fw fa-check\"></i>" + event.getName() + "</h4>"%>
+                    <%="</div>"%>
+                    <%="<div class=\"panel-body\">"%>
+                        <%="<p>"%>
+                        <% String brief = event.getDescription() + "...";%>
+                            <%=brief + "</p>"%>
+                        <%="<a href=\"Events/" + event.getName() + "\" class=\"btn btn-default\">Read More</a>"%>
+                    <%="</div>"%>
+                <%="</div>"%>
+            <%="</div>"%>
+        <%}%>
         
         <div class="col-md-4">
                 <div class="panel panel-default">

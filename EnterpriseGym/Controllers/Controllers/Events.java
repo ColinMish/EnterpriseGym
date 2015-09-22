@@ -1,7 +1,10 @@
 package Controllers;
 
 
+import Entities.EventEntity;
+import Models.EventModel;
 import java.io.IOException;
+import java.util.HashMap;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -15,15 +18,35 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Dave
  */
-@WebServlet(name = "Events", urlPatterns = {"/Events"})
+@WebServlet(name = "Events", urlPatterns = {"/Events/*"})
 @MultipartConfig
 public class Events extends HttpServlet {
 
     /**
      * Constructor
      */
-    public Events() {
+    private HashMap eventItems;
+    private EventModel eventModel;
+    private java.util.LinkedList<EventEntity> eventList;
+    
+    
+    public Events() 
+    {
+        this.eventItems = new HashMap();
+        this.eventModel = new EventModel();
+        this.eventList = new java.util.LinkedList<>();
 
+        eventList = eventModel.getAllEvents();
+        System.out.println("EventList: " + eventList);
+        
+        if (!eventList.isEmpty()){
+            for (int i = 0; i < eventList.size(); i++) {
+                EventEntity myEventItem = new EventEntity();
+                myEventItem = eventList.get(i);
+                eventItems.put(myEventItem.getName(), myEventItem);
+            }
+        }
+        
     }
 
     /**
@@ -44,6 +67,7 @@ public class Events extends HttpServlet {
      * @throws IOException
      */
     @Override
+<<<<<<< HEAD
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
         
@@ -52,6 +76,29 @@ public class Events extends HttpServlet {
         
                   RequestDispatcher dispatcher = request.getRequestDispatcher("events.jsp");
                 dispatcher.forward(request, response);
+=======
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String a = request.getRequestURI();
+        if(a == null)
+        {
+            throw new IOException();
+        }
+        String [] parts = a.split("/");
+        if(parts.length < 4)
+        {
+            request.setAttribute("Events", eventItems);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("events.jsp");
+            dispatcher.forward(request, response);
+        }
+        else
+        {
+            String key = parts[3].replace("%20", " ");
+            EventEntity eventItem = (EventEntity)eventItems.get(key);
+            request.setAttribute("Events", eventItem);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/eventItems.jsp");
+            dispatcher.forward(request, response);
+        }
+>>>>>>> master
     }
 
     /**

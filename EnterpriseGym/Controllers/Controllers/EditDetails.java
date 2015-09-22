@@ -76,13 +76,14 @@ public class EditDetails extends HttpServlet {
             
             
             
-            String firstname  = request.getParameter("firstn");
-            String lastname  = request.getParameter("lastn"); 
+            String firstname  = request.getParameter("firstname");
+            String lastname  = request.getParameter("lastname"); 
             String email  = request.getParameter("email");
+            String country  = request.getParameter("country");
             String year  = request.getParameter("year");
-            String oldpassword  = request.getParameter("oldpass");
-            String newpassword  = request.getParameter("newpass");
-            String newpasswordagain  = request.getParameter("newpass");
+            String oldpassword  = request.getParameter("password");
+            String newpassword  = request.getParameter("newpassword");
+            String newpasswordagain  = request.getParameter("newpassword");
          
             try{
                 
@@ -103,15 +104,16 @@ public class EditDetails extends HttpServlet {
                 
                 //Run the Sql query and returns the result set object obtained from the query
                 PreparedStatement value=database.prepareStatement(
-                        "UPDATE regtable SET firstn=?, lastn=?,email=?, year=?,oldpassword=?, newpassword=?, newpasswordagain=? "); 
+                        "UPDATE regtable SET first name=?, last name=?, email=?, country=? year=?, password=?, newpassword=?, newpassword=? "); 
                 
                 value.setString(1,firstname); 
                 value.setString(2,lastname);
                 value.setString(3,email);
-                value.setString(4,year);
-                value.setString(5,oldpassword);
-                value.setString(6,newpassword);
-                value.setString(7,newpasswordagain);
+                value.setString(4,country);
+                value.setString(5,year);
+                value.setString(6,oldpassword);
+                value.setString(7,newpassword);
+                value.setString(8,newpasswordagain);
                 
                 
                 int i=value.executeUpdate();

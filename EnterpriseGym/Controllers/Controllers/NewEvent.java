@@ -13,12 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import lib.Convertors;
-import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.text.ParseException;
-import java.util.Calendar;
 
 /**
  *
@@ -86,7 +84,7 @@ public class NewEvent extends HttpServlet {
     private void CreateEvent(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String title = request.getParameter("eventTitle");
         String mDate = request.getParameter("eventDate");
-        DateFormat format = new SimpleDateFormat("dd-mm-yyyy", Locale.ENGLISH);
+        DateFormat format = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
         java.util.Date utilDate;
         java.sql.Date date = new java.sql.Date(2000, 01, 01);
         
