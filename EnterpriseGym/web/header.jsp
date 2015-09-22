@@ -207,9 +207,7 @@
 
         </header>
 
-
-   
-
+                
     <header class="hidden-lg hidden-md hidden-sm"> 
         <div style="height:50px"></div>
     </header>
@@ -224,7 +222,10 @@ $(document).ready(function() {
             wrap:false
         });
     });
-});?
+       
+});
+
+
 </script>
 </body>
 </html>
