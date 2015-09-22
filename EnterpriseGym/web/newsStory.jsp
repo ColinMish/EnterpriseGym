@@ -16,13 +16,13 @@
     <% NewsEntity story = (NewsEntity) request.getAttribute("Story"); %>
     <!-- Page Content -->
     
-    <div class="col-md-4">
+    <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h4><i class="fa fa-fw fa-gift"></i><%=story.getTitle()%></h4>
+                <h4><i class="fa fa-fw fa-gift"></i>Title</h4>
             </div>
             <div class="panel-body">
-                <p><%=story.getContent()%></p>
+                <p>Content</p>
                 <a href="../News" class="btn btn-default">Back</a>
             </div>
         </div>
