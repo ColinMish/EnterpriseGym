@@ -34,11 +34,13 @@
                     <h4><i class="fa fa-fw fa-check"></i>News Editor</h4>
                 </div>
                 <div id="newsEditor" class="panel-body" hidden>
-                    <form>
+                    <form action="Admin" method="POST">
                         <textarea name="editor1" id="editor1" rows="10" cols="80"></textarea>
                         <script>
-                            CKEDITOR.replace('editor1');
+                            CKEDITOR.replace('editornews1');
                         </script>
+                        <br/>
+                        <input class="btn btn-default" type="submit" value="Create Post">
                     </form>
                 </div>
             </div>
@@ -46,7 +48,6 @@
         <script>
             $("#newsPanel").click(function() {
                 $("#newsEditor").toggle( "fast", function() {
-                  // Animation complete.
                 });
             });
         </script>
@@ -56,14 +57,13 @@
                     <h4><i class="fa fa-fw fa-check"></i>User Management</h4>
                 </div>
                 <div id="userEditor" class="panel-body" hidden>
-
+                    <div class="alert-danger">Warning: The button below will reset the points of all users in the database.</div>
                 </div>
             </div>
         </div>
         <script>
             $("#userPanel").click(function() {
                 $("#userEditor").toggle( "fast", function() {
-                  // Animation complete.
                 });
             });
         </script>
@@ -80,7 +80,6 @@
         <script>
             $("#eventsPanel").click(function() {
                 $("#eventsEditor").toggle( "fast", function() {
-                  // Animation complete.
                 });
             });
         </script>
@@ -97,7 +96,6 @@
         <script>
             $("#quizPanel").click(function() {
                 $("#quizEditor").toggle( "fast", function() {
-                  // Animation complete.
                 });
             });
         </script>

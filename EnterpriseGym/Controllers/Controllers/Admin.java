@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import lib.Convertors;
 
 /**
  *
@@ -62,5 +63,44 @@ public class Admin extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
+        String[] parts = Convertors.SplitRequestPath(request);
+        switch (parts[1]) {
+            case "AddNews":
+                addNews(request, response);
+                break;
+            case "ResetPoints":
+                resetPoints(request, response);
+                break;
+            case "AddEvent":
+                addEvent(request, response);
+                break;
+            case "editQuiz":
+                editQuiz(request, response);
+                break;
+        }
+    }
+    
+    private void addNews(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException 
+    {
+        String content = request.getParameter("editor1");
+    }
+    
+    private void resetPoints(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException 
+    {
+        
+    }
+    
+    private void addEvent(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException 
+    {
+        
+    }
+    
+    private void editQuiz(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException 
+    {
+        
     }
 }
