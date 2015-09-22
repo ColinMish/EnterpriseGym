@@ -102,3 +102,11 @@ and open the template in the editor.
 .col-lg-12 h1 {
    margin-left: 0.6em;
 }
+
+.pan {
+    width:15em;
+}
+
+.btns {
+    width:12em;
+}
