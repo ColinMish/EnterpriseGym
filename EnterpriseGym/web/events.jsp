@@ -155,23 +155,6 @@
                 </div>
             </div>
         
-                <%for(EventEntity event : events.values())
-        { %>
-        <%="<div class=\"col-md-4\" id=\"AboutText\">"%>
-                <%="<div class=\"panel panel-default\">"%>
-                    <%="<div class=\"panel-heading\">"%>
-                        <%="<h4><i class=\"fa fa-fw fa-check\"></i>" + event.getName() + "</h4>"%>
-                    <%="</div>"%>
-                    <%="<div class=\"panel-body\">"%>
-                        <%="<p>"%>
-                        <% String brief = event.getDescription().substring(0, 500) + "...";%>
-                            <%=brief + "</p>"%>
-                        <%="<a href=\"Events/" + event.getName() + "\" class=\"btn btn-default\">Read More</a>"%>
-                    <%="</div>"%>
-                <%="</div>"%>
-            <%="</div>"%>
-        <%}%>
-        
 </div>
 
     <!-- /.container -->
