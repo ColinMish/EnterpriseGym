@@ -34,7 +34,7 @@
                     <h4><i class="fa fa-fw fa-check"></i>News Editor</h4>
                 </div>
                 <div id="newsEditor" class="panel-body" hidden>
-                    <form action="Admin" method="POST">
+                    <form action="AddNews" method="POST">
                         <textarea name="editor1" id="editor1" rows="10" cols="80"></textarea>
                         <script>
                             CKEDITOR.replace('editornews1');

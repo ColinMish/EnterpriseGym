@@ -1,6 +1,7 @@
 package Controllers;
 
 
+import Models.AdminModel;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -16,7 +17,7 @@ import lib.Convertors;
  *
  * @author Andy
  */
-@WebServlet(name = "Admin", urlPatterns = {"/Admin"})
+@WebServlet(name = "Admin", urlPatterns = {"/Admin", "/AddNews"})
 @MultipartConfig
 public class Admin extends HttpServlet {
 
@@ -84,6 +85,10 @@ public class Admin extends HttpServlet {
             throws ServletException, IOException 
     {
         String content = request.getParameter("editor1");
+        AdminModel admin = new AdminModel();
+        
+        admin.addNewsStory(content);
+        System.out.print("News Story Added.");
     }
     
     private void resetPoints(HttpServletRequest request, HttpServletResponse response)
