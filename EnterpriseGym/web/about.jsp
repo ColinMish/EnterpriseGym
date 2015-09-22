@@ -94,7 +94,7 @@
             </div>
         
               <div class="col-md-4" id="ConnectText">
-                <div class="panel panel-default">
+                <div class="panel panel-default panabout">
                     
                         <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i><strong>Available Options</strong></h4><br>
@@ -103,9 +103,9 @@
                         <div class="panel-body">
                             <div class="usermenu">
                         
-                            <a class="btn btn-primary" href="${pageContext.request.contextPath}/Trainers">Trainers</a><br><br>
+                            <a class="btn btn-primary btns" href="${pageContext.request.contextPath}/Trainers">Trainers</a><br><br>
                             
-                            <a class="btn btn-primary" href="${pageContext.request.contextPath}/Connect">Connect</a>
+                            <a class="btn btn-primary btns" href="${pageContext.request.contextPath}/Connect">Connect</a>
                             
                             </div>
                         </div>
