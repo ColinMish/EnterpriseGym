@@ -99,3 +99,6 @@ and open the template in the editor.
   padding-bottom: 1.1em;
 }
 
+.col-lg-12 h1 {
+   margin-left: 0.6em;
+}
