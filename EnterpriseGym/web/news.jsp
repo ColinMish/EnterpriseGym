@@ -55,7 +55,7 @@
                     <div class="panel-body">
                         <p>
                         <p><%=p.getContent()%></p>
-                            <img src="${pageContext.request.contextPath}/News/Picture/<%=p.getId()%>" class="img-responsive" alt="News Image">
+                            <img src="${pageContext.request.contextPath}/News/Picture/<%=p.getId()%>" style="max-height: 100px; max-width: 100px;" class="img-responsive" alt="News Image">
                         </p>
                         <a href="News/<%=p.getId()%>" class="btn btn-default">Read More</a>
                     </div>
