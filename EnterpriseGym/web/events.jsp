@@ -13,10 +13,7 @@
     </head>
     
     <body>
-   <% if (session.getAttribute("username") == null){ %>
          <%@include file="header.jsp" %>
-   <% }else{ %>
-     <%@include file="headerloggedin.jsp" %> <%}%>
 <div class="hidden-xs">
     <%@include file="sidebar.jsp"%>
      </div>
