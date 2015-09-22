@@ -65,6 +65,7 @@ public class NewsModel {
     	    	news.setId(rs1.getInt("idnewsItem"));
     	    	news.setTitle(rs1.getString("title"));
     	    	news.setContent(rs1.getString("story"));
+                news.setLength(rs1.getInt("image_length"));
                 
 //                System.out.println(rs1.getDate("dateAdded"));
 //                String mDate = (rs1.getDate("dateAdded")).toString();            
