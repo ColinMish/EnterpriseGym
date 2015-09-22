@@ -1,8 +1,6 @@
 package Controllers;
 
 import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -11,8 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import Models.UserModel;
 import java.io.PrintWriter;
 import lib.Convertors;
@@ -46,7 +42,8 @@ public class SignUp extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request,
-            HttpServletResponse response) throws ServletException, IOException {
+            HttpServletResponse response) throws ServletException, IOException 
+    {
         RequestDispatcher dispatcher = request.getRequestDispatcher("register.jsp");
         dispatcher.forward(request, response);
     }
@@ -84,9 +81,7 @@ public class SignUp extends HttpServlet {
         String university = request.getParameter("university");
         String school = request.getParameter("school");
         String subject = request.getParameter("subject");
-        //String yearofstudy = request.getParameter("year");
         int yearofstudy = Integer.parseInt(request.getParameter("year"));
-        //System.out.println("The year of study"+yearofstudy);
         int matric = Integer.parseInt(request.getParameter("matric"));
         String saltAsString = Convertors.byteArrayToHexString(salt);
         password = Security.hashPassword(password, saltAsString);
@@ -94,8 +89,7 @@ public class SignUp extends HttpServlet {
 
         try {
             if (user.register(username, password, email, first, last, gender, country, university, school, subject, yearofstudy, matric, saltAsString) == false) {
-                RequestDispatcher dispatcher = request.getRequestDispatcher("logInFailed.jsp");
-                dispatcher.forward(request, response);
+                    request.setAttribute("registered", false);
             } else {
                 //Log the new user into the system here. 
                 request.setAttribute("registered", true);
@@ -105,21 +99,15 @@ public class SignUp extends HttpServlet {
         } catch (IOException | ServletException | IllegalArgumentException e) {
             //At this point you need to tell the user that the passwords don't match
             System.out.println("expection thrown");
-            //Reditect to the failed registration page.
-            HttpSession session = request.getSession();
-            session.setAttribute("error", "The passwords don't match.");
-            System.out.println("false, exception");
-            response.sendRedirect(request.getContextPath() + "/FailedSignUp.jsp");
+            request.setAttribute("registered", false);
         }
     }
 
     private void checkUsername(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String userName = request.getParameter("username");
         UserModel user = new UserModel();
-        Boolean a = user.checkUserExists(userName);
-        System.out.println("Controller " + a);
         try (PrintWriter out = response.getWriter()) {
-            out.print(a);
+            out.print(user.checkUserExists(userName));
             out.flush();
             out.close();
         }

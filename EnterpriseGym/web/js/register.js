@@ -10,6 +10,13 @@ var emailValid = false;
 
 $(document).ready(function () {
 
+    $("#SignUp").submit(function (e)
+    {
+        if (!usernameValid || !passwordValid || !emailValid)
+        {
+            e.preventDefault();
+        }
+    });
     ///username gain focus
     $("#username1").focus(function () {
         $("#err div").remove();
@@ -172,7 +179,7 @@ function checkUsername(username)
             message = "<div id='errMessage' class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Username is available.</p></div>";
         }
     }
-    usernameValid = exists;
+    usernameValid = !exists;
     return message;
 }
 
@@ -233,9 +240,9 @@ function validateForm()
     }
     else
     {
-                     $("#modalHeader").text("Error!");
+        $("#modalHeader").text("Error!");
         $("#modalText").text("Invalid input.");
         $('#myModal').modal('show');
-        return false;      
+        return false;
     }
 }

@@ -47,6 +47,11 @@
             </div>
         </div>  
 
+            <% 
+            if(request.getAttribute("registered") != null && !(boolean)request.getAttribute("registered"))
+            {%>
+            <div class="error"><strong><font color="red">Registration failed!</font></strong></br></br></div>
+           <% } %>
             <form onsubmit="return validateForm()" action="SignUp" role="form" id="SignUp" method="POST">
                 <div class="form-group">
                     <label for="username">Username:</label>
