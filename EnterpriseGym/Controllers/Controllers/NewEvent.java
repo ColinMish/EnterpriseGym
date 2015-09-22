@@ -86,7 +86,7 @@ public class NewEvent extends HttpServlet {
     private void CreateEvent(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String title = request.getParameter("eventTitle");
         String mDate = request.getParameter("eventDate");
-        DateFormat format = new SimpleDateFormat("dd-mm-yyyy", Locale.ENGLISH);
+        DateFormat format = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
         java.util.Date utilDate;
         java.sql.Date date = new java.sql.Date(2000, 01, 01);
         
