@@ -29,6 +29,7 @@
     <link href="${pageContext.request.contextPath}/css/flags.css" rel="stylesheet">
 
     <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <script src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
 
@@ -96,6 +97,10 @@
                      <li><a href="${pageContext.request.contextPath}/Profile/Points">Points</a></li>
                      <li><a href="${pageContext.request.contextPath}/Quizes">Online Tests</a></li>
                      <li><a href="${pageContext.request.contextPath}/Profile/EditProfile">Edit Profile</a></li>
+                     <% if(account.hasAccessLevel(1))
+                     {%>
+                     <li><a href="${pageContext.request.contextPath}/Stats">Graphs and charts</a></li>
+                     <%}%>
                       </ul>
                     </li>
       
@@ -224,7 +229,7 @@ $(document).ready(function() {
             wrap:false
         });
     });
-});?
+});
 </script>
 </body>
 </html>

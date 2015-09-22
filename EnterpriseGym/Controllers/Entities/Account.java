@@ -12,7 +12,7 @@ import java.util.LinkedList;
  * @author Dave
  */
 public class Account {
-    
+
     private String username;
     private LinkedList accessLevel;
 
@@ -36,6 +36,8 @@ public class Account {
     public void setAccessLevel(LinkedList accessLevel) {
         this.accessLevel = accessLevel;
     }
-    
-    
+
+    public boolean hasAccessLevel(int level) {
+        return accessLevel.contains(level);
+    }
 }
