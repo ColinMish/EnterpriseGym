@@ -17,9 +17,7 @@
     </head>
 </body>
       <%@include file="header.jsp" %>
-    <div class="hidden-xs">
-        <%@include file="sidebar.jsp"%>
-    </div>
+      <%@include file="sidebar.jsp"%>
     
     <!-- Page Content -->
      <div class="container">
@@ -35,7 +33,7 @@
         <%for(NewsEntity story : storys.values())
         { %>
         <%="<div class=\"col-md-4\" id=\"AboutText\">"%>
-                <%="<div class=\"panel panel-default\">"%>
+                <%="<div class=\"panel panel-default panelmobile\">"%>
                     <%="<div class=\"panel-heading\">"%>
                         <%="<h4><i class=\"fa fa-fw fa-check\"></i>" + story.getTitle() + "</h4>"%>
                     <%="</div>"%>

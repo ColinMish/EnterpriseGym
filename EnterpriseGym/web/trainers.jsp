@@ -11,13 +11,12 @@
     
     <head>
       <link href='css/style.css' rel='stylesheet' type='text/css'>
+      <link href='css/media.css' rel='stylesheet' type='text/css'>
     </head>
     
     <body>
     <%@include file="header.jsp" %>
-    <div class="hidden-xs">
-        <%@include file="sidebar.jsp"%>
-    </div>
+    <%@include file="sidebar.jsp"%>
      
         <div class="hidden-xs">
     <%@include file="sidebar.jsp"%>
@@ -34,7 +33,7 @@
         </div>
     
         <div class="col-md-12" id="ConnectText">
-                <div class="panel panel-default">
+                <div class="panel panel-default panelmobile">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i>Patrons</h4>
                     </div>

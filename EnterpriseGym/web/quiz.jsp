@@ -9,11 +9,14 @@
 <%@page import="Entities.QuizEntity" %>
 <!DOCTYPE html>
 <html>
-       <%@include file="header.jsp" %>
-    <div class="hidden-xs">
-        <%@include file="sidebar.jsp"%>
-    </div>
+    <head>
+      <link href='css/profile.css' rel='stylesheet' type='text/css'>
+      <link href='css/media.css' rel='stylesheet' type='text/css'>
+    </head>
     
+       <%@include file="header.jsp" %>
+       <%@include file="sidebar.jsp"%>
+
     <script src="${pageContext.request.contextPath}/js/quiz.js"></script>
     <% QuizEntity quiz = (QuizEntity) request.getAttribute("quiz");%>
     <!--Content-->
@@ -45,7 +48,7 @@
         </div>
 
         <div class="col-md-8" id="ConnectText">
-            <div class="panel panel-default">
+            <div class="panel panel-default panelmobile">
                 <div class="panel-heading">
                     <h4 id="quizTitle"><i class="fa fa-fw fa-check"></i><strong><%=quiz.getQuizTitle()%></strong></h4><br>
                 </div>

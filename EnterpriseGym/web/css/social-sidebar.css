@@ -99,8 +99,8 @@
 
 @media(min-width:768px) {
     #sidebar-wrapper {
-        width: 4.5em;
-        left: 17.8em;
+        width: 4.3em !important;
+        left: 17.3em !important;
     }
 
     #page-content-wrapper {

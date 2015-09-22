@@ -8,11 +8,13 @@
 <% LinkedList<String> quizNames = (LinkedList) request.getAttribute("quizNames"); %>
 <!DOCTYPE html>
 <html>
+    <head>
+      <link href='css/profile.css' rel='stylesheet' type='text/css'>
+      <link href='css/media.css' rel='stylesheet' type='text/css'>
+    </head>
     <body>
     <%@include file="header.jsp" %>
-    <div class="hidden-xs">
-        <%@include file="sidebar.jsp"%>
-    </div>
+    <%@include file="sidebar.jsp"%>
         
      <div class="hidden-xs">
     <%@include file="sidebar.jsp"%>
@@ -29,7 +31,7 @@
         </div>
     
         <div class="col-md-12" id="ConnectText">
-                <div class="panel panel-default">
+                <div class="panel panel-default panelmobile">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i><strong>Theory</strong></h4><br>
                     </div>

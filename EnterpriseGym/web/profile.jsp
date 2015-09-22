@@ -11,12 +11,11 @@
 <html>
     <head>
       <link href='css/profile.css' rel='stylesheet' type='text/css'>
+      <link href='css/media.css' rel='stylesheet' type='text/css'>
     </head>
     <body>
     <%@include file="header.jsp" %>
-    <div class="hidden-xs">
-        <%@include file="sidebar.jsp"%>
-    </div>
+    <%@include file="sidebar.jsp"%>
     
             <!-- Page Content -->
     <div class="container">
@@ -30,7 +29,7 @@
         
         
         <div class="col-md-4" id="ConnectText">
-                <div class="panel panel-default">
+                <div class="panel panel-default panelmobile">
                     
                         <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i><strong></strong></h4><br>
@@ -54,7 +53,7 @@
         
             
         <div class="col-md-8" id="ConnectText">
-                <div class="panel panel-default">
+                <div class="panel panel-default panelmobile">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i><strong>Account Details</strong></h4><br>
                     </div>

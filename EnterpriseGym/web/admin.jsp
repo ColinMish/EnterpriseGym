@@ -10,14 +10,13 @@
     
     <head>
         <link href='css/style.css' rel='stylesheet' type='text/css'>
+        <link href='css/media.css' rel='stylesheet' type='text/css'>
         <script src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
     </head> 
    
     <body>
     <%@include file="header.jsp" %>
-    <div class="hidden-xs">
-        <%@include file="sidebar.jsp"%>
-    </div>
+    <%@include file="sidebar.jsp"%>
     
     <% Boolean storyAdded = (Boolean) request.getAttribute("storyAdded"); %>
     <% Boolean storyNotAdded = (Boolean) request.getAttribute("storyNotAdded"); %>
@@ -73,7 +72,7 @@
             });
         </script>
         <div class="col-md-12">
-            <div class="panel panel-default">
+            <div class="panel panel-default panelmobile">
                 <div class="panel-heading" id="userPanel">
                     <h4><i class="fa fa-fw fa-check"></i>User Management</h4>
                 </div>
@@ -100,7 +99,7 @@
             });
         </script>
         <div class="col-md-12">
-            <div class="panel panel-default">
+            <div class="panel panel-default panelmobile">
                 <div class="panel-heading" id="eventsPanel">
                     <h4><i class="fa fa-fw fa-check"></i>Events Management</h4>
                 </div>
@@ -116,7 +115,7 @@
             });
         </script>
         <div class="col-md-12">
-            <div class="panel panel-default">
+            <div class="panel panel-default panelobile">
                 <div class="panel-heading" id="quizPanel">
                     <h4><i class="fa fa-fw fa-check"></i>Quiz Management</h4>
                 </div>

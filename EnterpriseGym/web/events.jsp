@@ -17,9 +17,8 @@
          <%@include file="header.jsp" %>
    <% }else{ %>
      <%@include file="headerloggedin.jsp" %> <%}%>
-<div class="hidden-xs">
-    <%@include file="sidebar.jsp"%>
-     </div>
+     <%@include file="sidebar.jsp"%>
+
      <%@page import="java.util.Map"%>
     <%@page import="java.util.HashMap"%>
     <%@page import="Entities.EventEntity" %>
@@ -36,7 +35,7 @@
         </div>
         
         <div class="col-md-4">
-                <div class="panel panel-default">
+                <div class="panel panel-default panelmobile">
                     
                     <div class="panel-body">
                         <strong>The Enterprise Gym</strong> runs a wide range of activities, including a the&nbsp;<a id="redlink" href="http://www.enterprise-gym.com/activities/discovery-challenge">Enterprise Challenge, </a>conferences, and special one-off events. Participating students have the chance to win a range of <a id="redlink" href="http://www.enterprise-gym.com/activities/awards">awards</a> including our prestigious <em>?Platinum?</em> award, and the title of <em>?Enterprise Gym Champion?</em> ? both presented at our exclusive Annual Awards Dinner.</p>
@@ -54,7 +53,7 @@
             </div>
         
             <div class="col-md-4">
-                <div class="panel panel-default">
+                <div class="panel panel-default panelmobile">
                     <div class="panel-body">
                         <h2>
                 <span style="text-decoration: underline;"><strong>Events</strong></span></h2>
@@ -98,7 +97,7 @@
             
         
               <div class="col-md-4">
-                <div class="panel panel-default">
+                <div class="panel panel-default panelmobile">
 
                     <div class="panel-body">
                       <h2>
@@ -114,7 +113,7 @@
         
         
                       <div class="col-md-4">
-                <div class="panel panel-default">
+                <div class="panel panel-default panelmobile">
 
                     <div class="panel-body">
                        <h2>
@@ -128,7 +127,7 @@
         
         
                       <div class="col-md-4">
-                <div class="panel panel-default">
+                <div class="panel panel-default panelmobile">
 
                     <div class="panel-body">
                        <h2>
@@ -143,7 +142,7 @@
             </div>
         
          <div class="col-md-4">
-                <div class="panel panel-default">
+                <div class="panel panel-default panelmobile">
 
                     <div class="panel-body">
                        <h2>
