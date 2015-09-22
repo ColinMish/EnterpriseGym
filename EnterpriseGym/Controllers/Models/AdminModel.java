@@ -40,4 +40,28 @@ public class AdminModel {
             return false;
         }
     }
+    
+    public boolean resetPoints()
+    {
+        Connection con = null;
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+
+            PreparedStatement ps = null;
+            PreparedStatement resetPoints = null;
+
+            String ResetAllPoints = "UPDATE user SET action_points=0, practice_points=0, virtual_points=0, project_points=0, theory_points=0";
+            resetPoints = con.prepareStatement(ResetAllPoints);
+            //resetPoints.setString();
+            resetPoints.executeUpdate();
+            return true;
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+             System.out.println("expection thrown");
+             System.out.println("false, exception");
+             e.printStackTrace();
+            return false;
+        }
+    }
 }

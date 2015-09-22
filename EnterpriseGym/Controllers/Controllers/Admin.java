@@ -17,7 +17,7 @@ import lib.Convertors;
  *
  * @author Andy
  */
-@WebServlet(name = "Admin", urlPatterns = {"/Admin", "/AddNews"})
+@WebServlet(name = "Admin", urlPatterns = {"/Admin", "/AddNews", "/ResetPoints"})
 @MultipartConfig
 public class Admin extends HttpServlet {
 
@@ -48,7 +48,7 @@ public class Admin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
-                  RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
                 dispatcher.forward(request, response);
     }
 
@@ -89,18 +89,35 @@ public class Admin extends HttpServlet {
         
         if(admin.addNewsStory(content)==true)
         {
-              System.out.println("News Story Added.");
+            request.setAttribute("storyAdded", true);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
+            dispatcher.forward(request, response);
+            System.out.println("News Story Added.");
         }else{
+            request.setAttribute("storyNotAdded", true);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
+            dispatcher.forward(request, response);
             System.out.println("News Story failed");
         }
-        
-      
     }
     
     private void resetPoints(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
+        AdminModel admin = new AdminModel();
         
+        if(admin.resetPoints()==true)
+        {
+            request.setAttribute("pointsReset", true);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
+            dispatcher.forward(request, response);
+            System.out.println("Points Successfully Reset.");
+        }else{
+            request.setAttribute("pointsNotReset", true);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
+            dispatcher.forward(request, response);
+            System.out.println("Error Resetting Points.");
+        }
     }
     
     private void addEvent(HttpServletRequest request, HttpServletResponse response)

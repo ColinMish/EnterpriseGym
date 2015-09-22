@@ -19,12 +19,27 @@
         <%@include file="sidebar.jsp"%>
     </div>
     
+    <% Boolean storyAdded = (Boolean) request.getAttribute("storyAdded"); %>
+    <% Boolean storyNotAdded = (Boolean) request.getAttribute("storyNotAdded"); %>
+    
+    <% Boolean pointsReset = (Boolean) request.getAttribute("pointsReset"); %>
+    <% Boolean pointsNotReset = (Boolean) request.getAttribute("pointsNotReset"); %>
+    
     <!-- Page Content -->
     <div class="container">
 
         <div class="row">
             <div class="col-lg-12">
                 <h1>Admin Panel</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <% if(storyAdded != null) { %> <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>News Story Posted Successfully.</p></div> <% } %>
+                <% if(storyNotAdded != null) { %> <div class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Error Posting News Story.</p></div> <% } %>
+                
+                <% if(pointsReset != null) { %> <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Points Successfully Reset.</p></div> <% } %>
+                <% if(pointsNotReset != null) { %> <div class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Error Resetting Points.</p></div> <% } %>
             </div>
         </div>
         
@@ -37,7 +52,7 @@
                     <form action="AddNews" method="POST">
                         <textarea name="editor1" id="editor1" rows="10" cols="80"></textarea>
                         <script>
-                            CKEDITOR.replace('editornews1');
+                            CKEDITOR.replace('editor1');
                         </script>
                         <br/>
                         <input class="btn btn-default" type="submit" value="Create Post">
@@ -57,7 +72,10 @@
                     <h4><i class="fa fa-fw fa-check"></i>User Management</h4>
                 </div>
                 <div id="userEditor" class="panel-body" hidden>
-                    <div class="alert-danger">Warning: The button below will reset the points of all users in the database.</div>
+                    <div class='alert alert-danger'>Warning: The button below will reset the points of all users in the database.</div>
+                    <form action="ResetPoints" method="POST">
+                        <input class="btn btn-default" type="submit" value="Reset ALL Points">
+                    </form>
                 </div>
             </div>
         </div>
