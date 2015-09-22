@@ -42,24 +42,21 @@ $(document).ready(function ()
 
     function LogIn(password, username)
     {
-        var returnValue = $.ajax({
+        var returnValue = false;
+        $.ajax({
             type: "POST",
             url: "LogIn",
             async: false,
             data: {password: password, username: username},
             cache: false,
             success: function (result) {
-                if (result === "failed")
+                if (result === "success")
                 {
-                    return false;
+                    returnValue = true;
                 }
-                else if (result === "success")
-                {
-                    return true;
-                } 
             },
             fail: function () {
-                return false;
+                console.log("Ajax error");
             }
         });
         return returnValue;
