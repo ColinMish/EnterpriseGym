@@ -43,7 +43,7 @@ public class EventModel {
 
         PreparedStatement ps2 = null;
 
-        String sqlOption = "INSERT INTO event (title,decription,date,theme_idtheme) VALUES (?,?,?,?)";
+        String sqlOption = "INSERT INTO event (title,description,date,theme_idtheme) VALUES (?,?,?,?)";
         ps2 = con.prepareStatement(sqlOption);
         ps2.setString(1, title);
         ps2.setString(2, description);
