@@ -9,7 +9,7 @@
 <%@page import="java.util.HashMap"%>
 <%@page import="Entities.NewsEntity" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
- <% Map<String, NewsEntity> storys = (HashMap) request.getAttribute("Storys"); %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,24 +30,7 @@
                 <p></p>
             </div>
         </div>
-    
-    
-        <%for(NewsEntity story : storys.values())
-        { %>
-        <%="<div class=\"col-md-4\" id=\"AboutText\">"%>
-                <%="<div class=\"panel panel-default\">"%>
-                    <%="<div class=\"panel-heading\">"%>
-                        <%="<h4><i class=\"fa fa-fw fa-check\"></i>" + story.getTitle() + "</h4>"%>
-                    <%="</div>"%>
-                    <%="<div class=\"panel-body\">"%>
-                        <%="<p>"%>
-                        <% String brief = story.getContent().substring(0, 500) + "...";%>
-                            <%=brief + "</p>"%>
-                        <%="<a href=\"News/" + story.getTitle() + "\" class=\"btn btn-default\">Read More</a>"%>
-                    <%="</div>"%>
-                <%="</div>"%>
-            <%="</div>"%>
-        <%}%>
+
     </div>
     <%@include file ="footer.jsp" %>
     </body>
