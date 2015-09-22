@@ -2,6 +2,7 @@ package Controllers;
 
 
 import Entities.EventEntity;
+import Models.EventModel;
 import java.io.IOException;
 import java.util.HashMap;
 import javax.servlet.RequestDispatcher;
@@ -25,12 +26,24 @@ public class Events extends HttpServlet {
      * Constructor
      */
     private HashMap eventItems;
+    private EventModel eventModel = new EventModel();
+    private java.util.LinkedList<EventEntity> eventList = new java.util.LinkedList<>();
+    
     
     public Events() 
     {
         this.eventItems = new HashMap();
 
-        //TODO: Populate eventItems with events from the database
+        eventList = eventModel.getAllEvents();
+        
+        if (!eventList.isEmpty()){
+            for (int i = 0; i < eventList.size(); i++) {
+                EventEntity myEventItem = new EventEntity();
+                myEventItem = eventList.get(i);
+                eventItems.put(myEventItem.getName(), myEventItem);
+            }
+        }
+        
     }
 
     /**
