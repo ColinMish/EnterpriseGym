@@ -17,7 +17,7 @@ import lib.Convertors;
  *
  * @author Andy
  */
-@WebServlet(name = "Admin", urlPatterns = {"/Admin", "/AddNews", "/ResetPoints"})
+@WebServlet(name = "Admin", urlPatterns = {"/Admin", "/AddNews", "/ResetPoints", "/DeleteUser"})
 @MultipartConfig
 public class Admin extends HttpServlet {
 
@@ -72,6 +72,9 @@ public class Admin extends HttpServlet {
             case "ResetPoints":
                 resetPoints(request, response);
                 break;
+            case "DeleteUser":
+                deleteUser(request, response);
+                break;
             case "AddEvent":
                 addEvent(request, response);
                 break;
@@ -117,6 +120,26 @@ public class Admin extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
             dispatcher.forward(request, response);
             System.out.println("Error Resetting Points.");
+        }
+    }
+    
+    private void deleteUser(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException 
+    {
+        String username = request.getParameter("usernameField");
+        AdminModel admin = new AdminModel();
+        
+        if(admin.deleteUser(username)==true)
+        {
+            request.setAttribute("accountDeleted", true);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
+            dispatcher.forward(request, response);
+            System.out.println("Account Successfully Deleted.");
+        }else{
+            request.setAttribute("accountNotDeleted", true);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
+            dispatcher.forward(request, response);
+            System.out.println("Error Deleting Account.");
         }
     }
     

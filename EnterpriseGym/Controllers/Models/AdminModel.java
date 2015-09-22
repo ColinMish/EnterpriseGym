@@ -54,8 +54,38 @@ public class AdminModel {
 
             String ResetAllPoints = "UPDATE user SET action_points=0, practice_points=0, virtual_points=0, project_points=0, theory_points=0";
             resetPoints = con.prepareStatement(ResetAllPoints);
-            //resetPoints.setString();
             resetPoints.executeUpdate();
+            return true;
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+             System.out.println("expection thrown");
+             System.out.println("false, exception");
+             e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public boolean deleteUser(String username)
+    {
+        Connection con = null;
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+
+            PreparedStatement ps = null;
+            PreparedStatement disableFKCheck = null;
+            PreparedStatement deleteUser = null;
+            PreparedStatement enableFKCheck = null;
+
+            String DisableFKCheck = "SET FOREIGN_KEY_CHECKS=0";
+            String DeleteUser = "DELETE a.*, u.* FROM account a INNER JOIN user u ON a.idaccount = u.account_idaccount WHERE a.username='" + username + "'";
+            String EnableFKCheck = "SET FOREIGN_KEY_CHECKS=1";
+            disableFKCheck = con.prepareStatement(DisableFKCheck);
+            disableFKCheck.executeUpdate();
+            deleteUser = con.prepareStatement(DeleteUser);
+            deleteUser.executeUpdate();
+            enableFKCheck = con.prepareStatement(EnableFKCheck);
+            enableFKCheck.executeUpdate();
             return true;
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
              System.out.println("expection thrown");

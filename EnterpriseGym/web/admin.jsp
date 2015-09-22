@@ -25,6 +25,9 @@
     <% Boolean pointsReset = (Boolean) request.getAttribute("pointsReset"); %>
     <% Boolean pointsNotReset = (Boolean) request.getAttribute("pointsNotReset"); %>
     
+    <% Boolean accountDeleted = (Boolean) request.getAttribute("accountDeleted"); %>
+    <% Boolean accountNotDeleted = (Boolean) request.getAttribute("accountNotDeleted"); %>
+    
     <!-- Page Content -->
     <div class="container">
 
@@ -40,6 +43,9 @@
                 
                 <% if(pointsReset != null) { %> <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Points Successfully Reset.</p></div> <% } %>
                 <% if(pointsNotReset != null) { %> <div class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Error Resetting Points.</p></div> <% } %>
+                
+                <% if(accountDeleted != null) { %> <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Account Successfully Deleted.</p></div> <% } %>
+                <% if(accountNotDeleted != null) { %> <div class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Error Deleting Account.</p></div> <% } %>
             </div>
         </div>
         
@@ -72,9 +78,17 @@
                     <h4><i class="fa fa-fw fa-check"></i>User Management</h4>
                 </div>
                 <div id="userEditor" class="panel-body" hidden>
-                    <div class='alert alert-danger'>Warning: The button below will reset the points of all users in the database.</div>
+                    <div class='alert alert-danger'>Warning: The button below will reset the points of all users in the database. This action cannot be reversed.</div>
                     <form action="ResetPoints" method="POST">
-                        <input class="btn btn-default" type="submit" value="Reset ALL Points">
+                        <input class="btn btn-danger" type="submit" value="Reset ALL Points">
+                    </form>
+                    <br/>
+                    <div class='alert alert-danger'>Warning: The form below will completely remove the specified account from the database. This action cannot be reversed.</div>
+                    <form action="DeleteUser" method="POST">
+                        <label for="usernameField">Username:</label>
+                        <input name="usernameField" type="text" class="form-control" id="usernameField" maxlength="45" required/>
+                        <br/>
+                        <input class="btn btn-danger" type="submit" value="Delete Account">
                     </form>
                 </div>
             </div>
