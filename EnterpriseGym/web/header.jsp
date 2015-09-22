@@ -88,12 +88,16 @@
                             <a id="head" href="${pageContext.request.contextPath}/Activities">Activities</a>
                         </li>
                         <%if (loggedIn) {%>
-                        <li class="quizesButton${pageContext.request.getServletPath() eq '/quizes.jsp' ? ' active' : ''}">
-                            <a id="head" href="${pageContext.request.contextPath}/Quizes">Online Tests</a>
-                        </li>
-                        <li class="profileButton${pageContext.request.getServletPath() eq '/profile.jsp' ? ' active' : ''}">
-                            <a id="head" href="${pageContext.request.contextPath}/Profile">My eGym</a>
-                        </li>
+                           <li class="dropdown">
+                    <a href="" id="head" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My eGym <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                     <li><a href="${pageContext.request.contextPath}/Profile">Profile</a></li>
+                     <li><a href="${pageContext.request.contextPath}/Profile/Points">Points</a></li>
+                     <li><a href="${pageContext.request.contextPath}/Quizes">Online Tests</a></li>
+                     <li><a href="${pageContext.request.contextPath}/Profile/EditProfile">Edit Profile</a></li>
+                      </ul>
+                    </li>
+      
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">        
