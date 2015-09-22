@@ -96,10 +96,10 @@ public class EventModel {
 
 
             ResultSet rs = ps1.executeQuery();
-            EventEntity event = new EventEntity();
             
             
             while (rs.next()) {
+                EventEntity event = new EventEntity();
                 event.setName(rs.getString("title"));
                 System.out.println("Event name: " + event.getName());
                 event.setEvent_type(rs.getInt("theme_idtheme"));
