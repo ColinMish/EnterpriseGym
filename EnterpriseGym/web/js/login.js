@@ -16,13 +16,14 @@ $(document).ready(function ()
         e.preventDefault();
         var username = $("#un").val();
         var password = $("#pw").val();
+        console.log(loginCount);
         if (username === '' || password === '')
         {
             $("#invalid").show();
         }
         else if (loginCount === 3)
         {
-            $("#forgotPassword").show();
+            $(".forgotPassword").show();
             loginCount = 0;
         }
         else

@@ -9,11 +9,14 @@
 
 
     <%@include file="header.jsp" %>
+    <script src="${pageContext.request.contextPath}/js/login.js"></script>
     <div class="hidden-xs">
         <%@include file="sidebar.jsp"%>
-        <script src="${pageContext.request.contextPath}/js/login.js"></script>
     </div>
-    <% Boolean registered = (Boolean) request.getAttribute("registered"); %>  
+    
+    <% 
+    Boolean registered = (Boolean) request.getAttribute("registered"); 
+    %>  
 
     <!-- Page Content -->
     <div class="container">
@@ -36,7 +39,7 @@
                 <label for="password">Password:</label>
                 <input name="password" type="password" class="form-control" id="pw" maxlength="45" required/>
             </div>
-            <div class="forgotPassword"><a href="#">Have you forgotten your password?</a></div>
+            <div class="forgotPassword"><a href="ResetPassword">Have you forgotten your password?</a></div>
             <input type="submit" value="SignIn" class="btn btn-default"/>
         </form>                        
     </div>
