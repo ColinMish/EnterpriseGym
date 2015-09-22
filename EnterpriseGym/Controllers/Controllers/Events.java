@@ -26,15 +26,18 @@ public class Events extends HttpServlet {
      * Constructor
      */
     private HashMap eventItems;
-    private EventModel eventModel = new EventModel();
-    private java.util.LinkedList<EventEntity> eventList = new java.util.LinkedList<>();
+    private EventModel eventModel;
+    private java.util.LinkedList<EventEntity> eventList;
     
     
     public Events() 
     {
         this.eventItems = new HashMap();
+        this.eventModel = new EventModel();
+        this.eventList = new java.util.LinkedList<>();
 
         eventList = eventModel.getAllEvents();
+        System.out.println("EventList: " + eventList);
         
         if (!eventList.isEmpty()){
             for (int i = 0; i < eventList.size(); i++) {

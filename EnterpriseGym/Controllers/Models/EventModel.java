@@ -76,7 +76,7 @@ public class EventModel {
 
     }
     
-    public java.util.LinkedList<EventEntity> getAllEvents(String title) {
+    public java.util.LinkedList<EventEntity> getAllEvents() {
         java.util.LinkedList<EventEntity> eventdetails = new java.util.LinkedList<>();
 
         Connection con = null;
@@ -85,32 +85,32 @@ public class EventModel {
             con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
 
             PreparedStatement ps1 = null;
-            String sqlOption1 = "SELECT * FROM event WHERE title=?";
+            String sqlOption1 = "SELECT * FROM event";
 
             ps1 = con.prepareStatement(sqlOption1);
-            ps1.setString(1, title);
 
             ResultSet rs1 = ps1.executeQuery();
             rs1.next();
             int id = rs1.getInt("idevent");
             System.out.println("The id is:" + id);
 
-            PreparedStatement ps = null;
-            String sqlOption = "SELECT * FROM event WHERE idevent=?";
 
-            ps = con.prepareStatement(sqlOption);
-            ps.setInt(1, id);
-
-            ResultSet rs = ps.executeQuery();
+            ResultSet rs = ps1.executeQuery();
             EventEntity event = new EventEntity();
-            rs.next();
-            event.setName(rs.getString("name"));
-            event.setEvent_type(rs.getInt("event_type"));
-            event.setDescription(rs.getString("description"));
-            event.setPoints_given(rs.getInt("points_given"));
-            event.setDateTime(rs.getDate("dateTime"));
-            event.setLocation(rs.getString("location"));
-            eventdetails.add(event);
+            
+            
+            while (rs.next()) {
+                event.setName(rs.getString("title"));
+                System.out.println("Event name: " + event.getName());
+                event.setEvent_type(rs.getInt("theme_idtheme"));
+                event.setDescription(rs.getString("description"));
+                //TODO get points value from theme table
+                //event.setPoints_given(rs.getInt("points_given"));
+                event.setDateTime(rs.getDate("date"));
+                //TODO add event location to database
+                //event.setLocation(rs.getString("location"));
+                eventdetails.add(event);
+            }
 
             return eventdetails;
 
