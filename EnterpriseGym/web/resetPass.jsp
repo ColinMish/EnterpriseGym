@@ -7,11 +7,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
+    <head>
+        <link href='css/media.css' rel='stylesheet' type='text/css'>
+    </head>
     <%@include file="header.jsp" %>
     <script src="${pageContext.request.contextPath}/js/resetPassword.js"></script>
-    <div class="hidden-xs">
-        <%@include file="sidebar.jsp"%>
+    <div class ="mobile">
+    <%@include file="sidebar.jsp"%>
     </div>
 
 

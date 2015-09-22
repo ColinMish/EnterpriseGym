@@ -7,11 +7,13 @@
 <!DOCTYPE html>
 <html>
 
-     
+    <head>
+        <link href='css/media.css' rel='stylesheet' type='text/css'>
+    </head>
     <%@include file="header.jsp" %>
-    <div class="hidden-xs">
-     <%@include file="sidebar.jsp"%>
-     </div>
+    <div class ="mobile">
+    <%@include file="sidebar.jsp"%>
+    </div>
      <% Boolean registered = (Boolean) request.getAttribute("registered"); %>
      <% Boolean loginfailed =(Boolean) request.getAttribute("failed"); %>
      <% Boolean invalid =(Boolean) request.getAttribute("invalid");%>

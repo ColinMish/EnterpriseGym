@@ -9,8 +9,8 @@
 <!DOCTYPE html>
 <html>
     <%@include file="header.jsp" %>
-    <div class="hidden-xs">
-        <%@include file="sidebar.jsp"%>
+    <div class ="mobile">
+    <%@include file="sidebar.jsp"%>
     </div>
    
     <% EventEntity eventItem = (EventEntity) request.getAttribute("eventItem"); %>

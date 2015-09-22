@@ -11,7 +11,9 @@
         <link href="${pageContext.request.contextPath}/css/media.css" rel="stylesheet">
     </head>
     <%@include file="header.jsp" %>
+    <div class ="mobile">
     <%@include file="sidebar.jsp"%>
+    </div>
 
      
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>

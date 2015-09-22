@@ -22,8 +22,12 @@ and open the template in the editor.
             margin-left: 0.8em;
         }
         
-        .panelabout{
+        .panelmobile{
             margin-left:1em;
+        }
+        
+        .mobile{
+            display:none;
         }
     }
     
@@ -47,7 +51,9 @@ and open the template in the editor.
             height:6em;
             width:12em;
         }
-        
+        .mobile{
+            display:none;
+        }
     } 
       
     

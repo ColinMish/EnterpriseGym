@@ -10,13 +10,14 @@
     
     <head>
         <link href='css/style.css' rel='stylesheet' type='text/css'>
+        <link href='css/media.css' rel='stylesheet' type='text/css'>
         <script src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
     </head> 
    
     <body>
     <%@include file="header.jsp" %>
-    <div class="hidden-xs">
-        <%@include file="sidebar.jsp"%>
+    <div class ="mobile">
+    <%@include file="sidebar.jsp"%>
     </div>
     
     <% Boolean storyAdded = (Boolean) request.getAttribute("storyAdded"); %>
