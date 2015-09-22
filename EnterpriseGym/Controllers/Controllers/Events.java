@@ -85,7 +85,7 @@ public class Events extends HttpServlet {
             String key = parts[3].replace("%20", " ");
             EventEntity eventItem = (EventEntity)eventItems.get(key);
             request.setAttribute("Events", eventItem);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/eventItems.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/eventStory.jsp");
             dispatcher.forward(request, response);
         }
     }
