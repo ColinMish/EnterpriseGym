@@ -76,10 +76,50 @@ public class EventModel {
 
     }
     
-    public List<EventEntity>GetAllEvents()
-    {
-        List<EventEntity> eventList = new LinkedList();
-        return eventList;
+    public java.util.LinkedList<EventEntity> getAllEvents(String title) {
+        java.util.LinkedList<EventEntity> eventdetails = new java.util.LinkedList<>();
+
+        Connection con = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+
+            PreparedStatement ps1 = null;
+            String sqlOption1 = "SELECT * FROM event WHERE title=?";
+
+            ps1 = con.prepareStatement(sqlOption1);
+            ps1.setString(1, title);
+
+            ResultSet rs1 = ps1.executeQuery();
+            rs1.next();
+            int id = rs1.getInt("idevent");
+            System.out.println("The id is:" + id);
+
+            PreparedStatement ps = null;
+            String sqlOption = "SELECT * FROM event WHERE idevent=?";
+
+            ps = con.prepareStatement(sqlOption);
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+            EventEntity event = new EventEntity();
+            rs.next();
+            event.setName(rs.getString("name"));
+            event.setEvent_type(rs.getInt("event_type"));
+            event.setDescription(rs.getString("description"));
+            event.setPoints_given(rs.getInt("points_given"));
+            event.setDateTime(rs.getDate("dateTime"));
+            event.setLocation(rs.getString("location"));
+            eventdetails.add(event);
+
+            return eventdetails;
+
+        } catch (Exception e) {
+            System.out.println("connection to db failed");
+            e.printStackTrace();
+            return null;
+
+        }
     }
     
     public EventEntity GetEventByName(String name)

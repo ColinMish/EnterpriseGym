@@ -25,6 +25,10 @@ public class EventEntity {
 
     }
     
+    public EventEntity()
+    {
+    }
+    
     public void setName(String new_name){
         name = new_name;
     }
