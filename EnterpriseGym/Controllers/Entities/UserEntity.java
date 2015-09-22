@@ -218,6 +218,72 @@ public class UserEntity {
       return action_points+practice_points+theory_points+virtual_points+project_points;
     }
    
+   public int getProjectPercentage(){
+        float ap = project_points;
+       int percent =0;
+       float points = ap/70;  
+       points = points *100;    
+       percent = (int)points;
+       if(percent>100)
+       {
+           return 100;
+       }
+       return percent;
+   }
+   
+   public int getActionPercentage(){
+       float ap = action_points;
+       int percent =0;
+       float points = ap/70;  
+       points = points *100;    
+       percent = (int)points;       
+       if(percent>100)
+       {
+           return 100;
+       }
+       
+       return percent;
+   }
+   
+   public int getVirtualPercentage(){
+        float ap = virtual_points;
+       int percent =0;
+       float points = ap/70;  
+       points = points *100;    
+       percent = (int)points;
+       if(percent>100)
+       {
+           return 100;
+       }
+       return percent;
+   }
+   
+   public int getPracticePercentage(){
+        float ap = practice_points;
+       int percent =0;
+       float points = ap/70;  
+       points = points *100;    
+       percent = (int)points;
+       if(percent>100)
+       {
+           return 100;
+       }
+       return percent;
+   }
+   
+   public int getTheoryPercentage(){
+        float ap = theory_points;
+       int percent =0;
+       float points = ap/70;  
+       points = points *100;    
+       percent = (int)points;
+       if(percent>100)
+       {
+           return 100;
+       }
+       return percent;
+   }
+   
    //Set methods for the points. 
    public void setActionPoints(int new_actionpoints){
        action_points = new_actionpoints;

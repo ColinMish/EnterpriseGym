@@ -10,7 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import lib.Convertors;
+import lib.Security;
 
 /**
  *
@@ -43,8 +43,9 @@ public class ResetPassword extends HttpServlet {
         if(pass1.equals(pass2)){
             
             /* Encrypt password */           
-          String pass = Convertors.toSHA1(pass1.getBytes("UTF-8"));
-          
+
+          String pass = Security.toSHA2(pass1.getBytes("UTF-8"));
+
           reset.resetPass(e, pass);
            
           response.sendRedirect(request.getContextPath()+"/LogIn.jsp");
