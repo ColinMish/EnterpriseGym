@@ -23,8 +23,7 @@ public class News extends HttpServlet {
     /**
      * Constructor
      */
-    private HashMap newsStories;
-    
+   
     public News() 
     {
 
@@ -50,8 +49,9 @@ public class News extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        
-        
+        //Get the 6 most recent stories then show them to the user on the news page. 
 
+        
             RequestDispatcher dispatcher = request.getRequestDispatcher("news.jsp");
             dispatcher.forward(request, response);
 

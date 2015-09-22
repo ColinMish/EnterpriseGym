@@ -87,13 +87,14 @@ public class Admin extends HttpServlet {
             throws ServletException, IOException 
     {
         String content = request.getParameter("editor1");
+        String title = request.getParameter("title");
         AdminModel admin = new AdminModel();
         
         InputStream inputStream = null;
         Part filePart = request.getPart("image");
         
         
-        if(admin.addNewsStory(filePart,content)==true)
+        if(admin.addNewsStory(filePart,content,title)==true)
         {
               System.out.println("News Story Added.");
         }else{

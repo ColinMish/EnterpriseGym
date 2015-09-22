@@ -13,6 +13,7 @@ public class EventEntity {
     int event_type, points_given;
     List <UserEntity> participants;
     Date dateTime;
+    int id;
     
     public EventEntity (String name, int event_type, String description, int points_given, Date dateTime, String location) 
     {
@@ -31,6 +32,16 @@ public class EventEntity {
     
     public String getName(){
         return name;
+    }
+    
+    public void setID(int new_id)
+    {
+        id = new_id;
+    }
+    
+    public int getID()
+    {
+        return id;
     }
 
     public void setEvent_type(int new_event_type){

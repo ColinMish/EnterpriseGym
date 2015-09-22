@@ -20,7 +20,12 @@ public class AdminModel {
     public String user = "davidkenny";
     public String pass = "root1";
     
-    public boolean addNewsStory(Part filepart,String newsContent) throws IOException
+     public static java.sql.Date getCurrentDate() {
+        java.util.Date today = new java.util.Date();
+        return new java.sql.Date(today.getTime());
+    }
+    
+    public boolean addNewsStory(Part filepart,String newsContent,String title) throws IOException
     {
         
         InputStream inputStream = null;
@@ -44,13 +49,15 @@ public class AdminModel {
             PreparedStatement ps = null;
             PreparedStatement addNewsStory = null;
 
-            String InsertIntoNews = "INSERT INTO newsItem (story,image) VALUES (?,?)";
+            String InsertIntoNews = "INSERT INTO newsItem (story,image,dateAdded,title) VALUES (?,?,?,?)";
             addNewsStory = con.prepareStatement(InsertIntoNews);
             addNewsStory.setString(1, newsContent);
               if (inputStream != null) {
                 // fetches input stream of the upload file for the blob column
                 addNewsStory.setBlob(2, inputStream);
             }
+              addNewsStory.setDate(3, getCurrentDate());
+              addNewsStory.setString(4, title);
             addNewsStory.executeUpdate();
             return true;
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {

@@ -5,10 +5,13 @@
 --%>
 
 
+<%@page import="java.util.Iterator"%>
+<%@page import="Entities.EventEntity"%>
 <%@page import="java.util.Map"%>
-<%@page import="java.util.HashMap"%>
+<%@page import="java.util.LinkedList"%>
 <%@page import="Entities.NewsEntity" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -22,7 +25,7 @@
     </div>
     
     <!-- Page Content -->
-     <div class="container">
+         <div class="container">
 
        <div class="row">
             <div class="col-lg-12">
@@ -30,7 +33,34 @@
                 <p></p>
             </div>
         </div>
-
+             
+             <%
+            java.util.LinkedList<NewsEntity> news = (java.util.LinkedList<NewsEntity>) request.getAttribute("news");
+            if (news == null) {
+        %>
+        <p>No News found.</p>
+        <%
+        } else {   
+                  Iterator<NewsEntity> iterator;
+            iterator = news.iterator();
+            while (iterator.hasNext()) {
+                NewsEntity p = (NewsEntity) iterator.next();
+         %>
+        <div class="col-md-4" id="AboutText">
+                <div class="panel panel-default">
+                    <div class=\"panel-heading\">
+                        <h4><i class="fa fa-fw fa-check"></i><%=p.getTitle()%></h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>
+                        <% String brief = p.getContent().substring(0, 500) + "...";%>
+                            <%=brief%> </p>
+                        <a href="News/<%=p.getTitle()%>" class="btn btn-default">Read More</a>
+                    </div>
+                </div>
+            </div>
+        <%}%>
+                <%}%>
     </div>
     <%@include file ="footer.jsp" %>
     </body>

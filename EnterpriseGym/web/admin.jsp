@@ -35,6 +35,12 @@
                 </div>
                 <div id="newsEditor" class="panel-body" hidden>
                     <form action="AddNews" method="POST" enctype="multipart/form-data">
+                        
+                              <div class="form-group">
+                        <label for="title">Title:</label>
+                        <input name="title" type="text" class="form-control" id="title" maxlength="45" required/>
+                        </div>
+                        
                         <textarea name="editor1" id="editor1" rows="10" cols="80"></textarea>
                         <script>
                             CKEDITOR.replace('editornews1');
