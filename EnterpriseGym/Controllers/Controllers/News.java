@@ -25,13 +25,15 @@ import javax.servlet.http.HttpSession;
 @MultipartConfig
 public class News extends HttpServlet {
 
+    private HashMap CommandsMap = new HashMap();
     /**
      * Constructor
      */
    
     public News() 
     {
-
+    super();
+    CommandsMap.put("Picture", 1);
     }
 
     /**
@@ -56,17 +58,9 @@ public class News extends HttpServlet {
        
         //Get the 6 most recent stories then show them to the user on the news page. 
              NewsModel model = new NewsModel();
-       
         //Need to pass the profile attributes accross here.
         java.util.LinkedList<NewsEntity> newsitems = model.getNewsHome();
-        
-//                 Iterator<NewsEntity> iterator;
-//            iterator = newsitems.iterator();
-//            while (iterator.hasNext()) {
-//                NewsEntity p = (NewsEntity) iterator.next();
-//                System.out.println(p.getId());
-//            }
-  
+ 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/news.jsp");
         request.setAttribute("news", newsitems);
         dispatcher.forward(request,response);

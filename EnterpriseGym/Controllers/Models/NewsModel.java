@@ -11,6 +11,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 /**
  *
@@ -53,7 +56,14 @@ public class NewsModel {
     	    	news.setId(rs1.getInt("idnewsItem"));
     	    	news.setTitle(rs1.getString("title"));
     	    	news.setContent(rs1.getString("story"));
-                //news.setDate(convertSqlDateToUtilDate(rs1.getDate("dateAdded")));               
+                
+//                System.out.println(rs1.getDate("dateAdded"));
+//                String mDate = (rs1.getDate("dateAdded")).toString();            
+//                DateFormat format = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
+//                java.sql.Date sqlDate;
+//                java.util.Date utilDate;
+//                utilDate = format.parse(mDate);
+//                news.setDate(utilDate);               
     	    	newsitem.add(news);   	  	
     		}
                 return newsitem;
