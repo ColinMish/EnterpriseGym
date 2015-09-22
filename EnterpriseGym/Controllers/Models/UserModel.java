@@ -327,9 +327,8 @@ public class UserModel {
         return new Account(username, accountTokens);
     }
 
-    public String getSalt(String username) 
-    {
-            String salt = null;
+    public String getSalt(String username) {
+        String salt = null;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             Statement st;
@@ -344,5 +343,45 @@ public class UserModel {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
         }
         return salt;
+    }
+
+    public String getEmailbyUsername(String username) {
+        String email = null;
+        int userId = getAccountIdFromUsername(username);
+        if (userId == 0) {
+            return null;
+        }
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Statement st;
+            ResultSet rs;
+            Connection con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", "davidkenny", "root1");
+            st = con.createStatement();
+            rs = st.executeQuery("select email from user where account_idaccount='" + userId + "'");
+            if (rs.next()) {
+                email = rs.getString("email");
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return email;
+    }
+
+    public int getAccountIdFromUsername(String username) {
+        int userId = 0;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Statement st;
+            ResultSet rs;
+            Connection con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", "davidkenny", "root1");
+            st = con.createStatement();
+            rs = st.executeQuery("select idaccount from account where username='" + username + "'");
+            if (rs.next()) {
+                userId = rs.getInt("idaccount");
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return userId;
     }
 }

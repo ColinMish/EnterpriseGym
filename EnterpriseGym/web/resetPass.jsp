@@ -9,38 +9,37 @@
 <html>
 
     <%@include file="header.jsp" %>
+    <script src="${pageContext.request.contextPath}/js/resetPassword.js"></script>
     <div class="hidden-xs">
         <%@include file="sidebar.jsp"%>
     </div>
-    
-  
+
+
     <!-- Page Content -->
     <div class="container">
 
         <div class="row">
             <div class="col-lg-12">
                 <h1>Reset Password</h1>
-                <p>Please enter a new password!</p>
-             
+                <p></p>
             </div>
         </div>
-      
-           <form  action="ResetPassword" method="post" >
-               <br>Email: <br>
-               
-           <input name="email" type="text" id="userBox" maxlength="50" />
-           <br> Password: <br>
-           
-           <input name="password" type="password" id="userBox" maxlength="50" />
-           <br>
-           
-            <br> Password confirmation: <br>
-           <input name="passwordCheck" type="password" id="userBox" maxlength="50" />
-           <br>
-           <br><input type="submit" value="Reset"  />
-          </form>                        
+
+        <div class="error"><strong><font color="red">Invalid email or username</font></strong></br></br></div>
+        
+        <form  id="reset" action="ResetPassword" role="form" method="POST" >
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input name="username" type="text" class="form-control" id="user" maxlength="100" required/>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input name="email" type="text" class="form-control" id="em" maxlength="100" required/>
+            </div>
+            <input type="submit" value="ResetPassword" class="btn btn-default"/>
+        </form>  
     </div>
-      
+
     <%@include file ="footer.jsp" %>
-    </body>
+</body>
 </html>

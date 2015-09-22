@@ -27,7 +27,7 @@
     <!--<script src="${pageContext.request.contextPath}/js/jquery.js"></script>-->
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+
 
     <!-- Script to Activate the Carousel -->
     <script>
