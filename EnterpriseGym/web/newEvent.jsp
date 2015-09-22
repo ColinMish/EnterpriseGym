@@ -7,11 +7,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    <% if (session.getAttribute("username") == null) { %>
+    <head>
+        <link href="${pageContext.request.contextPath}/css/media.css" rel="stylesheet">
+    </head>
     <%@include file="header.jsp" %>
-    <div class="hidden-xs">
     <%@include file="sidebar.jsp"%>
-     </div>
-     
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script><!--do we need this?-->
     <script src="${pageContext.request.contextPath}/js/jquery.flagstrap.js"></script>

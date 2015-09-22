@@ -36,19 +36,24 @@
                             
                         <div class="form-group">
                             <label for="firstn">First Name:</label>
-                            <input type="text" name="firstn" class="form-control" id="firstn">
+                            <input type="text" name="first name" class="form-control" id="firstname">
                         </div>
             
                         <div class="form-group">
                             <label for="lastn">Last Name:</label>
-                            <input type="text" name="lastn" class="form-control" id="lastn">
+                            <input type="text" name="last name" class="form-control" id="lastname">
                         </div>
             
                         <div class="form-group">
                             <label for="email">Email Address:</label>
                             <input type="text" name="email" class="form-control" id="email">
                         </div>
-            
+                        
+                       <div class="form-group">
+                            <label for="lastn">Country:</label>
+                            <input type="text" name="country" class="form-control" id="country">
+                       </div>
+                       
                         <div class="form-group">
                             <label for="year">Year of study:</label>
                             <input type="text" name="year" class="form-control" id="year">
@@ -67,17 +72,17 @@
                        
                        <div class="form-group">
                             <label for="usr">Old Password:</label>
-                            <input type="text" name="oldpass" class="form-control" id="usr">
+                            <input type="text" name="password" class="form-control" id="password">
                         </div>
                        
                        <div class="form-group">
                             <label for="usr">New Password:</label>
-                            <input type="text" name="newpass" class="form-control" id="usr">
+                            <input type="text" name="newpassword" class="form-control" id="newpassword">
                         </div>
             
                         <div class="form-group">
                             <label for="usr">New Password Again:</label>
-                            <input type="text" name="newpass" class="form-control" id="usr">
+                            <input type="text" name="newpassword" class="form-control" id="newpassword">
                         </div>
                        
                        <input class="btn btn-primary" type="submit" value="Update"><br><br>
