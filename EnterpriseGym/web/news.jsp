@@ -16,8 +16,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link href='css/profile.css' rel='stylesheet' type='text/css'>
-        <link href='css/media.css' rel='stylesheet' type='text/css'>
+        <link href='${pageContext.request.contextPath}/css/profile.css' rel='stylesheet' type='text/css'>
+        <link href='${pageContext.request.contextPath}/css/media.css' rel='stylesheet' type='text/css'>
     </head>
 <body>
      <%@include file="header.jsp" %>
@@ -60,7 +60,7 @@
                             <img src="${pageContext.request.contextPath}/News/Picture/<%=p.getId()%>" style="max-height: 100px; max-width: 100px;" class="img-responsive" alt="News Image">
                             <%} %>
                         </p>
-                        <a href="News/Article/<%=p.getId()%>" class="btn btn-default">Read More</a>
+                        <a href="${pageContext.request.contextPath}/News/Article/<%=p.getId()%>" class="btn btn-default">Read More</a>
                     </div>
                 </div>
             </div>

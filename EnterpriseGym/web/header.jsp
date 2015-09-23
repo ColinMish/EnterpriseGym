@@ -124,8 +124,8 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">         
-                        <li><a id="head" href="LogIn">Log In</a></li>
-                        <li><a id="head" href="SignUp">Sign Up</a></li>
+                        <li><a id="head" href="${pageContext.request.contextPath}/LogIn">Log In</a></li>
+                        <li><a id="head" href="${pageContext.request.contextPath}/SignUp">Sign Up</a></li>
 
 
                         <li id="calendar-drop" class="visible-lg">

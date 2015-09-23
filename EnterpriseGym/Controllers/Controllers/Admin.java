@@ -1,9 +1,12 @@
 package Controllers;
 
 
+import Entities.NewsEntity;
 import Models.AdminModel;
+import Models.NewsModel;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -20,17 +23,20 @@ import lib.Convertors;
  * @author Andy
  */
 
-@WebServlet(name = "Admin", urlPatterns = {"/Admin", "/AddNews"})
+@WebServlet(name = "Admin", urlPatterns = {"/Admin/*", "/AddNews"})
 @MultipartConfig (maxFileSize = 16177215) //Set the pictures size up to 16MB  
 
 
 public class Admin extends HttpServlet {
+    
+     private HashMap CommandsMap = new HashMap();
 
     /**
      * Constructor
      */
     public Admin() {
-
+        super();
+            CommandsMap.put("News", 1);      
     }
 
     /**
@@ -53,8 +59,30 @@ public class Admin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
-                RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
-                dispatcher.forward(request, response);
+                  String args[] = Convertors.SplitRequestPath(request);
+                 
+        
+        if(args.length==2)
+        {
+            // RequestDispatcher dispatcher = request.getRequestDispatcher("profile.jsp");
+             //   dispatcher.forward(request, response);
+            displayPannel(response,request);
+        }
+        
+        int command;
+         try {
+            command = (Integer) CommandsMap.get(args[2]);
+        } catch (Exception et) {           
+            return;
+        }
+        switch (command) {
+            case 1:
+                displayNewsPannel(response,request);            
+                break; 
+            default:
+                break;
+            	//Error message here.
+        }
     }
 
     /**
@@ -164,4 +192,23 @@ public class Admin extends HttpServlet {
     {
         
     }
+    
+    private void displayPannel(HttpServletResponse response,HttpServletRequest request) throws ServletException, IOException
+    {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin.jsp");
+        dispatcher.forward(request,response);
+        return;
+    }
+    
+    private void displayNewsPannel(HttpServletResponse response,HttpServletRequest request) throws ServletException, IOException
+    {
+        NewsModel model = new NewsModel();
+        java.util.LinkedList<NewsEntity> newsitems = model.getAllNews();
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/newsadmin.jsp");
+        request.setAttribute("news", newsitems);  
+        //Need to pass the profile attributes accross here.     
+        dispatcher.forward(request,response);
+        return;
+    }
+    
 }

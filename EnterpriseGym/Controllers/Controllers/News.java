@@ -146,4 +146,13 @@ public class News extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     }
+    
+    @Override
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        String id = request.getParameter("id");
+        System.out.println("the resource that was requested to be deleted was" +id);
+        
+    }
 }
