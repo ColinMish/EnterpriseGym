@@ -96,6 +96,22 @@ public class News extends HttpServlet {
               NewsModel model = new NewsModel();
         //Need to pass the profile attributes accross here.
         java.util.LinkedList<NewsEntity> newsitems = model.getNewsHome();
+        
+        //Testing code.
+//                 Iterator<NewsEntity> iterator;
+//            iterator = newsitems.iterator();
+//            while (iterator.hasNext()) {
+//                NewsEntity p = (NewsEntity) iterator.next();
+//                System.out.println("record returned");
+//            }
+//            
+//            if(newsitems !=null)
+//            {
+//            } else {
+//                System.out.println("news items are null");
+//        }
+//        
+//            System.out.println(newsitems);
  
         RequestDispatcher dispatcher = request.getRequestDispatcher("/news.jsp");
         request.setAttribute("news", newsitems);

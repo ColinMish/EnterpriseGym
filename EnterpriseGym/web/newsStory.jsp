@@ -25,7 +25,7 @@
    
            <%
             java.util.LinkedList<NewsEntity> news = (java.util.LinkedList<NewsEntity>) request.getAttribute("news");
-            if (news == null) {
+            if (news.size()==0) {
         %>
         <p>No News found.</p>
         <%

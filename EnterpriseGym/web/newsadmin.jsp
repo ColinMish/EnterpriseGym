@@ -13,14 +13,41 @@
  
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
-     
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
     <script src="${pageContext.request.contextPath}/js/admin.js" type="text/javascript"></script>
     
      
   </head>
   <body>
+      
+      <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 id="modaltitle" class="modal-title">Delete</h4>
+        </div>
+        <div class="modal-body">
+          <p id="modalmessage">Are you sure you want to delete this story?</p>
+          
+        </div>
+        <div class="modal-footer">
+            <button id="yes" type="button" onclick="deleteNews()" class="btn btn-Danger" data-dismiss="modal">Yes</button>  
+          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
     
      <div class="container">
+         
+           <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+         
 
        <div class="row">
             <div class="col-lg-12">
@@ -38,7 +65,7 @@
                         <table class="table table-hover" id="datatable2">
                             <%
                             java.util.LinkedList<NewsEntity> news = (java.util.LinkedList<NewsEntity>) request.getAttribute("news");
-                                 if (news == null) {
+                                 if (news.size()==0) {
         %>
         <p>No News found.</p>
         <%
@@ -64,7 +91,7 @@
                             <td><%=p.getTitle()%></td>
                             <td><a role="button" href="${pageContext.request.contextPath}/News/Article/<%=p.getId()%>" class="btn btn-primary">View <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></td>
                             <td><a role="button" class="btn btn-Warning">Edit <span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button></td>
-                            <td><a role="button" onclick="deleteNews(<%=p.getId()%>)"class="btn btn-Danger">Delete <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>              
+                            <td><a role="button" onclick="checkDelete(<%=p.getId()%>,'<%=p.getTitle()%>')" class="btn btn-Danger">Delete <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>              
                             
                         <%} %></tbody> <%}%>
                         </table>
