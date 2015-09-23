@@ -35,6 +35,8 @@ public class StoredProcedure {
                 /* Run  stored procedure */
                 PreparedStatement theme = con.prepareCall("{call SPAddThemes()}");
                 theme.execute();
+            } else {
+                System.out.println("Themes already in the database");
             }
         } catch (Exception e) {
         }

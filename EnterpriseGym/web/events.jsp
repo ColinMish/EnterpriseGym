@@ -12,14 +12,13 @@
     </head>
     
     <body>
-   <% if (session.getAttribute("username") == null){ %>
-         <%@include file="header.jsp" %>
-   <% }else{ %>
-     <%@include file="headerloggedin.jsp" %> <%}%>
-<div class="hidden-xs">
-    <%@include file="sidebar.jsp"%>
+    <%@include file="header.jsp" %>
+    <div class="hidden-xs">
+     <%@include file="sidebar.jsp"%>
      </div>
-     <%@page import="java.util.Map"%>
+     
+     
+    <%@page import="java.util.Map"%>
     <%@page import="java.util.HashMap"%>
     <%@page import="Entities.EventEntity" %>
       <% Map<String, EventEntity> events = (HashMap) request.getAttribute("Events"); %>
