@@ -97,12 +97,13 @@
                      <li><a href="${pageContext.request.contextPath}/Profile/Points">Points</a></li>
                      <li><a href="${pageContext.request.contextPath}/Quizes">Online Tests</a></li>
                      <li><a href="${pageContext.request.contextPath}/Profile/EditProfile">Edit Profile</a></li>
-                     <% if(account.hasAccessLevel(1))
-                     {%>
-                     <li><a href="${pageContext.request.contextPath}/Stats">Graphs and charts</a></li>
-                     <%}%>
-                      </ul>
+                    </ul>
+                   
                     </li>
+                     <% if(account.hasAccessLevel(1)) { %>
+                     <li><a id="head" href="${pageContext.request.contextPath}/Admin">Admin</a></li>
+                     <%}%>
+                    
       
                     </ul>
 
@@ -212,9 +213,7 @@
 
         </header>
 
-
-   
-
+                
     <header class="hidden-lg hidden-md hidden-sm"> 
         <div style="height:50px"></div>
     </header>
@@ -229,7 +228,12 @@ $(document).ready(function() {
             wrap:false
         });
     });
+
+       
 });
+
+});
+
 </script>
 </body>
 </html>

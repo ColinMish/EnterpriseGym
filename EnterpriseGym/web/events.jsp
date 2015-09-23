@@ -14,9 +14,9 @@
     
     <body>
          <%@include file="header.jsp" %>
-<div class="hidden-xs">
+    <div class ="mobile">
     <%@include file="sidebar.jsp"%>
-     </div>
+    </div>
      <%@page import="java.util.Map"%>
     <%@page import="java.util.HashMap"%>
     <%@page import="Entities.EventEntity" %>
