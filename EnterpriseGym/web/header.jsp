@@ -215,7 +215,7 @@
 
                 
     <header class="hidden-lg hidden-md hidden-sm"> 
-        <div style="height:50px"></div>
+        <div style="height:60px"></div>
     </header>
 
                 
