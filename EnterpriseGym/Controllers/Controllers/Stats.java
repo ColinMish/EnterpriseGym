@@ -20,12 +20,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import lib.Convertors;
+import lib.SearchResultsObject;
 
 /**
  *
  * @author Dave
  */
-@WebServlet(name = "Stats", urlPatterns = {"/Stats/*", "/Data/*", "/UserEvent/*"})
+@WebServlet(name = "Stats", urlPatterns = {"/Stats/*", "/Data/*", "/UserEvent/*", "/Search/*"})
 @MultipartConfig
 public class Stats extends HttpServlet {
 
@@ -66,6 +67,10 @@ public class Stats extends HttpServlet {
             resultsAsJson = getDataCountByField(parts[3], parts[2]);
         } else if (parts[1].equals("UserEvent")) {
             resultsAsJson = getUsersVsEventsData(parts[2], parts[3]);
+        }
+        else if(parts[1].equals("Search"))
+        {
+            resultsAsJson = getSearchResults(parts[2], parts[3]);
         }
         try (PrintWriter out = response.getWriter()) {
             out.print(resultsAsJson);
@@ -118,6 +123,14 @@ public class Stats extends HttpServlet {
             results = aModel.getAttendanceWithFilters(field, value);
         }
         json = new Gson().toJson(results);
+        return json;
+    }
+
+    private String getSearchResults(String table, String searchValue) 
+    {
+        AdminModel aModel = new AdminModel();
+        SearchResultsObject results = aModel.getSearchResults(table, searchValue);
+        String json = new Gson().toJson(results);
         return json;
     }
 }

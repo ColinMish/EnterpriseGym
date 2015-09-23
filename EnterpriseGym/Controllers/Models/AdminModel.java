@@ -9,6 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import lib.JsonHighChartConvertor;
 import java.util.LinkedList;
+import lib.SearchResultsObject;
 
 /**
  *
@@ -178,9 +179,8 @@ public class AdminModel {
         return data;
     }
 
-    public ArrayList getAttendanceWithFilters(String field, String value) 
-    {
-       Connection con = null;
+    public ArrayList getAttendanceWithFilters(String field, String value) {
+        Connection con = null;
         ArrayList data = new ArrayList();
 
         try {
@@ -200,7 +200,7 @@ public class AdminModel {
                 getAttendanceStatement.setString(1, value);
                 getAttendanceStatement.setInt(2, idevent);
                 ResultSet attendanceResults = getAttendanceStatement.executeQuery();
-                int[] attendance = new int [] {0, 0};
+                int[] attendance = new int[]{0, 0};
                 int i = 0;
                 while (attendanceResults.next()) {
                     attendance[i] = attendanceResults.getInt("Count");
@@ -214,7 +214,7 @@ public class AdminModel {
         }
         return data;
     }
-    
+
     public LinkedList getUniqueValuesFromUser(String field) {
         Connection con = null;
         LinkedList results = new LinkedList();
@@ -232,6 +232,44 @@ public class AdminModel {
             while (rs.next()) {
                 String uniqueValue = rs.getString("result");
                 results.add(uniqueValue);
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+            System.out.print(e.getMessage());
+        }
+        return results;
+    }
+
+    public SearchResultsObject getSearchResults(String table, String searchValue) {
+        LinkedList<String> columns = getColumnNames(table);
+        Connection con = null;
+        String getValues = null;
+        SearchResultsObject results = new SearchResultsObject();
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+
+            PreparedStatement ps = null;
+
+            if (searchValue.equals("All")) {
+                getValues = "SELECT * FROM " + table;
+            } else {
+                getValues = "SELECT * FROM " + table + " WHERE ";
+                for (int i = 0; i < columns.size(); i++) {
+                    getValues += columns.get(i) + " like " + searchValue;
+                    if (i != (columns.size() - 1)) {
+                        getValues += " OR ";
+                    }
+                }
+            }
+            ps = con.prepareStatement(getValues);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                LinkedList row = new LinkedList();
+                for (String column : columns) {
+                    row.add(rs.getString(column));
+                }
+                results.addArray(row);
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
             System.out.print(e.getMessage());

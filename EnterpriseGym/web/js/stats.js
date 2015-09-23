@@ -4,17 +4,29 @@
  * and open the template in the editor.
  */
 
+var USER_COLUMNS = [];
+var EVENT_COLUMNS = [];
+
 $(document).ready(function ()
 {
+    $("#tableBody").hide();
     var currentUserFilter = "";
     loadColumns("user");
     loadColumns("event");
+    loadTableNames("Users");
     var empty = [];
     var users = ["users", 100];
     empty.push(users);
     userpie("Total site users", "Users", empty);
     eventpie("Total site events", "Events", empty);
     loadEventuserbar();
+    $("#searchFor").submit(function (e)
+    {
+        e.preventDefault();
+        var searchValue = $("#searchValue").val();
+        var checked = $('#userRadio').is(':checked');
+        getSearchResults(searchValue, checked);
+    });
 
     //eventHandlers
     $("#userproperty").change(function (e) {
@@ -36,6 +48,13 @@ $(document).ready(function ()
             filterBarChartBy(currentUserFilter, e.target.options[e.target.selectedIndex].text);
         }
     });
+
+    $('input[type="radio"]').click(function () {
+        if ($(this).is(':checked'))
+        {
+            loadTableNames($(this).val());
+        }
+    });
 });
 
 function loadColumns(tableName)
@@ -44,12 +63,19 @@ function loadColumns(tableName)
         type: "GET",
         url: "Stats/" + tableName,
         success: function (data) {
-            console.log(data);
+            console.log("LoadColumns= " + data);
             $.each($.parseJSON(data), function (idx, obj) {
                 $("#" + tableName + "property").append(new Option(obj, obj));
                 if (tableName === "user")
                 {
+                    USER_COLUMNS = [];
                     $("#" + tableName + "barproperty").append(new Option(obj, obj));
+                    USER_COLUMNS.push(obj);
+                }
+                if (tableName === "event")
+                {
+                    EVENT_COLUMNS = [];
+                    EVENT_COLUMNS.push(obj);
                 }
             });
         },
@@ -58,6 +84,23 @@ function loadColumns(tableName)
         }
     });
 }
+function loadTableNames(table)
+{
+    var tableHeaders;
+    if (table === "Users")
+    {
+        tableHeaders = USER_COLUMNS;
+    }
+    if (table === "Events")
+    {
+        tableHeaders = EVENT_COLUMNS;
+    }
+    for (var i = 0; i < tableHeaders.length; i++)
+    {
+        $('#tableHeader').empty();
+        $("#tableHeader").append("<th>" + tableHeaders[i] + "</th>");
+    }
+}
 
 function loadValues(field)
 {
@@ -65,7 +108,7 @@ function loadValues(field)
         type: "GET",
         url: "Stats/" + field,
         success: function (data) {
-            console.log(data);
+            console.log("loadValues = " + data);
             $('#valuebarproperty').empty();
             $("#valuebarproperty").append(new Option("", ""));
             $.each($.parseJSON(data), function (idx, obj) {
@@ -86,7 +129,7 @@ function loadEventuserbar()
         type: "GET",
         url: "UserEvent/None/None",
         success: function (data) {
-            console.log(data);
+            console.log("loadEventuserbar=" + data);
             $.each($.parseJSON(data), function (idx, obj) {
                 events.push(obj.name);
             });
@@ -105,7 +148,7 @@ function getUsersBy(field)
         type: "GET",
         url: "Data/user/" + field,
         success: function (data) {
-            console.log(data);
+            console.log("getUsersBy = " + data);
             var json = formatData(data);
             userpie("Users by " + field, field, json);
         },
@@ -124,6 +167,33 @@ function getEventsBy(field)
             console.log(data);
             var json = formatData(data);
             eventpie("Events by " + field, field, json);
+        },
+        fail: function () {
+            console.log("Ajax error");
+        }
+    });
+}
+
+function getSearchResults(searchValue, checked)
+{
+    var searchTable = "user";
+    if (searchValue === "")
+    {
+        searchValue = "All";
+    }
+    if (!checked)
+    {
+        searchTable = "event";
+    }
+    $.ajax({
+        type: "GET",
+        url: "Search/" + searchTable + "/" + searchValue,
+        success: function (data) {
+            console.log("Load Search results = " + data);
+            $('#dataTable').DataTable({
+                "ajax": data
+            });
+            $("#tableBody").show();
         },
         fail: function () {
             console.log("Ajax error");
