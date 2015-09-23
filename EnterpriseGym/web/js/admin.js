@@ -7,13 +7,20 @@ function deleteNews(id)
 {
      $.ajax({
         type: "DELETE",
-        url: "../News",
-        data: {id: id},
+        url: "../News/"+id,
         cache: false,
         success: function (data) {
+            if(data=1)
+            {
+                //Data has been deleted.
+                window.alert("success");
+            }else{
+                //Data not deleted.
+            }
         //Show success then reload the page. 
         },
         fail: function () {
+            window.alert("Failed");
         //Show failure. 
         }
     });

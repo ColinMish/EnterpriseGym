@@ -16,6 +16,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -232,6 +233,29 @@ public class NewsModel {
 
 
     } 
+   
+   
+   public boolean deleteNews(int id)
+   {
+         Connection con = null;
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+
+            PreparedStatement deleteNews = null;
+            String DeleteNews = "DELETE FROM newsItem WHERE idnewsItem=?";
+            deleteNews = con.prepareStatement(DeleteNews);
+            deleteNews.setInt(1,id);
+            deleteNews.executeUpdate();
+            return true;
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+             System.out.println("expection thrown");
+             System.out.println("false, exception");
+             e.printStackTrace();
+            return false;
+        }
+   }
     
     
 }

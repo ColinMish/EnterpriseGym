@@ -150,9 +150,31 @@ public class News extends HttpServlet {
     @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String args[] = Convertors.SplitRequestPath(request);
+        if (args[2]!=null)
+        {
+            int id = Integer.parseInt(args[2]);
+            NewsModel model = new NewsModel(); 
+            if(model.deleteNews(id)==true)
+            {
+                //The content was deleted
+                     response.setContentType("text/html;charset=UTF-8");
+                     response.getWriter().write("1"); 
+            }else{
+                //Nothing was deleted
+                     response.setContentType("text/html;charset=UTF-8");
+                     response.getWriter().write("0"); 
+            }
+            
+            //Let the ajax know if the data is deleted. 
         
-        String id = request.getParameter("id");
-        System.out.println("the resource that was requested to be deleted was" +id);
+            
+        }else{
+            //No id was passed.
+        response.setContentType("text/html;charset=UTF-8");
+        response.getWriter().write("0"); 
+        }
+        
         
     }
 }
