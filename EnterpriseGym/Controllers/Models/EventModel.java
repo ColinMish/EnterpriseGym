@@ -102,6 +102,7 @@ public class EventModel {
             
             while (rs.next()) {
                 EventEntity event = new EventEntity();
+                event.setID(rs.getInt("idevent"));
                 event.setName(rs.getString("title"));
                 System.out.println("Event name: " + event.getName());
                 event.setEvent_type(rs.getInt("theme_idtheme"));
@@ -130,6 +131,38 @@ public class EventModel {
         return event;
     }
     
+    public EventEntity GetEventByID(int ID)
+    {
+        EventEntity foundEvent = null;
+
+        Connection con = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+
+            PreparedStatement ps1 = null;
+            String sqlOption1 = "SELECT * FROM event WHERE idevent = " + ID + ";";
+
+            ps1 = con.prepareStatement(sqlOption1);
+
+            ResultSet rs1 = ps1.executeQuery();
+            rs1.next();
+            int id = rs1.getInt("idevent");
+            System.out.println("The id is:" + id);
+
+
+            ResultSet rs = ps1.executeQuery();
+            
+            return foundEvent;
+
+        } catch (Exception e) {
+            System.out.println("connection to db failed");
+            e.printStackTrace();
+            return null;
+
+        }
+    }
+        
     public Boolean SetNewEvent(String name, int eventType, String desciption, int points, Date date, String location)
     {
         return false;

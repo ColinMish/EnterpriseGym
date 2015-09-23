@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="Entities.EventEntity" %>
 <!DOCTYPE html>
 <html>
     <%@include file="header.jsp" %>
@@ -18,6 +19,9 @@
     <script src="${pageContext.request.contextPath}/js/jquery.flagstrap.js"></script>
     <script src="${pageContext.request.contextPath}/js/register.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery.flagstrap.js"></script>
+    
+    <% EventEntity event = (EventEntity) request.getAttribute("Events"); %>
+    <% //event = GetEventByID(request.getParameter("eventID"));%>
     
     <!-- Page Content -->
     <div class="container">
@@ -47,11 +51,11 @@
                 </div>
             </div>
         </div>  
-
+            
             <form action="EditEvent" role="form" id="EditEvent" method="POST">
                 <div class="form-group">
                     <label for="eventTitle">Event Title:</label>
-                    <input name="eventTitle" type="text" class="form-control" id="title1" maxlength="45"/>
+                    <input name="eventTitle" type="text" class="form-control" id="title1" value="<%=request.getParameter("eventID")%>" maxlength="45"/>
                     <span id="err"></span>
                 </div>
                 <div class="col-xs-12">

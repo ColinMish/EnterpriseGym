@@ -5,6 +5,7 @@
  */
 package Controllers;
 
+import Models.EventModel;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -13,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import lib.Convertors;
 
 /**
@@ -62,6 +64,29 @@ public class EditEvent extends HttpServlet {
     {
                   RequestDispatcher dispatcher = request.getRequestDispatcher("editEvent.jsp");
                 dispatcher.forward(request, response);
+                System.out.println("Edit event request received");
+                        EventModel event = new EventModel();
+
+        /*try {
+            if (title != null) {
+                if (event.newEvent(title, description, location, date, theme) == false) {
+                    System.out.println("false");
+                    response.sendRedirect(request.getContextPath() + "/FailedNewEvent.jsp");
+                } else {
+                    response.sendRedirect(request.getContextPath() + "/Events");
+                }
+
+            } else {
+                throw new IllegalArgumentException("No event title entered");
+            }
+        } catch (IOException | IllegalArgumentException e) {
+            System.out.println("expection thrown");
+            HttpSession session = request.getSession();
+            session.setAttribute("error", "No event title entered.");
+            System.out.println("false, exception");
+            response.sendRedirect(request.getContextPath() + "/FailedNewEvent.jsp");
+        }
+    }*/
     }
 
     /**
@@ -76,10 +101,12 @@ public class EditEvent extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
+        System.out.println("Edit event request received");
         ChangeEvent(request, response);
     }
     
         private void ChangeEvent(HttpServletRequest request, HttpServletResponse response) throws IOException {
+            System.out.println("Edit event request received");
         }
         
 
