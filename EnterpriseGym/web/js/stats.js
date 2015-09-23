@@ -6,6 +6,7 @@
 
 $(document).ready(function ()
 {
+    var currentUserFilter = "";
     loadColumns("user");
     loadColumns("event");
     var empty = [];
@@ -26,11 +27,15 @@ $(document).ready(function ()
 
     $("#userbarproperty").change(function (e) {
         loadValues(e.target.options[e.target.selectedIndex].text);
+        currentUserFilter = e.target.options[e.target.selectedIndex].text;
     });
 
-//    $("#valuebarproperty").change(function (e) {
-//        filterBarChartBy("event", e.target.options[e.target.selectedIndex].text);
-//    });
+    $("#valuebarproperty").change(function (e) {
+        if (currentUserFilter !== "" && e.target.options[e.target.selectedIndex].text !== "")
+        {
+            filterBarChartBy(currentUserFilter, e.target.options[e.target.selectedIndex].text);
+        }
+    });
 });
 
 function loadColumns(tableName)
@@ -62,6 +67,7 @@ function loadValues(field)
         success: function (data) {
             console.log(data);
             $('#valuebarproperty').empty();
+            $("#valuebarproperty").append(new Option("", ""));
             $.each($.parseJSON(data), function (idx, obj) {
                 $("#valuebarproperty").append(new Option(obj, obj));
             });
@@ -125,15 +131,20 @@ function getEventsBy(field)
     });
 }
 
-function filterBarChartBy(property, field)
+function filterBarChartBy(field, value)
 {
+    var jsonData = null;
+    var events = [];
     $.ajax({
         type: "GET",
-        url: "UserEvent/" + property + "/" + field,
+        url: "UserEvent/" + field + "/" + value,
         success: function (data) {
             console.log(data);
-//            var json = formatData(data);
-//            eventpie("Events by " + field, field, json);
+            $.each($.parseJSON(data), function (idx, obj) {
+                events.push(obj.name);
+            });
+            jsonData = formatBarChartData(data);
+            eventuserbar("Events by Attendance filtered by " + field + " = " + value, events, jsonData[0], jsonData[1]);
         },
         fail: function () {
             console.log("Ajax error");

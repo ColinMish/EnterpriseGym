@@ -178,13 +178,43 @@ public class AdminModel {
         return data;
     }
 
-//    public ArrayList getAttendanceWithFilters(String user, String event) 
-//    {
-////        String userFilter = "WHERE ";
-////        String eventFilter = "";
-////        
-//        
-//    }
+    public ArrayList getAttendanceWithFilters(String field, String value) 
+    {
+       Connection con = null;
+        ArrayList data = new ArrayList();
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+
+            PreparedStatement ps = null;
+
+            String getEvents = "SELECT DISTINCT `idevent`, `title` FROM event";
+            ps = con.prepareStatement(getEvents);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int idevent = rs.getInt("idevent");
+                String getAttendance = "select `attended`, count(*) as `Count` FROM event_has_user INNER JOIN user ON event_has_user.user_iduser= user.iduser WHERE " + field + "=? AND event_idevent=? group by `attended`";
+                PreparedStatement getAttendanceStatement = con.prepareStatement(getAttendance);
+                getAttendanceStatement.setString(1, value);
+                getAttendanceStatement.setInt(2, idevent);
+                ResultSet attendanceResults = getAttendanceStatement.executeQuery();
+                int[] attendance = new int [] {0, 0};
+                int i = 0;
+                while (attendanceResults.next()) {
+                    attendance[i] = attendanceResults.getInt("Count");
+                    i++;
+                }
+                data.add(new JsonHighChartConvertor(rs.getString("title"), attendance[0], attendance[1]));
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+            System.out.println("expection thrown");
+            System.out.println("false, exception");
+        }
+        return data;
+    }
+    
     public LinkedList getUniqueValuesFromUser(String field) {
         Connection con = null;
         LinkedList results = new LinkedList();

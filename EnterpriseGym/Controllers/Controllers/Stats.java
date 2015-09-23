@@ -107,14 +107,15 @@ public class Stats extends HttpServlet {
         return json;
     }
 
-    private String getUsersVsEventsData(String user, String event) {
+    private String getUsersVsEventsData(String field, String value) {
         AdminModel aModel = new AdminModel();
         ArrayList results =null;
         String json;
-        if (user.equals("None") && event.equals("None")) {
+        if (field.equals("None") && value.equals("None")) {
             results = aModel.getAllEventsWithAttendance();
         } else 
         {
+            results = aModel.getAttendanceWithFilters(field, value);
         }
         json = new Gson().toJson(results);
         return json;
