@@ -161,6 +161,18 @@ public class News extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+         String[] parts = Convertors.SplitRequestPath(request);
+          switch (parts[1]) {
+            case "NewsUpdate":
+                updateNews(request, response);
+                break;
+          }
+    }
+    
+     private void updateNews(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException 
+    {
+        
     }
     
     @Override

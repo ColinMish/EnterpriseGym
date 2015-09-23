@@ -77,7 +77,12 @@ public class Admin extends HttpServlet {
         }
         switch (command) {
             case 1:
-                displayNewsPannel(response,request);            
+                if(args.length==3)
+                {
+                displayNewsPannel(response,request);
+                }else{
+                displayEditNews(response,request,args[3]);    
+                }             
                 break; 
             default:
                 break;
@@ -141,6 +146,7 @@ public class Admin extends HttpServlet {
             System.out.println("News Story failed");
         }
     }
+      
     
     private void resetPoints(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
@@ -209,6 +215,17 @@ public class Admin extends HttpServlet {
         //Need to pass the profile attributes accross here.     
         dispatcher.forward(request,response);
         return;
+    }
+    
+    private void displayEditNews(HttpServletResponse response,HttpServletRequest request,String id) throws ServletException, IOException
+    {
+        NewsModel model = new NewsModel();
+        int NewsID = Integer.parseInt(id);
+        //Need to pass the profile attributes accross here.
+        java.util.LinkedList<NewsEntity> newsitems = model.getNewsArticle(NewsID);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/newsEdit.jsp");
+        request.setAttribute("news", newsitems);
+        dispatcher.forward(request,response);
     }
     
 }
