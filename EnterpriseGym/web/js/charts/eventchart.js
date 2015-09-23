@@ -1,7 +1,7 @@
-function userpie(title, label, data) {
+function eventpie(title, label, data) {
 
     // Build the chart
-    $('#userchart').highcharts({
+    $('#eventchart').highcharts({
         chart: {
             plotBackgroundColor: null,
             plotBorderWidth: null,

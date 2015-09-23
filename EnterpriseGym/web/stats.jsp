@@ -6,6 +6,8 @@
     <script src="http://code.highcharts.com/highcharts.js"></script>
     <script src="http://code.highcharts.com/modules/exporting.js"></script> <!--    make local-->
     <script src="js/charts/userchart.js" type="text/javascript"></script>
+    <script src="js/charts/eventchart.js" type="text/javascript"></script>
+    <script src="js/charts/eventuserchart.js" type="text/javascript"></script>
     <div class="hidden-xs">
         <%@include file="sidebar.jsp"%>
     </div>
@@ -26,7 +28,7 @@
                         <h4><i class="fa fa-fw fa-check"></i>Chart 0</h4>
                     </div>
                     <div class="panel-body">
-                        <p>Chart</p></div>
+                        <p>Search for stuff here</p></div>
                 </div>
             </div>
             <div class="col-md-6">
@@ -47,9 +49,14 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i>Events</h4>
+                        <label>Property</label>
+                        <select id="eventproperty">
+                            <option selected="selected"></option>
+                        </select>
                     </div>
                     <div class="panel-body">
-                        <p>Chart</p></div>
+                        <div id="eventchart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+                    </div>
                 </div>
             </div>
             <div class="col-md-12">
@@ -58,15 +65,15 @@
                         <h4><i class="fa fa-fw fa-check"></i>Users vs Events</h4>
                     </div>
                     <div class="panel-body">
-                        <p>Chart</p></div>
+                        <div id="eventuserchart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                    </div>
                 </div>
+                <hr>
             </div>
-            <hr>
         </div>
-    </div>
 
-    <%@include file ="footer.jsp" %>
+        <%@include file ="footer.jsp" %>
 
-</body>
+    </body>
 
 </html>

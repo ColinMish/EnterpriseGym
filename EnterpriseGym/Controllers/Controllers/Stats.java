@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -26,7 +25,7 @@ import lib.Convertors;
  *
  * @author Dave
  */
-@WebServlet(name = "Stats", urlPatterns = {"/Stats/*", "/Data/*"})
+@WebServlet(name = "Stats", urlPatterns = {"/Stats/*", "/Data/*", "/UserEvent/*"})
 @MultipartConfig
 public class Stats extends HttpServlet {
 
@@ -58,13 +57,22 @@ public class Stats extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String resultsAsJson = "";
         String[] parts = Convertors.SplitRequestPath(request);
-        if (parts.length == 2) {
+        if (parts.length == 2) 
+        {
             RequestDispatcher dispatcher = request.getRequestDispatcher("stats.jsp");
             dispatcher.forward(request, response);
-        } else if (parts.length == 3 && parts[1].equals("Stats")) {
+        } 
+        else if (parts.length == 3 && parts[1].equals("Stats")) 
+        {
             resultsAsJson = getColumnNames(parts[2]);
-        } else if (parts.length == 4 && parts[1].equals("Data")) {
-            resultsAsJson = getUserData(parts[3], parts[2]);
+        } 
+        else if (parts.length == 4 && parts[1].equals("Data")) 
+        {
+            resultsAsJson = getDataCountByField(parts[3], parts[2]);
+        }
+        else if(parts[1].equals("UserEvent"))
+        {
+            resultsAsJson = getUsersVsEventsData(parts[2], parts[3]);
         }
         try (PrintWriter out = response.getWriter()) {         
             out.print(resultsAsJson);
@@ -93,10 +101,27 @@ public class Stats extends HttpServlet {
         return json;
     }
 
-    private String getUserData(String field, String table) {
+    private String getDataCountByField(String field, String table) {
         AdminModel aModel = new AdminModel();
         ArrayList results = aModel.getDatabyFieldAsPercent(field, table);
         String json = new Gson().toJson(results);
+        return json;
+    }
+
+    private String getUsersVsEventsData(String table, String field) 
+    {
+        AdminModel aModel = new AdminModel();
+        ArrayList results = new ArrayList();
+        String json = "";
+        if(table.equals("None"))
+        {
+            results = aModel.getAllEventsWithAttendance();
+        }
+        else
+        {
+            
+        }
+        json = new Gson().toJson(results);
         return json;
     }
 }

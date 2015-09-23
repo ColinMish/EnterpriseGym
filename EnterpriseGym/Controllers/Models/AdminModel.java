@@ -7,10 +7,8 @@ package Models;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import lib.JsonHighChartConvertor;
 import java.util.LinkedList;
-import java.util.Map;
 
 /**
  *
@@ -18,8 +16,8 @@ import java.util.Map;
  */
 public class AdminModel {
 
-    public String user = "davidkenny";
-    public String pass = "root1";
+    private final String user = "davidkenny";
+    private final String pass = "root1";
 
     public boolean addNewsStory(String newsContent) {
         Connection con = null;
@@ -100,12 +98,11 @@ public class AdminModel {
             con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
 
             PreparedStatement ps = null;
-            PreparedStatement resetPoints = null;
 
             String getCount = "select " + field + ", count(*) as 'Count' FROM " + table + " GROUP BY " + field;
 
-            resetPoints = con.prepareStatement(getCount);
-            ResultSet rs = resetPoints.executeQuery();
+            ps = con.prepareStatement(getCount);
+            ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 data.add(new JsonHighChartConvertor(rs.getString(field), rs.getInt("Count")));
             }
@@ -144,5 +141,40 @@ public class AdminModel {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public ArrayList getAllEventsWithAttendance() {
+        Connection con = null;
+        ArrayList data = new ArrayList();
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+
+            PreparedStatement ps = null;
+
+            String getEvents = "SELECT DISTINCT `idevent`, `title` FROM event";
+            ps = con.prepareStatement(getEvents);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int idevent = rs.getInt("idevent");
+                String getAttendance = "select attended, count(*) as 'Count' FROM event_has_user WHERE event_idevent=? GROUP BY attended";
+                PreparedStatement getAttendanceStatement = con.prepareStatement(getAttendance);
+                getAttendanceStatement.setInt(1, idevent);
+                ResultSet attendanceResults = getAttendanceStatement.executeQuery();
+                int[] attendance = new int[2];
+                int i = 0;
+                while (attendanceResults.next()) {
+                    attendance[i] = attendanceResults.getInt("Count");
+                    i++;
+                }
+                data.add(new JsonHighChartConvertor(rs.getString("title"), attendance[0], attendance[1]));
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+            System.out.println("expection thrown");
+            System.out.println("false, exception");
+        }
+        return data;
     }
 }
