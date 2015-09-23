@@ -1,6 +1,5 @@
 package Controllers;
 
-
 import Entities.NewsEntity;
 import Models.AdminModel;
 import Models.NewsModel;

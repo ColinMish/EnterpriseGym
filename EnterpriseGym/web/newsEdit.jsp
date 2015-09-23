@@ -38,12 +38,14 @@
                         <h4><i class="fa fa-fw fa-check"></i>Edit article</h4>
                     </div>
                     <div class="panel-body">
-                          <form action="EditNews" method="POST" enctype="multipart/form-data">
+                          <form action="${pageContext.request.contextPath}/News/NewsUpdate" method="POST" enctype="multipart/form-data">
                         
                               <div class="form-group">
                         <label for="title">Title:</label>
                         <input name="title" type="text" class="form-control" id="title" maxlength="45" value="<%=p.getTitle()%>" required/>
                         </div>
+                        
+                        <input name="id" type="text" class="form-control hidden" id="title" maxlength="45" value="<%=p.getId()%>" required/>
                         
                         <label for="editor1">Content:</label>
                         <textarea name="editor1" id="editor1" rows="10" cols="80"><%=p.getContent()%></textarea>

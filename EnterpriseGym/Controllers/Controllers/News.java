@@ -1,4 +1,4 @@
-
+package Controllers;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Entities.NewsEntity;
 import Entities.Picture;
+import Models.AdminModel;
 import Models.NewsModel;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
@@ -18,14 +19,15 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Iterator;
+import javax.servlet.http.Part;
 import lib.Convertors;
 
 /**
  *
  * @author Dave
  */
-@WebServlet(name = "News", urlPatterns = {"/News/*"})
-@MultipartConfig
+@WebServlet(name = "News", urlPatterns = {"/News/*","/NewsUpdate"})
+@MultipartConfig (maxFileSize = 16177215)
 public class News extends HttpServlet {
 
     private HashMap CommandsMap = new HashMap();
@@ -162,7 +164,7 @@ public class News extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
          String[] parts = Convertors.SplitRequestPath(request);
-          switch (parts[1]) {
+          switch (parts[2]) {
             case "NewsUpdate":
                 updateNews(request, response);
                 break;
@@ -172,7 +174,28 @@ public class News extends HttpServlet {
      private void updateNews(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
+         String content = request.getParameter("editor1");
+        String title = request.getParameter("title");
+        String idstring = request.getParameter("id");
+        int id = Integer.parseInt(idstring);
+        NewsModel model = new NewsModel();
         
+        InputStream inputStream = null;
+        Part filePart = request.getPart("image");
+        
+        
+        if(model.updateNewsStory(filePart,content,title,id)==true)
+        {
+            request.setAttribute("newsUpdated", true);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/admin.jsp");
+            dispatcher.forward(request, response);
+            System.out.println("News Story Updated.");
+        }else{
+            request.setAttribute("newsUpdated", false);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/admin.jsp");
+            dispatcher.forward(request, response);
+            System.out.println("News Story Failed To Update");
+        }
     }
     
     @Override
