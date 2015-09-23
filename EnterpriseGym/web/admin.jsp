@@ -55,6 +55,7 @@
                     <h4><i class="fa fa-fw fa-check"></i>News Editor</h4>
                 </div>
                 <div id="newsEditor" class="panel-body" hidden>
+                    <div class='alert alert-info'>Use the editor below to create and publish news stories.</div>
                     <form action="AddNews" method="POST">
                         <textarea name="editor1" id="editor1" rows="10" cols="80"></textarea>
                         <script>
@@ -105,7 +106,14 @@
                     <h4><i class="fa fa-fw fa-check"></i>Events Management</h4>
                 </div>
                 <div id="eventsEditor" class="panel-body" hidden>
-
+                    <div class='alert alert-info'>Select an event from the drop-down list to view the list of attendees.</div>
+                    <form>
+                        <select name="eventField" type="text" class="form-control" id="eventField" required>
+                            <option></option>
+                        </select>
+                        <br/>
+                        <input class="btn btn-default" type="submit" value="Award Points">
+                    </form>
                 </div>
             </div>
         </div>
