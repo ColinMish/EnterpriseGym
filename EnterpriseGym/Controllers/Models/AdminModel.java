@@ -177,4 +177,35 @@ public class AdminModel {
         }
         return data;
     }
+
+//    public ArrayList getAttendanceWithFilters(String user, String event) 
+//    {
+////        String userFilter = "WHERE ";
+////        String eventFilter = "";
+////        
+//        
+//    }
+    public LinkedList getUniqueValuesFromUser(String field) {
+        Connection con = null;
+        LinkedList results = new LinkedList();
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+
+            PreparedStatement ps = null;
+
+            //String getEvents = "SELECT DISTINCT CONVERT(?, CHAR(100)) AS `result` FROM user";
+            String getValues = "SELECT DISTINCT " + field + " AS `result` FROM `user`";
+            ps = con.prepareStatement(getValues);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String uniqueValue = rs.getString("result");
+                results.add(uniqueValue);
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+            System.out.print(e.getMessage());
+        }
+        return results;
+    }
 }

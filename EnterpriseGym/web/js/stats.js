@@ -23,6 +23,14 @@ $(document).ready(function ()
     $("#eventproperty").change(function (e) {
         getEventsBy(e.target.options[e.target.selectedIndex].text);
     });
+
+    $("#userbarproperty").change(function (e) {
+        loadValues(e.target.options[e.target.selectedIndex].text);
+    });
+
+//    $("#valuebarproperty").change(function (e) {
+//        filterBarChartBy("event", e.target.options[e.target.selectedIndex].text);
+//    });
 });
 
 function loadColumns(tableName)
@@ -34,6 +42,28 @@ function loadColumns(tableName)
             console.log(data);
             $.each($.parseJSON(data), function (idx, obj) {
                 $("#" + tableName + "property").append(new Option(obj, obj));
+                if (tableName === "user")
+                {
+                    $("#" + tableName + "barproperty").append(new Option(obj, obj));
+                }
+            });
+        },
+        fail: function () {
+            console.log("Ajax error");
+        }
+    });
+}
+
+function loadValues(field)
+{
+    $.ajax({
+        type: "GET",
+        url: "Stats/" + field,
+        success: function (data) {
+            console.log(data);
+            $('#valuebarproperty').empty();
+            $.each($.parseJSON(data), function (idx, obj) {
+                $("#valuebarproperty").append(new Option(obj, obj));
             });
         },
         fail: function () {
@@ -88,6 +118,22 @@ function getEventsBy(field)
             console.log(data);
             var json = formatData(data);
             eventpie("Events by " + field, field, json);
+        },
+        fail: function () {
+            console.log("Ajax error");
+        }
+    });
+}
+
+function filterBarChartBy(property, field)
+{
+    $.ajax({
+        type: "GET",
+        url: "UserEvent/" + property + "/" + field,
+        success: function (data) {
+            console.log(data);
+//            var json = formatData(data);
+//            eventpie("Events by " + field, field, json);
         },
         fail: function () {
             console.log("Ajax error");

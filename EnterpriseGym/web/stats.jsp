@@ -5,9 +5,9 @@
     <script src="${pageContext.request.contextPath}/js/stats.js"></script>
     <script src="http://code.highcharts.com/highcharts.js"></script>
     <script src="http://code.highcharts.com/modules/exporting.js"></script> <!--    make local-->
-    <script src="js/charts/userchart.js" type="text/javascript"></script>
-    <script src="js/charts/eventchart.js" type="text/javascript"></script>
-    <script src="js/charts/eventuserchart.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/js/charts/userchart.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/js/charts/eventchart.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/js/charts/eventuserchart.js" type="text/javascript"></script>
     <div class="hidden-xs">
         <%@include file="sidebar.jsp"%>
     </div>
@@ -63,6 +63,14 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i>Users vs Events</h4>
+                        <label>Filter by user:</label>
+                        <select id="userbarproperty">
+                            <option selected="selected"></option>
+                        </select>
+                        <label style="margin-left:30px;">Value:</label>
+                        <select id="valuebarproperty">
+                            <option selected="selected"></option>
+                        </select>
                     </div>
                     <div class="panel-body">
                         <div id="eventuserchart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>

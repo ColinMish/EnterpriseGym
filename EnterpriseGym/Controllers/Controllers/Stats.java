@@ -57,24 +57,17 @@ public class Stats extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String resultsAsJson = "";
         String[] parts = Convertors.SplitRequestPath(request);
-        if (parts.length == 2) 
-        {
+        if (parts.length == 2) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("stats.jsp");
             dispatcher.forward(request, response);
-        } 
-        else if (parts.length == 3 && parts[1].equals("Stats")) 
-        {
+        } else if (parts.length == 3 && parts[1].equals("Stats")) {
             resultsAsJson = getColumnNames(parts[2]);
-        } 
-        else if (parts.length == 4 && parts[1].equals("Data")) 
-        {
+        } else if (parts.length == 4 && parts[1].equals("Data")) {
             resultsAsJson = getDataCountByField(parts[3], parts[2]);
-        }
-        else if(parts[1].equals("UserEvent"))
-        {
+        } else if (parts[1].equals("UserEvent")) {
             resultsAsJson = getUsersVsEventsData(parts[2], parts[3]);
         }
-        try (PrintWriter out = response.getWriter()) {         
+        try (PrintWriter out = response.getWriter()) {
             out.print(resultsAsJson);
             out.flush();
             out.close();
@@ -95,9 +88,15 @@ public class Stats extends HttpServlet {
     }
 
     private String getColumnNames(String part) {
+        String json = "";
         AdminModel aModel = new AdminModel();
-        LinkedList columnNames = aModel.getColumnNames(part);
-        String json = new Gson().toJson(columnNames);
+        if (part.equals("user") || part.equals("event")) {
+            LinkedList columnNames = aModel.getColumnNames(part);
+            json = new Gson().toJson(columnNames);
+        } else {
+            LinkedList valueNames = aModel.getUniqueValuesFromUser(part);
+            json = new Gson().toJson(valueNames);
+        }
         return json;
     }
 
@@ -108,18 +107,14 @@ public class Stats extends HttpServlet {
         return json;
     }
 
-    private String getUsersVsEventsData(String table, String field) 
-    {
+    private String getUsersVsEventsData(String user, String event) {
         AdminModel aModel = new AdminModel();
-        ArrayList results = new ArrayList();
-        String json = "";
-        if(table.equals("None"))
-        {
+        ArrayList results =null;
+        String json;
+        if (user.equals("None") && event.equals("None")) {
             results = aModel.getAllEventsWithAttendance();
-        }
-        else
+        } else 
         {
-            
         }
         json = new Gson().toJson(results);
         return json;
