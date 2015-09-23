@@ -1,5 +1,5 @@
 
-import Entities.Account;
+
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -11,20 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Entities.NewsEntity;
 import Entities.Picture;
-import Entities.UserEntity;
-import Models.UserModel;
 import Models.NewsModel;
-import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Iterator;
-import javax.imageio.ImageIO;
-import javax.servlet.http.HttpSession;
 import lib.Convertors;
 
 /**
@@ -44,6 +37,7 @@ public class News extends HttpServlet {
     {
     super();
     CommandsMap.put("Picture", 1);
+    CommandsMap.put("Article", 2);
     }
 
     /**
@@ -67,6 +61,7 @@ public class News extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
          String args[] = Convertors.SplitRequestPath(request);
+                 
         
         if(args.length==2)
         {
@@ -84,7 +79,10 @@ public class News extends HttpServlet {
         switch (command) {
             case 1:
                 displayPicture(response,request,args[3]);            
-                break;               
+                break; 
+            case 2:
+                displayArticle(response,request,args[3]);
+                break;
             default:
             	//Error message here.
         }
@@ -98,8 +96,35 @@ public class News extends HttpServlet {
               NewsModel model = new NewsModel();
         //Need to pass the profile attributes accross here.
         java.util.LinkedList<NewsEntity> newsitems = model.getNewsHome();
+        
+        //Testing code.
+//                 Iterator<NewsEntity> iterator;
+//            iterator = newsitems.iterator();
+//            while (iterator.hasNext()) {
+//                NewsEntity p = (NewsEntity) iterator.next();
+//                System.out.println("record returned");
+//            }
+//            
+//            if(newsitems !=null)
+//            {
+//            } else {
+//                System.out.println("news items are null");
+//        }
+//        
+//            System.out.println(newsitems);
  
         RequestDispatcher dispatcher = request.getRequestDispatcher("/news.jsp");
+        request.setAttribute("news", newsitems);
+        dispatcher.forward(request,response);
+    }
+    
+    public void displayArticle(HttpServletResponse response,HttpServletRequest request,String id) throws ServletException, IOException
+    {
+             NewsModel model = new NewsModel();
+             int NewsID = Integer.parseInt(id);
+        //Need to pass the profile attributes accross here.
+        java.util.LinkedList<NewsEntity> newsitems = model.getNewsArticle(NewsID);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/newsStory.jsp");
         request.setAttribute("news", newsitems);
         dispatcher.forward(request,response);
     }
@@ -136,5 +161,36 @@ public class News extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    }
+    
+    @Override
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String args[] = Convertors.SplitRequestPath(request);
+        if (args[2]!=null)
+        {
+            int id = Integer.parseInt(args[2]);
+            NewsModel model = new NewsModel(); 
+            if(model.deleteNews(id)==true)
+            {
+                //The content was deleted
+                     response.setContentType("text/html;charset=UTF-8");
+                     response.getWriter().write("1"); 
+            }else{
+                //Nothing was deleted
+                     response.setContentType("text/html;charset=UTF-8");
+                     response.getWriter().write("0"); 
+            }
+            
+            //Let the ajax know if the data is deleted. 
+        
+            
+        }else{
+            //No id was passed.
+        response.setContentType("text/html;charset=UTF-8");
+        response.getWriter().write("0"); 
+        }
+        
+        
     }
 }

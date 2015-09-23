@@ -69,7 +69,7 @@
                         </script>
                         <br/>
                         <span class="btn btn-default btn-file">
-                        <input name="image" type="file">
+                        <input name="image" multiple accept='image/*' type="file">
                         </span>
                         <br/>
                       
