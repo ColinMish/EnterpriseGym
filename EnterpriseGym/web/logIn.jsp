@@ -3,11 +3,6 @@
     Created on : Sep 15, 2015, 9:51:07 PM
     Author     : davidkenny
 --%>
-<%-- 
-    Document   : LogIn
-    Created on : Sep 15, 2015, 9:51:07 PM
-    Author     : davidkenny
---%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

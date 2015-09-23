@@ -38,12 +38,36 @@
                         <h4><i class="fa fa-fw fa-check"></i>Edit article</h4>
                     </div>
                     <div class="panel-body">
-                        <p>
-                        <p><%=p.getContent()%></p>
+                          <form action="EditNews" method="POST" enctype="multipart/form-data">
                         
-                             <% if (p.getLength()!=0){ %>                    
-                            <img src="${pageContext.request.contextPath}/News/Picture/<%=p.getId()%>" style="max-height: 500px; max-width: 500px;" class="img-responsive" alt="News Image">
+                              <div class="form-group">
+                        <label for="title">Title:</label>
+                        <input name="title" type="text" class="form-control" id="title" maxlength="45" value="<%=p.getTitle()%>" required/>
+                        </div>
+                        
+                        <label for="editor1">Content:</label>
+                        <textarea name="editor1" id="editor1" rows="10" cols="80"><%=p.getContent()%></textarea>
+                        <script>
+                            CKEDITOR.replace('editor1');
+                        </script>
+                        <br/>
+                        <% if (p.getLength()!=0){ %>  
+                              <label for="picture">Current Picture:</label>
+                            <img id="picture" src="${pageContext.request.contextPath}/News/Picture/<%=p.getId()%>" style="max-height: 500px; max-width: 500px;" class="img-responsive" alt="News Image">
                             <%} %>
+                            <br/>
+                            <label for="newimage">New Image:</label>    
+                        <span class="btn btn-default btn-file">
+                        <input id ="newimage" name="image" multiple accept='image/*' type="file">
+                        </span>
+                        <br/>
+                        <br/>
+                      
+                        <button class="btn btn-info pull-right" type="submit">Update News <span class="glyphicon glyphicon-upload" aria-hidden="true"></span></button>
+                    </form>
+                        
+                       
+                             
                         </p>
                     </div>
                 </div>
