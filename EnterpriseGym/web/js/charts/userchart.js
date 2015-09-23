@@ -27,17 +27,7 @@ function pie(title, label, data) {
         series: [{
                 type: 'pie',
                 name: label,
-                data: [
-                    ['Brute Force', 25],
-                    ['XXS', 25],
-                    {
-                        name: 'Injection',
-                        y: 25,
-                        sliced: true,
-                        selected: true
-                    },
-                    ['Indirect Object Reference', 25],
-                ]
+                data: data
             }]
     });
 }

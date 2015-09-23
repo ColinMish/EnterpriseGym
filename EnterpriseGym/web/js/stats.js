@@ -39,10 +39,30 @@ function getUsersBy(field)
         url: "Data/user/" + field,
         success: function (data) {
             console.log(data);
-            pie("users by " + field, field, data);
+            var json = formatData(data);
+            pie("users by " + field, field, json);
         },
         fail: function () {
             console.log("Ajax error");
         }
     });
+}
+
+function formatData(data)
+{
+    var json = [];
+    var item = [];
+    var value = [];
+        $.each($.parseJSON(data), function (idx, obj) {
+            item.push(obj.name);
+            value.push(obj.y);
+        });
+    
+    for(var i = 0; i < item.length; i++)
+    {
+        var percent = ((item.length / value[i]) * 100);
+        var newItem = [item[i], percent];
+        json.push(newItem);
+    }
+    return json;
 }
