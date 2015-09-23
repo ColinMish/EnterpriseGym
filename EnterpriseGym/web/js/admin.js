@@ -15,8 +15,10 @@ function deleteNews()
             if(data==1)
             {
                 //Data has been deleted.
-                window.alert("success");
+                //Confirmation then reload the page. 
+                successModal(); 
             }else{
+                failureModal();
                 //Data not deleted.
             }
         //Show success then reload the page. 
@@ -33,6 +35,25 @@ function checkDelete(id,title)
         $("#modalmessage").text("Are you sure you want to delete the article: "+title+"?");
         this.myId=id;
         $('#myModal').modal('show');
+}
+
+function successModal()
+{
+    $("modaltitle").text("Success");
+    $("#modalmessage").text("The content has been deleted.");
+    $('#myModal2').modal('show');
+}
+
+function failureModal()
+{
+    $("modaltitle").text("Failure");
+    $("#modalmessage").text("The content has not been deleted.");
+    $('#myModal2').modal('show');
+}
+
+function reload()
+{
+    location.reload(); 
 }
 
 

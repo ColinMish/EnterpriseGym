@@ -43,10 +43,32 @@
       
     </div>
   </div>
+      
+       <div class="modal fade" id="myModal2" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 id="modaltitle" class="modal-title">Success</h4>
+        </div>
+        <div class="modal-body">
+          <p id="modalmessage">Message deleted.</p>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" onclick="reload()" class="btn btn-default" data-dismiss="modal">Ok</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+      
+ 
     
      <div class="container">
          
-           <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
          
 
        <div class="row">
