@@ -21,11 +21,13 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4><i class="fa fa-fw fa-gift"></i><%=event.getName()%></h4>
+                    <h6><i class="fa fa-fw fa-gift"></i><%=event.getDate()%></h6>
+                    <h6><i class="fa fa-fw fa-gift"></i><%=event.getLocation()%></h6>
                 </div>
                 <div class="panel-body">
                     <p><%=event.getDescription()%></p>
                     <a href="../Events" class="btn btn-default">Back</a>
-                    <a href="editEvent.jsp"<button type="button" class="btn btn-default" value=<%=event.getName()%>>Edit Event</button></a>
+                    <a href="${pageContext.request.contextPath}/editEvent.jsp"<button type="button" method="POST" class="btn btn-default" value=<%=event.getName()%>>Edit Event</button></a>
                 </div>
             </div>
         </div>

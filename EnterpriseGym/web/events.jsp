@@ -38,6 +38,8 @@
                 <%="<div class=\"panel panel-default\">"%>
                     <%="<div class=\"panel-heading\">"%>
                         <%="<h4><i class=\"fa fa-fw fa-check\"></i>" + event.getName() + "</h4>"%>
+                        <%="<h6><i class=\"fa fa-fw fa-check\"></i>" + event.getDate() + "</h6>"%>
+                        <%="<h6><i class=\"fa fa-fw fa-check\"></i>" + event.getLocation() + "</h6>"%>
                     <%="</div>"%>
                     <%="<div class=\"panel-body\">"%>
                         <%="<p>"%>

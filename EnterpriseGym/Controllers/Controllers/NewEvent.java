@@ -84,6 +84,7 @@ public class NewEvent extends HttpServlet {
     private void CreateEvent(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String title = request.getParameter("eventTitle");
         String mDate = request.getParameter("eventDate");
+        String location = request.getParameter("getLocation");
         DateFormat format = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
         java.util.Date utilDate;
         java.sql.Date date = new java.sql.Date(2000, 01, 01);
@@ -106,7 +107,7 @@ public class NewEvent extends HttpServlet {
 
         try {
             if (title != null) {
-                if (event.newEvent(title, description, date, theme) == false) {
+                if (event.newEvent(title, description, location, date, theme) == false) {
                     System.out.println("false");
                     response.sendRedirect(request.getContextPath() + "/FailedNewEvent.jsp");
                 } else {
