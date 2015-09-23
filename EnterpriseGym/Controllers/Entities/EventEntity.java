@@ -56,6 +56,32 @@ public class EventEntity {
         return event_type;
     }
     
+    public String getEvent_type_name(){
+        String eventName = "";
+        
+        switch (event_type) {
+            case 1:
+                eventName = "Action";
+                break;
+            case 2:
+                eventName = "Practice";
+                break;
+            case 3:
+                eventName = "Theory";
+                break;
+            case 4:
+                eventName = "Virtual";
+                break;
+            case 5:
+                eventName = "Project";
+                break;
+            default: break;
+        }
+        
+        return eventName;
+    }
+    
+    
     public void setDescription(String new_description){
         description = new_description;
     }

@@ -40,6 +40,7 @@
                         <%="<h4><i class=\"fa fa-fw fa-check\"></i>" + event.getName() + "</h4>"%>
                         <%="<h6><i class=\"fa fa-fw fa-check\"></i>" + event.getDate() + "</h6>"%>
                         <%="<h6><i class=\"fa fa-fw fa-check\"></i>" + event.getLocation() + "</h6>"%>
+                        <%="<h6><i class=\"fa fa-fw fa-check\"></i>" + event.getEvent_type_name() + "</h6>"%>
                     <%="</div>"%>
                     <%="<div class=\"panel-body\">"%>
                         <%="<p>"%>
