@@ -9,9 +9,12 @@
 <%@page import="Entities.QuizEntity" %>
 <!DOCTYPE html>
 <html>
+    <head>
+        <link href='css/media.css' rel='stylesheet' type='text/css'>
+    </head>
        <%@include file="header.jsp" %>
-    <div class="hidden-xs">
-        <%@include file="sidebar.jsp"%>
+    <div class ="mobile">
+    <%@include file="sidebar.jsp"%>
     </div>
     
     <script src="${pageContext.request.contextPath}/js/quiz.js"></script>

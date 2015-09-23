@@ -72,7 +72,7 @@ public class UserModel {
                 PreparedStatement getDefaultPermision = null;
                 String getDefaultPermisionString = "SELECT idaccessToken FROM accessToken WHERE description=?";
                 getDefaultPermision = con.prepareStatement(getDefaultPermisionString);
-                getDefaultPermision.setString(1, "admin");//TODO Change!
+                getDefaultPermision.setString(2, "user");//TODO Change!
                 ResultSet accessLevel = getDefaultPermision.executeQuery();
                 accessLevel.next();
                 int access = accessLevel.getInt("idaccessToken");

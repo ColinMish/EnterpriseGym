@@ -10,12 +10,13 @@
     
    <head>
       <link href='css/style.css' rel='stylesheet' type='text/css'>
+      <link href='css/media.css' rel='stylesheet' type='text/css'>
     </head> 
    
     <body>
     <%@include file="header.jsp" %>
-    <div class="hidden-xs">
-        <%@include file="sidebar.jsp"%>
+    <div class ="mobile">
+    <%@include file="sidebar.jsp"%>
     </div>
     
     <!-- Page Content -->
@@ -31,7 +32,7 @@
  
                                          
         <div class="col-md-8" id="AboutText">
-                <div class="panel panel-default">
+                <div class="panel panel-default panelmobile">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i>About the Enterprise Gym</h4>
                     </div>
@@ -94,7 +95,7 @@
             </div>
         
               <div class="col-md-4" id="ConnectText">
-                <div class="panel panel-default panabout">
+                <div class="panel panel-default panelabout">
                     
                         <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i><strong>Available Options</strong></h4><br>

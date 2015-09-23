@@ -5,8 +5,11 @@
  */
 package Models;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.LinkedList;
+import java.io.InputStream;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -17,8 +20,29 @@ public class AdminModel {
     public String user = "davidkenny";
     public String pass = "root1";
     
-    public boolean addNewsStory(String newsContent)
+     public static java.sql.Date getCurrentDate() {
+        java.util.Date today = new java.util.Date();
+        return new java.sql.Date(today.getTime());
+    }
+    
+    public boolean addNewsStory(Part filepart,String newsContent,String title) throws IOException
     {
+        
+        InputStream inputStream = null;
+        int length=0;
+        String type=null;
+        
+         if (filepart != null) {
+            // prints out some information for debugging
+            System.out.println(filepart.getName());
+            System.out.println(filepart.getSize());
+            System.out.println(filepart.getContentType());
+            length=(int) filepart.getSize();
+            type = filepart.getContentType();
+            // obtains input stream of the upload file
+            inputStream = filepart.getInputStream();
+        }
+        
         Connection con = null;
         
         try {
@@ -28,9 +52,17 @@ public class AdminModel {
             PreparedStatement ps = null;
             PreparedStatement addNewsStory = null;
 
-            String InsertIntoNews = "INSERT INTO newsItem (story) VALUES (?)";
+            String InsertIntoNews = "INSERT INTO newsItem (story,image,dateAdded,title,image_length,image_type) VALUES (?,?,?,?,?,?)";
             addNewsStory = con.prepareStatement(InsertIntoNews);
             addNewsStory.setString(1, newsContent);
+              if (inputStream != null) {
+                // fetches input stream of the upload file for the blob column
+                addNewsStory.setBlob(2, inputStream);
+                addNewsStory.setInt(5,length);
+                addNewsStory.setString(6,type);
+            }
+              addNewsStory.setDate(3, getCurrentDate());
+              addNewsStory.setString(4, title);
             addNewsStory.executeUpdate();
             return true;
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {

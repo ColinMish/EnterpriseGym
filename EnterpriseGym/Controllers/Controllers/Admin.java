@@ -3,6 +3,7 @@ package Controllers;
 
 import Models.AdminModel;
 import java.io.IOException;
+import java.io.InputStream;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -11,14 +12,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import lib.Convertors;
 
 /**
  *
  * @author Andy
  */
-@WebServlet(name = "Admin", urlPatterns = {"/Admin", "/AddNews", "/ResetPoints", "/DeleteUser"})
-@MultipartConfig
+
+@WebServlet(name = "Admin", urlPatterns = {"/Admin", "/AddNews"})
+@MultipartConfig (maxFileSize = 16177215) //Set the pictures size up to 16MB  
+
+
 public class Admin extends HttpServlet {
 
     /**
@@ -88,9 +93,14 @@ public class Admin extends HttpServlet {
             throws ServletException, IOException 
     {
         String content = request.getParameter("editor1");
+        String title = request.getParameter("title");
         AdminModel admin = new AdminModel();
         
-        if(admin.addNewsStory(content)==true)
+        InputStream inputStream = null;
+        Part filePart = request.getPart("image");
+        
+        
+        if(admin.addNewsStory(filePart,content,title)==true)
         {
             request.setAttribute("storyAdded", true);
             RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");

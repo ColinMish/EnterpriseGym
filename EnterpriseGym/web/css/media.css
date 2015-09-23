@@ -14,13 +14,21 @@ and open the template in the editor.
         }
 
         #sidebar-wrapper {
-            
+            width:4em;
+            left:17em !important;
         }
 
         .col-lg-12 h1 {
-            margin-left: 0.6em;
+            margin-left: 0.8em;
         }
         
+        .panelmobile{
+            margin-left:1em;
+        }
+        
+        .mobile{
+            display:none;
+        }
     }
     
     @media(max-height:960px) {
@@ -43,7 +51,9 @@ and open the template in the editor.
             height:6em;
             width:12em;
         }
-        
+        .mobile{
+            display:none;
+        }
     } 
       
     

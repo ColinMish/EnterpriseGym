@@ -10,13 +10,14 @@
     
     <head>
         <link href='css/style.css' rel='stylesheet' type='text/css'>
+        <link href='css/media.css' rel='stylesheet' type='text/css'>
         <script src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
     </head> 
    
     <body>
     <%@include file="header.jsp" %>
-    <div class="hidden-xs">
-        <%@include file="sidebar.jsp"%>
+    <div class ="mobile">
+    <%@include file="sidebar.jsp"%>
     </div>
     
     <% Boolean storyAdded = (Boolean) request.getAttribute("storyAdded"); %>
@@ -55,12 +56,23 @@
                     <h4><i class="fa fa-fw fa-check"></i>News Editor</h4>
                 </div>
                 <div id="newsEditor" class="panel-body" hidden>
-                    <form action="AddNews" method="POST">
+                    <form action="AddNews" method="POST" enctype="multipart/form-data">
+                        
+                              <div class="form-group">
+                        <label for="title">Title:</label>
+                        <input name="title" type="text" class="form-control" id="title" maxlength="45" required/>
+                        </div>
+                        
                         <textarea name="editor1" id="editor1" rows="10" cols="80"></textarea>
                         <script>
                             CKEDITOR.replace('editor1');
                         </script>
                         <br/>
+                        <span class="btn btn-default btn-file">
+                        <input name="image" type="file">
+                        </span>
+                        <br/>
+                      
                         <input class="btn btn-default" type="submit" value="Create Post">
                     </form>
                 </div>
