@@ -109,9 +109,7 @@ public class UserModel {
                 ps.setInt(9, year);
                 ps.setInt(10, matriculation);
                 ps.setInt(11, accountid);
-            }
-            else
-            {
+            } else {
                 String sqlOption = "INSERT INTO user (first_name, last_name,email, account_idaccount) VALUES (?,?,?,?)";
                 ps = con.prepareStatement(sqlOption);
 
@@ -123,7 +121,7 @@ public class UserModel {
             ps.executeUpdate();
             con.close();
             return true;
-            
+
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
             System.out.println("connection to db failed");
             return false;
@@ -304,16 +302,18 @@ public class UserModel {
 
     public Account getAccount(String username) {
         LinkedList accountTokens = new LinkedList();
+        boolean temp = false;
+        int userId = 0;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             Statement st;
-            int userId = 0;
             ResultSet accessTokens;
             Connection con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
             st = con.createStatement();
-            accessTokens = st.executeQuery("select idaccount from account where username='" + username + "'");
+            accessTokens = st.executeQuery("select idaccount, temp from account where username='" + username + "'");
             if (accessTokens.next()) {
                 userId = accessTokens.getInt(1);
+                temp = accessTokens.getBoolean(2);
             }
             st = con.createStatement();
             accessTokens = st.executeQuery("SELECT * FROM accessToken_has_account WHERE account_idaccount='" + userId + "'");
@@ -323,7 +323,7 @@ public class UserModel {
             con.close();
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
         }
-        return new Account(username, accountTokens);
+        return new Account(userId, username, accountTokens, temp);
     }
 
     public String getSalt(String username) {
@@ -393,5 +393,31 @@ public class UserModel {
             System.out.println("connection to db failed");
             return false;
         }
+    }
+
+    public Object getUserByAccount(int accountid) {
+        UserEntity userEntity = null;
+        String firstname = null;
+        String lastname = null;
+        String email = null;
+        int id = 0;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Statement st;
+            ResultSet userResults;
+            Connection con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+            st = con.createStatement();
+            userResults = st.executeQuery("select * FROM user WHERE account_idaccount='" + accountid + "'");
+            if (userResults.next()) {
+                firstname = userResults.getString("first_name");
+                lastname = userResults.getString("last_name");
+                email = userResults.getString("emai");
+                id = userResults.getInt("iduser");
+            }
+            con.close();
+            userEntity = new UserEntity(id, firstname, lastname, email);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+        }
+        return userEntity;
     }
 }

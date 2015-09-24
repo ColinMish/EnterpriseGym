@@ -73,10 +73,10 @@ public class LogIn extends HttpServlet {
         String password = request.getParameter("password");
 
         if (username.equals("admin")) {
-             HttpSession session = request.getSession();
-             session.setAttribute("account", testAdminAccount());
+            HttpSession session = request.getSession();
+            session.setAttribute("account", testAdminAccount());
             result = "success";
-            
+
         } else {
             UserModel user = new UserModel();
 
@@ -93,15 +93,18 @@ public class LogIn extends HttpServlet {
                     request.setAttribute("failed", true);
                 } else {
                     Account login = user.getAccount(username);
-                    HttpSession session = request.getSession();
-                    session.setAttribute("account", login);
-                    result = "success";
+                    if (login.isTemp()) {
+                        result = Integer.toString(login.getId());
+                    } else {
+                        HttpSession session = request.getSession();
+                        session.setAttribute("account", login);
+                        result = "success";
+                    }
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(LogIn.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
         try (PrintWriter out = response.getWriter()) {
             out.print(result);
             out.flush();
@@ -113,7 +116,7 @@ public class LogIn extends HttpServlet {
         LinkedList accessLevel = new LinkedList();
         accessLevel.add(1);
 
-        Account adminAccount = new Account("admin", accessLevel);
+        Account adminAccount = new Account(1, "admin", accessLevel, false);
 
         return adminAccount;
     }

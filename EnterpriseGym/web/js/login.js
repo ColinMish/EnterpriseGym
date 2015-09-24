@@ -29,13 +29,19 @@ $(document).ready(function ()
         else
         {
             loginCount++;
-            if (!LogIn(password, username))
+            var result = LogIn(password, username);
+            if (result === "success")
             {
+                window.location = "Home";
+            }
+            else if (result === "failed")
+            {
+                loginfailed();
                 $("#fail").show();
             }
             else
             {
-                window.location = "Home";
+                window.location = "SignUp/Temp/" + result;
             }
         }
     });
@@ -43,7 +49,7 @@ $(document).ready(function ()
 
     function LogIn(password, username)
     {
-        var returnValue = false;
+        var returnValue = "";
         $.ajax({
             type: "POST",
             url: "LogIn",
@@ -51,12 +57,7 @@ $(document).ready(function ()
             data: {password: password, username: username},
             cache: false,
             success: function (result) {
-                if (result === "success")
-                {
-                    returnValue = true;
-                }else{
-                    loginfailed();
-                }
+                returnValue = result;
             },
             fail: function () {
                 console.log("Ajax error");
@@ -70,6 +71,6 @@ function loginfailed()
 {
     //Show modal if the log in fails.
     $("#modalHeader").text("Error");
-        $("#modalText").text("Log in failed. Please try again.");
-        $('#myModal').modal('show');
+    $("#modalText").text("Log in failed. Please try again.");
+    $('#myModal').modal('show');
 }
