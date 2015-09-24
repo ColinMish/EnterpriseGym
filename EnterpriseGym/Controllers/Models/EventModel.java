@@ -304,27 +304,36 @@ public class EventModel {
         return eventList;
     }
     
-    public boolean deleteEvent(int id)
-   {
-         Connection con = null;
-        
-        try {
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+   public boolean deleteEvent(int id)
+{
+	 Connection con = null;
+	
+	try {
+		Class.forName("com.mysql.jdbc.Driver").newInstance();
+		con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
 
-            PreparedStatement deleteNews = null;
-            String DeleteEvent = "DELETE a.*,u.* FROM event a INNER JOIN event_has_user u ON a.idevent = u.event_idevent WHERE a.idevent=?";
-            deleteNews = con.prepareStatement(DeleteEvent);
-            deleteNews.setInt(1,id);
-            deleteNews.executeUpdate();
-            return true;
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
-             System.out.println("expection thrown");
-             System.out.println("false, exception");
-             e.printStackTrace();
-            return false;
-        }
-   }
+		PreparedStatement disableFKCheck = null;
+		PreparedStatement deleteNews = null;
+		PreparedStatement enableFKCheck = null;
+		
+		String DisableFKCheck = "SET FOREIGN_KEY_CHECKS=0";
+		String DeleteEvent = "DELETE e.*,u.* FROM event e INNER JOIN event_has_user u ON e.idevent = u.event_idevent WHERE e.idevent=?";
+		String EnableFKCheck = "SET FOREIGN_KEY_CHECKS=1";
+		disableFKCheck = con.prepareStatement(DisableFKCheck);
+		disableFKCheck.executeUpdate();
+		deleteNews = con.prepareStatement(DeleteEvent);
+		deleteNews.setInt(1,id);
+		deleteNews.executeUpdate();
+		enableFKCheck = con.prepareStatement(EnableFKCheck);
+		enableFKCheck.executeUpdate();
+		return true;
+	} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+		 System.out.println("expection thrown");
+		 System.out.println("false, exception");
+		 e.printStackTrace();
+		return false;
+	}
+}
     
     public Picture getPic(int id)
     {
