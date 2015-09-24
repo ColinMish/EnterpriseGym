@@ -24,7 +24,9 @@
     <link href="${pageContext.request.contextPath}/css/half-slider.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 
-
+    <!--ICON-->
+    <link rel="icon" href="${pageContext.request.contextPath}/Pictures/favicon.ico" type="image/x-icon" />
+    
     <!-- Country Drop-down CSS -->
     <link href="${pageContext.request.contextPath}/css/flags.css" rel="stylesheet">
 
