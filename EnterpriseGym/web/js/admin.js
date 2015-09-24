@@ -56,4 +56,29 @@ function reload()
     location.reload(); 
 }
 
+function deleteEvent()
+{
+        $.ajax({
+        type: "DELETE",
+        url: "../Events/"+myId,
+        cache: false,
+        success: function (data) {
+            if(data==1)
+            {
+                //Data has been deleted.
+                //Confirmation then reload the page. 
+                successModal(); 
+            }else{
+                failureModal();
+                //Data not deleted.
+            }
+        //Show success then reload the page. 
+        },
+        fail: function () {
+            window.alert("Failed");
+        //Show failure. 
+        }
+    });
+}
+
 

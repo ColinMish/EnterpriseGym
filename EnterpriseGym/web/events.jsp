@@ -54,6 +54,7 @@
                     <div class="panel-body">
                         <p>
                         <p><%=p.getDescription()%></p>
+                        <p><%=p.getPoints_given()%></p>
                         
                              <% if (p.getLength()!=0){ %>                    
                             <img src="${pageContext.request.contextPath}/Events/Picture/<%=p.getID()%>" style="max-height: 100px; max-width: 100px;" class="img-responsive" alt="News Image">

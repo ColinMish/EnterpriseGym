@@ -104,9 +104,9 @@
 
                             <tr>
                                 <td><%=myEvent.getName()%></td>
-                                <td><a role="button" href="${pageContext.request.contextPath}/News/Article/<%=myEvent.getID()%>" class="btn btn-primary">View <span class="glyphicon glyphicon-search" aria-hidden="true"></span><button></button></td>
-                                <td><a role="button" href="${pageContext.request.contextPath}/Admin/News/<%=myEvent.getID()%>" class="btn btn-Warning">Edit <span class="glyphicon glyphicon-cog" aria-hidden="true"></span><button></button></td>
-                                <td><a role="button" onclick="checkDelete(<%=myEvent.getID()%>, '<%=myEvent.getName()%>')" class="btn btn-Danger">Delete <span class="glyphicon glyphicon-trash" aria-hidden="true"></span><button></button></td>              
+                                <td><a role="button" href="${pageContext.request.contextPath}/Events/Event/<%=myEvent.getID()%>" class="btn btn-primary">View <span class="glyphicon glyphicon-search" aria-hidden="true"></span></td>
+                                <td><a role="button" href="${pageContext.request.contextPath}/Admin/News/<%=myEvent.getID()%>" class="btn btn-Warning">Edit <span class="glyphicon glyphicon-cog" aria-hidden="true"></span></td>
+                                <td><a role="button" onclick="checkDelete(<%=myEvent.getID()%>, '<%=myEvent.getName()%>')" class="btn btn-Danger">Delete <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></td>              
 
                             <%} %></tbody> <%}%>
                     </table>
