@@ -9,48 +9,25 @@ import java.util.List;
  */
 public class EventEntity {
     
-    String name, description, location,startdate,enddate;
-    int event_type, points_given,length;
+    String name, description, location;
+    int event_type, points_given;
     List <UserEntity> participants;
+    Date dateTime;
     int id;
     
-    public EventEntity (String name, int event_type, String description, int points_given, String location) 
+    public EventEntity (String name, int event_type, String description, int points_given, Date dateTime, String location) 
     {
         this.name = name;
         this.event_type = event_type;
         this.description = description;
         this.points_given = points_given;
+        this.dateTime = dateTime;
         this.location = location;
 
     }
     
     public EventEntity()
     {
-        
-    }
-
-    public String getStartdate() {
-        return startdate;
-    }
-
-    public void setStartdate(String startdate) {
-        this.startdate = startdate;
-    }
-
-    public int getLength() {
-        return length;
-    }
-
-    public void setLength(int length) {
-        this.length = length;
-    }
-
-    public String getEnddate() {
-        return enddate;
-    }
-
-    public void setEnddate(String enddate) {
-        this.enddate = enddate;
     }
     
     public void setName(String new_name){
@@ -79,32 +56,6 @@ public class EventEntity {
         return event_type;
     }
     
-    public String getEvent_type_name(){
-        String eventName = "";
-        
-        switch (event_type) {
-            case 1:
-                eventName = "Action";
-                break;
-            case 2:
-                eventName = "Practice";
-                break;
-            case 3:
-                eventName = "Theory";
-                break;
-            case 4:
-                eventName = "Virtual";
-                break;
-            case 5:
-                eventName = "Project";
-                break;
-            default: break;
-        }
-        
-        return eventName;
-    }
-    
-    
     public void setDescription(String new_description){
         description = new_description;
     }
@@ -120,7 +71,15 @@ public class EventEntity {
     public int getPoints_given(){
         return points_given;
     }
-  
+    
+    public void setDateTime(Date new_dateTime){
+        this.dateTime = new_dateTime;
+    }
+    
+    public Date getDate(){
+        return this.dateTime;
+    }
+    
     public void setLocation(String new_location){
         location = new_location;
     }
