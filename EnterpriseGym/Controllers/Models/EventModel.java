@@ -314,6 +314,36 @@ public class EventModel {
         return eventList;
     }
     
+    public boolean signUp(int userID, int eventID)
+    {
+        Connection con = null;
+    try {
+
+        Class.forName("com.mysql.jdbc.Driver").newInstance();
+        con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+
+        PreparedStatement ps2 = null;
+
+        String sqlOption = "INSERT INTO event_has_user (user_iduser,event_idevent) VALUES (?,?)";
+        ps2 = con.prepareStatement(sqlOption);
+        ps2.setInt(1, userID);
+        ps2.setInt(2, eventID);    
+        ps2.executeUpdate();
+
+        //Find out the id of the new account to insert into user. 
+
+        con.close();
+
+        return true;
+        
+    } catch (Exception e) {
+            System.out.println("connection to db failed");
+            e.printStackTrace();
+            return false;
+
+        }
+    }
+    
    public boolean deleteEvent(int id)
 {
 	 Connection con = null;
