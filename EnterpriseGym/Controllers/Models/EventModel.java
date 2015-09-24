@@ -330,8 +330,6 @@ public class EventModel {
         ps2.setInt(2, eventID);    
         ps2.executeUpdate();
 
-        //Find out the id of the new account to insert into user. 
-
         con.close();
 
         return true;
@@ -342,6 +340,41 @@ public class EventModel {
             return false;
 
         }
+    }
+    
+    public boolean leaveEvent(int userID, int eventID)
+    {
+         Connection con = null;
+         try {
+
+        Class.forName("com.mysql.jdbc.Driver").newInstance();
+        con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+
+        PreparedStatement ps2 = null;
+        
+        int i=0;
+
+        String sqlOption = "DELETE from event_has_user where user_iduser=? and event_idevent=?";
+        ps2 = con.prepareStatement(sqlOption);
+        ps2.setInt(1, userID);
+        ps2.setInt(2, eventID);    
+        i= ps2.executeUpdate();
+        con.close();
+        
+        if(i==0){
+
+        return false;
+        }else{
+            return true;
+        }
+        
+    } catch (Exception e) {
+            System.out.println("connection to db failed");
+            e.printStackTrace();
+            return false;
+
+        }
+         
     }
     
    public boolean deleteEvent(int id)

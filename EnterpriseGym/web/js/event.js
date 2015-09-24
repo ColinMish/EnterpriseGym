@@ -9,7 +9,6 @@ var eventId;
 
 function signUp(id,eventid)
 {
-    window.alert(id+eventid);
      $.ajax({
         type: "POST",
         url: ctx+"/SignUpEvent",
@@ -42,7 +41,7 @@ function leaveEvent()
 {
      $.ajax({
         type: "DELETE",
-        url: "../Events/NotGoing/"+myId+eventId,
+        url: ctx+"/Events/NotGoing/"+myId+"/"+eventId,
         cache: false,
         success: function (data) {
             if(data==1)
@@ -70,7 +69,6 @@ function checkDelete(id,eventid)
 {
         this.myId=id;
         this.eventId=eventid;
-        window.alert(id+eventid);
         $("#modalmessage").text("Are you sure you want to leave this event ?");
         
         $('#myModal').modal('show');

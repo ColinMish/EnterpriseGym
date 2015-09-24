@@ -270,6 +270,7 @@ public class Events extends HttpServlet {
     protected void doDelete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String args[] = Convertors.SplitRequestPath(request);
+        System.out.println(args[2]);
         switch (args[2]) {
             case "DeleteEvent":
                 deleteEvent(request, response,args[3]);
@@ -298,21 +299,22 @@ public class Events extends HttpServlet {
     
                 }
       
-      private void notGoing(HttpServletRequest request, HttpServletResponse response,String eventid,String userid) throws IOException, ServletException
+      private void notGoing(HttpServletRequest request, HttpServletResponse response,String userid,String eventid) throws IOException, ServletException
                 {
-//                       int id = Integer.parseInt(id2);
-//                        EventModel model = new EventModel(); 
-//                        if(model.deleteEvent(id)==true)
-//                        {
-//                       //The content was deleted
-//                        response.setContentType("text/html;charset=UTF-8");
-//                        response.getWriter().write("1"); 
-//                         }else{
-//                         //Nothing was deleted
-//                       response.setContentType("text/html;charset=UTF-8");
-//                      response.getWriter().write("0"); 
-//                         }
-                    System.out.println("delete method called");
+                       int userID = Integer.parseInt(userid);
+                       int eventID = Integer.parseInt(eventid);
+                       
+                        EventModel model = new EventModel(); 
+                        if(model.leaveEvent(userID,eventID)==true)
+                        {
+                       //The content was deleted
+                        response.setContentType("text/html;charset=UTF-8");
+                        response.getWriter().write("1"); 
+                         }else{
+                         //Nothing was deleted
+                       response.setContentType("text/html;charset=UTF-8");
+                      response.getWriter().write("0"); 
+                         }
     
                 }
     
