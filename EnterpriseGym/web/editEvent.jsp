@@ -39,10 +39,11 @@
                         <h4><i class="fa fa-fw fa-check"></i>Edit Event</h4>
                     </div>
                     <div class="panel-body">
-                          <form action="${pageContext.request.contextPath}/Event/NewsUpdate" method="POST" enctype="multipart/form-data">
+                          <form action="${pageContext.request.contextPath}/EditEvent" method="POST" enctype="multipart/form-data">
                                      <div class="form-group">
                     <label for="eventTitle">Event Title:</label>
                     <input name="eventTitle" value="<%=p.getName()%>" type="text" class="form-control" id="title1" maxlength="45"/>
+                    <input name="id" type="text" class="form-control hidden" id="title" maxlength="45" value="<%=p.getID()%>" required/>
                 </div>
                 
      <label for="datetimepicker1">Start date / Time:</label>           
@@ -169,7 +170,7 @@
                         
                 <br>
   
-                <input class="btn btn-default" type="submit" value="Create Event">
+                <button class="btn btn-info pull-right" type="submit">Update Event <span class="glyphicon glyphicon-upload" aria-hidden="true"></span></button>
                 <br/>  
                    
                         

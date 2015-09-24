@@ -166,13 +166,34 @@ public class Events extends HttpServlet {
     private void changeEvent(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
-        int eventID = Integer.parseInt(request.getParameter("eventID"));
-        EventEntity event = new EventEntity();
         
-      //  event = eventModel.GetEventByID(eventID);
-        request.setAttribute("Events", event);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/editEvent.jsp");
-        dispatcher.forward(request, response);
+        int eventID = Integer.parseInt(request.getParameter("id"));
+        String title = request.getParameter("eventTitle");
+        String startDate = request.getParameter("startdate");
+        String endDate = request.getParameter("enddate");
+        String description = request.getParameter("eventDescription"); 
+        String location = request.getParameter("eventLocation");
+        int theme = Integer.parseInt(request.getParameter("eventTheme"));
+        int points = Integer.parseInt(request.getParameter("points"));
+        Part filePart = request.getPart("image");
+        
+        EventModel model = new EventModel();
+        
+        if(model.updateEvent(filePart,title,description,location,startDate,endDate,points,theme,eventID)==true)
+        {
+            request.setAttribute("newsUpdated", true);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/admin.jsp");
+            dispatcher.forward(request, response);
+            System.out.println("News Story Updated.");
+        }else{
+            request.setAttribute("newsUpdated", false);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/admin.jsp");
+            dispatcher.forward(request, response);
+            System.out.println("News Story Failed To Update");
+        }
+        
+        
+        
     }
     
 //       public java.sql.Timestamp convertJavaDateToSqlDate(java.util.Date date) {

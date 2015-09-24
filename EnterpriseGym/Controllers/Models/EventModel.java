@@ -145,6 +145,79 @@ public class EventModel {
         }
     }
     
+    
+     public boolean updateEvent(Part filepart,String title, String description, String location, String startdate, String enddate, int points,int theme,int id) throws IOException
+    {
+       
+        InputStream inputStream = null;
+        int length=0;
+        String type=null;
+        
+         if (filepart != null) {
+            // prints out some information for debugging
+            System.out.println(filepart.getName());
+            System.out.println(filepart.getSize());
+            System.out.println(filepart.getContentType());
+            length=(int) filepart.getSize();
+            type = filepart.getContentType();
+            // obtains input stream of the upload file
+            inputStream = filepart.getInputStream();
+        }
+        
+        Connection con = null;
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+              if (inputStream != null && length !=0) {
+            PreparedStatement ps = null;
+             String sqlOption2 = "UPDATE event SET title=?,description=?,date=?,end_date=?,location=?,points=?,theme_idtheme=?,image=?,image_length=?,image_type=? WHERE idevent=?";
+                ps = con.prepareStatement(sqlOption2);
+
+                ps.setString(1,title);
+                ps.setString(2, description);
+                  
+                // fetches input stream of the upload file for the blob column
+                    ps.setString(3, startdate);
+                    ps.setString(4,enddate);
+                    ps.setString(5,location);
+                    ps.setInt(6,points);
+                    ps.setInt(7,theme);
+                     ps.setBlob(8, inputStream);
+                    ps.setInt(9,length);
+                    ps.setString(10,type);
+                    
+                    
+                ps.setInt(11,id);
+                ps.executeUpdate();
+  
+            return true;
+              }else{
+                      PreparedStatement ps = null;
+             String sqlOption2 = "UPDATE event SET title=?,description=?,date=?,end_date=?,location=?,points=?,theme_idtheme=? WHERE idevent=?";
+                ps = con.prepareStatement(sqlOption2);
+
+                 ps.setString(1,title);
+                ps.setString(2, description);
+                  
+                // fetches input stream of the upload file for the blob column
+                    ps.setString(3, startdate);
+                    ps.setString(4,enddate);
+                    ps.setString(5,location);
+                    ps.setInt(6,points);
+                    ps.setInt(7,theme);
+                    ps.setInt(8, id);
+                ps.executeUpdate();
+                return true;
+              }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+             System.out.println("expection thrown");
+             System.out.println("false, exception");
+             e.printStackTrace();
+            return false;
+        }
+    }
+    
     //public EventEntity GetEventByName(String name)
     //{
      //   EventEntity event = new EventEntity(name, 1, null, 1, null, null);
