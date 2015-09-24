@@ -39,6 +39,51 @@ public class UserModel {
         }
 
     }
+    
+    public java.util.LinkedList<UserEntity> getPoints(String username) {
+        java.util.LinkedList<UserEntity> userdetails = new java.util.LinkedList<>();
+
+        Connection con = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+
+            PreparedStatement ps1 = null;
+            String sqlOption1 = "SELECT * FROM account WHERE username=?";
+
+            ps1 = con.prepareStatement(sqlOption1);
+            ps1.setString(1, username);
+
+            ResultSet rs1 = ps1.executeQuery();
+            rs1.next();
+            int id = rs1.getInt("idaccount");
+            System.out.println("The id is:" + id);
+
+            PreparedStatement ps = null;
+            String sqlOption = "SELECT * FROM user WHERE account_idaccount=?";
+
+            ps = con.prepareStatement(sqlOption);
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+            UserEntity user = new UserEntity();
+            rs.next();
+            user.setActionPoints(rs.getInt("action_points"));
+            user.setPractice_points(rs.getInt("practice_points"));
+            user.setVirtual_points(rs.getInt("virtual_points"));
+            user.setProject_points(rs.getInt("project_points"));
+            user.setTheory_points(rs.getInt("theory_points"));
+            userdetails.add(user);
+
+            return userdetails;
+
+        } catch (Exception e) {
+            System.out.println("connection to db failed");
+            e.printStackTrace();
+            return null;
+        }
+
+    }
 
     public int createAccount(String username, String password, String salt) {
         Connection con = null;
@@ -177,57 +222,6 @@ public class UserModel {
 
     }
 
-    public java.util.LinkedList<UserEntity> getDetails(String username) {
-        java.util.LinkedList<UserEntity> userdetails = new java.util.LinkedList<>();
-
-        Connection con = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
-
-            PreparedStatement ps1 = null;
-            String sqlOption1 = "SELECT * FROM account WHERE username=?";
-
-            ps1 = con.prepareStatement(sqlOption1);
-            ps1.setString(1, username);
-
-            ResultSet rs1 = ps1.executeQuery();
-            rs1.next();
-            int id = rs1.getInt("idaccount");
-            System.out.println("The id is:" + id);
-
-            PreparedStatement ps = null;
-            String sqlOption = "SELECT * FROM user WHERE account_idaccount=?";
-
-            ps = con.prepareStatement(sqlOption);
-            ps.setInt(1, id);
-
-            ResultSet rs = ps.executeQuery();
-            UserEntity user = new UserEntity();
-            rs.next();
-            user.setName(rs.getString("first_name"));
-            user.setLastname(rs.getString("last_name"));
-            user.setUniversity(rs.getString("university"));
-            user.setCountry(rs.getString("country"));
-            user.setEmail(rs.getString("email"));
-            user.setSchool(rs.getString("school"));
-            user.setSubject(rs.getString("subject"));
-            user.setUniversity(rs.getString("university"));
-            user.setGender(rs.getString("gender"));
-            user.setYearOfStudy(rs.getInt("year"));
-            user.setMatric(rs.getInt("matriculation"));
-            userdetails.add(user);
-
-            return userdetails;
-
-        } catch (Exception e) {
-            System.out.println("connection to db failed");
-            e.printStackTrace();
-            return null;
-
-        }
-    }
-    
     public java.util.LinkedList<UserEntity> getDetails(String username) {
         java.util.LinkedList<UserEntity> userdetails = new java.util.LinkedList<>();
 
