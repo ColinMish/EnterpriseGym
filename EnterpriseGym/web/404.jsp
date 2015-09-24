@@ -36,8 +36,10 @@
                         <h4><i class="fa fa-fw fa-check"></i>Page Not Found</h4>
                     </div>
                     <div class="panel-body">
-                     The requested page cannot be found. It may have been moved.   
+                     The requested page cannot be found. It may have been moved. 
                     </div>
+                     <p><b>Error code:</b> ${pageContext.errorData.statusCode}</p>
+    <p><b>Request URI:</b> ${pageContext.request.scheme}://${header.host}${pageContext.errorData.requestURI}</p>
                 </div>
             </div>
         
