@@ -100,7 +100,9 @@ public class Events extends HttpServlet {
     
      public void displayNews(HttpServletResponse response,HttpServletRequest request) throws ServletException, IOException
     {
-            request.setAttribute("Events", eventItems);
+            EventModel model = new EventModel();
+            java.util.LinkedList<EventEntity> eventitem = model.getAllEvents();
+            request.setAttribute("Events", eventitem);
             RequestDispatcher dispatcher = request.getRequestDispatcher("events.jsp");
             dispatcher.forward(request, response);
     }

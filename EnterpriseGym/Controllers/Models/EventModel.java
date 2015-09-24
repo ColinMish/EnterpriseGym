@@ -123,10 +123,13 @@ public class EventModel {
                 System.out.println("Event name: " + event.getName());
                 event.setEvent_type(rs.getInt("theme_idtheme"));
                 event.setDescription(rs.getString("description"));
+                event.setLength(rs.getInt("image_length"));
                 //TODO get points value from theme table
                 //event.setPoints_given(rs.getInt("points_given"));
-                event.setDateTime(rs.getDate("date"));
+                event.setStartdate(rs.getString("date"));
+                event.setEnddate(rs.getString("end_date"));
                 event.setLocation(rs.getString("location"));
+                event.setPoints_given(rs.getInt("points"));
                 System.out.println("Event location: " + event.getLocation());
                 eventdetails.add(event);
             }
@@ -141,15 +144,15 @@ public class EventModel {
         }
     }
     
-    public EventEntity GetEventByName(String name)
-    {
-        EventEntity event = new EventEntity(name, 1, null, 1, null, null);
-        return event;
-    }
+    //public EventEntity GetEventByName(String name)
+    //{
+     //   EventEntity event = new EventEntity(name, 1, null, 1, null, null);
+     //   return event;
+    //}
     
-    public LinkedList GetEventByID(int ID)
+    public java.util.LinkedList<EventEntity> GetEventByID(int ID)
     {
-        LinkedList foundEvent = null;
+        java.util.LinkedList<EventEntity> eventdetails = new java.util.LinkedList<>();
 
         Connection con = null;
         try {
@@ -162,14 +165,39 @@ public class EventModel {
             ps1 = con.prepareStatement(sqlOption1);
 
             ResultSet rs1 = ps1.executeQuery();
-            rs1.next();
-            int id = rs1.getInt("idevent");
-            System.out.println("The id is:" + id);
+                if(rs1.wasNull())
+    	{
+    		System.out.println("null result");
+                return null;
+    	}else
+    	{
+    		while(rs1.next())
+    		{
+             EventEntity event = new EventEntity();
+                event.setID(rs1.getInt("idevent"));
+                event.setName(rs1.getString("title"));
+                System.out.println("Event name: " + event.getName());
+                event.setEvent_type(rs1.getInt("theme_idtheme"));
+                event.setDescription(rs1.getString("description"));
+                event.setLength(rs1.getInt("image_length"));
+                //TODO get points value from theme table
+                //event.setPoints_given(rs.getInt("points_given"));
+                event.setStartdate(rs1.getString("date"));
+                event.setEnddate(rs1.getString("end_date"));
+                event.setLocation(rs1.getString("location"));
+                event.setPoints_given(rs1.getInt("points"));
+                System.out.println("Event location: " + event.getLocation());
+                eventdetails.add(event);
+                }
+                return eventdetails;
+        }
+          //  int id = rs1.getInt("idevent");
+          //  System.out.println("The id is:" + id);
 
 
-            ResultSet rs = ps1.executeQuery();
+          //  ResultSet rs = ps1.executeQuery();
             
-            return foundEvent;
+          //  return eventdetails;
 
         } catch (Exception e) {
             System.out.println("connection to db failed");
