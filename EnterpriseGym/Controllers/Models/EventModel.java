@@ -133,7 +133,7 @@ public class EventModel {
     
     public EventEntity GetEventByID(int ID)
     {
-        EventEntity foundEvent = null;
+        EventEntity foundEvent = new EventEntity();
 
         Connection con = null;
         try {
@@ -150,8 +150,14 @@ public class EventModel {
             int id = rs1.getInt("idevent");
             System.out.println("The id is:" + id);
 
-
-            ResultSet rs = ps1.executeQuery();
+            foundEvent.setID(id);
+            foundEvent.setName(rs1.getString("title"));
+            foundEvent.setEvent_type(rs1.getInt("theme_idtheme"));
+            foundEvent.setDescription(rs1.getString("description"));
+            //TODO get points value from theme table
+            //event.setPoints_given(rs.getInt("points_given"));
+            foundEvent.setDateTime(rs1.getDate("date"));
+            foundEvent.setLocation(rs1.getString("location"));
             
             return foundEvent;
 

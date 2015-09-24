@@ -66,17 +66,54 @@
                 <div class="col-xs-12">
                     <div class="form-group">
                         <label for="eventDescription">Description:</label>
-                        <textarea name="eventDescription" cols="50" value="<%=event.getDescription()%>" rows="8"></textarea>
+                        <textarea name="eventDescription" cols="50" rows="8"><%=event.getDescription()%></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="sel1">Theme:</label>
-                    <select name="eventTheme" class="form-control" value="<%=event.getEvent_type()%>" id="eventTheme">
-                        <option value="1">Action</option>
-                        <option value="2">Practice</option>
-                        <option value="3">Theory</option>
-                        <option value="4">Virtual</option>
-                        <option value="5">Project</option>
+                    <select name="eventTheme" class="form-control" id="eventTheme">
+                        <%
+                            int eventType = event.getEvent_type();
+                            if (eventType == 1 ) {
+                        %>
+                            <option value="1" selected>Action</option>
+                            <option value="2">Practice</option>
+                            <option value="3">Theory</option>
+                            <option value="4">Virtual</option>
+                            <option value="5">Project</option>
+                        <%}
+                            else if (eventType == 2 ) {
+                        %>
+                            <option value="1">Action</option>
+                            <option value="2" selected>Practice</option>
+                            <option value="3">Theory</option>
+                            <option value="4">Virtual</option>
+                            <option value="5">Project</option>
+                        <%}
+                            else if (eventType == 3 ) {
+                        %>
+                            <option value="1">Action</option>
+                            <option value="2">Practice</option>
+                            <option value="3" selected>Theory</option>
+                            <option value="4">Virtual</option>
+                            <option value="5">Project</option>
+                        <%}
+                            else if (eventType == 4 ) {
+                        %>
+                            <option value="1">Action</option>
+                            <option value="2">Practice</option>
+                            <option value="3">Theory</option>
+                            <option value="4" selected>Virtual</option>
+                            <option value="5">Project</option>
+                        <%}
+                            else {
+                        %>
+                            <option value="1">Action</option>
+                            <option value="2">Practice</option>
+                            <option value="3">Theory</option>
+                            <option value="4">Virtual</option>
+                            <option value="5" selected>Project</option>
+                        <%}%>
                     </select>
                 </div>
                 <br>

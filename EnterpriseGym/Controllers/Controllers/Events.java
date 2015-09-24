@@ -113,6 +113,8 @@ public class Events extends HttpServlet {
         EventEntity event = new EventEntity();
         
         event = eventModel.GetEventByID(eventID);
+        System.out.println("event name is " + event.getName());
+        System.out.println("event description is " + event.getDescription());
         request.setAttribute("Events", event);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/editEvent.jsp");
         dispatcher.forward(request, response);
