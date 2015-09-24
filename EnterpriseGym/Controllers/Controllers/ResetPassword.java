@@ -99,12 +99,18 @@ public class ResetPassword extends HttpServlet {
         // Get system properties object
         System.setProperty("java.net.preferIPv4Stack" , "true");
         Properties properties = System.getProperties();
+        
+        	properties.put("mail.smtp.port", "587");
+		properties.put("mail.smtp.auth", "true");
+		properties.put("mail.smtp.starttls.enable", "true");
 
         // Setup mail server
         properties.setProperty("mail.smtp.host", host);
 
         // Get the default Session object.
-        Session mailSession = Session.getDefaultInstance(properties);
+        String user = "user";
+        String pass = "pass";
+        Session mailSession = Session.getDefaultInstance(properties, new EnterpriseAuthentication(user, pass));
 
         try {
             // Create a default MimeMessage object.
@@ -118,9 +124,11 @@ public class ResetPassword extends HttpServlet {
             message.setSubject(subject);
             // Now set the actual message
             message.setText(emailMessage);
+           
             // Send message
             Transport.send(message);
             result = true;
+            
         } catch (MessagingException mex) {
             mex.printStackTrace();
             result = false;
