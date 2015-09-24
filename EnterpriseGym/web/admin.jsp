@@ -45,8 +45,8 @@
                 <% if(accountDeleted != null) { %> <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Account Successfully Deleted.</p></div> <% } %>
                 <% if(accountNotDeleted != null) { %> <div class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Error Deleting Account.</p></div> <% } %>
                 
-                <% if(newsUpdated != null) { if(newsUpdated==true){ %> <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>News Story Updated Successfully.</p></div>
-                <% }else{ %>  <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Update failed please try again.</p></div> <%} }%>
+                <% if(newsUpdated != null) { if(newsUpdated==true){ %> <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Updated Successfully.</p></div>
+                <% }else{ %>  <div class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Update failed please try again.</p></div> <%} }%>
                 
             </div>
         </div>
@@ -118,7 +118,7 @@
                     <h4><i class="fa fa-fw fa-check"></i>Events Management</h4>
                 </div>
                 <div id="eventsEditor" class="panel-body" hidden>
-                      <form action="NewEvent" role="form" id="NewEvent" method="POST">
+                      <form action="NewEvent" role="form" id="NewEvent" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="eventTitle">Event Title:</label>
                     <input name="eventTitle" type="text" class="form-control" id="title1" maxlength="45"/>
@@ -126,10 +126,10 @@
                 
      <label for="datetimepicker1">Start date / Time:</label>           
     <div class="row">
-        <div class='col-sm-3'>
+        <div class='col-sm-5'>
             <div class="form-group">
                 <div class='input-group date' id='datetimepicker1'>
-                    <input name="startdate" type='text' class="form-control" />
+                    <input name="startdate" type='text' class="form-control" required/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -141,14 +141,14 @@
                 $('#datetimepicker1').datetimepicker();
             });
         </script>
-    </div>
+    </div>     
      
       <label for="datetimepicker2">End date / Time:</label>           
     <div class="row">
-        <div class='col-sm-3'>
+        <div class='col-sm-5'>
             <div class="form-group">
                 <div class='input-group date' id='datetimepicker2'>
-                    <input name="enddate" type='text' class="form-control" />
+                    <input name="enddate" type='text' class="form-control" required />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -161,10 +161,18 @@
             });
         </script>
     </div>
+      <div class="row">
+      <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="eventLocation">Location:</label>
+                    <input name="eventLocation" id="eventLocation" type="text" class="form-control" id="location" maxlength="45"/>
+                    </div>
+                </div>
+      </div>
  
    
                 
-                
+                <label for="eventDescription">Description:</label>
                 <textarea name="eventDescription" id="editor1" rows="10" cols="80"></textarea>
                         <script>
                             CKEDITOR.replace('eventDescription');
@@ -184,7 +192,18 @@
                         <option value="5">Project</option>
                     </select>
                 </div>
+                 
+                 <div class="row">
+      <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="points">Points:</label>
+                    <input name="points" id="eventLocation" type="number" class="form-control" id="location" maxlength="45" required/>
+                    </div>
+                </div>
+      </div>       
+                        
                 <br>
+  
                 <input class="btn btn-default" type="submit" value="Create Event">
                 <br/>
             </form>         
