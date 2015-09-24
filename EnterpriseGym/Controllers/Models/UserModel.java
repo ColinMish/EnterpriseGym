@@ -227,8 +227,8 @@ public class UserModel {
 
         }
     }
-
-    public java.util.LinkedList<UserEntity> getPoints(String username) {
+    
+    public java.util.LinkedList<UserEntity> getDetails(String username) {
         java.util.LinkedList<UserEntity> userdetails = new java.util.LinkedList<>();
 
         Connection con = null;
@@ -256,14 +256,54 @@ public class UserModel {
             ResultSet rs = ps.executeQuery();
             UserEntity user = new UserEntity();
             rs.next();
+            user.setName(rs.getString("first_name"));
+            user.setLastname(rs.getString("last_name"));
+            user.setUniversity(rs.getString("university"));
+            user.setCountry(rs.getString("country"));
+            user.setEmail(rs.getString("email"));
+            user.setSchool(rs.getString("school"));
+            user.setSubject(rs.getString("subject"));
+            user.setUniversity(rs.getString("university"));
+            user.setGender(rs.getString("gender"));
+            user.setYearOfStudy(rs.getInt("year"));
+            user.setMatric(rs.getInt("matriculation"));
+            userdetails.add(user);
+
+            return userdetails;
+
+        } catch (Exception e) {
+            System.out.println("connection to db failed");
+            e.printStackTrace();
+            return null;
+
+        }
+    }
+
+    public UserEntity getUserByID(int id) {
+
+        Connection con = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+
+            UserEntity user = new UserEntity();
+            
+            PreparedStatement ps1 = null;
+            String sqlOption1 = "SELECT * FROM user WHERE iduser=?";
+
+            ps1 = con.prepareStatement(sqlOption1);
+            ps1.setInt(1, id);
+
+            ResultSet rs = ps1.executeQuery();
+
+            rs.next();
             user.setActionPoints(rs.getInt("action_points"));
             user.setPractice_points(rs.getInt("practice_points"));
             user.setVirtual_points(rs.getInt("virtual_points"));
             user.setProject_points(rs.getInt("project_points"));
             user.setTheory_points(rs.getInt("theory_points"));
-            userdetails.add(user);
 
-            return userdetails;
+            return user;
 
         } catch (Exception e) {
             System.out.println("connection to db failed");
