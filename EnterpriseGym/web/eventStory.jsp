@@ -12,12 +12,14 @@
 <html>
     <%@include file="header.jsp" %>
     
+   
+    
          <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
         <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
-        <script src="${pageContext.request.contextPath}/js/event.js" type="text/javascript"></script>
-
+        <script src="${pageContext.request.contextPath}/js/event.js" type="text/javascript"></script>  
+        <script>var ctx = "${pageContext.request.contextPath}"</script>
     
     <div class ="mobile">
     <%@include file="sidebar.jsp"%>

@@ -12,7 +12,7 @@ function signUp(id,eventid)
     window.alert(id+eventid);
      $.ajax({
         type: "POST",
-        url: "/SignUpEvent",
+        url: ctx+"/SignUpEvent",
         data: { id: id, eventid : eventid},
         cache: false,
         success: function (data) {
@@ -30,7 +30,11 @@ function signUp(id,eventid)
         fail: function () {
             window.alert("Failed");
         //Show failure. 
-        }
+        },
+         error: function(jqXHR, textStatus, errorThrown) {
+        console.log(JSON.stringify(jqXHR));
+        console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+ }
     });
 }
 
@@ -38,7 +42,7 @@ function leaveEvent()
 {
      $.ajax({
         type: "DELETE",
-        url: "../Events/NotGoing/"+myId+eventid,
+        url: "../Events/NotGoing/"+myId+eventId,
         cache: false,
         success: function (data) {
             if(data==1)
@@ -55,16 +59,20 @@ function leaveEvent()
         fail: function () {
             window.alert("Failed");
         //Show failure. 
-        }
+        }, error: function(jqXHR, textStatus, errorThrown) {
+        console.log(JSON.stringify(jqXHR));
+        console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+ }
     });
 }
 
 function checkDelete(id,eventid)
 {
-        window.alert(id+eventid);
-        $("#modalmessage").text("Are you sure you want to leave this event ?");
         this.myId=id;
         this.eventId=eventid;
+        window.alert(id+eventid);
+        $("#modalmessage").text("Are you sure you want to leave this event ?");
+        
         $('#myModal').modal('show');
 }
 

@@ -164,6 +164,7 @@ public class Events extends HttpServlet {
             throws ServletException, IOException 
     {
          String[] parts = Convertors.SplitRequestPath(request);
+         System.out.println(parts[1]);
         switch (parts[1]) {
             case "NewEvent":
                 CreateEvent(request, response);
