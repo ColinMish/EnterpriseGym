@@ -31,6 +31,14 @@
                         <input type="hidden" name="eventID" type="number" value="<%=event.getID()%>">
                         <input type="submit" class="btn btn-default" value="Edit Event"/>
                     </form>
+                        <%
+                        if (loggedIn) {
+                        %>
+                    <form action="EventSignUp" method="POST">
+                        <input type="hidden" name="eventID" type="number" value="<%=event.getID()%>">
+                        <input type="submit" class="btn btn-default" value="Edit Event"/>
+                    </form>
+                        <%}%>
                         
                 </div>
             </div>

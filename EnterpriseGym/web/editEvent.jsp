@@ -117,8 +117,9 @@
                     </select>
                 </div>
                 <br>
+                <input type="hidden" name="accountID" type="number" value="<%=account.getUsername()%>"
                 <input type="hidden" name="eventID" type="number" value="<%=event.getID()%>"
-                <input class="btn btn-default" type="submit" value="Save changes">
+                <input class="btn btn-default" type="submit" value="Attend this event">
                 <br/>
             </form> 
 

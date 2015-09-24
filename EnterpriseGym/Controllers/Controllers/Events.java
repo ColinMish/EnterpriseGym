@@ -21,7 +21,7 @@ import lib.Convertors;
  *
  * @author Dave
  */
-@WebServlet(name = "Events", urlPatterns = {"/Events/*", "/EditEvent", "/SubmitEdit"})
+@WebServlet(name = "Events", urlPatterns = {"/Events/*", "/EditEvent", "/SubmitEdit", "/EventSignUp"})
 @MultipartConfig
 public class Events extends HttpServlet {
 
@@ -113,7 +113,22 @@ public class Events extends HttpServlet {
                 break;
             case "SubmitEdit":
                 updateEvent(request, response);
+            case "EventSignUp":
+                signUpEvent(request, response);
         }
+    }
+    
+    private void signUpEvent(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException 
+    {
+        int eventID = Integer.parseInt(request.getParameter("eventID"));
+        int accountID = Integer.parseInt(request.getParameter("accountID"));
+        EventEntity event = new EventEntity();
+        
+        event = eventModel.GetEventByID(eventID);
+        request.setAttribute("Events", event);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/editEvent.jsp");
+        dispatcher.forward(request, response);
     }
     
     private void updateEvent(HttpServletRequest request, HttpServletResponse response)
