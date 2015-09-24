@@ -34,7 +34,7 @@ import lib.Convertors;
  *
  * @author Dave
  */
-@WebServlet(name = "Events", urlPatterns = {"/Events/*", "/EditEvent","/NewEvent"})
+@WebServlet(name = "Events", urlPatterns = {"/Events/*", "/EditEvent","/NewEvent","/SignUpEvent"})
 @MultipartConfig (maxFileSize = 16177215)
 public class Events extends HttpServlet {
 
@@ -171,7 +171,17 @@ public class Events extends HttpServlet {
             case "EditEvent":  
                 changeEvent(request, response);   
                 break;
+            case "SignUpEvent":
+                signUp(request,response);
+                break;
+                    
         }
+    }
+    
+    private void signUp(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException 
+    {
+    System.out.println("sign up called");
     }
     
     private void changeEvent(HttpServletRequest request, HttpServletResponse response)
@@ -288,6 +298,7 @@ public class Events extends HttpServlet {
 //                       response.setContentType("text/html;charset=UTF-8");
 //                      response.getWriter().write("0"); 
 //                         }
+                    System.out.println("delete method called");
     
                 }
     

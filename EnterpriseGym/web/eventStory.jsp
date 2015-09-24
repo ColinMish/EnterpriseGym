@@ -12,7 +12,12 @@
 <html>
     <%@include file="header.jsp" %>
     
+         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
         <script src="${pageContext.request.contextPath}/js/event.js" type="text/javascript"></script>
+
     
     <div class ="mobile">
     <%@include file="sidebar.jsp"%>
@@ -31,7 +36,7 @@
                     <p id="modalmessage">Are you sure you want to delete this event?</p>
                 </div>
                 <div class="modal-footer">
-                    <button id="yes" type="button" onclick="deleteEvent()" class="btn btn-Danger" data-dismiss="modal">Yes</button>  
+                    <button id="yes" type="button" onclick="leaveEvent()" class="btn btn-Danger" data-dismiss="modal">Yes</button>  
                     <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
                 </div>
             </div>
@@ -119,11 +124,11 @@
                             <%if (attending!=null){
                                 if(attending==true)
                                 { %>
-                                <button class="btn btn-danger pull-right" type="submit">Leave Event. <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                <button class="btn btn-danger pull-right" onclick="checkDelete(<%=account.getId()%>,<%=p.getID()%>)" type="submit">Leave Event. <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
                                   
                                <% }else {%>
                             
-                            <button class="btn btn-success pull-right" type="submit">Sign Up. <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                            <button class="btn btn-success pull-right" onclick="signUp(<%=account.getId()%>,<%=p.getID()%>)" type="submit">Sign Up. <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                             
                             <%} }%>
                             

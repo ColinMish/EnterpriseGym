@@ -9,9 +9,11 @@ var eventId;
 
 function signUp(id,eventid)
 {
+    window.alert(id+eventid);
      $.ajax({
-        type: "GET",
-        url: "../News/"+id+eventid,
+        type: "POST",
+        url: "/SignUpEvent",
+        data: { id: id, eventid : eventid},
         cache: false,
         success: function (data) {
             if(data==1)
@@ -32,11 +34,11 @@ function signUp(id,eventid)
     });
 }
 
-function deleteNews()
+function leaveEvent()
 {
      $.ajax({
         type: "DELETE",
-        url: "../News/"+myId+eventid,
+        url: "../Events/NotGoing/"+myId+eventid,
         cache: false,
         success: function (data) {
             if(data==1)
@@ -59,6 +61,7 @@ function deleteNews()
 
 function checkDelete(id,eventid)
 {
+        window.alert(id+eventid);
         $("#modalmessage").text("Are you sure you want to leave this event ?");
         this.myId=id;
         this.eventId=eventid;
