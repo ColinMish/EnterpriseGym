@@ -28,10 +28,13 @@
     <!-- Country Drop-down CSS -->
     <link href="${pageContext.request.contextPath}/css/flags.css" rel="stylesheet">
 
-    <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.js" type="text/javascript"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <script src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
+    <script src="${pageContext.request.contextPath}/js/Moment.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.js"></script>
+    
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -97,12 +100,13 @@
                      <li><a href="${pageContext.request.contextPath}/Profile/Points">Points</a></li>
                      <li><a href="${pageContext.request.contextPath}/Quizes">Online Tests</a></li>
                      <li><a href="${pageContext.request.contextPath}/Profile/EditProfile">Edit Profile</a></li>
-                     <% if(account.hasAccessLevel(1))
-                     {%>
-                     <li><a href="${pageContext.request.contextPath}/Stats">Graphs and charts</a></li>
-                     <%}%>
-                      </ul>
+                    </ul>
+                   
                     </li>
+                     <% if(account.hasAccessLevel(1)) { %>
+                     <li><a id="head" href="${pageContext.request.contextPath}/Admin">Admin</a></li>
+                     <%}%>
+                    
       
                     </ul>
 
@@ -123,8 +127,8 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">         
-                        <li><a id="head" href="LogIn">Log In</a></li>
-                        <li><a id="head" href="SignUp">Sign Up</a></li>
+                        <li><a id="head" href="${pageContext.request.contextPath}/LogIn">Log In</a></li>
+                        <li><a id="head" href="${pageContext.request.contextPath}/SignUp">Sign Up</a></li>
 
 
                         <li id="calendar-drop" class="visible-lg">
@@ -212,11 +216,9 @@
 
         </header>
 
-
-   
-
+                
     <header class="hidden-lg hidden-md hidden-sm"> 
-        <div style="height:50px"></div>
+        <div style="height:60px"></div>
     </header>
 
                 
@@ -229,7 +231,12 @@ $(document).ready(function() {
             wrap:false
         });
     });
+
+       
 });
+
+});
+
 </script>
 </body>
 </html>

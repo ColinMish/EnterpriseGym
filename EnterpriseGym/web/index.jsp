@@ -5,8 +5,8 @@
         <link href="${pageContext.request.contextPath}/css/media.css" rel="stylesheet">
     </head>
     <%@include file="header.jsp" %>
-    <div class="hidden-xs">
-        <%@include file="sidebar.jsp"%>
+    <div class ="mobile">
+    <%@include file="sidebar.jsp"%>
     </div>
 
     <!-- Page Content -->

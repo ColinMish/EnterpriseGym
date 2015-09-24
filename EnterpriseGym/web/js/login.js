@@ -54,6 +54,8 @@ $(document).ready(function ()
                 if (result === "success")
                 {
                     returnValue = true;
+                }else{
+                    loginfailed();
                 }
             },
             fail: function () {
@@ -63,3 +65,11 @@ $(document).ready(function ()
         return returnValue;
     }
 });
+
+function loginfailed()
+{
+    //Show modal if the log in fails.
+    $("#modalHeader").text("Error");
+        $("#modalText").text("Log in failed. Please try again.");
+        $('#myModal').modal('show');
+}

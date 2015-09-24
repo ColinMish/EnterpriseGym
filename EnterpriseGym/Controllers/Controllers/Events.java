@@ -66,7 +66,7 @@ public class Events extends HttpServlet {
      * @throws ServletException
      * @throws IOException
      */
-    @Override
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String a = request.getRequestURI();
         if(a == null)
@@ -88,6 +88,7 @@ public class Events extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/eventItems.jsp");
             dispatcher.forward(request, response);
         }
+
     }
 
     /**

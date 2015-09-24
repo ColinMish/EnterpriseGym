@@ -10,29 +10,36 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Entities.NewsEntity;
+import Entities.Picture;
+import Models.AdminModel;
+import Models.NewsModel;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.HashMap;
-import javax.servlet.http.HttpSession;
+import java.util.Iterator;
+import javax.servlet.http.Part;
+import lib.Convertors;
 
 /**
  *
  * @author Dave
  */
-@WebServlet(name = "News", urlPatterns = {"/News/*"})
-@MultipartConfig
+@WebServlet(name = "News", urlPatterns = {"/News/*","/NewsUpdate"})
+@MultipartConfig (maxFileSize = 16177215)
 public class News extends HttpServlet {
 
+    private HashMap CommandsMap = new HashMap();
     /**
      * Constructor
      */
-    private HashMap newsStories;
-
-    public News() {
-        this.newsStories = new HashMap();
-        for (int i = 1; i < 6; i++)//create some news stories, will be from the database eventually
-        {
-            NewsEntity myStory = new NewsEntity("News Story " + i, "Question");
-            newsStories.put(myStory.getTitle(), myStory);
-        }
+   
+    public News() 
+    {
+    super();
+    CommandsMap.put("Picture", 1);
+    CommandsMap.put("Article", 2);
     }
 
     /**
@@ -54,22 +61,95 @@ public class News extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String a = request.getRequestURI();
-        if (a == null) {
-            throw new IOException();
+        
+         String args[] = Convertors.SplitRequestPath(request);
+                 
+        
+        if(args.length==2)
+        {
+            // RequestDispatcher dispatcher = request.getRequestDispatcher("profile.jsp");
+             //   dispatcher.forward(request, response);
+            displayNews(response,request);
         }
-        String[] parts = a.split("/");
-        if (parts.length < 4) {
-            request.setAttribute("Storys", newsStories);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("news.jsp");
-            dispatcher.forward(request, response);
-        } else {
-            String key = parts[3].replace("%20", " ");
-            NewsEntity story = (NewsEntity) newsStories.get(key);
-            request.setAttribute("Story", story);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/newsStory.jsp");
-            dispatcher.forward(request, response);
+        
+        int command;
+         try {
+            command = (Integer) CommandsMap.get(args[2]);
+        } catch (Exception et) {           
+            return;
         }
+        switch (command) {
+            case 1:
+                displayPicture(response,request,args[3]);            
+                break; 
+            case 2:
+                displayArticle(response,request,args[3]);
+                break;
+            default:
+            	//Error message here.
+        }
+       
+        //Get the 6 most recent stories then show them to the user on the news page. 
+       
+    }
+    
+    public void displayNews(HttpServletResponse response,HttpServletRequest request) throws ServletException, IOException
+    {
+              NewsModel model = new NewsModel();
+        //Need to pass the profile attributes accross here.
+        java.util.LinkedList<NewsEntity> newsitems = model.getNewsHome();
+        
+        //Testing code.
+//                 Iterator<NewsEntity> iterator;
+//            iterator = newsitems.iterator();
+//            while (iterator.hasNext()) {
+//                NewsEntity p = (NewsEntity) iterator.next();
+//                System.out.println("record returned");
+//            }
+//            
+//            if(newsitems !=null)
+//            {
+//            } else {
+//                System.out.println("news items are null");
+//        }
+//        
+//            System.out.println(newsitems);
+ 
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/news.jsp");
+        request.setAttribute("news", newsitems);
+        dispatcher.forward(request,response);
+    }
+    
+    public void displayArticle(HttpServletResponse response,HttpServletRequest request,String id) throws ServletException, IOException
+    {
+             NewsModel model = new NewsModel();
+             int NewsID = Integer.parseInt(id);
+        //Need to pass the profile attributes accross here.
+        java.util.LinkedList<NewsEntity> newsitems = model.getNewsArticle(NewsID);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/newsStory.jsp");
+        request.setAttribute("news", newsitems);
+        dispatcher.forward(request,response);
+    }
+    
+    public void displayPicture(HttpServletResponse response,HttpServletRequest request,String id) throws ServletException, IOException
+    {
+        int newsID = Integer.parseInt(id);
+        System.out.println(newsID);
+         NewsModel news = new NewsModel();
+ 
+         Picture p = news.getPic(newsID);
+         OutputStream out = response.getOutputStream();
+
+         response.setContentType(p.getType());
+         response.setContentLength(p.getLength());
+
+         InputStream is = new ByteArrayInputStream(p.getBytes());
+         BufferedInputStream input = new BufferedInputStream(is);
+         byte[] buffer = new byte[8192];
+         for (int length = 0; (length = input.read(buffer)) > 0;) {
+             out.write(buffer, 0, length);
+         }
+         out.close();
     }
 
     /**
@@ -83,5 +163,69 @@ public class News extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+         String[] parts = Convertors.SplitRequestPath(request);
+          switch (parts[2]) {
+            case "NewsUpdate":
+                updateNews(request, response);
+                break;
+          }
+    }
+    
+     private void updateNews(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException 
+    {
+         String content = request.getParameter("editor1");
+        String title = request.getParameter("title");
+        String idstring = request.getParameter("id");
+        int id = Integer.parseInt(idstring);
+        NewsModel model = new NewsModel();
+        
+        InputStream inputStream = null;
+        Part filePart = request.getPart("image");
+        
+        
+        if(model.updateNewsStory(filePart,content,title,id)==true)
+        {
+            request.setAttribute("newsUpdated", true);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/admin.jsp");
+            dispatcher.forward(request, response);
+            System.out.println("News Story Updated.");
+        }else{
+            request.setAttribute("newsUpdated", false);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/admin.jsp");
+            dispatcher.forward(request, response);
+            System.out.println("News Story Failed To Update");
+        }
+    }
+    
+    @Override
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String args[] = Convertors.SplitRequestPath(request);
+        if (args[2]!=null)
+        {
+            int id = Integer.parseInt(args[2]);
+            NewsModel model = new NewsModel(); 
+            if(model.deleteNews(id)==true)
+            {
+                //The content was deleted
+                     response.setContentType("text/html;charset=UTF-8");
+                     response.getWriter().write("1"); 
+            }else{
+                //Nothing was deleted
+                     response.setContentType("text/html;charset=UTF-8");
+                     response.getWriter().write("0"); 
+            }
+            
+            //Let the ajax know if the data is deleted. 
+        
+            
+        }else{
+            //No id was passed.
+        response.setContentType("text/html;charset=UTF-8");
+        response.getWriter().write("0"); 
+        }
+        
+        
     }
 }
