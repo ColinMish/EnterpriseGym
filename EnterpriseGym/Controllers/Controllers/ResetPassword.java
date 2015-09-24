@@ -97,12 +97,15 @@ public class ResetPassword extends HttpServlet {
         String host = "localhost";
 
         // Get system properties object
+        System.setProperty("java.net.preferIPv4Stack" , "true");
         Properties properties = System.getProperties();
 
         // Setup mail server
         properties.setProperty("mail.smtp.host", host);
-        //properties.put("mail.smtp.connectiontimeout", "888");
-        //properties.put("mail.smtp.timeout", "888");
+        
+      //  properties.put("mail.smtp.user", d_email);
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.port", "465");
 
         // Get the default Session object.
         Session mailSession = Session.getDefaultInstance(properties);
