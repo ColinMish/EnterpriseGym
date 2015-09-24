@@ -323,16 +323,20 @@ public class EventModel {
         con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
 
         PreparedStatement ps2 = null;
-
+        int i=0;
         String sqlOption = "INSERT INTO event_has_user (user_iduser,event_idevent) VALUES (?,?)";
         ps2 = con.prepareStatement(sqlOption);
         ps2.setInt(1, userID);
         ps2.setInt(2, eventID);    
-        ps2.executeUpdate();
+        i=ps2.executeUpdate();
 
         con.close();
 
+        if(i==0){
+            return false;
+        }else{
         return true;
+        }
         
     } catch (Exception e) {
             System.out.println("connection to db failed");
@@ -388,6 +392,9 @@ public class EventModel {
 		PreparedStatement disableFKCheck = null;
 		PreparedStatement deleteNews = null;
 		PreparedStatement enableFKCheck = null;
+                System.out.println("The id to be deleted is:"+id);
+                int i;
+                int j;
 		
 		String DisableFKCheck = "SET FOREIGN_KEY_CHECKS=0";
 		String DeleteEvent = "DELETE e.*,u.* FROM event e INNER JOIN event_has_user u ON e.idevent = u.event_idevent WHERE e.idevent=?";
@@ -396,9 +403,11 @@ public class EventModel {
 		disableFKCheck.executeUpdate();
 		deleteNews = con.prepareStatement(DeleteEvent);
 		deleteNews.setInt(1,id);
-		deleteNews.executeUpdate();
+		i=deleteNews.executeUpdate();
 		enableFKCheck = con.prepareStatement(EnableFKCheck);
-		enableFKCheck.executeUpdate();
+		j=enableFKCheck.executeUpdate();
+                
+                System.out.println("The variable i is:"+i+"The variable j is:"+j);
 		return true;
 	} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
 		 System.out.println("expection thrown");
