@@ -21,7 +21,6 @@
     <script src="${pageContext.request.contextPath}/js/jquery.flagstrap.js"></script>
     
     <% EventEntity event = (EventEntity) request.getAttribute("Events"); %>
-    <% //event = GetEventByID(request.getParameter("eventID"));%>
     
     <!-- Page Content -->
     <div class="container">
@@ -55,24 +54,24 @@
             <form action="EditEvent" role="form" id="EditEvent" method="POST">
                 <div class="form-group">
                     <label for="eventTitle">Event Title:</label>
-                    <input name="eventTitle" type="text" class="form-control" id="title1" value="<%=request.getParameter("eventID")%>" maxlength="45"/>
+                    <input name="eventTitle" type="text" class="form-control" id="title1" value="<%=event.getID()%>" maxlength="45"/>
                     <span id="err"></span>
                 </div>
                 <div class="col-xs-12">
                     <div class="form-group">
                         <label for="eventDescription">Date:</label>
-                    <input name="eventDate" type="date" class="form-control" id="date1" maxlength="45"/>
+                    <input name="eventDate" type="date" class="form-control" id="date1" value="<%=event.getDate()%>" maxlength="45"/>
                     </div>
                 </div>
                 <div class="col-xs-12">
                     <div class="form-group">
                         <label for="eventDescription">Description:</label>
-                        <textarea name="eventDescription" cols="50" rows="8"></textarea>
+                        <textarea name="eventDescription" cols="50" value="<%=event.getDescription()%>" rows="8"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="sel1">Theme:</label>
-                    <select name="eventTheme" class="form-control" id="eventTheme">
+                    <select name="eventTheme" class="form-control" value="<%=event.getEvent_type()%>" id="eventTheme">
                         <option value="1">Action</option>
                         <option value="2">Practice</option>
                         <option value="3">Theory</option>
