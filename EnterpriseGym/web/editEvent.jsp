@@ -113,11 +113,48 @@
                 <div class="form-group">
                     <label for="sel1">Theme:</label>
                     <select name="eventTheme" class="form-control" id="eventTheme">
-                        <option value="1">Action</option>
-                        <option value="2">Practice</option>
-                        <option value="3">Theory</option>
-                        <option value="4">Virtual</option>
-                        <option value="5">Project</option>
+                               <%
+                            int eventType = p.getEvent_type();
+                            if (eventType == 1 ) {
+                        %>
+                            <option value="1" selected>Action</option>
+                            <option value="2">Practice</option>
+                            <option value="3">Theory</option>
+                            <option value="4">Virtual</option>
+                            <option value="5">Project</option>
+                        <%}
+                            else if (eventType == 2 ) {
+                        %>
+                            <option value="1">Action</option>
+                            <option value="2" selected>Practice</option>
+                            <option value="3">Theory</option>
+                            <option value="4">Virtual</option>
+                            <option value="5">Project</option>
+                        <%}
+                            else if (eventType == 3 ) {
+                        %>
+                            <option value="1">Action</option>
+                            <option value="2">Practice</option>
+                            <option value="3" selected>Theory</option>
+                            <option value="4">Virtual</option>
+                            <option value="5">Project</option>
+                        <%}
+                            else if (eventType == 4 ) {
+                        %>
+                            <option value="1">Action</option>
+                            <option value="2">Practice</option>
+                            <option value="3">Theory</option>
+                            <option value="4" selected>Virtual</option>
+                            <option value="5">Project</option>
+                        <%}
+                            else {
+                        %>
+                            <option value="1">Action</option>
+                            <option value="2">Practice</option>
+                            <option value="3">Theory</option>
+                            <option value="4">Virtual</option>
+                            <option value="5" selected>Project</option>
+                        <%}%>                 
                     </select>
                 </div>
                  
