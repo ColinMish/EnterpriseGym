@@ -29,6 +29,9 @@
     <% Boolean accountDeleted = (Boolean) request.getAttribute("accountDeleted"); %>
     <% Boolean accountNotDeleted = (Boolean) request.getAttribute("accountNotDeleted"); %>
     
+    <%Boolean newsUpdated = (Boolean) request.getAttribute("newsUpdated"); %>
+    
+    
     <!-- Page Content -->
     <div class="container">
 
@@ -47,6 +50,10 @@
                 
                 <% if(accountDeleted != null) { %> <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Account Successfully Deleted.</p></div> <% } %>
                 <% if(accountNotDeleted != null) { %> <div class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Error Deleting Account.</p></div> <% } %>
+                
+                <% if(newsUpdated != null) { if(newsUpdated==true){ %> <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>News Story Updated Successfully.</p></div>
+                <% }else{ %>  <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Update failed please try again.</p></div> <%} }%>
+                
             </div>
         </div>
         
@@ -69,7 +76,7 @@
                         </script>
                         <br/>
                         <span class="btn btn-default btn-file">
-                        <input name="image" type="file">
+                        <input name="image" multiple accept='image/*' type="file">
                         </span>
                         <br/>
                       
