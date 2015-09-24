@@ -4,7 +4,11 @@ package Controllers;
 import Entities.EventEntity;
 import Models.EventModel;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.Locale;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -13,12 +17,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import lib.Convertors;
 
 /**
  *
  * @author Dave
  */
-@WebServlet(name = "Events", urlPatterns = {"/Events/*", "/EditEvent"})
+@WebServlet(name = "Events", urlPatterns = {"/Events/*", "/EditEvent","/NewEvent"})
 @MultipartConfig
 public class Events extends HttpServlet {
 
@@ -103,7 +109,15 @@ public class Events extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
-        changeEvent(request, response);
+         String[] parts = Convertors.SplitRequestPath(request);
+        switch (parts[1]) {
+            case "NewEvent":
+                CreateEvent(request, response);
+                break;
+            case "EditEvent":  
+                changeEvent(request, response);   
+                break;
+        }
     }
     
     private void changeEvent(HttpServletRequest request, HttpServletResponse response)
@@ -116,6 +130,55 @@ public class Events extends HttpServlet {
         request.setAttribute("Events", event);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/editEvent.jsp");
         dispatcher.forward(request, response);
+    }
+    
+       public java.sql.Date convertJavaDateToSqlDate(java.util.Date date) {
+    return new java.sql.Date(date.getTime());
+}
+    
+    private void CreateEvent(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String title = request.getParameter("eventTitle");
+        String mDate = request.getParameter("eventDate");
+        String location = request.getParameter("eventLocation");
+        DateFormat format = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
+        java.util.Date utilDate;
+        java.sql.Date date = new java.sql.Date(2000, 01, 01);
+        
+        try {
+            utilDate = format.parse(mDate);
+            date = convertJavaDateToSqlDate(utilDate);
+        } catch (ParseException e) {
+            System.out.println("expection thrown");
+            HttpSession session = request.getSession();
+            session.setAttribute("error", "Failed to parse date field");
+            System.out.println("false, exception");
+            response.sendRedirect(request.getContextPath() + "/FailedNewEvent.jsp");
+        }
+        
+        String description = request.getParameter("eventDescription");
+        int theme = Integer.parseInt(request.getParameter("eventTheme"));
+
+        EventModel event = new EventModel();
+
+        try {
+            if (title != null) {
+                if (event.newEvent(title, description, location, date, theme) == false) {
+                    System.out.println("false");
+                    response.sendRedirect(request.getContextPath() + "/FailedNewEvent.jsp");
+                } else {
+                    response.sendRedirect(request.getContextPath() + "/Events");
+                }
+
+            } else {
+                throw new IllegalArgumentException("No event title entered");
+            }
+        } catch (IOException | IllegalArgumentException e) {
+            System.out.println("expection thrown");
+            HttpSession session = request.getSession();
+            session.setAttribute("error", "No event title entered.");
+            System.out.println("false, exception");
+            response.sendRedirect(request.getContextPath() + "/FailedNewEvent.jsp");
+        }
     }
     
     

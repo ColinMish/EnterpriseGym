@@ -129,7 +129,7 @@
         <div class='col-sm-3'>
             <div class="form-group">
                 <div class='input-group date' id='datetimepicker1'>
-                    <input name="startdate" type='text' class="form-control" />
+                    <input name="startdate" type='text' class="form-control" required/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -141,14 +141,14 @@
                 $('#datetimepicker1').datetimepicker();
             });
         </script>
-    </div>
+    </div>     
      
       <label for="datetimepicker2">End date / Time:</label>           
     <div class="row">
         <div class='col-sm-3'>
             <div class="form-group">
                 <div class='input-group date' id='datetimepicker2'>
-                    <input name="enddate" type='text' class="form-control" />
+                    <input name="enddate" type='text' class="form-control" required />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -161,10 +161,18 @@
             });
         </script>
     </div>
+      <div class="row">
+      <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="eventLocation">Location:</label>
+                    <input name="eventLocation" id="eventLocation" type="text" class="form-control" id="location" maxlength="45"/>
+                    </div>
+                </div>
+      </div>
  
    
                 
-                
+                <label for="eventDescription">Description:</label>
                 <textarea name="eventDescription" id="editor1" rows="10" cols="80"></textarea>
                         <script>
                             CKEDITOR.replace('eventDescription');
@@ -184,7 +192,18 @@
                         <option value="5">Project</option>
                     </select>
                 </div>
+                 
+                 <div class="row">
+      <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="points">Points:</label>
+                    <input name="points" id="eventLocation" type="number" class="form-control" id="location" maxlength="45" required/>
+                    </div>
+                </div>
+      </div>       
+                        
                 <br>
+  
                 <input class="btn btn-default" type="submit" value="Create Event">
                 <br/>
             </form>         

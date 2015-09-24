@@ -22,7 +22,7 @@ import java.text.ParseException;
  *
  * @author Colin
  */
-@WebServlet(name = "NewEvent", urlPatterns = {"/NewEvent"})
+@WebServlet(name = "NewEvent", urlPatterns = {"/NeedsToBeRemoved"})
 @MultipartConfig
 public class NewEvent extends HttpServlet {
 

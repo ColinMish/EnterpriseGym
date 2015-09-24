@@ -24,7 +24,6 @@
 
     <!-- Page Content -->
     <div class="container">
-        <a href="newEvent.jsp"<button type="button" class="btn btn-default">Create Event</button></a>
         <div class="row">
             <div class="col-lg-12">
                 <h1>Events & Activities</h1>
