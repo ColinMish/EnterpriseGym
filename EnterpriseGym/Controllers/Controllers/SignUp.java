@@ -125,7 +125,7 @@ public class SignUp extends HttpServlet {
         String guid = UUID.randomUUID().toString();
         guid = guid.replaceAll("-", "");
 
-        String firstName = request.getParameter("fristName");
+        String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String email = request.getParameter("email");
         String username = firstName + lastName;

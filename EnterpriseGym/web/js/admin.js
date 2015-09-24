@@ -77,7 +77,7 @@ function tempSignUp(firstName, lastName, email)
             data: {firstName: firstName, lastName: lastName, email : email},
             cache: false,
             success: function (result) {
-                if (result === "success")
+                if (result == "true")
                 {
                     $("#message").text("A tempory account has been set up. Please check your emails for access");
                 }else{
