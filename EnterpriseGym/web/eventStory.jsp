@@ -27,8 +27,11 @@
                 <div class="panel-body">
                     <p><%=event.getDescription()%></p>
                     <a href="../Events" class="btn btn-default">Back</a>
-                    <a href="${pageContext.request.contextPath}/editEvent.jsp?eventID=<%=event.getID()%>"<button type="button" method="GET" class="btn btn-default">Edit Event</button></a>
-                    
+                    <form action="EditEvent" method="POST">
+                        <input type="hidden" name="eventID" type="number" value="<%=event.getID()%>">
+                        <input type="submit" class="btn btn-default" value="Edit Event"/>
+                    </form>
+                        
                 </div>
             </div>
         </div>

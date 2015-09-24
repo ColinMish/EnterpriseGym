@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Dave
  */
-@WebServlet(name = "Events", urlPatterns = {"/Events/*"})
+@WebServlet(name = "Events", urlPatterns = {"/Events/*", "/EditEvent"})
 @MultipartConfig
 public class Events extends HttpServlet {
 
@@ -103,5 +103,20 @@ public class Events extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
+        changeEvent(request, response);
     }
+    
+    private void changeEvent(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException 
+    {
+        int eventID = Integer.parseInt(request.getParameter("eventID"));
+        EventEntity event = new EventEntity();
+        
+        event = eventModel.GetEventByID(eventID);
+        request.setAttribute("Events", event);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/editEvent.jsp");
+        dispatcher.forward(request, response);
+    }
+    
+    
 }
