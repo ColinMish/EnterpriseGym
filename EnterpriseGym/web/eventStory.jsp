@@ -38,7 +38,7 @@
                     <p id="modalmessage">Are you sure you want to delete this event?</p>
                 </div>
                 <div class="modal-footer">
-                    <button id="yes" type="button" onclick="leaveEvent()" class="btn btn-Danger" data-dismiss="modal">Yes</button>  
+                    <button id="yes" type="button" onclick="leaveEvent()" class="btn btn-danger" data-dismiss="modal">Yes</button>  
                     <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
                 </div>
             </div>
