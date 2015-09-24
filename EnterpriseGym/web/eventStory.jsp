@@ -48,7 +48,7 @@
                              <% if (p.getLength()!=0){ %>                    
                             <img src="${pageContext.request.contextPath}/Events/Picture/<%=p.getID()%>" style="max-height: 500px; max-width: 500px;" class="img-responsive" alt="News Image">
                             <%} %>
-                        </p>
+                         <a href="javascript:history.back()" class="btn btn-default">Back</a>
                     </div>
                 </div>
             </div>
