@@ -113,7 +113,7 @@ public class LogIn extends HttpServlet {
         LinkedList accessLevel = new LinkedList();
         accessLevel.add(1);
 
-        Account adminAccount = new Account("admin", accessLevel);
+        Account adminAccount = new Account("admin", accessLevel,1);
 
         return adminAccount;
     }

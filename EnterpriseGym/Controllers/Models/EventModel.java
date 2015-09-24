@@ -45,9 +45,6 @@ public class EventModel {
      
        if (filepart != null) {
             // prints out some information for debugging
-            System.out.println(filepart.getName());
-            System.out.println(filepart.getSize());
-            System.out.println(filepart.getContentType());
             length=(int) filepart.getSize();
             type = filepart.getContentType();
             // obtains input stream of the upload file
@@ -111,7 +108,6 @@ public class EventModel {
             ResultSet rs1 = ps1.executeQuery();
             rs1.next();
             int id = rs1.getInt("idevent");
-            System.out.println("The id is:" + id);
 
 
             ResultSet rs = ps1.executeQuery();
@@ -121,7 +117,6 @@ public class EventModel {
                 EventEntity event = new EventEntity();
                 event.setID(rs.getInt("idevent"));
                 event.setName(rs.getString("title"));
-                System.out.println("Event name: " + event.getName());
                 event.setEvent_type(rs.getInt("theme_idtheme"));
                 event.setDescription(rs.getString("description"));
                 event.setLength(rs.getInt("image_length"));
@@ -131,7 +126,6 @@ public class EventModel {
                 event.setEnddate(rs.getString("end_date"));
                 event.setLocation(rs.getString("location"));
                 event.setPoints_given(rs.getInt("points"));
-                System.out.println("Event location: " + event.getLocation());
                 eventdetails.add(event);
             }
 
@@ -155,9 +149,6 @@ public class EventModel {
         
          if (filepart != null) {
             // prints out some information for debugging
-            System.out.println(filepart.getName());
-            System.out.println(filepart.getSize());
-            System.out.println(filepart.getContentType());
             length=(int) filepart.getSize();
             type = filepart.getContentType();
             // obtains input stream of the upload file
@@ -241,7 +232,6 @@ public class EventModel {
             ResultSet rs1 = ps1.executeQuery();
                 if(rs1.wasNull())
     	{
-    		System.out.println("null result");
                 return null;
     	}else
     	{
@@ -250,34 +240,54 @@ public class EventModel {
              EventEntity event = new EventEntity();
                 event.setID(rs1.getInt("idevent"));
                 event.setName(rs1.getString("title"));
-                System.out.println("Event name: " + event.getName());
                 event.setEvent_type(rs1.getInt("theme_idtheme"));
                 event.setDescription(rs1.getString("description"));
                 event.setLength(rs1.getInt("image_length"));
-                //TODO get points value from theme table
-                //event.setPoints_given(rs.getInt("points_given"));
                 event.setStartdate(rs1.getString("date"));
                 event.setEnddate(rs1.getString("end_date"));
                 event.setLocation(rs1.getString("location"));
                 event.setPoints_given(rs1.getInt("points"));
-                System.out.println("Event location: " + event.getLocation());
                 eventdetails.add(event);
                 }
                 return eventdetails;
         }
-          //  int id = rs1.getInt("idevent");
-          //  System.out.println("The id is:" + id);
 
-
-          //  ResultSet rs = ps1.executeQuery();
-            
-          //  return eventdetails;
 
         } catch (Exception e) {
             System.out.println("connection to db failed");
             e.printStackTrace();
             return null;
 
+        }
+    }
+    
+    public Boolean isAttending(int id,int userid){
+        Connection con = null;
+        try{
+              Class.forName("com.mysql.jdbc.Driver").newInstance();
+         con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+            Convertors convertor = new Convertors();
+            ResultSet rs = null;
+            PreparedStatement ps = null;  
+
+            String sqlOption = "SELECT * FROM event_has_user where event_idevent=? and user_iduser=?";
+            
+            ps = con.prepareStatement(sqlOption);
+            ps.setInt(1, id);
+            ps.setInt(2, userid);
+            rs = ps.executeQuery();  
+
+            if (rs.next()) {  
+                System.out.println("true");
+                return true;
+            } else {
+                System.out.println("false");
+                return false;
+                }
+            
+        } catch (Exception et) {
+            System.out.println("Can't find user" + et);
+            return false;
         }
     }
         
@@ -304,6 +314,73 @@ public class EventModel {
         return eventList;
     }
     
+    public boolean signUp(int userID, int eventID)
+    {
+        Connection con = null;
+    try {
+
+        Class.forName("com.mysql.jdbc.Driver").newInstance();
+        con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+
+        PreparedStatement ps2 = null;
+        int i=0;
+        String sqlOption = "INSERT INTO event_has_user (user_iduser,event_idevent) VALUES (?,?)";
+        ps2 = con.prepareStatement(sqlOption);
+        ps2.setInt(1, userID);
+        ps2.setInt(2, eventID);    
+        i=ps2.executeUpdate();
+
+        con.close();
+
+        if(i==0){
+            return false;
+        }else{
+        return true;
+        }
+        
+    } catch (Exception e) {
+            System.out.println("connection to db failed");
+            e.printStackTrace();
+            return false;
+
+        }
+    }
+    
+    public boolean leaveEvent(int userID, int eventID)
+    {
+         Connection con = null;
+         try {
+
+        Class.forName("com.mysql.jdbc.Driver").newInstance();
+        con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+
+        PreparedStatement ps2 = null;
+        
+        int i=0;
+
+        String sqlOption = "DELETE from event_has_user where user_iduser=? and event_idevent=?";
+        ps2 = con.prepareStatement(sqlOption);
+        ps2.setInt(1, userID);
+        ps2.setInt(2, eventID);    
+        i= ps2.executeUpdate();
+        con.close();
+        
+        if(i==0){
+
+        return false;
+        }else{
+            return true;
+        }
+        
+    } catch (Exception e) {
+            System.out.println("connection to db failed");
+            e.printStackTrace();
+            return false;
+
+        }
+         
+    }
+    
    public boolean deleteEvent(int id)
 {
 	 Connection con = null;
@@ -315,6 +392,9 @@ public class EventModel {
 		PreparedStatement disableFKCheck = null;
 		PreparedStatement deleteNews = null;
 		PreparedStatement enableFKCheck = null;
+                System.out.println("The id to be deleted is:"+id);
+                int i;
+                int j;
 		
 		String DisableFKCheck = "SET FOREIGN_KEY_CHECKS=0";
 		String DeleteEvent = "DELETE e.*,u.* FROM event e INNER JOIN event_has_user u ON e.idevent = u.event_idevent WHERE e.idevent=?";
@@ -323,9 +403,11 @@ public class EventModel {
 		disableFKCheck.executeUpdate();
 		deleteNews = con.prepareStatement(DeleteEvent);
 		deleteNews.setInt(1,id);
-		deleteNews.executeUpdate();
+		i=deleteNews.executeUpdate();
 		enableFKCheck = con.prepareStatement(EnableFKCheck);
-		enableFKCheck.executeUpdate();
+		j=enableFKCheck.executeUpdate();
+                
+                System.out.println("The variable i is:"+i+"The variable j is:"+j);
 		return true;
 	} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
 		 System.out.println("expection thrown");

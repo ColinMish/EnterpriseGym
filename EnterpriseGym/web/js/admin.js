@@ -58,7 +58,7 @@ function deleteEvent()
 {
         $.ajax({
         type: "DELETE",
-        url: "../Events/"+myId,
+        url: "../Events/DeleteEvent/"+myId,
         cache: false,
         success: function (data) {
             if(data==1)
