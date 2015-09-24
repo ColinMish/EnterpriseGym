@@ -5,36 +5,48 @@
  */
 var myId;
 
+$(document).ready(function ()
+{
+    $("#TempSignUp").submit(function (e)
+    {
+        e.preventDefault();
+        var firstName = $("#firstName").val();
+        var lastName = $("#lastName").val();
+        var email = $("#email").val();
+        tempSignUp(firstName, lastName, email);
+    });
+});
+
 function deleteNews()
 {
-     $.ajax({
+    $.ajax({
         type: "DELETE",
-        url: "../News/"+myId,
+        url: "../News/" + myId,
         cache: false,
         success: function (data) {
-            if(data==1)
+            if (data == 1)
             {
                 //Data has been deleted.
                 //Confirmation then reload the page. 
-                successModal(); 
-            }else{
+                successModal();
+            } else {
                 failureModal();
                 //Data not deleted.
             }
-        //Show success then reload the page. 
+            //Show success then reload the page. 
         },
         fail: function () {
             window.alert("Failed");
-        //Show failure. 
+            //Show failure. 
         }
     });
 }
 
-function checkDelete(id,title)
+function checkDelete(id, title)
 {
-        $("#modalmessage").text("Are you sure you want to delete the article: "+title+"?");
-        this.myId=id;
-        $('#myModal').modal('show');
+    $("#modalmessage").text("Are you sure you want to delete the article: " + title + "?");
+    this.myId = id;
+    $('#myModal').modal('show');
 }
 
 function successModal()
@@ -53,7 +65,28 @@ function failureModal()
 
 function reload()
 {
-    location.reload(); 
+    location.reload();
 }
 
+function tempSignUp(firstName, lastName, email)
+{
+    $.ajax({
+            type: "POST",
+            url: "SignUp/Temp",
+            async: false,
+            data: {firstName: firstName, lastName: lastName, email : email},
+            cache: false,
+            success: function (result) {
+                if (result === "success")
+                {
+                    $("#message").text("A tempory account has been set up. Please check your emails for access");
+                }else{
+                    $("#message").text("Tempory account creation failed. Please try again or go to register");
+                }
+            },
+            fail: function () {
+                console.log("Ajax error");
+            }
+        });
+}
 

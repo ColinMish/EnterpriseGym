@@ -59,8 +59,7 @@ public class Admin extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
                   String args[] = Convertors.SplitRequestPath(request);
-                 
-        
+                      
         if(args.length==2)
         {
             // RequestDispatcher dispatcher = request.getRequestDispatcher("profile.jsp");
@@ -202,7 +201,6 @@ public class Admin extends HttpServlet {
     {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/admin.jsp");
         dispatcher.forward(request,response);
-        return;
     }
     
     private void displayNewsPannel(HttpServletResponse response,HttpServletRequest request) throws ServletException, IOException
