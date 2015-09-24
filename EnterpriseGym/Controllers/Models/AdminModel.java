@@ -239,29 +239,19 @@ public class AdminModel {
         return results;
     }
 
-    public SearchResultsObject getSearchResults(String table, String searchValue) {
+    public LinkedList getSearchResults(String table) {
         LinkedList<String> columns = getColumnNames(table);
         Connection con = null;
         String getValues = null;
-        SearchResultsObject results = new SearchResultsObject();
-
+        LinkedList results = new LinkedList();
+        results.add(columns);
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
 
             PreparedStatement ps = null;
 
-            if (searchValue.equals("All")) {
-                getValues = "SELECT * FROM " + table;
-            } else {
-                getValues = "SELECT * FROM " + table + " WHERE ";
-                for (int i = 0; i < columns.size(); i++) {
-                    getValues += columns.get(i) + " like " + searchValue;
-                    if (i != (columns.size() - 1)) {
-                        getValues += " OR ";
-                    }
-                }
-            }
+            getValues = "SELECT * FROM " + table;
             ps = con.prepareStatement(getValues);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -269,7 +259,7 @@ public class AdminModel {
                 for (String column : columns) {
                     row.add(rs.getString(column));
                 }
-                results.addArray(row);
+                results.add(row);
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
             System.out.print(e.getMessage());

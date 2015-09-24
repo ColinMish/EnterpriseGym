@@ -4,29 +4,19 @@
  * and open the template in the editor.
  */
 
-var USER_COLUMNS = [];
-var EVENT_COLUMNS = [];
-
 $(document).ready(function ()
 {
-    $("#tableBody").hide();
+    $("#postData").hide();
+    $('.display').DataTable({"scrollX": true});
     var currentUserFilter = "";
     loadColumns("user");
     loadColumns("event");
-    loadTableNames("Users");
     var empty = [];
     var users = ["users", 100];
     empty.push(users);
     userpie("Total site users", "Users", empty);
     eventpie("Total site events", "Events", empty);
     loadEventuserbar();
-    $("#searchFor").submit(function (e)
-    {
-        e.preventDefault();
-        var searchValue = $("#searchValue").val();
-        var checked = $('#userRadio').is(':checked');
-        getSearchResults(searchValue, checked);
-    });
 
     //eventHandlers
     $("#userproperty").change(function (e) {
@@ -51,8 +41,8 @@ $(document).ready(function ()
 
     $('input[type="radio"]').click(function () {
         if ($(this).is(':checked'))
-        {
-            loadTableNames($(this).val());
+        {          
+            $("#postData").val($(this).val());
         }
     });
 });
@@ -68,14 +58,7 @@ function loadColumns(tableName)
                 $("#" + tableName + "property").append(new Option(obj, obj));
                 if (tableName === "user")
                 {
-                    USER_COLUMNS = [];
                     $("#" + tableName + "barproperty").append(new Option(obj, obj));
-                    USER_COLUMNS.push(obj);
-                }
-                if (tableName === "event")
-                {
-                    EVENT_COLUMNS = [];
-                    EVENT_COLUMNS.push(obj);
                 }
             });
         },
@@ -83,23 +66,6 @@ function loadColumns(tableName)
             console.log("Ajax error");
         }
     });
-}
-function loadTableNames(table)
-{
-    var tableHeaders;
-    if (table === "Users")
-    {
-        tableHeaders = USER_COLUMNS;
-    }
-    if (table === "Events")
-    {
-        tableHeaders = EVENT_COLUMNS;
-    }
-    for (var i = 0; i < tableHeaders.length; i++)
-    {
-        $('#tableHeader').empty();
-        $("#tableHeader").append("<th>" + tableHeaders[i] + "</th>");
-    }
 }
 
 function loadValues(field)
@@ -167,33 +133,6 @@ function getEventsBy(field)
             console.log(data);
             var json = formatData(data);
             eventpie("Events by " + field, field, json);
-        },
-        fail: function () {
-            console.log("Ajax error");
-        }
-    });
-}
-
-function getSearchResults(searchValue, checked)
-{
-    var searchTable = "user";
-    if (searchValue === "")
-    {
-        searchValue = "All";
-    }
-    if (!checked)
-    {
-        searchTable = "event";
-    }
-    $.ajax({
-        type: "GET",
-        url: "Search/" + searchTable + "/" + searchValue,
-        success: function (data) {
-            console.log("Load Search results = " + data);
-            $('#dataTable').DataTable({
-                "ajax": data
-            });
-            $("#tableBody").show();
         },
         fail: function () {
             console.log("Ajax error");

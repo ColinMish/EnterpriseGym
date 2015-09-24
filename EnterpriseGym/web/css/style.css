@@ -11,6 +11,11 @@ and open the template in the editor.
     height:25em;
 }
 
+div.dataTables_wrapper {
+        width: 100%;
+        margin: 0 auto;
+    }
+
 .content {
     margin-left: 10%;
     margin-right: 10%;

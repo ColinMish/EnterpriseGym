@@ -68,10 +68,6 @@ public class Stats extends HttpServlet {
         } else if (parts[1].equals("UserEvent")) {
             resultsAsJson = getUsersVsEventsData(parts[2], parts[3]);
         }
-        else if(parts[1].equals("Search"))
-        {
-            resultsAsJson = getSearchResults(parts[2], parts[3]);
-        }
         try (PrintWriter out = response.getWriter()) {
             out.print(resultsAsJson);
             out.flush();
@@ -90,6 +86,12 @@ public class Stats extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String searchTable = request.getParameter("searchTable");
+        LinkedList table = getSearchResults(searchTable);
+        request.setAttribute("tableData", table);
+        request.setAttribute("current", searchTable);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("stats.jsp");
+        dispatcher.forward(request, response);
     }
 
     private String getColumnNames(String part) {
@@ -114,23 +116,20 @@ public class Stats extends HttpServlet {
 
     private String getUsersVsEventsData(String field, String value) {
         AdminModel aModel = new AdminModel();
-        ArrayList results =null;
+        ArrayList results = null;
         String json;
         if (field.equals("None") && value.equals("None")) {
             results = aModel.getAllEventsWithAttendance();
-        } else 
-        {
+        } else {
             results = aModel.getAttendanceWithFilters(field, value);
         }
         json = new Gson().toJson(results);
         return json;
     }
 
-    private String getSearchResults(String table, String searchValue) 
-    {
+    private LinkedList getSearchResults(String table) {
         AdminModel aModel = new AdminModel();
-        SearchResultsObject results = aModel.getSearchResults(table, searchValue);
-        String json = new Gson().toJson(results);
-        return json;
+        LinkedList results = aModel.getSearchResults(table);
+        return results;
     }
 }
