@@ -39,44 +39,21 @@ function checkDelete(id,title)
 
 function successModal()
 {
-    $("#modalmessage2").text("The content has been deleted.");
+    $("modaltitle").text("Success");
+    $("#modalmessage").text("The content has been deleted.");
     $('#myModal2').modal('show');
 }
 
 function failureModal()
 {
-    $("#modalmessage3").text("The content has not been deleted.");
-    $('#myModal3').modal('show');
+    $("modaltitle").text("Failure");
+    $("#modalmessage").text("The content has not been deleted.");
+    $('#myModal2').modal('show');
 }
 
 function reload()
 {
     location.reload(); 
-}
-
-function deleteEvent()
-{
-        $.ajax({
-        type: "DELETE",
-        url: "../Events/"+myId,
-        cache: false,
-        success: function (data) {
-            if(data==1)
-            {
-                //Data has been deleted.
-                //Confirmation then reload the page. 
-                successModal(); 
-            }else{
-                failureModal();
-                //Data not deleted.
-            }
-        //Show success then reload the page. 
-        },
-        fail: function () {
-            window.alert("Failed");
-        //Show failure. 
-        }
-    });
 }
 
 
