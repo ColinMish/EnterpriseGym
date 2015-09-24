@@ -127,7 +127,11 @@ and open the template in the editor.
     border-color: #d43f3a !important;
 }
 
-.eventbtn:active
+.eventbtn:active {
     background-color: #d9534f !important;
     border-color: #d43f3a !important;
+}
+
+.dropdown-menu a:hover {
+    background-color: #9a2d43 !important;
 }

@@ -30,6 +30,9 @@
     <% Boolean accountDeleted = (Boolean) request.getAttribute("accountDeleted"); %>
     <% Boolean accountNotDeleted = (Boolean) request.getAttribute("accountNotDeleted"); %>
     
+    <% Boolean eventPrinted = (Boolean) request.getAttribute("eventPrinted"); %>
+    <% Boolean eventNotPrinted = (Boolean) request.getAttribute("eventNotPrinted"); %>
+    
     <%Boolean newsUpdated = (Boolean) request.getAttribute("newsUpdated"); %>
     
     
@@ -126,16 +129,12 @@
                 </div>
                 <div id="eventsEditor" class="panel-body" hidden>
                         <div class='alert alert-danger'>You can choose an Event from which to print all the registered users.</div>
-                        <form action="ResetPoints" method="POST">
-                        <div class="dropdown">
-                            <button class="btn btn-primary eventbtn dropdown-toggle" type="button" data-toggle="dropdown">Events:
-                            <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Event 1</a></li>
-                            <li><a href="#">Event 2</a></li>
-                            <li><a href="#">Event 3</a></li>
-                        </ul>
-                        </div>
+                        <form action="PrintEventUsers" method="POST" enctype="multipart/form-data">
+                            <label for="eventField">Choose an Event:</label>
+                            <input name="eventField" type="text" class="form-control" id="eventField" maxlength="45" required/>
+                            <br/>
+                            <input class="btn btn-danger" type="submit" value="Print Event">
+                            
                         </form>
                     <br/>
                 </div>

@@ -115,6 +115,9 @@ public class Admin extends HttpServlet {
             case "AddEvent":
                 addEvent(request, response);
                 break;
+            case "PrintEventUsers":
+                printEvent(request, response);
+                break;
             case "editQuiz":
                 editQuiz(request, response);
                 break;
@@ -191,6 +194,26 @@ public class Admin extends HttpServlet {
     {
         
     }
+    
+    private void printEvent(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException 
+    {
+         String event = request.getParameter("eventField");
+         AdminModel admin = new AdminModel();
+         if(admin.printEvent(event)==true)
+        {
+            request.setAttribute("eventPrinted", true);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("PrintEventUsers.jsp");
+            dispatcher.forward(request, response);
+            System.out.println("Event printed successfully.");
+        }else{
+            request.setAttribute("eventNotPrinted", true);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("PrintEventUsers.jsp");
+            dispatcher.forward(request, response);
+            System.out.println("Error Printing the Event.");
+        }
+    }
+    
     
     private void editQuiz(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 

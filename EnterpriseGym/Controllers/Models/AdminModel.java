@@ -5,10 +5,12 @@
  */
 package Models;
 
+
 import java.io.IOException;
 import java.sql.*;
 import java.util.LinkedList;
 import java.io.InputStream;
+import static java.lang.System.out;
 import javax.servlet.http.Part;
 
 /**
@@ -126,4 +128,46 @@ public class AdminModel {
             return false;
         }
     }
+    
+    public boolean printEvent(String event)
+    {
+        Connection con = null;
+    try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+
+            PreparedStatement ps = null;
+            PreparedStatement disableFKCheck = null;
+            PreparedStatement printEvent = null;
+            PreparedStatement enableFKCheck = null;
+
+            String DisableFKCheck = "SET FOREIGN_KEY_CHECKS=0";
+            String PrintEventUsers = "SELECT * FROM event_has_user WHERE event_idevent='" + event + "'";
+            String EnableFKCheck = "SET FOREIGN_KEY_CHECKS=1";
+            disableFKCheck = con.prepareStatement(DisableFKCheck);
+            disableFKCheck.executeUpdate();
+            printEvent = con.prepareStatement(PrintEventUsers);
+            
+            ResultSet rs = printEvent.executeQuery();
+            if(rs.next()) {
+                System.out.println("Event: " + rs);
+            }
+            else {
+                return false;
+            }
+            printEvent.executeUpdate();
+  
+            
+            enableFKCheck = con.prepareStatement(EnableFKCheck);
+            enableFKCheck.executeUpdate();
+            return true;
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+             System.out.println("expection thrown");
+             System.out.println("false, exception");
+             e.printStackTrace();
+            return false;
+        }
+    }
+    
+        
 }
