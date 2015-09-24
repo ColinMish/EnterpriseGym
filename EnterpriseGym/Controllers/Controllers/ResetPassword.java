@@ -101,6 +101,8 @@ public class ResetPassword extends HttpServlet {
 
         // Setup mail server
         properties.setProperty("mail.smtp.host", host);
+        //properties.put("mail.smtp.connectiontimeout", "888");
+        //properties.put("mail.smtp.timeout", "888");
 
         // Get the default Session object.
         Session mailSession = Session.getDefaultInstance(properties);

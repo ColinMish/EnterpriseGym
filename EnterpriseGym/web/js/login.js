@@ -21,7 +21,7 @@ $(document).ready(function ()
         {
             $("#invalid").show();
         }
-        else if (loginCount === 3)
+        else if (loginCount === 2)
         {
             $(".forgotPassword").show();
             loginCount = 0;
