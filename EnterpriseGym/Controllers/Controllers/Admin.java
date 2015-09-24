@@ -199,6 +199,7 @@ public class Admin extends HttpServlet {
             throws ServletException, IOException 
     {
          String event = request.getParameter("eventField");
+         System.out.println(" " + event);
          AdminModel admin = new AdminModel();
          if(admin.printEvent(event)==true)
         {

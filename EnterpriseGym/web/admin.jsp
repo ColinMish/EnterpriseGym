@@ -128,12 +128,13 @@
                     <h4><i class="fa fa-fw fa-check"></i>Events Management</h4>
                 </div>
                 <div id="eventsEditor" class="panel-body" hidden>
+                
                         <div class='alert alert-danger'>You can choose an Event from which to print all the registered users.</div>
-                        <form action="PrintEventUsers" method="POST" enctype="multipart/form-data">
+                        <form action="PrintEventUsers.jsp" method="POST" enctype="multipart/form-data">
                             <label for="eventField">Choose an Event:</label>
                             <input name="eventField" type="text" class="form-control" id="eventField" maxlength="45" required/>
                             <br/>
-                            <input class="btn btn-danger" type="submit" value="Print Event">
+                            <input class="btn btn-danger" type="submit" value="Print Registered Users">
                             
                         </form>
                     <br/>

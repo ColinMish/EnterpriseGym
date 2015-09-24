@@ -4,6 +4,10 @@
     Author     : kristiyangeorgiev
 --%>
 
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
 <%@page import="Models.AdminModel"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,12 +18,21 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <div>
-            <%
         
+            
+<div>
+    
+    
+ <% 
+     
+
 
 %>
-        </div>
+
+
+
+</div>
+      
     
     </body>
 </html>

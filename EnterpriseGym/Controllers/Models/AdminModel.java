@@ -137,23 +137,22 @@ public class AdminModel {
             con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
 
             PreparedStatement ps = null;
-            PreparedStatement disableFKCheck = null;
             PreparedStatement printEvent = null;
-            PreparedStatement enableFKCheck = null;
 
             
-            String PrintEventUsers = "SELECT * FROM event_has_user WHERE event_idevent='" + event + "'";
+            String PrintEvent = "SELECT * FROM event_has_user WHERE event_idevent='" + event + "'";
+            printEvent = con.prepareStatement(PrintEvent);
             
-           
-            printEvent = con.prepareStatement(PrintEventUsers);
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(PrintEvent);
             
-            ResultSet rs = printEvent.executeQuery();
-            if(rs.next()) {
-                System.out.println("Event: " + rs);
+            while(rs.next())
+            {
+                rs.getString("user_iduser");
+                rs.getString("attended");
+                
             }
-            else {
-                return false;
-            }
+            
             printEvent.executeUpdate();
 
             return true;
