@@ -11,6 +11,10 @@
       <link href='css/media.css' rel='stylesheet' type='text/css'>
     </head>
     
+         <script src="https://code.jquery.com/jquery-1.11.2.js"></script>
+                <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+                <script src="http://blazeworx.com/jquery.flagstrap.min.js"></script>
+    
     <%@include file="header.jsp" %>
     <div class ="mobile">
     <%@include file="sidebar.jsp"%>
@@ -19,19 +23,8 @@
     <script src="${pageContext.request.contextPath}/js/jquery.flagstrap.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery.flagstrap.js"></script>
     <script src="${pageContext.request.contextPath}/js/register.js"></script>
-    <!-- Page Content -->
-    <div class="container">
-
-        <div class="row">
-            <div class="col-lg-12">
-                <h1>Sign Up</h1>
-                <p></p>
-            </div>
-        </div>
-
-        <div class="container">  
-
-            <div id="myModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    
+      <div id="myModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
                 <div class="modal-dialog modal-sm">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -47,6 +40,19 @@
                     </div>
                 </div>
             </div>  
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Sign Up</h1>
+                <p></p>
+            </div>
+        </div>
+
+        <div class="container">  
+
+          
 
             <%
                 if (request.getAttribute("registered") != null && !(boolean) request.getAttribute("registered")) {%>
@@ -116,9 +122,7 @@
                     $('.flagstrap').flagStrap();
                 </script> 
 
-                <script src="https://code.jquery.com/jquery-1.11.2.js"></script>
-                <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-                <script src="http://blazeworx.com/jquery.flagstrap.min.js"></script>
+           
 
                 <div class="form-group">
                     <label for="university">University, H.E or F.E Institution:</label>
