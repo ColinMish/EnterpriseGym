@@ -4,6 +4,7 @@ package Controllers;
 import Entities.EventEntity;
 import Models.EventModel;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -13,12 +14,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+import lib.Convertors;
 
 /**
  *
  * @author Dave
  */
-@WebServlet(name = "Events", urlPatterns = {"/Events/*", "/EditEvent"})
+@WebServlet(name = "Events", urlPatterns = {"/Events/*", "/EditEvent", "/SubmitEdit"})
 @MultipartConfig
 public class Events extends HttpServlet {
 
@@ -103,7 +106,40 @@ public class Events extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
-        changeEvent(request, response);
+        String[] parts = Convertors.SplitRequestPath(request);
+        switch (parts[1]) {
+            case "EditEvent":
+                changeEvent(request, response);
+                break;
+            case "SubmitEdit":
+                updateEvent(request, response);
+        }
+    }
+    
+    private void updateEvent(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException 
+    {
+        int id = Integer.parseInt(request.getParameter("eventID"));
+        String newTitle = request.getParameter("eventTitle");
+        String newDescription = request.getParameter("eventDescription");
+        String newDate = request.getParameter("eventDate");
+        int newTheme = Integer.parseInt("eventTheme");
+        EventModel model = new EventModel();
+        
+        
+        
+        if(model.updateEvent(id, newTitle, newDate, newDescription, newTheme)==true)
+        {
+            request.setAttribute("eventUpdated", true);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/editEvent.jsp");
+            dispatcher.forward(request, response);
+            System.out.println("Event Updated.");
+        }else{
+            request.setAttribute("eventUpdated", false);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/editEvent.jsp");
+            dispatcher.forward(request, response);
+            System.out.println("News Story Failed To Update");
+        }
     }
     
     private void changeEvent(HttpServletRequest request, HttpServletResponse response)

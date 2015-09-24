@@ -54,12 +54,12 @@
             <form action="EditEvent" role="form" id="EditEvent" method="POST">
                 <div class="form-group">
                     <label for="eventTitle">Event Title:</label>
-                    <input name="eventTitle" type="text" class="form-control" id="title1" value="<%=event.getID()%>" maxlength="45"/>
+                    <input name="eventTitle" type="text" class="form-control" id="title1" value="<%=event.getName()%>" maxlength="45"/>
                     <span id="err"></span>
                 </div>
                 <div class="col-xs-12">
                     <div class="form-group">
-                        <label for="eventDescription">Date:</label>
+                        <label for="eventDate">Date:</label>
                     <input name="eventDate" type="date" class="form-control" id="date1" value="<%=event.getDate()%>" maxlength="45"/>
                     </div>
                 </div>
@@ -70,8 +70,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="sel1">Theme:</label>
-                    <select name="eventTheme" class="form-control" id="eventTheme">
+                    <label for="eventTheme">Theme:</label>
+                    <select name="eventTheme" class="form-control" action="SubmitEdit" method ="POST" id="eventTheme">
                         <%
                             int eventType = event.getEvent_type();
                             if (eventType == 1 ) {
@@ -117,6 +117,7 @@
                     </select>
                 </div>
                 <br>
+                <input type="hidden" name="eventID" type="number" value="<%=event.getID()%>"
                 <input class="btn btn-default" type="submit" value="Save changes">
                 <br/>
             </form> 

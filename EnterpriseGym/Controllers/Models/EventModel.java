@@ -7,13 +7,17 @@ package Models;
 
 import Entities.EventEntity;
 import static Models.UserModel.getCurrentDate;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -76,6 +80,42 @@ public class EventModel {
 
         }
 
+    }
+    
+    public boolean updateEvent(int id, String newTitle, String newDate, String newDescription, int newTheme) throws IOException
+    {
+        
+        Connection con = null;
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+            try {
+            PreparedStatement ps = null;
+             String sqlOption2 = "UPDATE event SET title=?,description=?,date=?,theme_idtheme WHERE idevent=?";
+                ps = con.prepareStatement(sqlOption2);
+
+                ps.setString(1,newTitle);
+                ps.setString(2, newDescription);
+                  
+                    ps.setString(3, newDate);
+                    ps.setInt(4,newTheme);
+                    ps.setInt(5,id);
+                    
+                ps.executeUpdate();
+  
+            return true;
+              }catch(Exception e){
+                System.out.println("failed to update event");
+                e.printStackTrace();
+                return false;
+              }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+             System.out.println("expection thrown");
+             System.out.println("false, exception");
+             e.printStackTrace();
+            return false;
+        }
     }
     
     public java.util.LinkedList<EventEntity> getAllEvents() {
