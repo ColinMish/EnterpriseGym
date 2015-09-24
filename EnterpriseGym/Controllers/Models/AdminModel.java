@@ -6,11 +6,16 @@
 package Models;
 
 
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
+import com.sun.corba.se.spi.protocol.RequestDispatcherDefault;
 import java.io.IOException;
 import java.sql.*;
 import java.util.LinkedList;
 import java.io.InputStream;
 import static java.lang.System.out;
+import java.util.ArrayList;
+import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.Part;
 
 /**
@@ -131,6 +136,7 @@ public class AdminModel {
     
     public boolean printEvent(String event)
     {
+        
         Connection con = null;
     try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -138,24 +144,38 @@ public class AdminModel {
 
             PreparedStatement ps = null;
             PreparedStatement printEvent = null;
+            PreparedStatement printUsers = null;
 
             
             String PrintEvent = "SELECT * FROM event_has_user WHERE event_idevent='" + event + "'";
             printEvent = con.prepareStatement(PrintEvent);
-            
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(PrintEvent);
             
             while(rs.next())
             {
-                rs.getString("user_iduser");
-                rs.getString("attended");
-                
+              rs.getString("user_iduser");
+                    String PrintUsers = "SELECT * FROM account WHERE user_iduser='" + rs + "'";
+                    printUsers = con.prepareStatement(PrintUsers);
+                    Statement stmttwo = con.createStatement();
+                    ResultSet rstwo = stmttwo.executeQuery(PrintUsers);
+            
+                        while(rstwo.next())
+                        {
+                            List usersRegistered = new ArrayList();
+                            usersRegistered.add(rstwo.getString("idaccount"));
+                            usersRegistered.add(rstwo.getString("username"));
+                            usersRegistered.add(rstwo.getString("date_joined"));
+                            
+                            
+                        }
             }
             
-            printEvent.executeUpdate();
-
-            return true;
+            
+            
+          return true;
+          
+          
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
              System.out.println("expection thrown");
              System.out.println("false, exception");
