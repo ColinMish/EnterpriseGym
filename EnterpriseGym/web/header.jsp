@@ -232,9 +232,6 @@ $(document).ready(function() {
         });
     });
 
-       
-});
-
 });
 
 </script>
