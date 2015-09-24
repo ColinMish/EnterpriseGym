@@ -102,7 +102,7 @@ public class Events extends HttpServlet {
     {
             EventModel model = new EventModel();
             java.util.LinkedList<EventEntity> eventitem = model.getAllEvents();
-            request.setAttribute("Events", eventitem);
+            request.setAttribute("events", eventitem);
             RequestDispatcher dispatcher = request.getRequestDispatcher("events.jsp");
             dispatcher.forward(request, response);
     }
