@@ -65,6 +65,12 @@
                 </div>
                 <div class="col-xs-12">
                     <div class="form-group">
+                        <label for="eventDescription">Location:</label>
+                    <input name="eventLocation" type="text" class="form-control" id="location" maxlength="45"/>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="form-group">
                         <label for="eventDescription">Description:</label>
                         <textarea name="eventDescription" cols="50" rows="8"></textarea>
                     </div>
