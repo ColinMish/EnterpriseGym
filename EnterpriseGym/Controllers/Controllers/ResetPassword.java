@@ -102,10 +102,6 @@ public class ResetPassword extends HttpServlet {
 
         // Setup mail server
         properties.setProperty("mail.smtp.host", host);
-        
-      //  properties.put("mail.smtp.user", d_email);
-        properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.port", "465");
 
         // Get the default Session object.
         Session mailSession = Session.getDefaultInstance(properties);
