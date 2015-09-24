@@ -240,8 +240,8 @@ public class EventModel {
             con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
 
             PreparedStatement deleteNews = null;
-            String DeleteNews = "DELETE FROM event WHERE idevent=?";
-            deleteNews = con.prepareStatement(DeleteNews);
+            String DeleteEvent = "DELETE FROM event WHERE idevent=?";
+            deleteNews = con.prepareStatement(DeleteEvent);
             deleteNews.setInt(1,id);
             deleteNews.executeUpdate();
             return true;

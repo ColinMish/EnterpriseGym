@@ -12,7 +12,7 @@ function deleteNews()
         url: "../News/"+myId,
         cache: false,
         success: function (data) {
-            if(data===1)
+            if(data==1)
             {
                 //Data has been deleted.
                 //Confirmation then reload the page. 
@@ -39,14 +39,12 @@ function checkDelete(id,title)
 
 function successModal()
 {
-    $("modaltitle2").text("Success");
     $("#modalmessage2").text("The content has been deleted.");
     $('#myModal2').modal('show');
 }
 
 function failureModal()
 {
-    $("modaltitle3").text("Failure");
     $("#modalmessage3").text("The content has not been deleted.");
     $('#myModal3').modal('show');
 }
@@ -63,7 +61,7 @@ function deleteEvent()
         url: "../Events/"+myId,
         cache: false,
         success: function (data) {
-            if(data===1)
+            if(data==1)
             {
                 //Data has been deleted.
                 //Confirmation then reload the page. 

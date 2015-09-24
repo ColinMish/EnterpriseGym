@@ -48,7 +48,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 id="modaltitle2" class="modal-title">Failure</h4>
+                    <h4 id="modaltitle2" class="modal-title">Success</h4>
                 </div>
                 <div class="modal-body">
                     <p id="modalmessage2">Message deleted.</p>
