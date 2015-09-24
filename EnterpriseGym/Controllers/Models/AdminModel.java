@@ -141,11 +141,10 @@ public class AdminModel {
             PreparedStatement printEvent = null;
             PreparedStatement enableFKCheck = null;
 
-            String DisableFKCheck = "SET FOREIGN_KEY_CHECKS=0";
+            
             String PrintEventUsers = "SELECT * FROM event_has_user WHERE event_idevent='" + event + "'";
-            String EnableFKCheck = "SET FOREIGN_KEY_CHECKS=1";
-            disableFKCheck = con.prepareStatement(DisableFKCheck);
-            disableFKCheck.executeUpdate();
+            
+           
             printEvent = con.prepareStatement(PrintEventUsers);
             
             ResultSet rs = printEvent.executeQuery();
@@ -156,10 +155,7 @@ public class AdminModel {
                 return false;
             }
             printEvent.executeUpdate();
-  
-            
-            enableFKCheck = con.prepareStatement(EnableFKCheck);
-            enableFKCheck.executeUpdate();
+
             return true;
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
              System.out.println("expection thrown");
