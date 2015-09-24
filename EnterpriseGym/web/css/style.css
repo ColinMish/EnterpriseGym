@@ -115,3 +115,19 @@ and open the template in the editor.
 .btns {
     width:12em;
 }
+
+.eventbtn {
+    background-color: #d9534f !important;
+    border-color: #d43f3a !important;
+    width:11% !important;
+}
+
+.eventbtn:hover {
+    background-color: #d9534f !important;
+    border-color: #d43f3a !important;
+}
+
+.eventbtn:active
+    background-color: #d9534f !important;
+    border-color: #d43f3a !important;
+}

@@ -9,6 +9,7 @@
 <html>
     
     <head>
+        <link href='css/bootstrap.min.css' rel='stylesheet' type='text/css'>
         <link href='css/style.css' rel='stylesheet' type='text/css'>
         <link href='css/media.css' rel='stylesheet' type='text/css'>
         <script src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
@@ -124,7 +125,19 @@
                     <h4><i class="fa fa-fw fa-check"></i>Events Management</h4>
                 </div>
                 <div id="eventsEditor" class="panel-body" hidden>
-
+                        <div class='alert alert-danger'>You can choose an Event from which to print all the registered users.</div>
+                        <form action="ResetPoints" method="POST">
+                        <div class="dropdown">
+                            <button class="btn btn-primary eventbtn dropdown-toggle" type="button" data-toggle="dropdown">Events:
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Event 1</a></li>
+                            <li><a href="#">Event 2</a></li>
+                            <li><a href="#">Event 3</a></li>
+                        </ul>
+                        </div>
+                        </form>
+                    <br/>
                 </div>
             </div>
         </div>
