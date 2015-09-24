@@ -305,10 +305,11 @@ public class UserModel {
 
     public Account getAccount(String username) {
         LinkedList accountTokens = new LinkedList();
+         int userId = 0;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             Statement st;
-            int userId = 0;
+           
             ResultSet accessTokens;
             Connection con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
             st = con.createStatement();
@@ -324,7 +325,7 @@ public class UserModel {
             con.close();
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
         }
-        return new Account(username, accountTokens);
+        return new Account(username, accountTokens,userId);
     }
 
     public String getSalt(String username) {

@@ -15,10 +15,12 @@ public class Account {
 
     private String username;
     private LinkedList accessLevel;
+    private int id;
 
-    public Account(String username, LinkedList accessLevel) {
+    public Account(String username, LinkedList accessLevel,int id) {
         this.username = username;
         this.accessLevel = accessLevel;
+        this.id= id;     
     }
 
     public String getUsername() {
@@ -31,6 +33,14 @@ public class Account {
 
     public LinkedList getAllAccessLevels() {
         return accessLevel;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setAccessLevel(LinkedList accessLevel) {

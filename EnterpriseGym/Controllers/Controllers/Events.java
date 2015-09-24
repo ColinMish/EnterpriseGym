@@ -1,6 +1,7 @@
 package Controllers;
 
 
+import Entities.Account;
 import Entities.EventEntity;
 import Entities.NewsEntity;
 import Entities.Picture;
@@ -76,7 +77,7 @@ public class Events extends HttpServlet {
         
         if(args.length==2)
         {
-            displayNews(response,request);
+            displayEvents(response,request);
         }
         
         int command;
@@ -98,7 +99,7 @@ public class Events extends HttpServlet {
  
     }
     
-     public void displayNews(HttpServletResponse response,HttpServletRequest request) throws ServletException, IOException
+     public void displayEvents(HttpServletResponse response,HttpServletRequest request) throws ServletException, IOException
     {
             EventModel model = new EventModel();
             java.util.LinkedList<EventEntity> eventitem = model.getAllEvents();
@@ -111,6 +112,16 @@ public class Events extends HttpServlet {
      {
           EventModel model = new EventModel();
              int eventID = Integer.parseInt(id);
+              HttpSession session = request.getSession();
+         //if user is logged in get a bool for if they are attending or not. 
+              Account account = (Account) session.getAttribute("account");
+    if (account != null) {
+        Boolean attending = model.isAttending(eventID,account.getId());
+        request.setAttribute("attending",attending);
+    }else{
+        System.out.println("No account found");
+    }
+             
         java.util.LinkedList<EventEntity> eventitem = model.GetEventByID(eventID);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/eventStory.jsp");
         request.setAttribute("event", eventitem);
@@ -235,32 +246,50 @@ public class Events extends HttpServlet {
     protected void doDelete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String args[] = Convertors.SplitRequestPath(request);
-        if (args[2]!=null)
-        {
-            int id = Integer.parseInt(args[2]);
-            EventModel model = new EventModel(); 
-            if(model.deleteEvent(id)==true)
-            {
-                //The content was deleted
-                     response.setContentType("text/html;charset=UTF-8");
-                     response.getWriter().write("1"); 
-            }else{
-                //Nothing was deleted
-                     response.setContentType("text/html;charset=UTF-8");
-                     response.getWriter().write("0"); 
+        switch (args[2]) {
+            case "DeleteEvent":
+                deleteEvent(request, response,args[3]);
+                break;
+            case "NotGoing":  
+                notGoing(request, response,args[3],args[4]);   
+                break;
+     
             }
-            
-            //Let the ajax know if the data is deleted. 
-        
-            
-        }else{
-            //No id was passed.
-        response.setContentType("text/html;charset=UTF-8");
-        response.getWriter().write("0"); 
-        }
-        
-        
     }
+    
+      private void deleteEvent(HttpServletRequest request, HttpServletResponse response,String id2) throws IOException, ServletException
+                {
+                       int id = Integer.parseInt(id2);
+                        EventModel model = new EventModel(); 
+                        if(model.deleteEvent(id)==true)
+                        {
+                       //The content was deleted
+                        response.setContentType("text/html;charset=UTF-8");
+                        response.getWriter().write("1"); 
+                         }else{
+                         //Nothing was deleted
+                       response.setContentType("text/html;charset=UTF-8");
+                      response.getWriter().write("0"); 
+                         }
+    
+                }
+      
+      private void notGoing(HttpServletRequest request, HttpServletResponse response,String eventid,String userid) throws IOException, ServletException
+                {
+//                       int id = Integer.parseInt(id2);
+//                        EventModel model = new EventModel(); 
+//                        if(model.deleteEvent(id)==true)
+//                        {
+//                       //The content was deleted
+//                        response.setContentType("text/html;charset=UTF-8");
+//                        response.getWriter().write("1"); 
+//                         }else{
+//                         //Nothing was deleted
+//                       response.setContentType("text/html;charset=UTF-8");
+//                      response.getWriter().write("0"); 
+//                         }
+    
+                }
     
     
 }
