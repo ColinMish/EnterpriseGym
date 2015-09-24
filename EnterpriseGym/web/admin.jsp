@@ -118,7 +118,7 @@
                     <h4><i class="fa fa-fw fa-check"></i>Events Management</h4>
                 </div>
                 <div id="eventsEditor" class="panel-body" hidden>
-                      <form action="NewEvent" role="form" id="NewEvent" method="POST">
+                      <form action="NewEvent" role="form" id="NewEvent" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="eventTitle">Event Title:</label>
                     <input name="eventTitle" type="text" class="form-control" id="title1" maxlength="45"/>
@@ -126,7 +126,7 @@
                 
      <label for="datetimepicker1">Start date / Time:</label>           
     <div class="row">
-        <div class='col-sm-3'>
+        <div class='col-sm-5'>
             <div class="form-group">
                 <div class='input-group date' id='datetimepicker1'>
                     <input name="startdate" type='text' class="form-control" required/>
@@ -145,7 +145,7 @@
      
       <label for="datetimepicker2">End date / Time:</label>           
     <div class="row">
-        <div class='col-sm-3'>
+        <div class='col-sm-5'>
             <div class="form-group">
                 <div class='input-group date' id='datetimepicker2'>
                     <input name="enddate" type='text' class="form-control" required />

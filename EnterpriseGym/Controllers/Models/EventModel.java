@@ -6,7 +6,11 @@
 package Models;
 
 import Entities.EventEntity;
+import Entities.Picture;
 import static Models.UserModel.getCurrentDate;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,6 +18,8 @@ import java.sql.ResultSet;
 import java.sql.Date;
 import java.util.LinkedList;
 import java.util.List;
+import javax.servlet.http.Part;
+import lib.Convertors;
 
 /**
  *
@@ -29,12 +35,25 @@ public class EventModel {
         return new java.sql.Date(today.getTime());
     }
         
-    public boolean newEvent(String title, String description, String location, Date date, int theme) {
+    public boolean newEvent(Part filepart,String title, String description, String location, String startdate, String enddate, int points,int theme) throws IOException {
 
-    //System.out.println("The email is:" + email);
-    //response.sendRedirect("FaultInsert.jsp");
-    //System.out.println("method called");
-    //HttpSession session = request.getSession();
+
+     InputStream inputStream = null;
+     int length=0;
+     String type=null;
+     
+       if (filepart != null) {
+            // prints out some information for debugging
+            System.out.println(filepart.getName());
+            System.out.println(filepart.getSize());
+            System.out.println(filepart.getContentType());
+            length=(int) filepart.getSize();
+            type = filepart.getContentType();
+            // obtains input stream of the upload file
+            inputStream = filepart.getInputStream();
+        }
+        
+        
     Connection con = null;
     try {
 
@@ -43,27 +62,24 @@ public class EventModel {
 
         PreparedStatement ps2 = null;
 
-        String sqlOption = "INSERT INTO event (title,description,location,date,theme_idtheme) VALUES (?,?,?,?,?)";
+        String sqlOption = "INSERT INTO event (title,description,location,date,end_date,theme_idtheme,points,image,image_length,image_type) VALUES (?,?,?,?,?,?,?,?,?,?)";
         ps2 = con.prepareStatement(sqlOption);
         ps2.setString(1, title);
         ps2.setString(2, description);
-        System.out.println(location);
         ps2.setString(3, location);
-        ps2.setDate(4, date);
-        ps2.setInt(5, theme);
+        ps2.setString(4, startdate);
+        ps2.setString(5, enddate);
+        ps2.setInt(6, theme);
+        ps2.setInt(7, points);
+          if (inputStream != null) {
+                // fetches input stream of the upload file for the blob column
+                ps2.setBlob(8, inputStream);
+                ps2.setInt(9,length);
+                ps2.setString(10,type);
+            }
         ps2.executeUpdate();
 
         //Find out the id of the new account to insert into user. 
-        PreparedStatement ps1 = null;
-        String sqlOption1 = "SELECT * FROM event WHERE title=?";
-
-        ps1 = con.prepareStatement(sqlOption1);
-        ps1.setString(1, title);
-
-        ResultSet rs1 = ps1.executeQuery();
-        rs1.next();
-        int id = rs1.getInt("idevent");
-        System.out.println("The id is:" + id);
 
         con.close();
 
@@ -131,9 +147,9 @@ public class EventModel {
         return event;
     }
     
-    public EventEntity GetEventByID(int ID)
+    public LinkedList GetEventByID(int ID)
     {
-        EventEntity foundEvent = null;
+        LinkedList foundEvent = null;
 
         Connection con = null;
         try {
@@ -185,4 +201,49 @@ public class EventModel {
         List<EventEntity> eventList = new LinkedList();
         return eventList;
     }
+    
+    public Picture getPic(int id)
+    {
+    	 Connection con = null;
+         ByteBuffer bImage = null;
+         String type = null;
+         int length = 0;
+       
+        try {
+             Class.forName("com.mysql.jdbc.Driver").newInstance();
+         con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+            Convertors convertor = new Convertors();
+            ResultSet rs = null;
+            PreparedStatement ps = null;  
+
+            String sqlOption = "SELECT * FROM event where idevent=?";
+            
+            ps = con.prepareStatement(sqlOption);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();  
+
+
+            if (rs==null) {
+                System.out.println("No Images returned");
+                return null;
+            } else {
+                rs.next();
+                 byte[] nameByteArray = rs.getBytes("image");
+                 bImage = bImage.wrap(nameByteArray);
+                  
+                 length = rs.getInt("image_length");
+                 type = rs.getString("image_type");
+                    Picture p = new Picture();
+                    p.setPic(bImage, length, type);
+                    return p;
+
+                }
+            
+        } catch (Exception et) {
+            System.out.println("Can't get Pic" + et);
+            return null;
+        }
+
+
+    } 
 }
