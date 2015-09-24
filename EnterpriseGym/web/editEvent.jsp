@@ -1,77 +1,118 @@
 <%-- 
-    Document   : editEvent
-    Created on : Sep 22, 2015, 4:12:14 PM
-    Author     : colin
+    Document   : newsEdit
+    Created on : Sep 23, 2015, 7:47:19 PM
+    Author     : davidkenny
 --%>
 
+<%@page import="Entities.EventEntity"%>
+<%@page import="java.util.Iterator"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="Entities.EventEntity" %>
+<%@page import="Entities.NewsEntity" %>
 <!DOCTYPE html>
 <html>
     <%@include file="header.jsp" %>
-    
-    <div class="hidden-xs">
-    <%@include file="sidebar.jsp"%>
-     </div>
-     
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script><!--do we need this?-->
-    <script src="${pageContext.request.contextPath}/js/jquery.flagstrap.js"></script>
-    <script src="${pageContext.request.contextPath}/js/register.js"></script>
-    <script src="${pageContext.request.contextPath}/js/jquery.flagstrap.js"></script>
-    
-    <% EventEntity event = (EventEntity) request.getAttribute("Events"); %>
-    
-    <!-- Page Content -->
-    <div class="container">
+   
+      <div class="container">
 
-        <div class="row">
+       <div class="row">
             <div class="col-lg-12">
-                <h1>Edit Event</h1>
+                <h1></h1>
                 <p></p>
             </div>
         </div>
-
-        <div class="container">  
-            
-            <div id="myModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title" id="modalHeader"></h4>
+   
+           <%
+            java.util.LinkedList<EventEntity> event = (java.util.LinkedList<EventEntity>) request.getAttribute("event");
+            if (event.size()==0) {
+        %>
+        <p>No Events found.</p>
+        <%
+        } else {   
+                  Iterator<EventEntity> iterator;
+            iterator = event.iterator();
+            while (iterator.hasNext()) {
+                EventEntity p = (EventEntity) iterator.next();
+         %>
+        <div class="col-md-12" id="AboutText">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-fw fa-check"></i>Edit Event</h4>
                     </div>
-                    <div class="modal-body">
-                        <p id="modalText"></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
-                    </div>
+                    <div class="panel-body">
+                          <form action="${pageContext.request.contextPath}/Event/NewsUpdate" method="POST" enctype="multipart/form-data">
+                                     <div class="form-group">
+                    <label for="eventTitle">Event Title:</label>
+                    <input name="eventTitle" value="<%=p.getName()%>" type="text" class="form-control" id="title1" maxlength="45"/>
+                </div>
+                
+     <label for="datetimepicker1">Start date / Time:</label>           
+    <div class="row">
+        <div class='col-sm-5'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input name="startdate" type='text' class="form-control" value="<%=p.getStartdate()%>" required/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
                 </div>
             </div>
-        </div>  
-            
-            <form action="EditEvent" role="form" id="EditEvent" method="POST">
-                <div class="form-group">
-                    <label for="eventTitle">Event Title:</label>
-                    <input name="eventTitle" type="text" class="form-control" id="title1" value="<%=event.getID()%>" maxlength="45"/>
-                    <span id="err"></span>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+        </script>
+    </div>     
+     
+      <label for="datetimepicker2">End date / Time: </label>           
+    <div class="row">
+        <div class='col-sm-5'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker2'>
+                    <input name="enddate" type='text' class="form-control" value="<%=p.getEnddate()%>" required />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
                 </div>
-                <div class="col-xs-12">
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker2').datetimepicker();
+            });
+        </script>
+    </div>
+      <div class="row">
+      <div class="col-xs-12">
                     <div class="form-group">
-                        <label for="eventDescription">Date:</label>
-                    <input name="eventDate" type="date" class="form-control" id="date1" value="<%=event.getDate()%>" maxlength="45"/>
+                        <label for="eventLocation">Location:</label>
+                    <input name="eventLocation" id="eventLocation" type="text" value="<%=p.getLocation()%>" class="form-control" id="location" maxlength="45"/>
                     </div>
                 </div>
-                <div class="col-xs-12">
-                    <div class="form-group">
-                        <label for="eventDescription">Description:</label>
-                        <textarea name="eventDescription" cols="50" value="<%=event.getDescription()%>" rows="8"></textarea>
-                    </div>
-                </div>
+      </div>
+ 
+   
+                
+                <label for="eventDescription">Description:</label>
+                <textarea name="eventDescription" id="editor1" rows="10" cols="80"><%=p.getDescription()%></textarea>
+                        <script>
+                            CKEDITOR.replace('eventDescription');
+                        </script>
+                        <br/>
+                        <% if (p.getLength()!=0){ %>  
+                              <label for="picture">Current Picture:</label>
+                            <img id="picture" src="${pageContext.request.contextPath}/Events/Picture/<%=p.getID()%>" style="max-height: 500px; max-width: 500px;" class="img-responsive" alt="Event Image">
+                            <%} %>
+                            <br/>
+                            <label for="newimage">New Image:</label>    
+                        <span class="btn btn-default btn-file">
+                        <input id ="newimage" name="image" multiple accept='image/*' type="file">
+                        </span>
+                        <br/>
+                        <br/>
                 <div class="form-group">
                     <label for="sel1">Theme:</label>
-                    <select name="eventTheme" class="form-control" value="<%=event.getEvent_type()%>" id="eventTheme">
+                    <select name="eventTheme" class="form-control" id="eventTheme">
                         <option value="1">Action</option>
                         <option value="2">Practice</option>
                         <option value="3">Theory</option>
@@ -79,13 +120,35 @@
                         <option value="5">Project</option>
                     </select>
                 </div>
+                 
+                 <div class="row">
+      <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="points">Points:</label>
+                    <input name="points" id="eventLocation" type="number" value="<%=p.getPoints_given()%>"class="form-control" id="location" maxlength="45" required/>
+                    </div>
+                </div>
+      </div>       
+                        
                 <br>
-                <input class="btn btn-default" type="submit" value="Save changes">
-                <br/>
-            </form> 
-
-        </div>
-
-        <%@include file ="footer.jsp" %>
+  
+                <input class="btn btn-default" type="submit" value="Create Event">
+                <br/>  
+                   
+                        
+                       
+                             
+                          </form>
+                    </div>
+                </div>
+            </div>
+        <%}%>
+                <%}%>
+                
+      </div>
+    
+  
+    
+    <%@include file ="footer.jsp" %>
     </body>
 </html>

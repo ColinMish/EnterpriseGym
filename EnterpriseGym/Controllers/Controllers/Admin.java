@@ -228,8 +228,15 @@ public class Admin extends HttpServlet {
         }
     }
 
-    private void displayEditEvent(HttpServletResponse response, HttpServletRequest request, String arg) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void displayEditEvent(HttpServletResponse response, HttpServletRequest request, String id) throws ServletException, IOException {
+         //To change body of generated methods, choose Tools | Templates.
+            EventModel model = new EventModel();
+        int eventID = Integer.parseInt(id);
+        //Need to pass the profile attributes accross here.
+        java.util.LinkedList<EventEntity> event = model.GetEventByID(eventID);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/editEvent.jsp");
+        request.setAttribute("event", event);
+        dispatcher.forward(request, response);
     }
 
 }

@@ -240,7 +240,7 @@ public class EventModel {
             con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
 
             PreparedStatement deleteNews = null;
-            String DeleteEvent = "DELETE FROM event WHERE idevent=?";
+            String DeleteEvent = "DELETE a.*,u.* FROM event a INNER JOIN event_has_user u ON a.idevent = u.event_idevent WHERE a.idevent=?";
             deleteNews = con.prepareStatement(DeleteEvent);
             deleteNews.setInt(1,id);
             deleteNews.executeUpdate();
