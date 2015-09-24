@@ -33,7 +33,7 @@
                     <p id="modalmessage">Are you sure you want to delete this event?</p>
                 </div>
                 <div class="modal-footer">
-                    <button id="yes" type="button" onclick="deleteNews()" class="btn btn-Danger" data-dismiss="modal">Yes</button>  
+                    <button id="yes" type="button" onclick="deleteEvent()" class="btn btn-Danger" data-dismiss="modal">Yes</button>  
                     <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
                 </div>
             </div>
@@ -48,14 +48,35 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 id="modaltitle" class="modal-title">Success</h4>
+                    <h4 id="modaltitle2" class="modal-title">Failure</h4>
                 </div>
                 <div class="modal-body">
-                    <p id="modalmessage">Message deleted.</p>
+                    <p id="modalmessage2">Message deleted.</p>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" onclick="reload()" class="btn btn-default" data-dismiss="modal">Ok</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    <div class="modal fade" id="myModal3" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 id="modaltitle3" class="modal-title">Failure</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="modalmessage3">Message deleted.</p>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
                 </div>
             </div>
 
@@ -105,7 +126,7 @@
                             <tr>
                                 <td><%=myEvent.getName()%></td>
                                 <td><a role="button" href="${pageContext.request.contextPath}/Events/Event/<%=myEvent.getID()%>" class="btn btn-primary">View <span class="glyphicon glyphicon-search" aria-hidden="true"></span></td>
-                                <td><a role="button" href="${pageContext.request.contextPath}/Admin/News/<%=myEvent.getID()%>" class="btn btn-Warning">Edit <span class="glyphicon glyphicon-cog" aria-hidden="true"></span></td>
+                                <td><a role="button" href="${pageContext.request.contextPath}/Admin/Event/<%=myEvent.getID()%>" class="btn btn-Warning">Edit <span class="glyphicon glyphicon-cog" aria-hidden="true"></span></td>
                                 <td><a role="button" onclick="checkDelete(<%=myEvent.getID()%>, '<%=myEvent.getName()%>')" class="btn btn-Danger">Delete <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></td>              
 
                             <%} %></tbody> <%}%>

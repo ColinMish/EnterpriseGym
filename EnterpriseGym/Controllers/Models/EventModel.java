@@ -16,6 +16,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import javax.servlet.http.Part;
@@ -229,6 +230,28 @@ public class EventModel {
         List<EventEntity> eventList = new LinkedList();
         return eventList;
     }
+    
+    public boolean deleteEvent(int id)
+   {
+         Connection con = null;
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+
+            PreparedStatement deleteNews = null;
+            String DeleteNews = "DELETE FROM event WHERE idevent=?";
+            deleteNews = con.prepareStatement(DeleteNews);
+            deleteNews.setInt(1,id);
+            deleteNews.executeUpdate();
+            return true;
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+             System.out.println("expection thrown");
+             System.out.println("false, exception");
+             e.printStackTrace();
+            return false;
+        }
+   }
     
     public Picture getPic(int id)
     {
