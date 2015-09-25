@@ -71,10 +71,11 @@ public class ResetPassword extends HttpServlet {
         }
     }
 
-    private boolean sendResetEmail(String newPassword, String email) {
+    private boolean sendResetEmail(String token, String email) {
 
         String subject = "Enterprise Gym Password reset";
-        String emailMessage = " <a href=http://localhost:8080/Enterprise/  Your account password has been reset to " + newPassword
+        //TODO: Change domain to actual server IP on live version
+        String emailMessage = "Click the following link to reset your password: http://localhost:8080/Enterprise/confirmPasswordReset.jsp?token=" + token
                 + ". If this was not you please login and change your password immediately";
         
         // <a href="..">text</a>
