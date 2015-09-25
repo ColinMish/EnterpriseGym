@@ -29,18 +29,15 @@ public class UserModel {
             String subject, int year, int matriculation, String salt) {
         Connection con = null;
         try {
-            int id = createAccount(username, password, salt);
-            return createUser(id, username, email, first, last, gender, country, university, school, subject, year, matriculation);
+            int id = createAccount(username, password, salt, false);
+            return createUser(id, username, email, first, last, gender, country, university, school, subject, year, matriculation, false);
         } catch (Exception e) {
             System.out.println("connection to db failed");
-            e.printStackTrace();
             return false;
-
         }
-
     }
 
-    public int createAccount(String username, String password, String salt) {
+    public int createAccount(String username, String password, String salt, boolean temp) {
         Connection con = null;
         int id = 0;
         try {
@@ -50,13 +47,13 @@ public class UserModel {
             PreparedStatement ps = null;
             PreparedStatement addAccount = null;
 
-            String InsertIntoAccount = "INSERT INTO account (username,password,salt, date_joined) VALUES (?,?,?,?)";
+            String InsertIntoAccount = "INSERT INTO account (username,password,salt, date_joined, temp) VALUES (?,?,?,?,?)";
             addAccount = con.prepareStatement(InsertIntoAccount);
             addAccount.setString(1, username);
             addAccount.setString(2, password);
             addAccount.setString(3, salt);
-            //TODO Add the salt here
             addAccount.setDate(4, getCurrentDate());
+            addAccount.setBoolean(5, temp);
             addAccount.executeUpdate();
 
             //Find out the id of the new account 
@@ -90,41 +87,43 @@ public class UserModel {
         return id;
     }
 
-    public boolean createUser(int accountid, String username, String email, String first, String last, String gender, String country, String university, String school, String subject, int year, int matriculation) {
+    public boolean createUser(int accountid, String username, String email, String first, String last, String gender, String country, String university, String school, String subject, int year, int matriculation, boolean temp) {
         Connection con = null;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
+            PreparedStatement ps = null;
             con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
-            String sqlOption = "INSERT INTO user (email,first_name,last_name,gender,country,university,school,subject,year,matriculation, account_idaccount) VALUES (?,?,?,?,?,?,?,?,?,?, ?)";
-            PreparedStatement ps = con.prepareStatement(sqlOption);
+            if (!temp) {
+                String sqlOption = "INSERT INTO user (email,first_name,last_name,gender,country,university,school,subject,year,matriculation, account_idaccount) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+                ps = con.prepareStatement(sqlOption);
 
-            ps.setString(1, email);
-            ps.setString(2, first);
-            ps.setString(3, last);
-            ps.setString(4, gender);
-            ps.setString(5, country);
-            ps.setString(6, university);
-            ps.setString(7, school);
-            ps.setString(8, subject);
-            //Default values
-            ps.setInt(9, year);
-            ps.setInt(10, matriculation);
-            ps.setInt(11, accountid);
+                ps.setString(1, email);
+                ps.setString(2, first);
+                ps.setString(3, last);
+                ps.setString(4, gender);
+                ps.setString(5, country);
+                ps.setString(6, university);
+                ps.setString(7, school);
+                ps.setString(8, subject);
+                //Default values
+                ps.setInt(9, year);
+                ps.setInt(10, matriculation);
+                ps.setInt(11, accountid);
+            } else {
+                String sqlOption = "INSERT INTO user (first_name, last_name,email, account_idaccount) VALUES (?,?,?,?)";
+                ps = con.prepareStatement(sqlOption);
+
+                ps.setString(1, first);
+                ps.setString(2, last);
+                ps.setString(3, email);
+                ps.setInt(4, accountid);
+            }
             ps.executeUpdate();
             con.close();
-
             return true;
-    	//}
-            //else
-            //{
-            //	System.out.println("Error");
-            //}
 
-            // String email= request.getParameter("Susername");
-            // String pass= request.getParameter("passwrd");
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
             System.out.println("connection to db failed");
-            e.printStackTrace();
             return false;
         }
     }
@@ -220,11 +219,9 @@ public class UserModel {
 
             return userdetails;
 
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
             System.out.println("connection to db failed");
-            e.printStackTrace();
             return null;
-
         }
     }
 
@@ -305,16 +302,18 @@ public class UserModel {
 
     public Account getAccount(String username) {
         LinkedList accountTokens = new LinkedList();
+        boolean temp = false;
+        int userId = 0;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             Statement st;
-            int userId = 0;
             ResultSet accessTokens;
             Connection con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
             st = con.createStatement();
-            accessTokens = st.executeQuery("select idaccount from account where username='" + username + "'");
+            accessTokens = st.executeQuery("select idaccount, temp from account where username='" + username + "'");
             if (accessTokens.next()) {
                 userId = accessTokens.getInt(1);
+                temp = accessTokens.getBoolean(2);
             }
             st = con.createStatement();
             accessTokens = st.executeQuery("SELECT * FROM accessToken_has_account WHERE account_idaccount='" + userId + "'");
@@ -324,7 +323,7 @@ public class UserModel {
             con.close();
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
         }
-        return new Account(username, accountTokens);
+        return new Account(userId, username, accountTokens, temp);
     }
 
     public String getSalt(String username) {
@@ -383,5 +382,42 @@ public class UserModel {
             System.out.println(e.getMessage());
         }
         return userId;
+    }
+
+    public boolean createTempAccount(String username, String password, String salt, String firstName, String lastName, String email) {
+        Connection con = null;
+        try {
+            int id = createAccount(username, password, salt, true);
+            return createUser(id, username, email, firstName, lastName, null, null, null, null, null, 0, 0, true);
+        } catch (Exception e) {
+            System.out.println("connection to db failed");
+            return false;
+        }
+    }
+
+    public Object getUserByAccount(int accountid) {
+        UserEntity userEntity = null;
+        String firstname = null;
+        String lastname = null;
+        String email = null;
+        int id = 0;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Statement st;
+            ResultSet userResults;
+            Connection con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+            st = con.createStatement();
+            userResults = st.executeQuery("select * FROM user WHERE account_idaccount='" + accountid + "'");
+            if (userResults.next()) {
+                firstname = userResults.getString("first_name");
+                lastname = userResults.getString("last_name");
+                email = userResults.getString("emai");
+                id = userResults.getInt("iduser");
+            }
+            con.close();
+            userEntity = new UserEntity(id, firstname, lastname, email);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+        }
+        return userEntity;
     }
 }

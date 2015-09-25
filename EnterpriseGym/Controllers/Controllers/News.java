@@ -180,7 +180,6 @@ public class News extends HttpServlet {
         int id = Integer.parseInt(idstring);
         NewsModel model = new NewsModel();
         
-        InputStream inputStream = null;
         Part filePart = request.getPart("image");
         
         

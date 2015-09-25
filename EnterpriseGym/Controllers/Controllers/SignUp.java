@@ -1,5 +1,6 @@
 package Controllers;
 
+import Entities.UserEntity;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Models.UserModel;
 import java.io.PrintWriter;
+import java.util.UUID;
 import lib.Convertors;
 import lib.Security;
 
@@ -18,7 +20,7 @@ import lib.Security;
  *
  * @author Dave
  */
-@WebServlet(name = "SignUp", urlPatterns = {"/SignUp", "/CheckUsername"})
+@WebServlet(name = "SignUp", urlPatterns = {"/SignUp/*", "/CheckUsername"})
 @MultipartConfig
 public class SignUp extends HttpServlet {
 
@@ -42,9 +44,15 @@ public class SignUp extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request,
-            HttpServletResponse response) throws ServletException, IOException 
-    {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("register.jsp");
+            HttpServletResponse response) throws ServletException, IOException {
+
+        String[] parts = Convertors.SplitRequestPath(request);
+        if (parts.length == 4 && parts[2].equals("Temp")) {
+            UserModel user = new UserModel();
+            UserEntity tempUser = (UserEntity) user.getUserByAccount(Integer.parseInt(parts[3]));
+            request.setAttribute("tempAccount", tempUser);
+        }
+        RequestDispatcher dispatcher = request.getRequestDispatcher("../register.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -61,7 +69,11 @@ public class SignUp extends HttpServlet {
         String[] parts = Convertors.SplitRequestPath(request);
         switch (parts[1]) {
             case "SignUp":
-                registerNewUser(request, response);
+                if (parts.length == 2) {
+                    registerNewUser(request, response);
+                } else if (parts.length == 3 && parts[2].equals("Temp")) {
+                    registerTempAccount(request, response);
+                }
                 break;
             case "CheckUsername":
                 checkUsername(request, response);
@@ -89,7 +101,7 @@ public class SignUp extends HttpServlet {
 
         try {
             if (user.register(username, password, email, first, last, gender, country, university, school, subject, yearofstudy, matric, saltAsString) == false) {
-                    request.setAttribute("registered", false);
+                request.setAttribute("registered", false);
             } else {
                 //Log the new user into the system here. 
                 request.setAttribute("registered", true);
@@ -111,5 +123,36 @@ public class SignUp extends HttpServlet {
             out.flush();
             out.close();
         }
+    }
+
+    private void registerTempAccount(HttpServletRequest request, HttpServletResponse response) {
+        UserModel user = new UserModel();
+        boolean success = false;
+        byte[] salt = Security.generateSalt();
+        String saltAsString = Convertors.byteArrayToHexString(salt);
+        String guid = UUID.randomUUID().toString();
+        guid = guid.replaceAll("-", "");
+
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String email = request.getParameter("email");
+        String username = firstName + lastName;
+        try {
+            String password = Security.hashPassword(guid, saltAsString);
+            success = user.createTempAccount(username, password, saltAsString, firstName, lastName, email);
+            emailAccountInformationToUser(email, username, password);
+        } catch (Exception e) {
+        }
+        try (PrintWriter out = response.getWriter()) {
+            out.print(success);
+            out.flush();
+            out.close();
+        } catch (Exception ex) {
+
+        }
+    }
+
+    private void emailAccountInformationToUser(String email, String username, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

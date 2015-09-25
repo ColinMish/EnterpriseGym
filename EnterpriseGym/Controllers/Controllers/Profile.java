@@ -121,10 +121,9 @@ public class Profile extends HttpServlet {
 //                UserEntity p = (UserEntity) iterator.next();
 //                System.out.println(p.getYearOfStudy());
 //            }
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/profile.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("profile.jsp");
         request.setAttribute("userdetails", userdetails);
         dispatcher.forward(request,response);
-        return;
     }
     
     private void displaypoints(HttpServletResponse response,HttpServletRequest request) throws ServletException, IOException
