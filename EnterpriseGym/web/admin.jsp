@@ -27,11 +27,11 @@
     <% Boolean accountNotDeleted = (Boolean) request.getAttribute("accountNotDeleted"); %>
 
     <%Boolean newsUpdated = (Boolean) request.getAttribute("newsUpdated"); %>
-    
+
     <% Boolean accountAdmin = (Boolean) request.getAttribute("accountAdmin"); %>
     <% Boolean accountNotAdmin = (Boolean) request.getAttribute("accountNotAdmin"); %>
 
-<div class="banner"></div>
+    <div class="banner"></div>
     <!-- Page Content -->
     <div class="container">
 
@@ -55,9 +55,9 @@
                         if (newsUpdated == true) { %> <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>News Story Updated Successfully.</p></div>
                 <% } else { %>  <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Update failed please try again.</p></div> <%}
                     }%>
-                    
+
                 <% if (accountAdmin != null) { %> <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Account Successfully Granted Administrator Privileges.</p></div> <% } %>
-                <% if (accountNotAdmin != null) { %> <div class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Error Granting Privileges.</p></div> <% } %>
+                <% if (accountNotAdmin != null) { %> <div class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Error Granting Privileges.</p></div> <% }%>
 
             </div>
         </div>
@@ -137,95 +137,95 @@
                     <h4><i class="fa fa-fw fa-check"></i>Events Management</h4>
                 </div>
                 <div id="eventsEditor" class="panel-body" hidden>
-               <form action="NewEvent" role="form" id="NewEvent" method="POST" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="eventTitle">Event Title:</label>
-                    <input name="eventTitle" type="text" class="form-control" id="title1" maxlength="45"/>
-                </div>
-                
-     <label for="datetimepicker1">Start date / Time:</label>           
-    <div class="row">
-        <div class='col-sm-5'>
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker1'>
-                    <input name="startdate" type='text' class="form-control" required/>
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker1').datetimepicker();
-            });
-        </script>
-    </div>     
-     
-      <label for="datetimepicker2">End date / Time:</label>           
-    <div class="row">
-        <div class='col-sm-5'>
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker2'>
-                    <input name="enddate" type='text' class="form-control" required />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker2').datetimepicker();
-            });
-        </script>
-    </div>
-      <div class="row">
-      <div class="col-xs-12">
-                    <div class="form-group">
-                        <label for="eventLocation">Location:</label>
-                    <input name="eventLocation" id="eventLocation" type="text" class="form-control" id="location" maxlength="45"/>
-                    </div>
-                </div>
-      </div>
- 
-   
-                
-                <label for="eventDescription">Description:</label>
-                <textarea name="eventDescription" id="editor1" rows="10" cols="80"></textarea>
+                    <form action="NewEvent" role="form" id="NewEvent" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="eventTitle">Event Title:</label>
+                            <input name="eventTitle" type="text" class="form-control" id="title1" maxlength="45"/>
+                        </div>
+
+                        <label for="datetimepicker1">Start date / Time:</label>           
+                        <div class="row">
+                            <div class='col-sm-5'>
+                                <div class="form-group">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input name="startdate" type='text' class="form-control" required/>
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <script type="text/javascript">
+                                $(function () {
+                                    $('#datetimepicker1').datetimepicker();
+                                });
+                            </script>
+                        </div>     
+
+                        <label for="datetimepicker2">End date / Time:</label>           
+                        <div class="row">
+                            <div class='col-sm-5'>
+                                <div class="form-group">
+                                    <div class='input-group date' id='datetimepicker2'>
+                                        <input name="enddate" type='text' class="form-control" required />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <script type="text/javascript">
+                                $(function () {
+                                    $('#datetimepicker2').datetimepicker();
+                                });
+                            </script>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="eventLocation">Location:</label>
+                                    <input name="eventLocation" id="eventLocation" type="text" class="form-control" id="location" maxlength="45"/>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <label for="eventDescription">Description:</label>
+                        <textarea name="eventDescription" id="editor1" rows="10" cols="80"></textarea>
                         <script>
                             CKEDITOR.replace('eventDescription');
                         </script>
                         <br/>
                         <span class="btn btn-default btn-file">
-                        <input name="image" multiple accept='image/*' type="file">
+                            <input name="image" multiple accept='image/*' type="file">
                         </span>
                         <br/>
-                <div class="form-group">
-                    <label for="sel1">Theme:</label>
-                    <select name="eventTheme" class="form-control" id="eventTheme">
-                        <option value="1">Action</option>
-                        <option value="2">Practice</option>
-                        <option value="3">Theory</option>
-                        <option value="4">Virtual</option>
-                        <option value="5">Project</option>
-                    </select>
-                </div>
-                 
-                 <div class="row">
-      <div class="col-xs-12">
-                    <div class="form-group">
-                        <label for="points">Points:</label>
-                    <input name="points" id="eventLocation" type="number" class="form-control" id="location" maxlength="45" required/>
-                    </div>
-                </div>
-      </div>       
-                        
-                <br>
-  
-                <input class="btn btn-default" type="submit" value="Create Event">
-                <br/>
-            </form>         
+                        <div class="form-group">
+                            <label for="sel1">Theme:</label>
+                            <select name="eventTheme" class="form-control" id="eventTheme">
+                                <option value="1">Action</option>
+                                <option value="2">Practice</option>
+                                <option value="3">Theory</option>
+                                <option value="4">Virtual</option>
+                                <option value="5">Project</option>
+                            </select>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="points">Points:</label>
+                                    <input name="points" id="eventLocation" type="number" class="form-control" id="location" maxlength="45" required/>
+                                </div>
+                            </div>
+                        </div>       
+
+                        <br>
+
+                        <input class="btn btn-default" type="submit" value="Create Event">
+                        <br/>
+                    </form>         
 
                 </div>
             </div>
@@ -244,7 +244,7 @@
                     <h4><i class="fa fa-fw fa-check"></i>Quiz Management</h4>
                 </div>
                 <div id="quizEditor" class="panel-body" hidden>
-                    
+
                 </div>
             </div>
         </div>
@@ -294,6 +294,19 @@
             $("#quickRegisterPanel").click(function () {
                 $("#quickRegisterEditor").toggle("fast", function () {
                 });
+            });
+        </script>
+
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading" id="stats">
+                    <h4><i class="fa fa-fw fa-check"></i>View Stats & Search Tool</h4>
+                </div>          
+            </div>
+        </div>
+        <script>
+            $("#stats").click(function () {
+                window.location = "Stats";
             });
         </script>
     </div>
