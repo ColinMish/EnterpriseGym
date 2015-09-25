@@ -10,6 +10,8 @@ var emailValid = false;
 
 $(document).ready(function () {
 
+    $("#oldAccountNo").hide();
+
     $("#SignUp").submit(function (e)
     {
         if (!usernameValid || !passwordValid || !emailValid)

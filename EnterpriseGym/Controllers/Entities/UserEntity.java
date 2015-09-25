@@ -14,7 +14,7 @@ import java.util.List;
 public class UserEntity {
 
     String name, lastname, username, email, university, status, country, password, school, subject;
-    int id, matriculation_nr, year_of_study, user_type, action_points, practice_points, theory_points, virtual_points, project_points, total_points;
+    int id, matriculation_nr, year_of_study, user_type, action_points, practice_points, theory_points, virtual_points, project_points, total_points, accountNo;
     String gender;
     boolean profile_complete;
     List<EventEntity> event_list;
@@ -58,6 +58,14 @@ public class UserEntity {
         
     }
 
+    public int getAccountNo() {
+        return accountNo;
+    }
+
+    public void setAccountNo(int accountNo) {
+        this.accountNo = accountNo;
+    }
+    
     public int getId() {
         return id;
     }
