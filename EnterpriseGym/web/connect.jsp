@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+      <link href='css/carousel.css' rel='stylesheet' type='text/css'>
       <link href='css/style.css' rel='stylesheet' type='text/css'>
       <link href='css/profile.css' rel='stylesheet' type='text/css'>
       <link href='css/media.css' rel='stylesheet' type='text/css'>

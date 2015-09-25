@@ -6,7 +6,11 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <html>
+    <head>
+        <link href='css/carousel.css' rel='stylesheet' type='text/css'>
+    </head>
 <%@include file="header.jsp" %>
 
     <!-- Page Content -->

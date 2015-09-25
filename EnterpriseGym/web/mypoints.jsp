@@ -7,7 +7,9 @@
 <%@page import="java.util.Iterator"%>
 <%@page import="Entities.UserEntity"%>
 <html>
-
+    
+    <link href='${pageContext.request.contextPath}/css/carousel.css' rel='stylesheet' type='text/css'>
+    
     <%@include file="header.jsp" %>
  
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -15,9 +17,6 @@
     <script src="http://code.highcharts.com/highcharts.js" type="text/javascript"></script>
     <script src="http://code.highcharts.com/modules/data.js"></script>
     <script src="http://code.highcharts.com/modules/exporting.js" type="text/javascript"></script>
-    
-    
-    
     
     <script type="text/javascript">
       $(function () {

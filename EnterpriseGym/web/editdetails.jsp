@@ -9,6 +9,7 @@
 <html>
     
    <head>
+      <link href='${pageContext.request.contextPath}/css/carousel.css' rel='stylesheet' type='text/css'>
       <link href='css/profile.css' rel='stylesheet' type='text/css'>  
       <link href='css/media.css' rel='stylesheet' type='text/css'>
    </head>
