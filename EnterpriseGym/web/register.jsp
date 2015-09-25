@@ -182,7 +182,7 @@
     </body>
     <%if (user != null) {%>        
     <script>
-        $("#oldAccountNo").val("");
+        $("#oldAccountNo").val("<%=user.getAccountNo()%>");
         $("#firstName").val("<%=user.getName()%>");
         $("#lastName").val("<%=user.getLastname()%>");
         $("#email").val("<%=user.getEmail()%>");

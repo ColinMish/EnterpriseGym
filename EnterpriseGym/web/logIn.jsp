@@ -55,7 +55,7 @@
                 <input name="password" type="password" class="form-control" id="pw" maxlength="45" required/>
             </div>
             <div class="forgotPassword"><a href="#">Have you forgotten your password?</a></div>
-            <input type="submit" value="SignIn" class="btn btn-default"/>
+            <input type="submit" value="Sign In" class="btn btn-default"/>
         </form>                        
     </div>
 

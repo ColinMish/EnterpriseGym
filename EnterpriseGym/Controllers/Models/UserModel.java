@@ -225,9 +225,7 @@ public class UserModel {
         }
     }
 
-    public java.util.LinkedList<UserEntity> getPoints(String username) {
-        java.util.LinkedList<UserEntity> userdetails = new java.util.LinkedList<>();
-
+    public UserEntity getPoints(String username) {
         Connection con = null;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -258,13 +256,11 @@ public class UserModel {
             user.setVirtual_points(rs.getInt("virtual_points"));
             user.setProject_points(rs.getInt("project_points"));
             user.setTheory_points(rs.getInt("theory_points"));
-            userdetails.add(user);
 
-            return userdetails;
+            return user;
 
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
             System.out.println("connection to db failed");
-            e.printStackTrace();
             return null;
         }
 
@@ -419,5 +415,33 @@ public class UserModel {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
         }
         return userEntity;
+    }
+
+    public String getUsernameFromAccountId(int accountNumber) {
+        String username = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Statement st;
+            ResultSet rs;
+            Connection con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", "davidkenny", "root1");
+            st = con.createStatement();
+            rs = st.executeQuery("select username from account where account_idaccount='" + accountNumber + "'");
+            if (rs.next()) {
+                username = rs.getString("username");
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return username;
+    }
+
+    /**
+     * Sets all points in the user entity to the database, MUST have accountNumber set in the entity
+     * @param newUser 
+     */
+    public void addPoints(UserEntity newUser) 
+    {
+        int accountNumber = newUser.getAccountNo();
+        
     }
 }

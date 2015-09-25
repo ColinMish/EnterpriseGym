@@ -50,6 +50,7 @@ public class SignUp extends HttpServlet {
         if (parts.length == 4 && parts[2].equals("Temp")) {
             UserModel user = new UserModel();
             UserEntity tempUser = (UserEntity) user.getUserByAccount(Integer.parseInt(parts[3]));
+            tempUser.setAccountNo(Integer.parseInt(parts[3]));
             request.setAttribute("tempAccount", tempUser);
         }
         dispatcher = request.getRequestDispatcher("/register.jsp");
@@ -83,6 +84,7 @@ public class SignUp extends HttpServlet {
 
     private void registerNewUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
         byte[] salt = Security.generateSalt();
+        String accountNumber = request.getParameter("oldAccountNo");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String email = request.getParameter("email");
@@ -105,8 +107,22 @@ public class SignUp extends HttpServlet {
             } else {
                 //Log the new user into the system here. 
                 request.setAttribute("registered", true);
+                
+                if(accountNumber == null)
+                {
                 RequestDispatcher dispatcher = request.getRequestDispatcher("logIn.jsp");
                 dispatcher.forward(request, response);
+                }
+                else
+                {
+                    int accountNo = Integer.parseInt(accountNumber);
+                    String oldUsername = user.getUsernameFromAccountId(accountNo);
+                    //get points
+                    UserEntity newUser = user.getPoints(oldUsername);
+                    //add to account
+                    user.addPoints(newUser);
+                    //call login doGet? 
+                }
             }
         } catch (IOException | ServletException | IllegalArgumentException e) {
             //At this point you need to tell the user that the passwords don't match

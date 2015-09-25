@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import javax.servlet.http.HttpSession;
 import lib.Convertors;
 /**
@@ -134,8 +135,9 @@ public class Profile extends HttpServlet {
           Account account = (Account) session.getAttribute("account");
         
         //Need to pass the profile attributes accross here.
-        java.util.LinkedList<UserEntity> points = model.getPoints(account.getUsername());
-        
+         LinkedList<UserEntity> points = new LinkedList();
+         UserEntity user = model.getPoints(account.getUsername());
+         points.add(user);        
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("/mypoints.jsp");
         request.setAttribute("points", points);
