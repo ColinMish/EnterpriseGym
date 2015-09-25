@@ -186,6 +186,8 @@ public class Events extends HttpServlet {
     int userID = Integer.parseInt(request.getParameter("id"));
     int eventID = Integer.parseInt(request.getParameter("eventid"));
     
+    System.out.println(userID+"the user id"+ eventID +"the event id");
+    
        if(model.signUp(userID,eventID)==true)
                         {
                        //The content was deleted
