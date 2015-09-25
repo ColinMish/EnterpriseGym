@@ -6,6 +6,7 @@
 package Models;
 
 import Entities.EventEntity;
+import Entities.EventUserEntity;
 import Entities.Picture;
 import static Models.UserModel.getCurrentDate;
 import java.io.IOException;
@@ -104,10 +105,6 @@ public class EventModel {
             String sqlOption1 = "SELECT * FROM event";
 
             ps1 = con.prepareStatement(sqlOption1);
-
-            ResultSet rs1 = ps1.executeQuery();
-            rs1.next();
-            int id = rs1.getInt("idevent");
 
 
             ResultSet rs = ps1.executeQuery();
@@ -262,6 +259,8 @@ public class EventModel {
     }
     
     public Boolean isAttending(int id,int userid){
+        UserModel userM = new UserModel();
+        int userId = userM.getUserIdByAccountId(userid);
         Connection con = null;
         try{
               Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -274,7 +273,7 @@ public class EventModel {
             
             ps = con.prepareStatement(sqlOption);
             ps.setInt(1, id);
-            ps.setInt(2, userid);
+            ps.setInt(2, userId);
             rs = ps.executeQuery();  
 
             if (rs.next()) {  
@@ -317,6 +316,8 @@ public class EventModel {
     public boolean signUp(int userID, int eventID)
     {
         Connection con = null;
+        UserModel userM = new UserModel();
+        int userId = userM.getUserIdByAccountId(userID);
     try {
 
         Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -326,7 +327,7 @@ public class EventModel {
         int i=0;
         String sqlOption = "INSERT INTO event_has_user (user_iduser,event_idevent) VALUES (?,?)";
         ps2 = con.prepareStatement(sqlOption);
-        ps2.setInt(1, userID);
+        ps2.setInt(1, userId);
         ps2.setInt(2, eventID);    
         i=ps2.executeUpdate();
 
@@ -348,6 +349,8 @@ public class EventModel {
     
     public boolean leaveEvent(int userID, int eventID)
     {
+        UserModel userM = new UserModel();
+        int userId = userM.getUserIdByAccountId(userID);
          Connection con = null;
          try {
 
@@ -360,7 +363,7 @@ public class EventModel {
 
         String sqlOption = "DELETE from event_has_user where user_iduser=? and event_idevent=?";
         ps2 = con.prepareStatement(sqlOption);
-        ps2.setInt(1, userID);
+        ps2.setInt(1, userId);
         ps2.setInt(2, eventID);    
         i= ps2.executeUpdate();
         con.close();
@@ -389,26 +392,29 @@ public class EventModel {
 		Class.forName("com.mysql.jdbc.Driver").newInstance();
 		con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
 
-		PreparedStatement disableFKCheck = null;
+		
 		PreparedStatement deleteNews = null;
-		PreparedStatement enableFKCheck = null;
+		
                 System.out.println("The id to be deleted is:"+id);
                 int i;
-                int j;
-		
-		String DisableFKCheck = "SET FOREIGN_KEY_CHECKS=0";
-		String DeleteEvent = "DELETE e.*,u.* FROM event e INNER JOIN event_has_user u ON e.idevent = u.event_idevent WHERE e.idevent=?";
-		String EnableFKCheck = "SET FOREIGN_KEY_CHECKS=1";
-		disableFKCheck = con.prepareStatement(DisableFKCheck);
-		disableFKCheck.executeUpdate();
+           
+	
+		String DeleteEvent = "DELETE e.* FROM event e WHERE e.idevent = ?;";
+	
+	
 		deleteNews = con.prepareStatement(DeleteEvent);
 		deleteNews.setInt(1,id);
 		i=deleteNews.executeUpdate();
-		enableFKCheck = con.prepareStatement(EnableFKCheck);
-		j=enableFKCheck.executeUpdate();
+	
                 
-                System.out.println("The variable i is:"+i+"The variable j is:"+j);
-		return true;
+                System.out.println("The variable i is:"+i);
+                if(i==0 ){
+                    System.out.println("false");
+                   return false; 
+                }else{
+                    return true;
+                }
+		
 	} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
 		 System.out.println("expection thrown");
 		 System.out.println("false, exception");
@@ -461,4 +467,116 @@ public class EventModel {
 
 
     } 
+    
+    public java.util.LinkedList<EventUserEntity> getEventUsers(int id){
+        java.util.LinkedList<EventUserEntity> eventUsers = new java.util.LinkedList<>();
+         Connection con = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+
+            PreparedStatement ps1 = null;
+            String sqlOption1 = "SELECT u.last_name, u.first_name, u.email, a.username,u.iduser \n" +
+                                "FROM user u\n" +
+                                "INNER JOIN account a ON a.idaccount = u.account_idaccount\n" +
+                                "INNER JOIN event_has_user e ON e.user_iduser = u.iduser\n" +
+                                "INNER JOIN event v ON v.idevent = e.event_idevent\n" +
+                                "WHERE v.idevent = ?\n" +
+                                "ORDER BY u.last_name;";
+
+            ps1 = con.prepareStatement(sqlOption1);
+            
+            ps1.setInt(1,id);
+
+            ResultSet rs = ps1.executeQuery();
+            
+            
+            while (rs.next()) {
+                EventUserEntity user = new EventUserEntity();
+                user.setFristname(rs.getString("first_name"));
+                user.setUsername(rs.getString("username"));
+                user.setLastname(rs.getString("last_name"));
+                user.setEmail(rs.getString("email"));
+                user.setUserid(rs.getInt("iduser"));
+
+                eventUsers.add(user);
+            }
+
+            return eventUsers;
+
+        } catch (Exception e) {
+            System.out.println("connection to db failed");
+            e.printStackTrace();
+            return null;
+
+        }
+    }
+    
+    public boolean awardPoints(int userID, int eventID) {
+        Connection con = null;
+        int theme = 0;
+        int points = 0;
+        String AwardPoints = "";
+        String SetAttended = "";
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+
+            PreparedStatement ps = null;
+            PreparedStatement awardPoints = null;
+            PreparedStatement getThemePoints = null;
+            PreparedStatement setAttended = null;
+            
+            String GetThemePoints = "SELECT e.theme_idtheme, e.points FROM event e WHERE e.idevent = " + eventID;
+            
+            ResultSet rs = null;
+            
+            getThemePoints = con.prepareStatement(GetThemePoints);            
+            rs = getThemePoints.executeQuery();
+           
+            theme = rs.getInt("theme_idtheme");
+            points = rs.getInt("points");
+            
+            if(theme == 1)
+            {
+                AwardPoints = "UPDATE user u SET u.action_points = u.action_points + " + points + " WHERE u.iduser = " + userID;
+            }
+            else if(theme == 2)
+            {
+                AwardPoints = "UPDATE user u SET u.practice_points = u.practice_points + " + points + " WHERE u.iduser = " + userID;
+            }
+            else if(theme == 3)
+            {
+                AwardPoints = "UPDATE user u SET u.theory_points = u.theory_points + " + points + " WHERE u.iduser = " + userID;
+            }
+            else if(theme == 4)
+            {
+                AwardPoints = "UPDATE user u SET u.virtual_points = u.virtual_points + " + points + " WHERE u.iduser = " + userID;
+            }
+            else if(theme == 5)
+            {
+                AwardPoints = "UPDATE user u SET u.project_points = u.project_points + " + points + " WHERE u.iduser = " + userID;
+            }      
+            
+            SetAttended = "UPDATE event_has_user e SET e.attended = 1 WHERE e.user_iduser = " + userID;
+            
+            setAttended = con.prepareStatement(SetAttended);
+            setAttended.executeUpdate();
+            
+            awardPoints = con.prepareStatement(AwardPoints);
+            awardPoints.executeUpdate();
+            
+            con.close();
+            return true;        
+            
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+            System.out.println("expection thrown");
+            System.out.println("false, exception");
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
+
+

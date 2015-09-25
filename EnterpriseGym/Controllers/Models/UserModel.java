@@ -330,7 +330,7 @@ public class UserModel {
     public Account getAccount(String username) {
         LinkedList accountTokens = new LinkedList();
         boolean temp = false;
-        int userId = 0;
+        int accountId = 0;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             Statement st;
@@ -339,18 +339,18 @@ public class UserModel {
             st = con.createStatement();
             accessTokens = st.executeQuery("select idaccount, temp from account where username='" + username + "'");
             if (accessTokens.next()) {
-                userId = accessTokens.getInt(1);
+                accountId = accessTokens.getInt(1);
                 temp = accessTokens.getBoolean(2);
             }
             st = con.createStatement();
-            accessTokens = st.executeQuery("SELECT * FROM accessToken_has_account WHERE account_idaccount='" + userId + "'");
+            accessTokens = st.executeQuery("SELECT * FROM accessToken_has_account WHERE account_idaccount='" + accountId + "'");
             while (accessTokens.next()) {
                 accountTokens.add(accessTokens.getInt("accessToken_idaccessToken"));
             }
             con.close();
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
         }
-        return new Account(userId, username, accountTokens, temp);
+        return new Account(accountId, username, accountTokens, temp);
     }
 
     public String getSalt(String username) {
@@ -446,5 +446,23 @@ public class UserModel {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
         }
         return userEntity;
+    }
+
+    int getUserIdByAccountId(int accountID) {
+          int userId = 0;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Statement st;
+            ResultSet rs;
+            Connection con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", "davidkenny", "root1");
+            st = con.createStatement();
+            rs = st.executeQuery("select iduser from user where account_idaccount='" + accountID + "'");
+            if (rs.next()) {
+                userId = rs.getInt("iduser");
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return userId;
     }
 }

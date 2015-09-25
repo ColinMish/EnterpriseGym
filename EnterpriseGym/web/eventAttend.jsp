@@ -4,6 +4,7 @@
     Author     : davidkenny
 --%>
 
+<%@page import="Entities.EventUserEntity"%>
 <%@page import="Entities.EventEntity"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="Entities.UserEntity"%>
@@ -101,8 +102,8 @@
                 </div>
                 <div class="panel-body">
                     <%
-                        java.util.LinkedList<EventEntity> event = (java.util.LinkedList<EventEntity>) request.getAttribute("events");
-                        if (event.size() == 0) {
+                        java.util.LinkedList<EventUserEntity> eventuser = (java.util.LinkedList<EventUserEntity>) request.getAttribute("eventuser");
+                        if (eventuser.size() == 0) {
                     %>
                     <p>No News found.</p>
                     <%
@@ -110,24 +111,27 @@
                     <table class="table table-hover" id="datatable2">
                         <thead>
                             <tr>
-                                <th>Event</th>
-                                <th>Date</th>
+                                <th>Last Name</th>
+                                <th>Name</th>
+                                <th>Username</th>
+                                <th>Email</th>
                             </tr>
                         </thead>
                         <tbody>
                             <%
 
-                                Iterator<EventEntity> iterator;
-                                iterator = event.iterator();
+                                Iterator<EventUserEntity> iterator;
+                                iterator = eventuser.iterator();
                                 while (iterator.hasNext()) {
-                                    EventEntity myEvent = (EventEntity) iterator.next();
+                                    EventUserEntity myEvent = (EventUserEntity) iterator.next();
                             %>       
 
                             <tr>
-                                <td><%=myEvent.getName()%></td>
-                                <td><a role="button" href="${pageContext.request.contextPath}/Admin/Event/Manage/<%=myEvent.getID()%>" class="btn btn-primary">View <span class="glyphicon glyphicon-search" aria-hidden="true"></span></td>
-                                <td><a role="button" href="${pageContext.request.contextPath}/Admin/Event/<%=myEvent.getID()%>" class="btn btn-Warning">Edit <span class="glyphicon glyphicon-cog" aria-hidden="true"></span></td>
-                                <td><a role="button" onclick="checkDelete(<%=myEvent.getID()%>, '<%=myEvent.getName()%>')" class="btn btn-Danger">Delete <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></td>              
+                                <td><%=myEvent.getLastname()%></td>
+                                <td><%=myEvent.getFirstname()%></td>
+                                <td><%=myEvent.getUsername()%></td>
+                                <td><%=myEvent.getEmail()%></td>
+                                <td><a role="button" onclick="checkDelete()" class="btn btn-Danger">Delete <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></td>              
 
                             <%} %></tbody> <%}%>
                     </table>

@@ -1,6 +1,7 @@
 package Controllers;
 
 import Entities.EventEntity;
+import Entities.EventUserEntity;
 import Entities.NewsEntity;
 import Models.AdminModel;
 import Models.EventModel;
@@ -23,7 +24,7 @@ import lib.Convertors;
  *
  * @author Andy
  */
-@WebServlet(name = "Admin", urlPatterns = {"/Admin/*", "/AddNews"})
+@WebServlet(name = "Admin", urlPatterns = {"/Admin/*", "/AddNews", "/UserPrivileges", "/DeleteUser"})
 @MultipartConfig(maxFileSize = 16177215) //Set the pictures size up to 16MB  
 
 public class Admin extends HttpServlet {
@@ -73,6 +74,7 @@ public class Admin extends HttpServlet {
             return;
         }
         switch (command) {
+            //News
             case 1:
                 if (args.length == 3) {
                     displayNewsPannel(response, request);
@@ -80,11 +82,18 @@ public class Admin extends HttpServlet {
                     displayEditNews(response, request, args[3]);
                 }
                 break;
+            //Events    
             case 2:
                 if (args.length == 3) {
                     displayEventPannel(response, request);
                 } else {
+                    if(args.length==4)
+                    {
                     displayEditEvent(response, request, args[3]);
+                    }else{
+                        manageEvent(response,request,args[4]);
+                    }
+                    //Manage the events. 
                 }
                 break;
             default:
@@ -92,6 +101,7 @@ public class Admin extends HttpServlet {
             //Error message here.
         }
     }
+    
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -114,6 +124,9 @@ public class Admin extends HttpServlet {
                 break;
             case "DeleteUser":
                 deleteUser(request, response);
+                break;
+            case "UserPrivileges":
+                userPrivileges(request, response);
                 break;
             case "AddEvent":
                 addEvent(request, response);
@@ -180,6 +193,24 @@ public class Admin extends HttpServlet {
             System.out.println("Error Deleting Account.");
         }
     }
+    
+    private void userPrivileges(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String username = request.getParameter("adminUsernameField");
+        AdminModel admin = new AdminModel();
+
+        if (admin.userPrivileges(username) == true) {
+            request.setAttribute("accountAdmin", true);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
+            dispatcher.forward(request, response);
+            System.out.println("Account Successfully Granted Admin Privileges.");
+        } else {
+            request.setAttribute("accountNotAdmin", true);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
+            dispatcher.forward(request, response);
+            System.out.println("Error Granting Permissions.");
+        }
+    }
 
     private void addEvent(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -237,6 +268,17 @@ public class Admin extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/editEvent.jsp");
         request.setAttribute("event", event);
         dispatcher.forward(request, response);
+    }
+    
+    private void manageEvent(HttpServletResponse response, HttpServletRequest request, String id) throws ServletException, IOException
+    {
+    int eventID = Integer.parseInt(id);
+    EventModel model = new EventModel();
+    java.util.LinkedList<EventUserEntity> eventuser = model.getEventUsers(eventID);
+       RequestDispatcher dispatcher = request.getRequestDispatcher("/eventAttend.jsp");
+        request.setAttribute("eventuser", eventuser);
+        dispatcher.forward(request, response);
+        
     }
 
 }
