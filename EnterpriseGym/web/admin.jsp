@@ -107,6 +107,14 @@
                         <br/>
                         <input class="btn btn-danger" type="submit" value="Delete Account">
                     </form>
+                    <br/>
+                    <div class='alert alert-info'>Enter the username of the account you would like to give administrator privileges.</div>
+                    <form action="UserPrivileges" method="POST">
+                        <label for="adminUsernameField">Username:</label>
+                        <input name="adminUsernameField" type="text" class="form-control" id="adminUsernameField" maxlength="45" required/>
+                        <br/>
+                        <input class="btn btn-info" type="submit" value="Grant Privileges">
+                    </form>
                 </div>
             </div>
         </div>
@@ -186,6 +194,7 @@
                         <input name="image" multiple accept='image/*' type="file">
                         </span>
                         <br/>
+<<<<<<< HEAD
                 <div class="form-group">
                     <label for="sel1">Theme:</label>
                     <select name="eventTheme" class="form-control" id="eventTheme">
@@ -211,6 +220,22 @@
                 <input class="btn btn-default" type="submit" value="Create Event">
                 <br/>
             </form>         
+=======
+                        <div class="form-group">
+                            <label for="sel1">Theme:</label>
+                            <select name="eventTheme" class="form-control" id="eventTheme">
+                                <option value="1">Action</option>
+                                <option value="2">Practice</option>
+                                <option value="3">Theory</option>
+                                <option value="4">Virtual</option>
+                                <option value="5">Project</option>
+                            </select>
+                        </div>
+                        <br/>
+                        <input class="btn btn-default" type="submit" value="Create Event">
+                        <br/>
+                    </form>
+>>>>>>> origin/Events_Attendance
                 </div>
             </div>
         </div>
