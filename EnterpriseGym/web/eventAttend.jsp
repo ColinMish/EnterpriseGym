@@ -111,8 +111,10 @@
                     <table class="table table-hover" id="datatable2">
                         <thead>
                             <tr>
-                                <th>Event</th>
+                                <th>Last Name</th>
                                 <th>Name</th>
+                                <th>Username</th>
+                                <th>Email</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -125,7 +127,10 @@
                             %>       
 
                             <tr>
+                                <td><%=myEvent.getLastname()%></td>
+                                <td><%=myEvent.getFirstname()%></td>
                                 <td><%=myEvent.getUsername()%></td>
+                                <td><%=myEvent.getEmail()%></td>
                                 <td><a role="button" onclick="checkDelete()" class="btn btn-Danger">Delete <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></td>              
 
                             <%} %></tbody> <%}%>

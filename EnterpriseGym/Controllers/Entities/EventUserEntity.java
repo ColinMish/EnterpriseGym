@@ -23,7 +23,7 @@ public class EventUserEntity {
         
     }
 
-    public String getFristname() {
+    public String getFirstname() {
         return fristname;
     }
 
