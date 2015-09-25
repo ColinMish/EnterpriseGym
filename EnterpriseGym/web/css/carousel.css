@@ -1,0 +1,38 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 25-Sep-2015, 11:08:30
+    Author     : kristiyangeorgiev
+*/
+
+    .Carousel {
+        display:none;
+    }
+    
+    #sidebar-wrapper{
+        margin-top: 5.5em;
+    }
+    
+    .container .row {
+        margin-top:2.5em;
+    }
+    
+    .navbar-collapse  {
+         
+    }
+    
+    .navbar-header{
+        height: 4.2em;
+    }
+    
+    .banner {
+        background-image: url('../Pictures/bannertwo.jpg');
+        max-width: 100%;
+        min-height:80px;
+        margin-top: 4.3em;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }

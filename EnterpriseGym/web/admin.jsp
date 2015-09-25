@@ -7,7 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
+    <link href='css/carousel.css' rel='stylesheet' type='text/css'>
+    <link href='css/media.css' rel='stylesheet' type='text/css'>
 
     <%@include file="header.jsp" %>
     <div class ="mobile">
@@ -26,8 +27,11 @@
     <% Boolean accountNotDeleted = (Boolean) request.getAttribute("accountNotDeleted"); %>
 
     <%Boolean newsUpdated = (Boolean) request.getAttribute("newsUpdated"); %>
+    
+    <% Boolean accountAdmin = (Boolean) request.getAttribute("accountAdmin"); %>
+    <% Boolean accountNotAdmin = (Boolean) request.getAttribute("accountNotAdmin"); %>
 
-
+<div class="banner"></div>
     <!-- Page Content -->
     <div class="container">
 
@@ -51,6 +55,9 @@
                         if (newsUpdated == true) { %> <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>News Story Updated Successfully.</p></div>
                 <% } else { %>  <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Update failed please try again.</p></div> <%}
                     }%>
+                    
+                <% if (accountAdmin != null) { %> <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Account Successfully Granted Administrator Privileges.</p></div> <% } %>
+                <% if (accountNotAdmin != null) { %> <div class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Error Granting Privileges.</p></div> <% } %>
 
             </div>
         </div>

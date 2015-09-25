@@ -8,7 +8,8 @@
 <%@page import="java.util.Iterator"%>
 <%@page import="Entities.UserEntity"%>
 <html>
-
+    <link href='css/carousel.css' rel='stylesheet' type='text/css'>
+    <link href='css/media.css' rel='stylesheet' type='text/css'>
     <%@include file="header.jsp" %>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">

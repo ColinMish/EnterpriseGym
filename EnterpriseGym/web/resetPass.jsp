@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href='css/carousel.css' rel='stylesheet' type='text/css'>
         <link href='css/media.css' rel='stylesheet' type='text/css'>
     </head>
     <%@include file="header.jsp" %>
@@ -16,7 +17,7 @@
     <%@include file="sidebar.jsp"%>
     </div>
 
-
+<div class="banner"></div>
     <!-- Page Content -->
     <div class="container">
 
@@ -38,7 +39,7 @@
                 <label for="email">Email:</label>
                 <input name="email" type="text" class="form-control" id="em" maxlength="100" required/>
             </div>
-            <input type="submit" value="ResetPassword" class="btn btn-default"/>
+            <input type="submit" value="Reset Password" class="btn btn-default"/>
         </form>  
     </div>
 

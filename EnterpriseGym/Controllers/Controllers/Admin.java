@@ -24,7 +24,7 @@ import lib.Convertors;
  *
  * @author Andy
  */
-@WebServlet(name = "Admin", urlPatterns = {"/Admin/*", "/AddNews"})
+@WebServlet(name = "Admin", urlPatterns = {"/Admin/*", "/AddNews", "/UserPrivileges", "/DeleteUser"})
 @MultipartConfig(maxFileSize = 16177215) //Set the pictures size up to 16MB  
 
 public class Admin extends HttpServlet {
@@ -125,6 +125,9 @@ public class Admin extends HttpServlet {
             case "DeleteUser":
                 deleteUser(request, response);
                 break;
+            case "UserPrivileges":
+                userPrivileges(request, response);
+                break;
             case "AddEvent":
                 addEvent(request, response);
                 break;
@@ -188,6 +191,24 @@ public class Admin extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
             dispatcher.forward(request, response);
             System.out.println("Error Deleting Account.");
+        }
+    }
+    
+    private void userPrivileges(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String username = request.getParameter("adminUsernameField");
+        AdminModel admin = new AdminModel();
+
+        if (admin.userPrivileges(username) == true) {
+            request.setAttribute("accountAdmin", true);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
+            dispatcher.forward(request, response);
+            System.out.println("Account Successfully Granted Admin Privileges.");
+        } else {
+            request.setAttribute("accountNotAdmin", true);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
+            dispatcher.forward(request, response);
+            System.out.println("Error Granting Permissions.");
         }
     }
 

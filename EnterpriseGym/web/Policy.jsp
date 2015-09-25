@@ -6,9 +6,14 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-<%@include file="header.jsp" %>
 
+<html>
+    <head>
+        <link href='css/carousel.css' rel='stylesheet' type='text/css'>
+        <link href='css/media.css' rel='stylesheet' type='text/css'>
+    </head>
+<%@include file="header.jsp" %>
+<div class="banner"></div>
     <!-- Page Content -->
     <div class="container">
 
