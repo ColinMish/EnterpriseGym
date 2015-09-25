@@ -9,6 +9,8 @@
 <html>
     
     <link href='${pageContext.request.contextPath}/css/carousel.css' rel='stylesheet' type='text/css'>
+    <link href='${pageContext.request.contextPath}/css/media.css' rel='stylesheet' type='text/css'>
+    
     
     <%@include file="header.jsp" %>
  
