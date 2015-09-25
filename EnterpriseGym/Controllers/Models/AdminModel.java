@@ -170,6 +170,43 @@ public class AdminModel {
             return false;
         }
     }
+    
+    public boolean userPrivileges(String username) {
+        Connection con = null;
+        int accountID;
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+
+            PreparedStatement ps = null;
+            PreparedStatement findUser = null;
+            PreparedStatement setPrivileges = null;
+            
+            String FindUser = "SELECT a.idaccount FROM account a WHERE a.username = '" + username + "'";
+            
+            ResultSet rs = null;
+            
+            findUser = con.prepareStatement(FindUser);            
+            rs = findUser.executeQuery();
+           
+            rs.next();
+            
+            accountID = rs.getInt("idaccount");
+            
+            String SetPrivileges = "UPDATE accessToken_has_account a SET a.accessToken_idaccessToken = 1 WHERE a.account_idaccount = " + accountID;
+            
+            setPrivileges = con.prepareStatement(SetPrivileges);
+            setPrivileges.executeUpdate();
+            
+            return true;
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+            System.out.println("expection thrown");
+            System.out.println("false, exception");
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     public ArrayList getAllEventsWithAttendance() {
         Connection con = null;
