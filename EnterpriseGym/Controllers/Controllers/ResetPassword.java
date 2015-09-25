@@ -75,7 +75,7 @@ public class ResetPassword extends HttpServlet {
 
         String subject = "Enterprise Gym Password reset";
         //TODO: Change domain to actual server IP on live version
-        String emailMessage = "Click the following link to reset your password: http://localhost:8080/Enterprise/confirmPasswordReset.jsp?token=" + token
+        String emailMessage = "Click the following link to reset your password: http://178.62.56.48:8080/Enterprise/confirmPasswordReset.jsp?token=" + token
                 + ". If this was not you please login and change your password immediately";
         
         // <a href="..">text</a>
