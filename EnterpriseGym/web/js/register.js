@@ -14,7 +14,7 @@ $(document).ready(function () {
 
     $("#SignUp").submit(function (e)
     {
-        if (!usernameValid || !passwordValid || !emailValid)
+        if (!validateForm())
         {
             e.preventDefault();
         }
@@ -239,15 +239,16 @@ function checkEmail()
 
 function validateForm()
 {
-    if (emailValid && passwordValid && usernameValid)
-    {
-        return true;
-    }
-    else
+    checkEmail();
+    if (!emailValid || !passwordValid || !usernameValid)
     {
         $("#modalHeader").text("Error!");
         $("#modalText").text("Invalid input.");
         $('#myModal').modal('show');
         return false;
+    }
+    else
+    {
+        return true;
     }
 }

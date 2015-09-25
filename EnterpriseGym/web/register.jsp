@@ -59,7 +59,7 @@
                             user = (UserEntity) request.getAttribute("tempAccount");%>                            
             <div class="mustRegister"><strong><font color="red">Temporary account detected, please register to continue!</font></strong></br></br></div>
                     <% }%>
-            <form onsubmit="return validateForm()" action="SignUp" role="form" id="SignUp" method="POST">
+            <form action="SignUp" role="form" id="SignUp" method="POST">
 
                 <div id="oldAccount" class="form-group" >
                     <input name="oldAccountNo" type="text" class="form-control" id="oldAccountNo" maxlength="45"/>

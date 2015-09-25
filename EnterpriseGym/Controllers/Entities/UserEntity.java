@@ -218,7 +218,7 @@ public class UserEntity {
         return theory_points;
     }
 
-    public int getVitrualPoints() {
+    public int getVirtualPoints() {
         return virtual_points;
     }
 

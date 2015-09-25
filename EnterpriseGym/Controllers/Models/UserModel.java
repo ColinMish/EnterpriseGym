@@ -80,7 +80,7 @@ public class UserModel {
                 ps.setInt(2, id);
                 ps.executeUpdate();
             }
-
+            con.close();
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
 
         }
@@ -161,16 +161,14 @@ public class UserModel {
 
                 ps2.executeUpdate();
                 //ps.executeUpdate();
-
+                con.close();
                 return true;
             } else {
 
                 return false;
             }
 
-        } catch (Exception e) {
-
-            e.printStackTrace();
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
             return false;
         }
 
@@ -216,7 +214,7 @@ public class UserModel {
             user.setYearOfStudy(rs.getInt("year"));
             user.setMatric(rs.getInt("matriculation"));
             userdetails.add(user);
-
+            con.close();
             return userdetails;
 
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
@@ -256,7 +254,7 @@ public class UserModel {
             user.setVirtual_points(rs.getInt("virtual_points"));
             user.setProject_points(rs.getInt("project_points"));
             user.setTheory_points(rs.getInt("theory_points"));
-
+            con.close();
             return user;
 
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
@@ -303,18 +301,18 @@ public class UserModel {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             Statement st;
-            ResultSet accessTokens;
+            ResultSet accountInfo;
             Connection con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
             st = con.createStatement();
-            accessTokens = st.executeQuery("select idaccount, temp from account where username='" + username + "'");
-            if (accessTokens.next()) {
-                accountId = accessTokens.getInt(1);
-                temp = accessTokens.getBoolean(2);
+            accountInfo = st.executeQuery("select idaccount, temp from account where username='" + username + "'");
+            if (accountInfo.next()) {
+                accountId = accountInfo.getInt(1);
+                temp = accountInfo.getBoolean(2);
             }
             st = con.createStatement();
-            accessTokens = st.executeQuery("SELECT * FROM accessToken_has_account WHERE account_idaccount='" + accountId + "'");
-            while (accessTokens.next()) {
-                accountTokens.add(accessTokens.getInt("accessToken_idaccessToken"));
+            accountInfo = st.executeQuery("SELECT * FROM accessToken_has_account WHERE account_idaccount='" + accountId + "'");
+            while (accountInfo.next()) {
+                accountTokens.add(accountInfo.getInt("accessToken_idaccessToken"));
             }
             con.close();
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
@@ -356,6 +354,7 @@ public class UserModel {
             if (rs.next()) {
                 email = rs.getString("email");
             }
+            con.close();
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -425,9 +424,10 @@ public class UserModel {
             ResultSet rs;
             Connection con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", "davidkenny", "root1");
             st = con.createStatement();
-            rs = st.executeQuery("select username from account where account_idaccount='" + accountNumber + "'");
+            rs = st.executeQuery("select username from account where idaccount='" + accountNumber + "'");
             if (rs.next()) {
                 username = rs.getString("username");
+                con.close();
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
             System.out.println(e.getMessage());
@@ -437,19 +437,90 @@ public class UserModel {
 
     /**
      * Sets all points in the user entity to the database
-     * @param newUser 
+     *
+     * @param newUser
      */
-    public void addPoints(UserEntity newUser) 
-    {
-        
+    public void addPoints(UserEntity newUser) {
+        int userId = getUserIdByAccountId(newUser.getAccountNo());
+        setActionPointsByUserId(userId, newUser.getActionPoints());
+        setActionPointsByUserId(userId, newUser.getPracticePoints());
+        setActionPointsByUserId(userId, newUser.getVirtualPoints());
+        setActionPointsByUserId(userId, newUser.getProjectPoints());
+        setActionPointsByUserId(userId, newUser.getTheoryPoints());
     }
-    
-    public int getActionPointsByUserId(int userId)
-    {
+
+    public void setActionPointsByUserId(int userId, int actionPoints) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            PreparedStatement st;
+            Connection con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", "davidkenny", "root1");
+            String update = "UPDATE user SET action_points=? WHERE iduser=?";
+            st = con.prepareStatement(update);
+            st.setInt(1, actionPoints);
+            st.setInt(2, userId);
+            st.executeUpdate();
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+        }
+    }
+
+    public void setPracticePointsByUserId(int userId, int practicePoints) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            PreparedStatement st;
+            Connection con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", "davidkenny", "root1");
+            String update = "UPDATE user SET practice_points=? WHERE iduser=?";
+            st = con.prepareStatement(update);
+            st.setInt(1, practicePoints);
+            st.setInt(2, userId);
+            st.executeUpdate();
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+        }
+    }
+
+    public void setVirtualPointsByUserId(int userId, int virtualPoints) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            PreparedStatement st;
+            Connection con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", "davidkenny", "root1");
+            String update = "UPDATE user SET virtual_points=? WHERE iduser=?";
+            st = con.prepareStatement(update);
+            st.setInt(1, virtualPoints);
+            st.setInt(2, userId);
+            st.executeUpdate();
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+        }
+    }
+
+    public void setProjectPointsByUserId(int userId, int projectPoints) {
+                try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            PreparedStatement st;
+            Connection con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", "davidkenny", "root1");
+            String update = "UPDATE user SET project_points=? WHERE iduser=?";
+            st = con.prepareStatement(update);
+            st.setInt(1, projectPoints);
+            st.setInt(2, userId);
+            st.executeUpdate();
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+        }
+    }
+
+    public void setTheoryPointsByUserId(int userId, int theoryPoints) {
+                try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            PreparedStatement st;
+            Connection con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", "davidkenny", "root1");
+            String update = "UPDATE user SET theory_points=? WHERE iduser=?";
+            st = con.prepareStatement(update);
+            st.setInt(1, theoryPoints);
+            st.setInt(2, userId);
+            st.executeUpdate();
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+        }
     }
 
     int getUserIdByAccountId(int accountID) {
-          int userId = 0;
+        int userId = 0;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             Statement st;

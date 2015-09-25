@@ -68,12 +68,13 @@ public class SignUp extends HttpServlet {
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
         String[] parts = Convertors.SplitRequestPath(request);
-        switch (parts[1]) {
+        String end = parts[parts.length - 1];
+        switch (end) {
             case "SignUp":
-                if (parts.length == 2) {
-                    registerNewUser(request, response);
-                } else if (parts.length == 3 && parts[2].equals("Temp")) {
+                if (parts.length == 3 && parts[2].equals("Temp")) {
                     registerTempAccount(request, response);
+                } else {
+                    registerNewUser(request, response);
                 }
                 break;
             case "CheckUsername":
@@ -107,14 +108,8 @@ public class SignUp extends HttpServlet {
             } else {
                 //Log the new user into the system here. 
                 request.setAttribute("registered", true);
-                
-                if(accountNumber == null)
-                {
-                RequestDispatcher dispatcher = request.getRequestDispatcher("logIn.jsp");
-                dispatcher.forward(request, response);
-                }
-                else
-                {
+
+                if (accountNumber != null) {
                     int accountNo = Integer.parseInt(accountNumber);
                     String oldUsername = user.getUsernameFromAccountId(accountNo);
                     //get points
@@ -122,10 +117,11 @@ public class SignUp extends HttpServlet {
                     newUser.setAccountNo(accountNo);
                     //add to account
                     user.addPoints(newUser);
-                    //call login doGet? 
                 }
+                String redirectURL = request.getContextPath() + "/logIn.jsp";
+                response.sendRedirect(redirectURL);
             }
-        } catch (IOException | ServletException | IllegalArgumentException e) {
+        } catch (IOException | IllegalArgumentException e) {
             //At this point you need to tell the user that the passwords don't match
             System.out.println("expection thrown");
             request.setAttribute("registered", false);
