@@ -1,6 +1,7 @@
 package Controllers;
 
 import Entities.EventEntity;
+import Entities.EventUserEntity;
 import Entities.NewsEntity;
 import Models.AdminModel;
 import Models.EventModel;
@@ -73,6 +74,7 @@ public class Admin extends HttpServlet {
             return;
         }
         switch (command) {
+            //News
             case 1:
                 if (args.length == 3) {
                     displayNewsPannel(response, request);
@@ -80,11 +82,18 @@ public class Admin extends HttpServlet {
                     displayEditNews(response, request, args[3]);
                 }
                 break;
+            //Events    
             case 2:
                 if (args.length == 3) {
                     displayEventPannel(response, request);
                 } else {
+                    if(args.length==4)
+                    {
                     displayEditEvent(response, request, args[3]);
+                    }else{
+                        manageEvent(response,request,args[4]);
+                    }
+                    //Manage the events. 
                 }
                 break;
             default:
@@ -92,6 +101,7 @@ public class Admin extends HttpServlet {
             //Error message here.
         }
     }
+    
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -237,6 +247,17 @@ public class Admin extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/editEvent.jsp");
         request.setAttribute("event", event);
         dispatcher.forward(request, response);
+    }
+    
+    private void manageEvent(HttpServletResponse response, HttpServletRequest request, String id) throws ServletException, IOException
+    {
+    int eventID = Integer.parseInt(id);
+    EventModel model = new EventModel();
+    java.util.LinkedList<EventUserEntity> eventuser = model.getEventUsers(eventID);
+       RequestDispatcher dispatcher = request.getRequestDispatcher("/eventAttend.jsp");
+        request.setAttribute("eventuser", eventuser);
+        dispatcher.forward(request, response);
+        
     }
 
 }

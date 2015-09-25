@@ -57,10 +57,16 @@
             <div class="error"><strong><font color="red">Registration failed!</font></strong></br></br></div>
                     <% }%>
                     <%if (request.getAttribute("tempAccount") != null) {
-                    user = (UserEntity)request.getAttribute("tempAccount");%>                            
+                            user = (UserEntity) request.getAttribute("tempAccount");%>                            
             <div class="mustRegister"><strong><font color="red">Temporary account detected, please register to continue!</font></strong></br></br></div>
                     <% }%>
-            <form onsubmit="return validateForm()" action="SignUp" role="form" id="SignUp" method="POST">
+            <form action="SignUp" role="form" id="SignUp" method="POST">
+
+                <div id="oldAccount" class="form-group" >
+                    <input name="oldAccountNo" type="text" class="form-control" id="oldAccountNo" maxlength="45"/>
+                </div>
+
+
                 <div class="form-group">
                     <label for="username">Username:</label>
                     <input name="username" type="text" class="form-control" id="username1" maxlength="45"/>
@@ -177,6 +183,7 @@
     </body>
     <%if (user != null) {%>        
     <script>
+        $("#oldAccountNo").val("<%=user.getAccountNo()%>");
         $("#firstName").val("<%=user.getName()%>");
         $("#lastName").val("<%=user.getLastname()%>");
         $("#email").val("<%=user.getEmail()%>");

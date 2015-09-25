@@ -45,14 +45,15 @@ public class SignUp extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-
+        RequestDispatcher dispatcher;
         String[] parts = Convertors.SplitRequestPath(request);
         if (parts.length == 4 && parts[2].equals("Temp")) {
             UserModel user = new UserModel();
             UserEntity tempUser = (UserEntity) user.getUserByAccount(Integer.parseInt(parts[3]));
+            tempUser.setAccountNo(Integer.parseInt(parts[3]));
             request.setAttribute("tempAccount", tempUser);
         }
-        RequestDispatcher dispatcher = request.getRequestDispatcher("../register.jsp");
+        dispatcher = request.getRequestDispatcher("/register.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -67,12 +68,13 @@ public class SignUp extends HttpServlet {
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
         String[] parts = Convertors.SplitRequestPath(request);
-        switch (parts[1]) {
+        String end = parts[parts.length - 1];
+        switch (end) {
             case "SignUp":
-                if (parts.length == 2) {
-                    registerNewUser(request, response);
-                } else if (parts.length == 3 && parts[2].equals("Temp")) {
+                if (parts.length == 3 && parts[2].equals("Temp")) {
                     registerTempAccount(request, response);
+                } else {
+                    registerNewUser(request, response);
                 }
                 break;
             case "CheckUsername":
@@ -83,6 +85,7 @@ public class SignUp extends HttpServlet {
 
     private void registerNewUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
         byte[] salt = Security.generateSalt();
+        String accountNumber = request.getParameter("oldAccountNo");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String email = request.getParameter("email");
@@ -105,10 +108,20 @@ public class SignUp extends HttpServlet {
             } else {
                 //Log the new user into the system here. 
                 request.setAttribute("registered", true);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("logIn.jsp");
-                dispatcher.forward(request, response);
+
+                if (accountNumber != null) {
+                    int accountNo = Integer.parseInt(accountNumber);
+                    String oldUsername = user.getUsernameFromAccountId(accountNo);
+                    //get points
+                    UserEntity newUser = user.getPoints(oldUsername);
+                    newUser.setAccountNo(accountNo);
+                    //add to account
+                    user.addPoints(newUser);
+                }
+                String redirectURL = request.getContextPath() + "/logIn.jsp";
+                response.sendRedirect(redirectURL);
             }
-        } catch (IOException | ServletException | IllegalArgumentException e) {
+        } catch (IOException | IllegalArgumentException e) {
             //At this point you need to tell the user that the passwords don't match
             System.out.println("expection thrown");
             request.setAttribute("registered", false);
