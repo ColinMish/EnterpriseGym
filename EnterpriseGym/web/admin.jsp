@@ -130,7 +130,7 @@
                     <h4><i class="fa fa-fw fa-check"></i>Events Management</h4>
                 </div>
                 <div id="eventsEditor" class="panel-body" hidden>
-                    <form action="NewEvent" role="form" id="NewEvent" method="POST" enctype="multipart/form-data">
+               <form action="NewEvent" role="form" id="NewEvent" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="eventTitle">Event Title:</label>
                     <input name="eventTitle" type="text" class="form-control" id="title1" maxlength="45"/>
@@ -194,7 +194,6 @@
                         <input name="image" multiple accept='image/*' type="file">
                         </span>
                         <br/>
-<<<<<<< HEAD
                 <div class="form-group">
                     <label for="sel1">Theme:</label>
                     <select name="eventTheme" class="form-control" id="eventTheme">
@@ -220,22 +219,7 @@
                 <input class="btn btn-default" type="submit" value="Create Event">
                 <br/>
             </form>         
-=======
-                        <div class="form-group">
-                            <label for="sel1">Theme:</label>
-                            <select name="eventTheme" class="form-control" id="eventTheme">
-                                <option value="1">Action</option>
-                                <option value="2">Practice</option>
-                                <option value="3">Theory</option>
-                                <option value="4">Virtual</option>
-                                <option value="5">Project</option>
-                            </select>
-                        </div>
-                        <br/>
-                        <input class="btn btn-default" type="submit" value="Create Event">
-                        <br/>
-                    </form>
->>>>>>> origin/Events_Attendance
+
                 </div>
             </div>
         </div>
