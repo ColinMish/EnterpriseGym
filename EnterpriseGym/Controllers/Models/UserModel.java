@@ -411,7 +411,7 @@ public class UserModel {
             if (userResults.next()) {
                 firstname = userResults.getString("first_name");
                 lastname = userResults.getString("last_name");
-                email = userResults.getString("emai");
+                email = userResults.getString("email");
                 id = userResults.getInt("iduser");
             }
             con.close();

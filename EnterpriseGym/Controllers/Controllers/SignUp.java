@@ -45,14 +45,14 @@ public class SignUp extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-
+        RequestDispatcher dispatcher;
         String[] parts = Convertors.SplitRequestPath(request);
         if (parts.length == 4 && parts[2].equals("Temp")) {
             UserModel user = new UserModel();
             UserEntity tempUser = (UserEntity) user.getUserByAccount(Integer.parseInt(parts[3]));
             request.setAttribute("tempAccount", tempUser);
         }
-        RequestDispatcher dispatcher = request.getRequestDispatcher("../register.jsp");
+        dispatcher = request.getRequestDispatcher("/register.jsp");
         dispatcher.forward(request, response);
     }
 
