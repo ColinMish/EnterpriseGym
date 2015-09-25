@@ -408,7 +408,13 @@ public class EventModel {
 		j=enableFKCheck.executeUpdate();
                 
                 System.out.println("The variable i is:"+i+"The variable j is:"+j);
-		return true;
+                if(i==0 ){
+                    System.out.println("false");
+                   return false; 
+                }else{
+                    return true;
+                }
+		
 	} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
 		 System.out.println("expection thrown");
 		 System.out.println("false, exception");
