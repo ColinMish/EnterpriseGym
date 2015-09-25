@@ -13,16 +13,35 @@ import java.util.LinkedList;
  */
 public class Account {
 
+    private int id;
     private String username;
     private LinkedList accessLevel;
-    private int id;
+    private boolean temp;
 
-    public Account(String username, LinkedList accessLevel,int id) {
+    public Account(int id, String username, LinkedList accessLevel, boolean temp) {
+        this.id = id;
         this.username = username;
         this.accessLevel = accessLevel;
-        this.id= id;     
+        this.temp = temp;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+        this.id= id;     
+    }
+    
+    public boolean isTemp() {
+        return temp;
+    }
+
+    public void setTemp(boolean temp) {
+        this.temp = temp;
+    }
+    
     public String getUsername() {
         return username;
     }
@@ -33,14 +52,6 @@ public class Account {
 
     public LinkedList getAllAccessLevels() {
         return accessLevel;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setAccessLevel(LinkedList accessLevel) {

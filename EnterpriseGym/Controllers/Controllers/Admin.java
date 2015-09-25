@@ -193,7 +193,7 @@ public class Admin extends HttpServlet {
 
     private void displayPannel(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/admin.jsp");
-        dispatcher.forward(request, response);
+        dispatcher.forward(request,response);
     }
 
     private void displayNewsPannel(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {

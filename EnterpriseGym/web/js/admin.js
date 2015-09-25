@@ -5,78 +5,88 @@
  */
 var myId;
 
+$(document).ready(function ()
+{
+    $("#TempSignUp").submit(function (e)
+    {
+        e.preventDefault();
+        var firstName = $("#firstName").val();
+        var lastName = $("#lastName").val();
+        var email = $("#email").val();
+        tempSignUp(firstName, lastName, email);
+    });
+});
+
 function deleteNews()
 {
-     $.ajax({
+    $.ajax({
         type: "DELETE",
-        url: "../News/"+myId,
+        url: "../News/" + myId,
         cache: false,
         success: function (data) {
-            if(data==1)
+            if (data == 1)
             {
                 //Data has been deleted.
                 //Confirmation then reload the page. 
-                successModal(); 
-            }else{
+                successModal();
+            } else {
                 failureModal();
                 //Data not deleted.
             }
-        //Show success then reload the page. 
+            //Show success then reload the page. 
         },
         fail: function () {
             window.alert("Failed");
-        //Show failure. 
+            //Show failure. 
         }
     });
 }
 
-function checkDelete(id,title)
+function checkDelete(id, title)
 {
-        $("#modalmessage").text("Are you sure you want to delete the article: "+title+"?");
-        this.myId=id;
-        $('#myModal').modal('show');
+    $("#modalmessage").text("Are you sure you want to delete the article: " + title + "?");
+    this.myId = id;
+    $('#myModal').modal('show');
 }
 
 function successModal()
 {
-    $("#modalmessage2").text("The content has been deleted.");
+    $("modaltitle").text("Success");
+    $("#modalmessage").text("The content has been deleted.");
     $('#myModal2').modal('show');
 }
 
 function failureModal()
 {
-    $("#modalmessage3").text("The content has not been deleted.");
-    $('#myModal3').modal('show');
+    $("modaltitle").text("Failure");
+    $("#modalmessage").text("The content has not been deleted.");
+    $('#myModal2').modal('show');
 }
 
 function reload()
 {
-    location.reload(); 
+    location.reload();
 }
 
-function deleteEvent()
+function tempSignUp(firstName, lastName, email)
 {
-        $.ajax({
-        type: "DELETE",
-        url: "../Events/DeleteEvent/"+myId,
-        cache: false,
-        success: function (data) {
-            if(data==1)
-            {
-                //Data has been deleted.
-                //Confirmation then reload the page. 
-                successModal(); 
-            }else{
-                failureModal();
-                //Data not deleted.
+    $.ajax({
+            type: "POST",
+            url: "SignUp/Temp",
+            async: false,
+            data: {firstName: firstName, lastName: lastName, email : email},
+            cache: false,
+            success: function (result) {
+                if (result == "true")
+                {
+                    $("#message").text("A tempory account has been set up. Please check your emails for access");
+                }else{
+                    $("#message").text("Tempory account creation failed. Please try again or go to register");
+                }
+            },
+            fail: function () {
+                console.log("Ajax error");
             }
-        //Show success then reload the page. 
-        },
-        fail: function () {
-            window.alert("Failed");
-        //Show failure. 
-        }
-    });
+        });
 }
-
 

@@ -4,42 +4,43 @@
     Author     : davidkenny
 --%>
 
+<%@page import="Entities.UserEntity"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-      <link href='css/media.css' rel='stylesheet' type='text/css'>
-    </head>
-    
-         <script src="https://code.jquery.com/jquery-1.11.2.js"></script>
-                <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-                <script src="http://blazeworx.com/jquery.flagstrap.min.js"></script>
-    
+
+
+
+    <link href='css/media.css' rel='stylesheet' type='text/css'> 
+    <script src="https://code.jquery.com/jquery-1.11.2.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="http://blazeworx.com/jquery.flagstrap.min.js"></script>
+
     <%@include file="header.jsp" %>
     <div class ="mobile">
-    <%@include file="sidebar.jsp"%>
+        <%@include file="sidebar.jsp"%>
     </div>
-    
+
     <script src="${pageContext.request.contextPath}/js/jquery.flagstrap.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery.flagstrap.js"></script>
     <script src="${pageContext.request.contextPath}/js/register.js"></script>
-    
-      <div id="myModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title" id="modalHeader"></h4>
-                        </div>
-                        <div class="modal-body">
-                            <p id="modalText"></p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
-                        </div>
-                    </div>
+    <%UserEntity user = null; %>
+    <div id="myModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="modalHeader"></h4>
                 </div>
-            </div>  
+                <div class="modal-body">
+                    <p id="modalText"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>  
     <!-- Page Content -->
     <div class="container">
 
@@ -51,12 +52,12 @@
         </div>
 
         <div class="container">  
-
-          
-
-            <%
-                if (request.getAttribute("registered") != null && !(boolean) request.getAttribute("registered")) {%>
+            <%if (request.getAttribute("registered") != null && !(boolean) request.getAttribute("registered")) {%>            
             <div class="error"><strong><font color="red">Registration failed!</font></strong></br></br></div>
+                    <% }%>
+                    <%if (request.getAttribute("tempAccount") != null) {
+                    user = (UserEntity)request.getAttribute("tempAccount");%>                            
+            <div class="mustRegister"><strong><font color="red">Temporary account detected, please register to continue!</font></strong></br></br></div>
                     <% }%>
             <form onsubmit="return validateForm()" action="SignUp" role="form" id="SignUp" method="POST">
                 <div class="form-group">
@@ -121,9 +122,6 @@
                 <script>
                     $('.flagstrap').flagStrap();
                 </script> 
-
-           
-
                 <div class="form-group">
                     <label for="university">University, H.E or F.E Institution:</label>
                     <select class="form-control" id="university" name="university">
@@ -172,11 +170,17 @@
                 <input class="btn btn-default" type="submit" value="Sign Up">
                 <br/>
             </form> 
-
         </div>
 
         <%@include file ="footer.jsp" %>
     </body>
-
+    <%if (user != null) {%>        
+    <script>
+        $("#firstName").val("<%=user.getName()%>");
+        $("#lastName").val("<%=user.getLastname()%>");
+        $("#email").val("<%=user.getEmail()%>");
+        $("#confirmEmail").val("<%=user.getEmail()%>");
+    </script>
+    <%}%>
 </html>
 

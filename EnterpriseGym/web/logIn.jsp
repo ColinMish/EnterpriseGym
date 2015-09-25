@@ -12,26 +12,26 @@
     <div class="mobile">
         <%@include file="sidebar.jsp"%>   
     </div>
-        <script src="${pageContext.request.contextPath}/js/login.js"></script>
+    <script src="${pageContext.request.contextPath}/js/login.js"></script>
     <% Boolean registered = (Boolean) request.getAttribute("registered"); %>  
-    
+
     <div id="myModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title" id="modalHeader"></h4>
-                    </div>
-                    <div class="modal-body">
-                        <p id="modalText"></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
-                    </div>
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="modalHeader"></h4>
+                </div>
+                <div class="modal-body">
+                    <p id="modalText"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
                 </div>
             </div>
         </div>
-    
+    </div>
+
 
     <!-- Page Content -->
     <div class="container">
@@ -40,8 +40,8 @@
             <div class="col-lg-12">
                 <h1><% if (registered != null) {%>Registration Successful - Please <% }%>Log In</h1>
                 <p></p>
-                <!--<h2 class="loginfailed" id="fail">Log In failed please try again</h2>-->
-                <!--<h2 class="loginfailed" id="invalid">The username or password entered is invalid.</h2>-->
+                <h2 class="loginfailed" id="fail">Log In failed please try again</h2>
+                <h2 class="loginfailed" id="invalid">The username or password entered is invalid.</h2>
             </div>
         </div>
 
