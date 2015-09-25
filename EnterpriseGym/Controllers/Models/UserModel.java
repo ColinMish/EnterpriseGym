@@ -48,7 +48,8 @@ public class UserModel {
             PreparedStatement ps1 = null;
 
             String CheckToken = "SELECT * FROM account WHERE email=?";
-            String UpdateToken = "UPDATE account SET reset_token=? WHERE email=?";
+            String UpdateToken = "UPDATE account SET account.reset_token=? FROM user WHERE user.email=?";
+            
 
             ps = con.prepareStatement(CheckToken);
             ps.setString(1, email);
