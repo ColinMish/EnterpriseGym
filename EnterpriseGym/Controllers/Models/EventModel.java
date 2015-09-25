@@ -537,6 +537,8 @@ public class EventModel {
 		
 		getThemePoints = con.prepareStatement(GetThemePoints);            
 		rs = getThemePoints.executeQuery();
+                
+                rs.next();
 	   
 		theme = rs.getInt("theme_idtheme");
 		points = rs.getInt("points");
