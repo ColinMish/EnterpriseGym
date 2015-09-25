@@ -17,6 +17,7 @@
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
     <script src="${pageContext.request.contextPath}/js/admin.js" type="text/javascript"></script>
+    
 </head>
 <body>
 

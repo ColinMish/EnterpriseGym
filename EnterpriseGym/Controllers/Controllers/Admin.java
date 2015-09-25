@@ -277,6 +277,7 @@ public class Admin extends HttpServlet {
     java.util.LinkedList<EventUserEntity> eventuser = model.getEventUsers(eventID);
        RequestDispatcher dispatcher = request.getRequestDispatcher("/eventAttend.jsp");
         request.setAttribute("eventuser", eventuser);
+        request.setAttribute("eventid",eventID);
         dispatcher.forward(request, response);
         
     }

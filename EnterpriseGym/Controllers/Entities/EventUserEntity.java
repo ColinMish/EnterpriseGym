@@ -16,6 +16,15 @@ public class EventUserEntity {
     
     public String fristname,lastname,username,email;
     public int userid;
+    boolean attended;
+
+    public boolean isAttended() {
+        return attended;
+    }
+
+    public void setAttended(boolean attended) {
+        this.attended = attended;
+    }
     
     
     public EventUserEntity()
