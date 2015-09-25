@@ -29,6 +29,15 @@ and open the template in the editor.
         .mobile{
             display:none;
         }
+        
+        .banner {
+            background-image: url('../Pictures/bannerthree.jpg') !important;
+            max-width: 100%;
+            min-height:80px;
+            margin-top: 4.3em;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
     }
     
     @media(max-height:960px) {
@@ -54,6 +63,16 @@ and open the template in the editor.
         .mobile{
             display:none;
         }
+        
+        .banner {
+            background-image: url('../Pictures/bannerthree.jpg');
+            max-width: 100%;
+            min-height:80px;
+            margin-top: 4.3em;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
     } 
-      
+   
+  
     

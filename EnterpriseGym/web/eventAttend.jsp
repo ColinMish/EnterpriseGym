@@ -4,20 +4,20 @@
     Author     : davidkenny
 --%>
 
+<%@page import="Entities.EventUserEntity"%>
 <%@page import="Entities.EventEntity"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="Entities.UserEntity"%>
 <html>
-    <link href='css/carousel.css' rel='stylesheet' type='text/css'>
-    <link href='css/media.css' rel='stylesheet' type='text/css'>
+
     <%@include file="header.jsp" %>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
-    <script src="${pageContext.request.contextPath}/js/admin.js" type="text/javascript"></script>
-    
+    <script src="${pageContext.request.contextPath}/js/eventAttend.js" type="text/javascript"></script>
+    <script>var ctx = "${pageContext.request.contextPath}"</script>
 </head>
 <body>
 
@@ -71,7 +71,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 id="modaltitle3" class="modal-title">Failure</h4>
+                    <h4 id="modaltitle3" class="modal-title">Error</h4>
                 </div>
                 <div class="modal-body">
                     <p id="modalmessage3">Message deleted.</p>
@@ -103,8 +103,9 @@
                 </div>
                 <div class="panel-body">
                     <%
-                        java.util.LinkedList<EventEntity> event = (java.util.LinkedList<EventEntity>) request.getAttribute("events");
-                        if (event.size() == 0) {
+                        int EventID = (int)request.getAttribute("eventid");
+                        java.util.LinkedList<EventUserEntity> eventuser = (java.util.LinkedList<EventUserEntity>) request.getAttribute("eventuser");
+                        if (eventuser.size() == 0) {
                     %>
                     <p>No News found.</p>
                     <%
@@ -112,25 +113,31 @@
                     <table class="table table-hover" id="datatable2">
                         <thead>
                             <tr>
-                                <th>Event</th>
-                                <th>Date</th>
+                                <th>Last Name</th>
+                                <th>Name</th>
+                                <th>Username</th>
+                                <th>Email</th>
                             </tr>
                         </thead>
                         <tbody>
                             <%
 
-                                Iterator<EventEntity> iterator;
-                                iterator = event.iterator();
+                                Iterator<EventUserEntity> iterator;
+                                iterator = eventuser.iterator();
                                 while (iterator.hasNext()) {
-                                    EventEntity myEvent = (EventEntity) iterator.next();
+                                    EventUserEntity myEvent = (EventUserEntity) iterator.next();
                             %>       
 
                             <tr>
-                                <td><%=myEvent.getName()%></td>
-                                <td><a role="button" href="${pageContext.request.contextPath}/Admin/Event/Manage/<%=myEvent.getID()%>" class="btn btn-primary">View <span class="glyphicon glyphicon-search" aria-hidden="true"></span></td>
-                                <td><a role="button" href="${pageContext.request.contextPath}/Admin/Event/<%=myEvent.getID()%>" class="btn btn-Warning">Edit <span class="glyphicon glyphicon-cog" aria-hidden="true"></span></td>
-                                <td><a role="button" onclick="checkDelete(<%=myEvent.getID()%>, '<%=myEvent.getName()%>')" class="btn btn-Danger">Delete <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></td>              
-
+                                <td><%=myEvent.getLastname()%></td>
+                                <td><%=myEvent.getFirstname()%></td>
+                                <td><%=myEvent.getUsername()%></td>
+                                <td><%=myEvent.getEmail()%></td>
+                                <td><% if(myEvent.isAttended()){%>
+                                    <p id="attended<%=myEvent.getUserid()%>">Attended </p>      
+                                <%}else{%> 
+                                <a role="button" id="notattending<%=myEvent.getUserid()%>" onclick="Attend(<%=myEvent.getUserid()%>,<%=EventID%>)" class="btn btn-success">Mark as Attended </a>  <p id="attending<%=myEvent.getUserid()%>" class="hidden">Attended </p> </td>
+                                <%}%>
                             <%} %></tbody> <%}%>
                     </table>
                 </div>

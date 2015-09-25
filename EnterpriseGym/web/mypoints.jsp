@@ -7,7 +7,11 @@
 <%@page import="java.util.Iterator"%>
 <%@page import="Entities.UserEntity"%>
 <html>
-
+    
+    <link href='${pageContext.request.contextPath}/css/carousel.css' rel='stylesheet' type='text/css'>
+    <link href='${pageContext.request.contextPath}/css/media.css' rel='stylesheet' type='text/css'>
+    
+    
     <%@include file="header.jsp" %>
  
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -15,9 +19,6 @@
     <script src="http://code.highcharts.com/highcharts.js" type="text/javascript"></script>
     <script src="http://code.highcharts.com/modules/data.js"></script>
     <script src="http://code.highcharts.com/modules/exporting.js" type="text/javascript"></script>
-    
-    
-    
     
     <script type="text/javascript">
       $(function () {
@@ -68,7 +69,7 @@
                 selected: true
             }, {
                 name: "Virtual",
-                y: <%=p.getVitrualPoints()%>
+                y: <%=p.getVirtualPoints()%>
             }, {
                 name: "Practice",
                 y: <%=p.getPracticePoints()%>
@@ -84,6 +85,7 @@
     </script>
   </head>
   <body>
+      <div class="banner"></div>
     <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
     
        
@@ -112,7 +114,7 @@
                             <tbody>
                            <tr>
                             <th>Virtual Points:</th>
-                            <td><%=p2.getVitrualPoints()%></td>
+                            <td><%=p2.getVirtualPoints()%></td>
                            </tr>
                            <tr>
                             <th>Project Points:</th>
@@ -138,7 +140,6 @@
        
                     </div>
                 </div>
-        </div>
         
         <div class="col-md-8" id="ConnectText2">
                 <div class="panel panel-default">

@@ -17,17 +17,18 @@
     <head>
         <link href='${pageContext.request.contextPath}/css/profile.css' rel='stylesheet' type='text/css'>
         <link href='${pageContext.request.contextPath}/css/media.css' rel='stylesheet' type='text/css'>
+        <link href='${pageContext.request.contextPath}/css/carousel.css' rel='stylesheet' type='text/css'>
     </head>
 <body>
      <%@include file="header.jsp" %>
     <div class="mobile">
     <%@include file="sidebar.jsp"%>
     </div>
-    
+    <div class="banner"></div>
     <!-- Page Content -->
          <div class="container">
 
-       <div class="row">
+       <div class="row event">
             <div class="col-lg-12">
                 <h1>Events</h1>
                 <p></p>

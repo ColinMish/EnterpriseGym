@@ -7,7 +7,8 @@
 <!DOCTYPE html>
 <html>
 
-
+<link href='css/carousel.css' rel='stylesheet' type='text/css'>
+<link href='css/media.css' rel='stylesheet' type='text/css'>
     <%@include file="header.jsp" %>
     <div class="mobile">
         <%@include file="sidebar.jsp"%>   
@@ -32,7 +33,7 @@
         </div>
     </div>
 
-
+<div class="banner"></div>
     <!-- Page Content -->
     <div class="container">
 
@@ -45,7 +46,7 @@
             </div>
         </div>
 
-        <form  id="logInForm" action="LogIn" role="form" method="post" >
+        <form  id="logInForm" action="/LogIn" role="form" method="post" >
             <div class="form-group">
                 <label for="username">Username:</label>
                 <input name="username" type="text" class="form-control" id="un" maxlength="45" required/>
@@ -54,8 +55,10 @@
                 <label for="password">Password:</label>
                 <input name="password" type="password" class="form-control" id="pw" maxlength="45" required/>
             </div>
+
             <div class="forgotPassword"><a href="resetPass.jsp">Have you forgotten your password?</a></div>
             <br>
+
             <input type="submit" value="Sign In" class="btn btn-default"/>
         </form>                        
     </div>

@@ -3,13 +3,13 @@
     Created on : 17-Sep-2015, 10:48:10
     Author     : kristiyangeorgiev
 --%>
-
 <%@page import="java.util.Iterator"%>
 <%@page import="Entities.UserEntity"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
+      <link href='css/carousel.css' rel='stylesheet' type='text/css'>
       <link href='css/profile.css' rel='stylesheet' type='text/css'>
       <link href='css/media.css' rel='stylesheet' type='text/css'>
     </head>
@@ -20,6 +20,7 @@
     </div>
     
             <!-- Page Content -->
+    <div class="banner"></div>        
     <div class="container">
 
         <div class="row">
