@@ -7,7 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
+    <link href='css/carousel.css' rel='stylesheet' type='text/css'>
+    <link href='css/media.css' rel='stylesheet' type='text/css'>
 
     <%@include file="header.jsp" %>
     <div class ="mobile">
@@ -27,7 +28,7 @@
 
     <%Boolean newsUpdated = (Boolean) request.getAttribute("newsUpdated"); %>
 
-
+<div class="banner"></div>
     <!-- Page Content -->
     <div class="container">
 

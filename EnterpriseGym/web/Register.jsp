@@ -10,12 +10,13 @@
 <html>
 
 
-
-    <link href='css/media.css' rel='stylesheet' type='text/css'> 
+    <head>
+    <link href='css/media.css' rel='stylesheet' type='text/css'>
+    <link href='${pageContext.request.contextPath}/css/carousel.css' rel='stylesheet' type='text/css'>
     <script src="https://code.jquery.com/jquery-1.11.2.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <script src="http://blazeworx.com/jquery.flagstrap.min.js"></script>
-
+    </head>
     <%@include file="header.jsp" %>
     <div class ="mobile">
         <%@include file="sidebar.jsp"%>

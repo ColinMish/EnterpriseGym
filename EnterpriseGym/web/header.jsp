@@ -163,7 +163,7 @@
 
     <!-- Half Page Image Background Carousel Header -->
         
-    
+    <div class="Carousel">
         <header data-interval="false" data-wrap="false" id="myCarousel" class="carousel slide visible-lg visible-md visible-sm">
 
         <!-- Indicators -->
@@ -237,6 +237,7 @@ $(document).ready(function() {
        
 });
 </script>
+</div>
 </body>
 </html>
 
