@@ -64,7 +64,7 @@
 
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading" id="newsPanel">
+                <div style="cursor:pointer" class="panel-heading" id="newsPanel">
                     <h4><i class="fa fa-fw fa-check"></i>News Editor</h4>
                 </div>
                 <div id="newsEditor" class="panel-body" hidden>
@@ -97,7 +97,7 @@
             });
         </script>
         <div class="col-md-12">
-            <div class="panel panel-default">
+            <div style="cursor:pointer" class="panel panel-default">
                 <div class="panel-heading" id="userPanel">
                     <h4><i class="fa fa-fw fa-check"></i>User Management</h4>
                 </div>
@@ -133,7 +133,7 @@
         </script>
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading" id="eventsPanel">
+                <div style="cursor:pointer" class="panel-heading" id="eventsPanel">
                     <h4><i class="fa fa-fw fa-check"></i>Events Management</h4>
                 </div>
                 <div id="eventsEditor" class="panel-body" hidden>
@@ -240,7 +240,7 @@
 
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading" id="quizPanel">
+                <div style="cursor:pointer" class="panel-heading" id="quizPanel">
                     <h4><i class="fa fa-fw fa-check"></i>Quiz Management</h4>
                 </div>
                 <div id="quizEditor" class="panel-body" hidden>
@@ -257,7 +257,7 @@
 
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading" id="quickRegisterPanel">
+                <div style="cursor:pointer" class="panel-heading" id="quickRegisterPanel">
                     <h4><i class="fa fa-fw fa-check"></i>Create Temporary Account</h4>
                 </div>
                 <div id="quickRegisterEditor" class="panel-body" hidden>
@@ -299,7 +299,7 @@
 
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading" id="stats">
+                <div style="cursor:pointer" class="panel-heading" id="stats">
                     <h4><i class="fa fa-fw fa-check"></i>View Stats & Search Tool</h4>
                 </div>          
             </div>
