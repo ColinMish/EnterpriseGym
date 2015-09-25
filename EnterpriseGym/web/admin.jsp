@@ -209,18 +209,7 @@
                     <h4><i class="fa fa-fw fa-check"></i>Quiz Management</h4>
                 </div>
                 <div id="quizEditor" class="panel-body" hidden>
-                    <div class='alert alert-danger'>Warning: The button below will reset the points of all users in the database. This action cannot be reversed.</div>
-                    <form action="ResetPoints" method="POST">
-                        <input class="btn btn-danger" type="submit" value="Reset ALL Points">
-                    </form>
-                    <br/>
-                    <div class='alert alert-danger'>Warning: The form below will completely remove the specified account from the database. This action cannot be reversed.</div>
-                    <form action="DeleteUser" method="POST">
-                        <label for="usernameField">Username:</label>
-                        <input name="usernameField" type="text" class="form-control" id="usernameField" maxlength="45" required/>
-                        <br/>
-                        <input class="btn btn-danger" type="submit" value="Delete Account">
-                    </form>
+                    
                 </div>
             </div>
         </div>
