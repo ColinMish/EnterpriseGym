@@ -59,6 +59,8 @@ public class ResetPassword extends HttpServlet {
             guid = guid.replaceAll("-", "");
             boolean success = sendResetEmail(guid, email);
             if (success) {
+                RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+
                 //reset password in database
             }
 //        NewPassModel reset = new NewPassModel();
@@ -75,7 +77,7 @@ public class ResetPassword extends HttpServlet {
 //        } else {
 //            response.sendRedirect(request.getContextPath() + "/resetPass.jsp");
 //        }
-            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("resetPass.jsp");
             dispatcher.forward(request, response);
         } catch (ServletException | IOException e) {
 
@@ -83,6 +85,7 @@ public class ResetPassword extends HttpServlet {
     }
 
     private boolean sendResetEmail(String newPassword, String email) {
+        
         String subject = "Enterprise Gym Password reset";
         String emailMessage = "Your account password has been reset to " + newPassword
                 + ". If this was not you please login and change your password immediately";
@@ -93,23 +96,32 @@ public class ResetPassword extends HttpServlet {
         // Sender's email ID needs to be mentioned
         String from = "dundeeenterprisegym@gmail.com";
 
-        // Assuming you are sending email from localhost
-        String host = "localhost";
+        String host = "smtp.gmail.com";
 
         // Get system properties object
+        System.setProperty("java.net.preferIPv4Stack", "true");
         Properties properties = System.getProperties();
-
+        
         // Setup mail server
-        properties.setProperty("mail.smtp.host", host);
-
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.socketFactory.port", "587");
+        properties.put("mail.smtp.socketFactory.class",
+                        "javax.net.ssl.SSLSocketFactory");
+	properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.port", "587");               
+        
+        
         // Get the default Session object.
+        String pass = "mypassword1";
+        String user = "dundeeenterprisegym@gmail.com";
+      //  EnterpriseAuthentication a = new EnterpriseAuthentication(user, pass);
+        
         Session mailSession = Session.getDefaultInstance(properties);
 
         try {
             // Create a default MimeMessage object.
             MimeMessage message = new MimeMessage(mailSession);
-            // Set From: header field of the header.
-            message.setFrom(new InternetAddress(from));
             // Set To: header field of the header.
             message.addRecipient(Message.RecipientType.TO,
                     new InternetAddress(to));
@@ -117,13 +129,21 @@ public class ResetPassword extends HttpServlet {
             message.setSubject(subject);
             // Now set the actual message
             message.setText(emailMessage);
+
+            Transport transport = mailSession.getTransport("smtp");
+            transport.connect(host, user, pass);
             // Send message
-            Transport.send(message);
+            transport.sendMessage(message, message.getAllRecipients());
             result = true;
+            System.out.println("Mail sent");
+            transport.close();
+
         } catch (MessagingException mex) {
             mex.printStackTrace();
+            System.out.println("error: messaging exception");
             result = false;
         }
+        
         return result;
     }
 

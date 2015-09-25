@@ -9,6 +9,7 @@ import Entities.Account;
 import Entities.UserEntity;
 import java.sql.*;
 import java.util.LinkedList;
+import lib.Security;
 
 /**
  *
@@ -33,6 +34,32 @@ public class UserModel {
             return createUser(id, username, email, first, last, gender, country, university, school, subject, year, matriculation, false);
         } catch (Exception e) {
             System.out.println("connection to db failed");
+            return false;
+        }
+    }
+    
+    public boolean setPassword(String username, String newPassword){
+        Connection con = null;
+        String saltAsString = getSalt(username);
+        try {
+            newPassword = Security.hashPassword(newPassword, saltAsString);
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+            PreparedStatement ps = null;
+            String sqlOption2 = "UPDATE account SET password=? WHERE username=?";
+            ps = con.prepareStatement(sqlOption2);
+
+            ps.setString(1,username);
+            ps.setString(2, newPassword);
+
+            ps.executeUpdate();
+            return true;
+              
+
+        } catch (Exception e) {
+            System.out.println("connection to db failed");
+            System.out.println("Password reset for user " + username + " failed");
+            e.printStackTrace();
             return false;
         }
     }

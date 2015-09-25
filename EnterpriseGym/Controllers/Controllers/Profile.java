@@ -40,8 +40,9 @@ public class Profile extends HttpServlet {
      */
     public Profile() {
          super();
-            CommandsMap.put("Points", 1);
+        CommandsMap.put("Points", 1);
         CommandsMap.put("EditProfile", 2);
+        CommandsMap.put("ChangePassword", 3);
     }
 
     /**
@@ -169,5 +170,51 @@ public class Profile extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
+        String args[] = Convertors.SplitRequestPath(request);
+        
+        if(args.length==2)
+        {
+            // RequestDispatcher dispatcher = request.getRequestDispatcher("profile.jsp");
+             //   dispatcher.forward(request, response);
+            //displayprofile(response,request);
+        }
+        
+        int command;
+         try {
+            command = (Integer) CommandsMap.get(args[2]);
+        } catch (Exception et) {           
+            return;
+        }
+        switch (command) {
+            case 3:
+                changePassword(response,request);            
+                break;
+            default:
+            	//Error message here.
+        }
+    }
+    
+    private boolean changePassword(HttpServletResponse response,HttpServletRequest request)
+            throws ServletException, IOException 
+    {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String newPassword1 = request.getParameter("newPassword1");
+        String newPassword2 = request.getParameter("newPassword2");
+        
+        //TODO: Check if user password is correct
+        if (newPassword1 == newPassword2)
+        {
+            UserModel user = new UserModel();
+            user.setPassword(username, newPassword1);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+            dispatcher.forward(request, response);
+        }
+        else
+        {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/changePasswordFailed.jsp");
+            dispatcher.forward(request, response);
+        }
+        return true;
     }
 }

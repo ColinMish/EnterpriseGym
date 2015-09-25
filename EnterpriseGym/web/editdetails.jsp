@@ -21,7 +21,6 @@
         
         <article>
             
-            <form name="myForm" method="post" action="EditDetails">
         <div class="container">
 
             <div class="row">
@@ -30,6 +29,7 @@
                 </div>
             </div>
             
+            <form name="myForm" method="post" action="EditDetails">
             <div class="col-md-8" id="ConnectText">
                 <div class="panel panel-default">
                     
@@ -65,11 +65,14 @@
                     </div>
                 </div>
             </div>
+            </form>
+            <form name="ChangePassword" method="POST" action="ChangePassword">
             
             <div class="col-md-8" id="ConnectText">
                 <div class="panel panel-default">
                     
                    <div class="panel-body">
+                            <input type="hidden" name="username" value="<%=account.getUsername()%>">
                        
                        <div class="form-group">
                             <label for="usr">Old Password:</label>
@@ -78,12 +81,12 @@
                        
                        <div class="form-group">
                             <label for="usr">New Password:</label>
-                            <input type="text" name="newpassword" class="form-control" id="newpassword">
+                            <input type="text" name="newPassword1" class="form-control" id="newpassword">
                         </div>
             
                         <div class="form-group">
                             <label for="usr">New Password Again:</label>
-                            <input type="text" name="newpassword" class="form-control" id="newpassword">
+                            <input type="text" name="newPassword2" class="form-control" id="newpassword">
                         </div>
                        
                        <input class="btn btn-primary" type="submit" value="Update"><br><br>
