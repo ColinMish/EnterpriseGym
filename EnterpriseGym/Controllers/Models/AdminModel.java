@@ -155,19 +155,13 @@ public class AdminModel {
             con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
 
             PreparedStatement ps = null;
-            PreparedStatement disableFKCheck = null;
             PreparedStatement deleteUser = null;
-            PreparedStatement enableFKCheck = null;
 
-            String DisableFKCheck = "SET FOREIGN_KEY_CHECKS=0";
-            String DeleteUser = "DELETE a.*, u.* FROM account a INNER JOIN user u ON a.idaccount = u.account_idaccount WHERE a.username='" + username + "'";
-            String EnableFKCheck = "SET FOREIGN_KEY_CHECKS=1";
-            disableFKCheck = con.prepareStatement(DisableFKCheck);
-            disableFKCheck.executeUpdate();
+            String DeleteUser = "DELETE a.* FROM account a WHERE a.username = '" + username + "'";
+            
             deleteUser = con.prepareStatement(DeleteUser);
             deleteUser.executeUpdate();
-            enableFKCheck = con.prepareStatement(EnableFKCheck);
-            enableFKCheck.executeUpdate();
+            
             return true;
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
             System.out.println("expection thrown");
