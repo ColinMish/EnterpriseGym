@@ -73,6 +73,7 @@ public class Admin extends HttpServlet {
             return;
         }
         switch (command) {
+            //News
             case 1:
                 if (args.length == 3) {
                     displayNewsPannel(response, request);
@@ -80,11 +81,13 @@ public class Admin extends HttpServlet {
                     displayEditNews(response, request, args[3]);
                 }
                 break;
+            //Events    
             case 2:
                 if (args.length == 3) {
                     displayEventPannel(response, request);
                 } else {
                     displayEditEvent(response, request, args[3]);
+                    //Manage the events. 
                 }
                 break;
             default:

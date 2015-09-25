@@ -389,25 +389,22 @@ public class EventModel {
 		Class.forName("com.mysql.jdbc.Driver").newInstance();
 		con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
 
-		PreparedStatement disableFKCheck = null;
+		
 		PreparedStatement deleteNews = null;
-		PreparedStatement enableFKCheck = null;
+		
                 System.out.println("The id to be deleted is:"+id);
                 int i;
-                int j;
-		
-		String DisableFKCheck = "SET FOREIGN_KEY_CHECKS=0";
-		String DeleteEvent = "DELETE e.*,u.* FROM event e INNER JOIN event_has_user u ON e.idevent = u.event_idevent WHERE e.idevent=?";
-		String EnableFKCheck = "SET FOREIGN_KEY_CHECKS=1";
-		disableFKCheck = con.prepareStatement(DisableFKCheck);
-		disableFKCheck.executeUpdate();
+           
+	
+		String DeleteEvent = "DELETE e.* FROM event e WHERE e.idevent = ?;";
+	
+	
 		deleteNews = con.prepareStatement(DeleteEvent);
 		deleteNews.setInt(1,id);
 		i=deleteNews.executeUpdate();
-		enableFKCheck = con.prepareStatement(EnableFKCheck);
-		j=enableFKCheck.executeUpdate();
+	
                 
-                System.out.println("The variable i is:"+i+"The variable j is:"+j);
+                System.out.println("The variable i is:"+i);
                 if(i==0 ){
                     System.out.println("false");
                    return false; 
