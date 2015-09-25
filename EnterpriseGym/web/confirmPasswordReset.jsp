@@ -17,23 +17,9 @@
     <div class ="mobile">
     <%@include file="sidebar.jsp"%>
     </div>
-    <container>
-        <script>
-            function GetURLParameter(sParam)
-            {
-                var sPageURL = window.location.search.substring(1);
-                var sURLVariables = sPageURL.split('&');
-                for (var i = 0; i < sURLVariables.length; i++) 
-                {
-                    var sParameterName = sURLVariables[i].split('=');
-                    if (sParameterName[0] == sParam) 
-                    {
-                        return sParameterName[1];
-                    }
-                }
-            }​
-        </script>
-        <p>Your password reset token is: <script>GetURLParameter('token');</script></p>
+    <div class="container">
+
+        <p>Your password reset token is: <%=request.getParameter("token")%></p>
     </container>
     
     </body>
