@@ -107,6 +107,14 @@
                         <br/>
                         <input class="btn btn-danger" type="submit" value="Delete Account">
                     </form>
+                    <br/>
+                    <div class='alert alert-info'>Enter the username of the account you would like to give administrator privileges.</div>
+                    <form action="UserPrivileges" method="POST">
+                        <label for="adminUsernameField">Username:</label>
+                        <input name="adminUsernameField" type="text" class="form-control" id="adminUsernameField" maxlength="45" required/>
+                        <br/>
+                        <input class="btn btn-info" type="submit" value="Grant Privileges">
+                    </form>
                 </div>
             </div>
         </div>
@@ -188,10 +196,10 @@
                                 <option value="5">Project</option>
                             </select>
                         </div>
-                        <br>
+                        <br/>
                         <input class="btn btn-default" type="submit" value="Create Event">
                         <br/>
-                    </form>         
+                    </form>
                 </div>
             </div>
         </div>
