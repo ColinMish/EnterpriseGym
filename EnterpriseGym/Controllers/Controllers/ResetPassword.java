@@ -59,6 +59,8 @@ public class ResetPassword extends HttpServlet {
             guid = guid.replaceAll("-", "");
             boolean success = sendResetEmail(guid, email);
             if (success) {
+                RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+
                 //reset password in database
             }
 //        NewPassModel reset = new NewPassModel();
@@ -75,7 +77,7 @@ public class ResetPassword extends HttpServlet {
 //        } else {
 //            response.sendRedirect(request.getContextPath() + "/resetPass.jsp");
 //        }
-            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("resetPass.jsp");
             dispatcher.forward(request, response);
         } catch (ServletException | IOException e) {
 
@@ -94,23 +96,26 @@ public class ResetPassword extends HttpServlet {
         String from = "dundeeenterprisegym@gmail.com";
 
         // Assuming you are sending email from localhost
-        String host = "localhost";
+        String host = "smtps.gmail.com";
 
         // Get system properties object
-        System.setProperty("java.net.preferIPv4Stack" , "true");
+        System.setProperty("java.net.preferIPv4Stack", "true");
         Properties properties = System.getProperties();
         
-        	properties.put("mail.smtp.port", "587");
-		properties.put("mail.smtp.auth", "true");
-		properties.put("mail.smtp.starttls.enable", "true");
-
         // Setup mail server
-        properties.setProperty("mail.smtp.host", host);
-
+        properties.setProperty("mail.imap.ssl.enable", "true");
+        properties.setProperty("mail.smtps.host", host);
+        properties.put("mail.smtps.host", host);
+        properties.put("mail.smtps.port", "25");
+        properties.put("mail.smtps.auth", "true");                
+        
+        
         // Get the default Session object.
-        String user = "user";
-        String pass = "pass";
-        Session mailSession = Session.getDefaultInstance(properties, new EnterpriseAuthentication(user, pass));
+        String pass = "mypassword1";
+        String user = "dundeeenterprisegym@gmail.com";
+      //  EnterpriseAuthentication a = new EnterpriseAuthentication(user, pass);
+        
+        Session mailSession = Session.getDefaultInstance(properties);
 
         try {
             // Create a default MimeMessage object.
@@ -124,11 +129,11 @@ public class ResetPassword extends HttpServlet {
             message.setSubject(subject);
             // Now set the actual message
             message.setText(emailMessage);
-           
+
             // Send message
-            Transport.send(message);
+            Transport.send(message, user, pass);
             result = true;
-            
+
         } catch (MessagingException mex) {
             mex.printStackTrace();
             result = false;
