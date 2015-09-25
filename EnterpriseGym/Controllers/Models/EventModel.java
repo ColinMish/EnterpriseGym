@@ -6,6 +6,7 @@
 package Models;
 
 import Entities.EventEntity;
+import Entities.EventUserEntity;
 import Entities.Picture;
 import static Models.UserModel.getCurrentDate;
 import java.io.IOException;
@@ -262,6 +263,8 @@ public class EventModel {
     }
     
     public Boolean isAttending(int id,int userid){
+        UserModel userM = new UserModel();
+        int userId = userM.getUserIdByAccountId(userid);
         Connection con = null;
         try{
               Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -274,7 +277,7 @@ public class EventModel {
             
             ps = con.prepareStatement(sqlOption);
             ps.setInt(1, id);
-            ps.setInt(2, userid);
+            ps.setInt(2, userId);
             rs = ps.executeQuery();  
 
             if (rs.next()) {  
@@ -317,6 +320,8 @@ public class EventModel {
     public boolean signUp(int userID, int eventID)
     {
         Connection con = null;
+        UserModel userM = new UserModel();
+        int userId = userM.getUserIdByAccountId(userID);
     try {
 
         Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -326,7 +331,7 @@ public class EventModel {
         int i=0;
         String sqlOption = "INSERT INTO event_has_user (user_iduser,event_idevent) VALUES (?,?)";
         ps2 = con.prepareStatement(sqlOption);
-        ps2.setInt(1, userID);
+        ps2.setInt(1, userId);
         ps2.setInt(2, eventID);    
         i=ps2.executeUpdate();
 
@@ -348,6 +353,8 @@ public class EventModel {
     
     public boolean leaveEvent(int userID, int eventID)
     {
+        UserModel userM = new UserModel();
+        int userId = userM.getUserIdByAccountId(userID);
          Connection con = null;
          try {
 
@@ -360,7 +367,7 @@ public class EventModel {
 
         String sqlOption = "DELETE from event_has_user where user_iduser=? and event_idevent=?";
         ps2 = con.prepareStatement(sqlOption);
-        ps2.setInt(1, userID);
+        ps2.setInt(1, userId);
         ps2.setInt(2, eventID);    
         i= ps2.executeUpdate();
         con.close();
@@ -464,4 +471,11 @@ public class EventModel {
 
 
     } 
+    
+    public java.util.LinkedList<EventUserEntity> getEventUsers(int id){
+        java.util.LinkedList<EventUserEntity> eventUsers = new java.util.LinkedList<>();
+        return null;
+    }
 }
+
+

@@ -86,7 +86,12 @@ public class Admin extends HttpServlet {
                 if (args.length == 3) {
                     displayEventPannel(response, request);
                 } else {
+                    if(args.length==4)
+                    {
                     displayEditEvent(response, request, args[3]);
+                    }else{
+                        manageEvent(response,request,args[4]);
+                    }
                     //Manage the events. 
                 }
                 break;
@@ -95,6 +100,7 @@ public class Admin extends HttpServlet {
             //Error message here.
         }
     }
+    
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -240,6 +246,14 @@ public class Admin extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/editEvent.jsp");
         request.setAttribute("event", event);
         dispatcher.forward(request, response);
+    }
+    
+    private void manageEvent(HttpServletResponse response, HttpServletRequest request, String id) throws ServletException, IOException
+    {
+    System.out.println(id);
+    EventModel model = new EventModel();
+    
+    
     }
 
 }
