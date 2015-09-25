@@ -8,6 +8,12 @@ and open the template in the editor.
     Author     : kristiyangeorgiev
 */
 
-.Carousel {
+    .Carousel {
         display:none;
     }
+    
+    #sidebar-wrapper{
+        margin-top: 4.5em;
+    }
+    
+    
