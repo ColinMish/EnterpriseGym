@@ -436,12 +436,15 @@ public class UserModel {
     }
 
     /**
-     * Sets all points in the user entity to the database, MUST have accountNumber set in the entity
+     * Sets all points in the user entity to the database
      * @param newUser 
      */
     public void addPoints(UserEntity newUser) 
     {
-        int accountNumber = newUser.getAccountNo();
         
+    }
+    
+    public int getActionPointsByUserId(int userId)
+    {
     }
 }

@@ -119,6 +119,7 @@ public class SignUp extends HttpServlet {
                     String oldUsername = user.getUsernameFromAccountId(accountNo);
                     //get points
                     UserEntity newUser = user.getPoints(oldUsername);
+                    newUser.setAccountNo(accountNo);
                     //add to account
                     user.addPoints(newUser);
                     //call login doGet? 
