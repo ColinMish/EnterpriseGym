@@ -28,7 +28,7 @@
     <!-- Page Content -->
          <div class="container">
 
-       <div class="row">
+       <div class="row event">
             <div class="col-lg-12">
                 <h1>Events</h1>
                 <p></p>
