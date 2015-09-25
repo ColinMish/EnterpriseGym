@@ -52,7 +52,7 @@ public class SignUp extends HttpServlet {
             UserEntity tempUser = (UserEntity) user.getUserByAccount(Integer.parseInt(parts[3]));
             request.setAttribute("tempAccount", tempUser);
         }
-        RequestDispatcher dispatcher = request.getRequestDispatcher("register.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("../register.jsp");
         dispatcher.forward(request, response);
     }
 
