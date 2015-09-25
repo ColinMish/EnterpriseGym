@@ -17,7 +17,6 @@ public class Account {
     private String username;
     private LinkedList accessLevel;
     private boolean temp;
-    private int id;
 
     public Account(int id, String username, LinkedList accessLevel, boolean temp) {
         this.id = id;
@@ -53,14 +52,6 @@ public class Account {
 
     public LinkedList getAllAccessLevels() {
         return accessLevel;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setAccessLevel(LinkedList accessLevel) {

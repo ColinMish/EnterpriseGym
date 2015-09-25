@@ -304,7 +304,6 @@ public class UserModel {
         LinkedList accountTokens = new LinkedList();
         boolean temp = false;
         int userId = 0;
-         int userId = 0;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             Statement st;
