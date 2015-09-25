@@ -106,10 +106,6 @@ public class EventModel {
 
             ps1 = con.prepareStatement(sqlOption1);
 
-            ResultSet rs1 = ps1.executeQuery();
-            rs1.next();
-            int id = rs1.getInt("idevent");
-
 
             ResultSet rs = ps1.executeQuery();
             
@@ -474,7 +470,43 @@ public class EventModel {
     
     public java.util.LinkedList<EventUserEntity> getEventUsers(int id){
         java.util.LinkedList<EventUserEntity> eventUsers = new java.util.LinkedList<>();
-        return null;
+         Connection con = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+
+            PreparedStatement ps1 = null;
+            String sqlOption1 = "SELECT u.last_name, u.first_name, u.email, a.username \n" +
+                                "FROM user u\n" +
+                                "INNER JOIN account a ON a.idaccount = u.account_idaccount\n" +
+                                "INNER JOIN event_has_user e ON e.user_iduser = u.iduser\n" +
+                                "INNER JOIN event v ON v.idevent = e.event_idevent\n" +
+                                "WHERE v.idevent = ?\n" +
+                                "ORDER BY u.last_name;";
+
+            ps1 = con.prepareStatement(sqlOption1);
+            
+            ps1.setInt(1,id);
+
+            ResultSet rs = ps1.executeQuery();
+            
+            
+            while (rs.next()) {
+                EventUserEntity user = new EventUserEntity();
+                user.setFristname(rs.getString("first_name"));
+                user.setUsername(rs.getString("username"));
+
+                eventUsers.add(user);
+            }
+
+            return eventUsers;
+
+        } catch (Exception e) {
+            System.out.println("connection to db failed");
+            e.printStackTrace();
+            return null;
+
+        }
     }
 }
 

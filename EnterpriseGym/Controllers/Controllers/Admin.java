@@ -1,6 +1,7 @@
 package Controllers;
 
 import Entities.EventEntity;
+import Entities.EventUserEntity;
 import Entities.NewsEntity;
 import Models.AdminModel;
 import Models.EventModel;
@@ -250,10 +251,13 @@ public class Admin extends HttpServlet {
     
     private void manageEvent(HttpServletResponse response, HttpServletRequest request, String id) throws ServletException, IOException
     {
-    System.out.println(id);
+    int eventID = Integer.parseInt(id);
     EventModel model = new EventModel();
-    
-    
+    java.util.LinkedList<EventUserEntity> eventuser = model.getEventUsers(eventID);
+       RequestDispatcher dispatcher = request.getRequestDispatcher("/eventAttend.jsp");
+        request.setAttribute("eventuser", eventuser);
+        dispatcher.forward(request, response);
+        
     }
 
 }
