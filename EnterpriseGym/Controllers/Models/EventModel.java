@@ -476,7 +476,7 @@ public class EventModel {
             con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
 
             PreparedStatement ps1 = null;
-            String sqlOption1 = "SELECT u.last_name, u.first_name, u.email, a.username,u.iduser \n" +
+            String sqlOption1 = "SELECT u.last_name, u.first_name, u.email, a.username,u.iduser,e.attended \n" +
                                 "FROM user u\n" +
                                 "INNER JOIN account a ON a.idaccount = u.account_idaccount\n" +
                                 "INNER JOIN event_has_user e ON e.user_iduser = u.iduser\n" +
@@ -498,6 +498,7 @@ public class EventModel {
                 user.setLastname(rs.getString("last_name"));
                 user.setEmail(rs.getString("email"));
                 user.setUserid(rs.getInt("iduser"));
+                user.setAttended(rs.getBoolean("attended"));
 
                 eventUsers.add(user);
             }
