@@ -17,6 +17,7 @@
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
     <script src="${pageContext.request.contextPath}/js/eventAttend.js" type="text/javascript"></script>
+    <script>var ctx = "${pageContext.request.contextPath}"</script>
 </head>
 <body>
 
@@ -70,7 +71,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 id="modaltitle3" class="modal-title">Failure</h4>
+                    <h4 id="modaltitle3" class="modal-title">Error</h4>
                 </div>
                 <div class="modal-body">
                     <p id="modalmessage3">Message deleted.</p>
@@ -134,7 +135,7 @@
                                 <td><% if(myEvent.isAttended()){%>
                                     <p id="attended<%=myEvent.getUserid()%>">Attended </p>      
                                 <%}else{%> 
-                                <a role="button" id="notattending<%=myEvent.getUserid()%>" onclick="userAttended(<%=myEvent.getUserid()%>)" class="btn btn-success">Mark as Attended </a>  <p id="attending<%=myEvent.getUserid()%>" class="hidden">Attended </p> </td>
+                                <a role="button" id="notattending<%=myEvent.getUserid()%>" onclick="Attend(<%=myEvent.getUserid()%>,1)" class="btn btn-success">Mark as Attended </a>  <p id="attending<%=myEvent.getUserid()%>" class="hidden">Attended </p> </td>
                                 <%}%>
                             <%} %></tbody> <%}%>
                     </table>

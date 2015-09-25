@@ -15,9 +15,9 @@ function Attend(id,eventid)
             {
                 //Data has been deleted.
                 //Confirmation then reload the page. 
-                successSignUpModal(); 
+                userAttended(id); 
             }else{
-                failureSignUpModal();
+                failureModal();
                 //Data not deleted.
             }
         //Show success then reload the page. 
@@ -31,6 +31,12 @@ function Attend(id,eventid)
         console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
  }
     });
+}
+
+function failureModal()
+{
+    $("#modalmessage3").text("Failed to reach server please try again.");
+    $('#myModal3').modal('show');
 }
 
 
