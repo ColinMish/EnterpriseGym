@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href='css/carousel.css' rel='stylesheet' type='text/css'>
         <link href="${pageContext.request.contextPath}/css/media.css" rel="stylesheet">
     </head>
     <%@include file="header.jsp" %>
@@ -21,7 +22,7 @@
     <script src="${pageContext.request.contextPath}/js/jquery.flagstrap.js"></script>
     <script src="${pageContext.request.contextPath}/js/register.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery.flagstrap.js"></script>
-    
+    <div class="banner"></div>
     <!-- Page Content -->
     <div class="container">
 

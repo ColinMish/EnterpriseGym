@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href='css/carousel.css' rel='stylesheet' type='text/css'>
         <link href='css/media.css' rel='stylesheet' type='text/css'>
     </head>
     <%@include file="header.jsp" %>
@@ -16,7 +17,7 @@
     <%@include file="sidebar.jsp"%>
     </div>
 
-
+<div class="banner"></div>
     <!-- Page Content -->
     <div class="container">
 

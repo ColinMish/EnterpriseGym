@@ -8,6 +8,10 @@
 <%@page import="Entities.EventEntity" %>
 <!DOCTYPE html>
 <html>
+    <head>
+        <link href='css/carousel.css' rel='stylesheet' type='text/css'>
+        <link href='css/media.css' rel='stylesheet' type='text/css'>
+    </head>
     <%@include file="header.jsp" %>
     <div class ="mobile">
     <%@include file="sidebar.jsp"%>

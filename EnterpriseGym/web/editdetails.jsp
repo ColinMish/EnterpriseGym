@@ -9,6 +9,7 @@
 <html>
     
    <head>
+      <link href='${pageContext.request.contextPath}/css/carousel.css' rel='stylesheet' type='text/css'>
       <link href='css/profile.css' rel='stylesheet' type='text/css'>  
       <link href='css/media.css' rel='stylesheet' type='text/css'>
    </head>
@@ -18,7 +19,7 @@
     <div class ="mobile">
     <%@include file="sidebar.jsp"%>
     </div>
-        
+        <div class="banner"></div>
         <article>
             
         <div class="container">
