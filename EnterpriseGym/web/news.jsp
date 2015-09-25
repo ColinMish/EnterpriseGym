@@ -60,7 +60,7 @@
                              <% if (p.getLength()!=0){ %>                    
                             <img src="${pageContext.request.contextPath}/News/Picture/<%=p.getId()%>" style="max-height: 100px; max-width: 100px;" class="img-responsive" alt="News Image">
                             <%} %>
-                        </p>
+                       
                         <a href="${pageContext.request.contextPath}/News/Article/<%=p.getId()%>" class="btn btn-default">Read More</a>
                     </div>
                 </div>
