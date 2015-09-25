@@ -131,6 +131,8 @@ public class ResetPassword extends HttpServlet {
             result = true;
             System.out.println("Mail sent");
             transport.close();
+            UserModel updateUser = new UserModel();
+            updateUser.setResetToken(email, token);
 
         } catch (MessagingException mex) {
             mex.printStackTrace();

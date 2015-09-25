@@ -36,6 +36,41 @@ public class UserModel {
             return false;
         }
     }
+    
+    public boolean setResetToken(String email, String searchToken) {
+        
+        Connection con = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+
+            PreparedStatement ps = null;
+            PreparedStatement ps1 = null;
+
+            String CheckToken = "SELECT * FROM account WHERE email=?";
+            String UpdateToken = "UPDATE account SET reset_token=? WHERE email=?";
+
+            ps = con.prepareStatement(CheckToken);
+            ps.setString(1, email);
+
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            String token = rs.getString("reset_token");
+            System.out.println("reset token is: " + token);
+            
+       
+            ps1 = con.prepareStatement(UpdateToken);
+            ps1.setString(1, searchToken);
+
+            ps1.executeUpdate();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Failed to set reset token");
+        }
+        
+        return false;
+    }
 
     public int createAccount(String username, String password, String salt, boolean temp) {
         Connection con = null;
