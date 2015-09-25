@@ -55,12 +55,10 @@
                 <label for="password">Password:</label>
                 <input name="password" type="password" class="form-control" id="pw" maxlength="45" required/>
             </div>
-<<<<<<< HEAD
+
             <div class="forgotPassword"><a href="resetPass.jsp">Have you forgotten your password?</a></div>
             <br>
-=======
-            <div class="forgotPassword"><a href="#">Have you forgotten your password?</a></div>
->>>>>>> master
+
             <input type="submit" value="Sign In" class="btn btn-default"/>
         </form>                        
     </div>
