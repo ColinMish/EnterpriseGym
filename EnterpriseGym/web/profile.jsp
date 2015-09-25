@@ -21,6 +21,7 @@
     </div>
     
             <!-- Page Content -->
+    <div class="banner"></div>        
     <div class="container">
 
         <div class="row">

@@ -21,6 +21,7 @@
     <script src="${pageContext.request.contextPath}/js/quiz.js"></script>
     <% QuizEntity quiz = (QuizEntity) request.getAttribute("quiz");%>
     <!--Content-->
+    <div class="banner"></div>
     <div class="container">
 
         <div class="row">

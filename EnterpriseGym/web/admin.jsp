@@ -27,7 +27,7 @@
 
     <%Boolean newsUpdated = (Boolean) request.getAttribute("newsUpdated"); %>
 
-
+<div class="banner"></div>
     <!-- Page Content -->
     <div class="container">
 

@@ -83,6 +83,7 @@
     </script>
   </head>
   <body>
+      <div class="banner"></div>
     <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
     
        

@@ -17,7 +17,7 @@
     <div class="hidden-xs">
         <%@include file="sidebar.jsp"%>
     </div>
-
+<div class="banner"></div>
     <%
         LinkedList<LinkedList<String>> searchTable = new LinkedList();
         String current = "user";

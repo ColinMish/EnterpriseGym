@@ -32,7 +32,7 @@
         </div>
     </div>
 
-
+<div class="banner"></div>
     <!-- Page Content -->
     <div class="container">
 

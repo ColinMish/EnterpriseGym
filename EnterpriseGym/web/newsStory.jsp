@@ -14,7 +14,7 @@
     <div class ="mobile">
     <%@include file="sidebar.jsp"%>
     </div>
-    
+    <div class="banner"></div>
       <div class="container">
 
        <div class="row">

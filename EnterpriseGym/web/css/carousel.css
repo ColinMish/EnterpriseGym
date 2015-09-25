@@ -13,9 +13,24 @@ and open the template in the editor.
     }
     
     #sidebar-wrapper{
-        margin-top: 4.5em;
+        margin-top: 5.7em;
     }
     
-    .event {
-        margin-top:6em;
+    .container .row {
+        margin-top:2.5em;
     }
+    
+    .navbar-collapse  {
+         
+    }
+    
+    .navbar-header{
+        height: 4.2em;
+    }
+    
+    .banner {
+    background:url('http://imagizer.imageshack.com/img540/382/07oseA.jpg');
+    width:100%;
+    min-height:80px;
+    margin-top: 4.3em;
+}

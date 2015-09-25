@@ -12,7 +12,7 @@
         <link href='css/carousel.css' rel='stylesheet' type='text/css'>
     </head>
 <%@include file="header.jsp" %>
-
+<div class="banner"></div>
     <!-- Page Content -->
     <div class="container">
 
