@@ -44,24 +44,14 @@ public class UserModel {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
 
-            PreparedStatement ps = null;
             PreparedStatement ps1 = null;
 
-            String CheckToken = "SELECT * FROM account WHERE email=?";
-            String UpdateToken = "UPDATE account SET account.reset_token=? FROM user WHERE user.email=?";
+            String UpdateToken = "UPDATE account SET reset_token = ?  WHERE idaccount = (SELECT iduser FROM user WHERE email = ?)";
             
 
-            ps = con.prepareStatement(CheckToken);
-            ps.setString(1, email);
-
-            ResultSet rs = ps.executeQuery();
-            rs.next();
-            String token = rs.getString("reset_token");
-            System.out.println("reset token is: " + token);
-            
-       
             ps1 = con.prepareStatement(UpdateToken);
             ps1.setString(1, searchToken);
+            ps1.setString(2, email);
 
             ps1.executeUpdate();
             
