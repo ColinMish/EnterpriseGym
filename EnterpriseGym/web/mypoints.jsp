@@ -69,7 +69,7 @@
                 selected: true
             }, {
                 name: "Virtual",
-                y: <%=p.getVitrualPoints()%>
+                y: <%=p.getVirtualPoints()%>
             }, {
                 name: "Practice",
                 y: <%=p.getPracticePoints()%>
