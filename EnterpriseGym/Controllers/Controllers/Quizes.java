@@ -30,8 +30,8 @@ import javax.servlet.http.HttpServletResponse;
 @MultipartConfig
 public class Quizes extends HttpServlet {
 
-    private final HashMap quizzes;
-    private final LinkedList quizNames;
+    private HashMap quizzes;
+    private LinkedList quizNames;
 
     /**
      * Constructor

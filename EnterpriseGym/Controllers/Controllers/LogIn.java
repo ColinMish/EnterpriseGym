@@ -115,7 +115,6 @@ public class LogIn extends HttpServlet {
     public Account testAdminAccount() {
         LinkedList accessLevel = new LinkedList();
         accessLevel.add(1);
-
         Account adminAccount = new Account(1, "admin", accessLevel, false);
 
         return adminAccount;
