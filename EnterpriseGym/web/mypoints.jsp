@@ -114,7 +114,7 @@
                             <tbody>
                            <tr>
                             <th>Virtual Points:</th>
-                            <td><%=p2.getVitrualPoints()%></td>
+                            <td><%=p2.getVirtualPoints()%></td>
                            </tr>
                            <tr>
                             <th>Project Points:</th>
@@ -140,7 +140,6 @@
        
                     </div>
                 </div>
-        </div>
         
         <div class="col-md-8" id="ConnectText2">
                 <div class="panel panel-default">
