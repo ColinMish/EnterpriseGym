@@ -186,21 +186,21 @@ public class Events extends HttpServlet {
             throws ServletException, IOException 
     {
           EventModel model = new EventModel(); 
-    //int userID = Integer.parseInt(request.getParameter("id"));
-    //int eventID = Integer.parseInt(request.getParameter("eventid"));
+    int userID = Integer.parseInt(request.getParameter("id"));
+    int eventID = Integer.parseInt(request.getParameter("eventid"));
     
     //System.out.println(userID+"the user id"+ eventID +"the event id");
     
-//       if(model.awardPoints(userID,eventID)==true)
-//                        {
-//                       //The content was deleted
-//                        response.setContentType("text/html;charset=UTF-8");
-//                        response.getWriter().write("1"); 
-//                         }else{
+       if(model.awardPoints(userID,eventID)==true)
+                        {
+                       //The content was deleted
+                        response.setContentType("text/html;charset=UTF-8");
+                        response.getWriter().write("1"); 
+                         }else{
                          //Nothing was deleted
                        response.setContentType("text/html;charset=UTF-8");
                       response.getWriter().write("0"); 
-                      //   }
+                         }
     }
     
     private void signUp(HttpServletRequest request, HttpServletResponse response)

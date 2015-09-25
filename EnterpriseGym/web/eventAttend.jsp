@@ -103,6 +103,7 @@
                 </div>
                 <div class="panel-body">
                     <%
+                        int EventID = (int)request.getAttribute("eventid");
                         java.util.LinkedList<EventUserEntity> eventuser = (java.util.LinkedList<EventUserEntity>) request.getAttribute("eventuser");
                         if (eventuser.size() == 0) {
                     %>
@@ -135,7 +136,7 @@
                                 <td><% if(myEvent.isAttended()){%>
                                     <p id="attended<%=myEvent.getUserid()%>">Attended </p>      
                                 <%}else{%> 
-                                <a role="button" id="notattending<%=myEvent.getUserid()%>" onclick="Attend(<%=myEvent.getUserid()%>,1)" class="btn btn-success">Mark as Attended </a>  <p id="attending<%=myEvent.getUserid()%>" class="hidden">Attended </p> </td>
+                                <a role="button" id="notattending<%=myEvent.getUserid()%>" onclick="Attend(<%=myEvent.getUserid()%>,<%=EventID%>)" class="btn btn-success">Mark as Attended </a>  <p id="attending<%=myEvent.getUserid()%>" class="hidden">Attended </p> </td>
                                 <%}%>
                             <%} %></tbody> <%}%>
                     </table>
