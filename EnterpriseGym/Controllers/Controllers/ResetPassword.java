@@ -85,6 +85,7 @@ public class ResetPassword extends HttpServlet {
     }
 
     private boolean sendResetEmail(String newPassword, String email) {
+        
         String subject = "Enterprise Gym Password reset";
         String emailMessage = "Your account password has been reset to " + newPassword
                 + ". If this was not you please login and change your password immediately";
@@ -95,19 +96,20 @@ public class ResetPassword extends HttpServlet {
         // Sender's email ID needs to be mentioned
         String from = "dundeeenterprisegym@gmail.com";
 
-        // Assuming you are sending email from localhost
-        String host = "smtps.gmail.com";
+        String host = "smtp.gmail.com";
 
         // Get system properties object
         System.setProperty("java.net.preferIPv4Stack", "true");
         Properties properties = System.getProperties();
         
         // Setup mail server
-        properties.setProperty("mail.imap.ssl.enable", "true");
-        properties.setProperty("mail.smtps.host", host);
-        properties.put("mail.smtps.host", host);
-        properties.put("mail.smtps.port", "25");
-        properties.put("mail.smtps.auth", "true");                
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.socketFactory.port", "587");
+        properties.put("mail.smtp.socketFactory.class",
+                        "javax.net.ssl.SSLSocketFactory");
+	properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.port", "587");               
         
         
         // Get the default Session object.
@@ -120,8 +122,6 @@ public class ResetPassword extends HttpServlet {
         try {
             // Create a default MimeMessage object.
             MimeMessage message = new MimeMessage(mailSession);
-            // Set From: header field of the header.
-            message.setFrom(new InternetAddress(from));
             // Set To: header field of the header.
             message.addRecipient(Message.RecipientType.TO,
                     new InternetAddress(to));
@@ -130,14 +130,20 @@ public class ResetPassword extends HttpServlet {
             // Now set the actual message
             message.setText(emailMessage);
 
+            Transport transport = mailSession.getTransport("smtp");
+            transport.connect(host, user, pass);
             // Send message
-            Transport.send(message, user, pass);
+            transport.sendMessage(message, message.getAllRecipients());
             result = true;
+            System.out.println("Mail sent");
+            transport.close();
 
         } catch (MessagingException mex) {
             mex.printStackTrace();
+            System.out.println("error: messaging exception");
             result = false;
         }
+        
         return result;
     }
 
