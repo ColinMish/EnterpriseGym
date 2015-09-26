@@ -37,9 +37,9 @@ public class UserModel {
             return false;
         }
     }
-    
+
     public boolean setResetToken(String email, String searchToken) {
-        
+
         Connection con = null;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -48,22 +48,22 @@ public class UserModel {
             PreparedStatement ps1 = null;
 
             String UpdateToken = "UPDATE account SET reset_token = ?  WHERE idaccount = (SELECT iduser FROM user WHERE email = ?)";
-            
 
             ps1 = con.prepareStatement(UpdateToken);
             ps1.setString(1, searchToken);
             ps1.setString(2, email);
 
             ps1.executeUpdate();
-            
+
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Failed to set reset token");
         }
-        
+
         return false;
     }
-    public boolean setPassword(String username, String newPassword){
+
+    public boolean setPassword(String username, String newPassword) {
         Connection con = null;
         String saltAsString = getSalt(username);
         try {
@@ -74,12 +74,11 @@ public class UserModel {
             String sqlOption2 = "UPDATE account SET password=? WHERE username=?";
             ps = con.prepareStatement(sqlOption2);
 
-            ps.setString(1,username);
+            ps.setString(1, username);
             ps.setString(2, newPassword);
 
             ps.executeUpdate();
             return true;
-              
 
         } catch (Exception e) {
             System.out.println("connection to db failed");
@@ -349,6 +348,7 @@ public class UserModel {
     public Account getAccount(String username) {
         LinkedList accountTokens = new LinkedList();
         boolean temp = false;
+        String dateJoined = "";
         int accountId = 0;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -356,10 +356,11 @@ public class UserModel {
             ResultSet accountInfo;
             Connection con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
             st = con.createStatement();
-            accountInfo = st.executeQuery("select idaccount, temp from account where username='" + username + "'");
+            accountInfo = st.executeQuery("select idaccount, temp, date_joined from account where username='" + username + "'");
             if (accountInfo.next()) {
                 accountId = accountInfo.getInt(1);
                 temp = accountInfo.getBoolean(2);
+                dateJoined = accountInfo.getString(3);
             }
             st = con.createStatement();
             accountInfo = st.executeQuery("SELECT * FROM accessToken_has_account WHERE account_idaccount='" + accountId + "'");
@@ -369,7 +370,7 @@ public class UserModel {
             con.close();
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
         }
-        return new Account(accountId, username, accountTokens, temp);
+        return new Account(accountId, username, accountTokens, temp, dateJoined);
     }
 
     public String getSalt(String username) {
@@ -544,7 +545,7 @@ public class UserModel {
     }
 
     public void setProjectPointsByUserId(int userId, int projectPoints) {
-                try {
+        try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             PreparedStatement st;
             Connection con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", "davidkenny", "root1");
@@ -558,7 +559,7 @@ public class UserModel {
     }
 
     public void setTheoryPointsByUserId(int userId, int theoryPoints) {
-                try {
+        try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             PreparedStatement st;
             Connection con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", "davidkenny", "root1");
@@ -587,5 +588,26 @@ public class UserModel {
             System.out.println(e.getMessage());
         }
         return userId;
+    }
+
+    public LinkedList<Account> getAllAccounts() {
+        LinkedList<Account> accountList = new LinkedList();
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Statement st;
+            ResultSet rs;
+            Connection con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", "davidkenny", "root1");
+            st = con.createStatement();
+            rs = st.executeQuery("select username from account");
+            while (rs.next()) {
+                String username = rs.getString("username");
+                Account account = getAccount(username);
+                accountList.add(account);
+            }
+            con.close();
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return accountList;
     }
 }

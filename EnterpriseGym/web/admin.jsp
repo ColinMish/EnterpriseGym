@@ -59,7 +59,6 @@
 
                 <% if (accountAdmin != null) { %> <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Account Successfully Granted Administrator Privileges.</p></div> <% } %>
                 <% if (accountNotAdmin != null) { %> <div class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Error Granting Privileges.</p></div> <% }%>
-
             </div>
         </div>
 
@@ -109,39 +108,35 @@
                 });
             });
         </script>
-        <%}
-
-            if (account.hasAccessLevel(10)) {%>
+        <%
+            }
+            if (account.hasAccessLevel(10)) {
+        %>
         <div class="col-md-12">
             <div style="cursor:pointer" class="panel panel-default">
                 <div class="panel-heading" id="userPanel">
                     <h4><i class="fa fa-fw fa-check"></i>Account Management</h4>
                 </div>
                 <div id="userEditor" class="panel-body" hidden>
+                    <%if (account.hasAccessLevel(11)) {
+                    %>
                     <div class='alert alert-danger'>Warning: The button below will reset the points of all users in the database. This action cannot be reversed.</div>
                     <form action="ResetPoints" method="POST">
                         <input class="btn btn-danger" type="submit" value="Reset ALL Points">
                     </form>
                     <br/>
-                    <div class='alert alert-danger'>Warning: The form below will completely remove the specified account from the database. This action cannot be reversed.</div>
-                    <form action="DeleteUser" method="POST">
-                        <label for="usernameField">Username:</label>
-                        <input name="usernameField" type="text" class="form-control" id="usernameField" maxlength="45" required/>
-                        <br/>
-                        <input class="btn btn-danger" type="submit" value="Delete Account">
-                    </form>
-                    <br/>
-                    <div class='alert alert-info'>Enter the username of the account you would like to give administrator privileges.</div>
-                    <form action="UserPrivileges" method="POST">
-                        <label for="adminUsernameField">Username:</label>
-                        <input name="adminUsernameField" type="text" class="form-control" id="adminUsernameField" maxlength="45" required/>
-                        <br/>
-                        <input class="btn btn-info" type="submit" value="Grant Privileges">
+                    <%}%>  
+                    <form>
+                        <input id="editAccount" class="btn btn-info" type="button" value="Manage Accounts">
                     </form>
                 </div>
             </div>
         </div>
         <script>
+            $("#editAccount").click(function ()
+            {
+                window.location = "Admin/Account";
+            });
             $("#userPanel").click(function () {
                 $("#userEditor").toggle("fast", function () {
                 });
@@ -241,9 +236,9 @@
                             <br>
 
                             <input class="btn btn-default" type="submit" value="Create Event">
-                            <br/>
-                    </form>         
-
+                            <br/>      
+                        </div>
+                    </form> 
                 </div>
             </div>
         </div>
@@ -329,8 +324,7 @@
             });
         </script>
     </div>
-
-    <%@include file ="footer.jsp" %>
 </body>
+<%@include file ="footer.jsp" %>
 </html>
 

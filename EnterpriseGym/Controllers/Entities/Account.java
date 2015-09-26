@@ -17,12 +17,22 @@ public class Account {
     private String username;
     private LinkedList accessLevel;
     private boolean temp;
+    private String dateJoined;
 
-    public Account(int id, String username, LinkedList accessLevel, boolean temp) {
+    public Account(int id, String username, LinkedList accessLevel, boolean temp, String dateJoined) {
         this.id = id;
         this.username = username;
         this.accessLevel = accessLevel;
         this.temp = temp;
+        this.dateJoined = dateJoined;
+    }
+
+    public String getDateJoined() {
+        return dateJoined;
+    }
+
+    public void setDateJoined(String dateJoined) {
+        this.dateJoined = dateJoined;
     }
 
     public int getId() {
@@ -31,9 +41,9 @@ public class Account {
 
     public void setId(int id) {
         this.id = id;
-        this.id= id;     
+        this.id = id;
     }
-    
+
     public boolean isTemp() {
         return temp;
     }
@@ -41,7 +51,7 @@ public class Account {
     public void setTemp(boolean temp) {
         this.temp = temp;
     }
-    
+
     public String getUsername() {
         return username;
     }
