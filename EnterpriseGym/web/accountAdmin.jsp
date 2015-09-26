@@ -4,9 +4,7 @@
     Author     : davidkenny
 --%>
 
-<%@page import="Entities.NewsEntity"%>
 <%@page import="java.util.Iterator"%>
-<%@page import="Entities.UserEntity"%>
 <html>
     <link href='css/carousel.css' rel='stylesheet' type='text/css'>
     <link href='css/media.css' rel='stylesheet' type='text/css'>
@@ -17,8 +15,6 @@
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
     <script src="${pageContext.request.contextPath}/js/admin.js" type="text/javascript"></script>
-
-
 </head>
 <body>
 
@@ -33,7 +29,7 @@
                     <h4 id="modaltitle" class="modal-title">Delete</h4>
                 </div>
                 <div class="modal-body">
-                    <p id="modalmessage">Are you sure you want to delete this story?</p>
+                    <p id="modalmessage">Are you sure you want to delete this account?</p>
 
                 </div>
                 <div class="modal-footer">
@@ -55,7 +51,7 @@
                     <h4 id="modaltitle2" class="modal-title">Success</h4>
                 </div>
                 <div class="modal-body">
-                    <p id="modalmessage">Message deleted.</p>
+                    <p id="modalmessage">Account deleted.</p>
 
                 </div>
                 <div class="modal-footer">
@@ -68,6 +64,7 @@
 
     <div class="modal fade" id="myModal3" role="dialog">
         <div class="modal-dialog">
+
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
@@ -85,7 +82,6 @@
 
         </div>
     </div>
-
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -97,46 +93,45 @@
         <div class="col-md-12" id="ConnectText2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4><i class="fa fa-fw fa-check"></i><strong>News Admin Panel</strong></h4><br>
+                    <h4><i class="fa fa-fw fa-check"></i><strong>Account Admin Panel</strong></h4><br>
                 </div>
                 <div class="panel-body">
                     <table class="table table-hover" id="datatable2">
                         <%
-                            java.util.LinkedList<NewsEntity> news = (java.util.LinkedList<NewsEntity>) request.getAttribute("news");
-                            if (news.size() == 0) {
+                            java.util.LinkedList<Account> accountList = (java.util.LinkedList<Account>) request.getAttribute("accountList");
+                            if (accountList.size() == 0) {
                         %>
                         <p>No News found.</p>
                         <%
                         } else { %>
                         <thead>
                             <tr>
-                                <th>Article</th>
-                                <th>Date Added</th>
-                                <th>View Article</th>
-                                <th>Edit Article</th>
+                                <th>UserName</th>
+                                <th>Date Joined</th>
+                                <th>Edit Account</th>
+                                <th>Temp Account</th>                        
                             </tr>
                         </thead>
                         <tbody>
                             <%
-
-                                Iterator<NewsEntity> iterator;
-                                iterator = news.iterator();
+                                Iterator<Account> iterator;
+                                iterator = accountList.iterator();
                                 while (iterator.hasNext()) {
-                                    NewsEntity p = (NewsEntity) iterator.next();
+                                    Account nextAccount = (Account) iterator.next();
                             %>       
                             <tr>
-                                <td><%=p.getTitle()%></td>
-                                <td><% if(p.getDate() != null) {p.getDate();} %></td>
-                                <td><a role="button" href="${pageContext.request.contextPath}/News/Article/<%=p.getId()%>" class="btn btn-primary">View <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></td>
-                                <td><a role="button" href="${pageContext.request.contextPath}/Admin/News/<%=p.getId()%>" class="btn btn-Warning">Edit <span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button></td>
-                                <%if (account.hasAccessLevel(7)) {%>
-                                <td><a role="button" onclick="checkDelete(<%=p.getId()%>, '<%=p.getTitle()%>')" class="btn btn-Danger">Delete <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>              
+                                <td><%=nextAccount.getUsername()%></td>
+                                <td><%=nextAccount.getDateJoined()%></td>
+                                <td><a role="button" href="../EditProfile/<%=account.getUsername()%>" class="btn btn-Warning">Edit <span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button></td>
+                                <%if (account.hasAccessLevel(9)) {%>
+                                <td><a role="button" onclick="checkDelete(<%=account.getId()%>, '<%=account.getUsername()%>')" class="btn btn-Danger">Delete <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>              
                                 <%
-                                    }
-                                    }
+                                        }%>
+                                <td><%=nextAccount.isTemp()%></td>
+                                    <%}
                                 %></tbody> 
                             <%
-                            }
+                                }
                             %>
                     </table>
                 </div>

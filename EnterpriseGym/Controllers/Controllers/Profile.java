@@ -5,7 +5,6 @@ package Controllers;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import Entities.Account;
 import Entities.UserEntity;
 import Models.UserModel;
@@ -23,14 +22,13 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import javax.servlet.http.HttpSession;
 import lib.Convertors;
+
 /**
  *
  * @author kristiyangeorgiev
  */
-@WebServlet(name = "Profile", urlPatterns = {"/Profile","/Profile/*"})
+@WebServlet(name = "Profile", urlPatterns = {"/Profile", "/Profile/*", "/EditProfile/*"})
 @MultipartConfig
-
-
 
 public class Profile extends HttpServlet {
     
@@ -40,10 +38,9 @@ public class Profile extends HttpServlet {
      * Constructor
      */
     public Profile() {
-         super();
+        super();
         CommandsMap.put("Points", 1);
-        CommandsMap.put("EditProfile", 2);
-        CommandsMap.put("ChangePassword", 3);
+        CommandsMap.put("ChangePassword", 2);
     }
 
     /**
@@ -64,101 +61,84 @@ public class Profile extends HttpServlet {
      * @throws IOException
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-    {
-
-//     HttpSession session = request.getSession();    
-//    Account account = (Account) session.getAttribute("account");
-//    if (account == null) {
-//        notloggedin(response,request);
-//    }else{
-        
-        
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String args[] = Convertors.SplitRequestPath(request);
         
-        if(args.length==2)
-        {
-            // RequestDispatcher dispatcher = request.getRequestDispatcher("profile.jsp");
-             //   dispatcher.forward(request, response);
-            displayprofile(response,request);
+        if (args.length == 2 && args[1].equals("Profile")) {
+            displayprofile(response, request);
+        } else if (args[1].equals("EditProfile")) {
+            editdetails(response, request);
         }
         
         int command;
-         try {
+        try {
             command = (Integer) CommandsMap.get(args[2]);
-        } catch (Exception et) {           
+        } catch (Exception et) {
             return;
         }
         switch (command) {
             case 1:
-                displaypoints(response,request);            
+                displaypoints(response, request);
                 break;
-            case 2:
-                editdetails(response,request);       	
-                break;         
             default:
-            	//Error message here.
+            //Error message here.
         }
     }
-    //}
     
-//    private void notloggedin(HttpServletResponse response,HttpServletRequest request) throws ServletException, IOException
-//    {
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("LogIn.jsp");
-//        dispatcher.forward(request, response);
-//    }
-
-    private void displayprofile(HttpServletResponse response,HttpServletRequest request) throws ServletException, IOException
-    {
+    private void displayprofile(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
         UserModel model = new UserModel();
         HttpSession session = request.getSession();
-          Account account = (Account) session.getAttribute("account");
+        Account account = (Account) session.getAttribute("account");
         //Need to pass the profile attributes accross here.
         java.util.LinkedList<UserEntity> userdetails = model.getDetails(account.getUsername());
-        
-  
-//         Iterator<UserEntity> iterator;
-//            iterator = userdetails.iterator();
-//            while (iterator.hasNext()) {
-//                UserEntity p = (UserEntity) iterator.next();
-//                System.out.println(p.getYearOfStudy());
-//            }
         RequestDispatcher dispatcher = request.getRequestDispatcher("profile.jsp");
         request.setAttribute("userdetails", userdetails);
-        dispatcher.forward(request,response);
+        dispatcher.forward(request, response);
     }
     
-    private void displaypoints(HttpServletResponse response,HttpServletRequest request) throws ServletException, IOException
-    {
+    private void displaypoints(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
         //Populate the points entity.
-          UserModel model = new UserModel();
-          HttpSession session = request.getSession();
-          Account account = (Account) session.getAttribute("account");
-        
+        UserModel model = new UserModel();
+        HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("account");
+
         //Need to pass the profile attributes accross here.
-         LinkedList<UserEntity> points = new LinkedList();
-         UserEntity user = model.getPoints(account.getUsername());
-         points.add(user);        
+        LinkedList<UserEntity> points = new LinkedList();
+        UserEntity user = model.getPoints(account.getUsername());
+        points.add(user);
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("/mypoints.jsp");
         request.setAttribute("points", points);
-        dispatcher.forward(request,response);
-        return;
+        dispatcher.forward(request, response);
     }
     
-    private void editdetails(HttpServletResponse response,HttpServletRequest request) throws ServletException, IOException
-    {
+    private void editdetails(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
+        UserModel model = new UserModel();
+        String username = getUsername(request);
+        java.util.LinkedList<UserEntity> userdetails = model.getDetails(username);
+        request.setAttribute("userdetails", userdetails);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/editdetails.jsp");
-        dispatcher.forward(request,response);
-        return;
+        dispatcher.forward(request, response);
     }
-        
     
-        //System.out.println(args[2]);
-        
-//                  RequestDispatcher dispatcher = request.getRequestDispatcher("profile.jsp");
-//                dispatcher.forward(request, response);
-    
+    /**
+     * Get the username of the logged in person unless request is for another account and access levels are ok
+     * @param request
+     * @return 
+     */
+    private String getUsername(HttpServletRequest request) {
+        String username = null;
+        HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("account");
+        String args[] = Convertors.SplitRequestPath(request);
+        if (args.length == 3 && account.hasAccessLevel(10)) {
+            username = args[2];
+        } else {
+            
+            username = account.getUsername();
+        }
+        return username;
+    }
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -170,50 +150,44 @@ public class Profile extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException 
-    {
+            throws ServletException, IOException {
         String args[] = Convertors.SplitRequestPath(request);
         
-        if(args.length==2)
-        {
+        if (args.length == 2) {
             // RequestDispatcher dispatcher = request.getRequestDispatcher("profile.jsp");
-             //   dispatcher.forward(request, response);
+            //   dispatcher.forward(request, response);
             //displayprofile(response,request);
         }
         
         int command;
-         try {
+        try {
             command = (Integer) CommandsMap.get(args[2]);
-        } catch (Exception et) {           
+        } catch (Exception et) {
             return;
         }
         switch (command) {
             case 3:
-                changePassword(response,request);            
+                changePassword(response, request);
                 break;
             default:
-            	//Error message here.
+            //Error message here.
         }
     }
     
-    private boolean changePassword(HttpServletResponse response,HttpServletRequest request)
-            throws ServletException, IOException 
-    {
+    private boolean changePassword(HttpServletResponse response, HttpServletRequest request)
+            throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String newPassword1 = request.getParameter("newPassword1");
         String newPassword2 = request.getParameter("newPassword2");
-        
+
         //TODO: Check if user password is correct
-        if (newPassword1 == newPassword2)
-        {
+        if (newPassword1.equals(newPassword2)) {
             UserModel user = new UserModel();
             user.setPassword(username, newPassword1);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
             dispatcher.forward(request, response);
-        }
-        else
-        {
+        } else {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/changePasswordFailed.jsp");
             dispatcher.forward(request, response);
         }

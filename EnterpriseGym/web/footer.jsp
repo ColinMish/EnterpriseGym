@@ -3,12 +3,8 @@
     Created on : 15-Sep-2015, 12:49:29
     Author     : Dave
 --%>
-<head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    	
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">   	
         <link href='${pageContext.request.contextPath}/css/media.css' rel='stylesheet' type='text/css'>
-        <title>JSP Page</title>
-    </head>
 <footer>
     
     <!-- TODO: Decide Footer Content -->

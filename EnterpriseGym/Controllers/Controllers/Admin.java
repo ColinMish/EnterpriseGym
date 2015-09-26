@@ -1,11 +1,13 @@
 package Controllers;
 
+import Entities.Account;
 import Entities.EventEntity;
 import Entities.EventUserEntity;
 import Entities.NewsEntity;
 import Models.AdminModel;
 import Models.EventModel;
 import Models.NewsModel;
+import Models.UserModel;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -38,6 +40,7 @@ public class Admin extends HttpServlet {
         super();
         CommandsMap.put("News", 1);
         CommandsMap.put("Event", 2);
+        CommandsMap.put("Account", 3);
     }
 
     /**
@@ -77,7 +80,7 @@ public class Admin extends HttpServlet {
             //News
             case 1:
                 if (args.length == 3) {
-                    displayNewsPannel(response, request);
+                    displayNewsPanel(response, request);
                 } else {
                     displayEditNews(response, request, args[3]);
                 }
@@ -85,15 +88,21 @@ public class Admin extends HttpServlet {
             //Events    
             case 2:
                 if (args.length == 3) {
-                    displayEventPannel(response, request);
+                    displayEventPanel(response, request);
                 } else {
-                    if(args.length==4)
-                    {
-                    displayEditEvent(response, request, args[3]);
-                    }else{
-                        manageEvent(response,request,args[4]);
+                    if (args.length == 4) {
+                        displayEditEvent(response, request, args[3]);
+                    } else {
+                        manageEvent(response, request, args[4]);
                     }
-                    //Manage the events. 
+                }
+                break;
+            //Accounts
+            case 3:
+                if (args.length == 3) {
+                    displayAccountPanel(response, request);
+                } else {
+                    //displayEditNews(response, request, args[3]);
                 }
                 break;
             default:
@@ -101,7 +110,6 @@ public class Admin extends HttpServlet {
             //Error message here.
         }
     }
-    
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -193,7 +201,7 @@ public class Admin extends HttpServlet {
             System.out.println("Error Deleting Account.");
         }
     }
-    
+
     private void userPrivileges(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String username = request.getParameter("adminUsernameField");
@@ -224,10 +232,10 @@ public class Admin extends HttpServlet {
 
     private void displayPannel(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/admin.jsp");
-        dispatcher.forward(request,response);
+        dispatcher.forward(request, response);
     }
 
-    private void displayNewsPannel(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
+    private void displayNewsPanel(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
         NewsModel model = new NewsModel();
         java.util.LinkedList<NewsEntity> newsitems = model.getAllNews();
         RequestDispatcher dispatcher = request.getRequestDispatcher("/newsadmin.jsp");
@@ -246,7 +254,7 @@ public class Admin extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void displayEventPannel(HttpServletResponse response, HttpServletRequest request) {
+    private void displayEventPanel(HttpServletResponse response, HttpServletRequest request) {
         try {
             EventModel model = new EventModel();
             java.util.LinkedList<EventEntity> eventItems = model.getAllEvents();
@@ -260,8 +268,8 @@ public class Admin extends HttpServlet {
     }
 
     private void displayEditEvent(HttpServletResponse response, HttpServletRequest request, String id) throws ServletException, IOException {
-         //To change body of generated methods, choose Tools | Templates.
-            EventModel model = new EventModel();
+        //To change body of generated methods, choose Tools | Templates.
+        EventModel model = new EventModel();
         int eventID = Integer.parseInt(id);
         //Need to pass the profile attributes accross here.
         java.util.LinkedList<EventEntity> event = model.GetEventByID(eventID);
@@ -269,17 +277,25 @@ public class Admin extends HttpServlet {
         request.setAttribute("event", event);
         dispatcher.forward(request, response);
     }
-    
-    private void manageEvent(HttpServletResponse response, HttpServletRequest request, String id) throws ServletException, IOException
-    {
-    int eventID = Integer.parseInt(id);
-    EventModel model = new EventModel();
-    java.util.LinkedList<EventUserEntity> eventuser = model.getEventUsers(eventID);
-       RequestDispatcher dispatcher = request.getRequestDispatcher("/eventAttend.jsp");
+
+    private void manageEvent(HttpServletResponse response, HttpServletRequest request, String id) throws ServletException, IOException {
+        int eventID = Integer.parseInt(id);
+        EventModel model = new EventModel();
+        java.util.LinkedList<EventUserEntity> eventuser = model.getEventUsers(eventID);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/eventAttend.jsp");
         request.setAttribute("eventuser", eventuser);
-        request.setAttribute("eventid",eventID);
+        request.setAttribute("eventid", eventID);
         dispatcher.forward(request, response);
-        
+
+    }
+
+    private void displayAccountPanel(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
+        UserModel model = new UserModel();
+        java.util.LinkedList<Account> accountList = model.getAllAccounts();
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/accountAdmin.jsp");
+        request.setAttribute("accountList", accountList);
+        //Need to pass the profile attributes accross here.     
+        dispatcher.forward(request, response);
     }
 
 }
