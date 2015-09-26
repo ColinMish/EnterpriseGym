@@ -192,7 +192,7 @@
                         <tr>
                             <th>Action Points:<% for(int ap = 0; ap < user.getSilverMedalsByTheme(user.getActionPoints()); ap++){%><img style="margin-left: 10px;" width="20" src="${pageContext.request.contextPath}/Pictures/silver.jpg"><%}%></th>
                             <td class="col-md-8"><div class="progress">
-                                    <div class="progress-bar" role="progressbar" aria-valuenow="<%=user.getActionPercentage()%>"
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="<%=user.getActionPercentage()%>" 
                                          aria-valuemin="0" aria-valuemax="100" style="width:<%=user.getActionPercentage()%>%">
                                         <%=user.getActionPercentage()%>%
                                     </div>

@@ -23,7 +23,6 @@
     </div>
 
     <script src="${pageContext.request.contextPath}/js/jquery.flagstrap.js"></script>
-    <script src="${pageContext.request.contextPath}/js/jquery.flagstrap.js"></script>
     <script src="${pageContext.request.contextPath}/js/register.js"></script>
     <%UserEntity user = null; %>
     <div id="myModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
@@ -114,7 +113,6 @@
                 <div class="form-group">
                     <label for="gender">Gender:</label>
                     <select class="form-control" name="gender" id="gender">
-                        <option>-</option>
                         <option value="female">Female</option>
                         <option value="male">Male</option>
                         <option value="other">Other</option>
