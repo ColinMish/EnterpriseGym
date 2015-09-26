@@ -16,6 +16,7 @@
     </div>
     <script src="${pageContext.request.contextPath}/js/admin.js"></script>
     <script src="${pageContext.request.contextPath}/js/register.js"></script>
+    <%@page import="Entities.Account"%>
 
     <% Boolean storyAdded = (Boolean) request.getAttribute("storyAdded"); %>
     <% Boolean storyNotAdded = (Boolean) request.getAttribute("storyNotAdded"); %>
@@ -62,10 +63,12 @@
             </div>
         </div>
 
+        <%if (account.hasAccessLevel(3)) {%>
+
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div style="cursor:pointer" class="panel-heading" id="newsPanel">
-                    <h4><i class="fa fa-fw fa-check"></i>News Editor</h4>
+                    <h4><i class="fa fa-fw fa-check"></i>News Management</h4>
                 </div>
                 <div id="newsEditor" class="panel-body" hidden>
                     <form action="AddNews" method="POST" enctype="multipart/form-data">
@@ -84,22 +87,35 @@
                             <input name="image" multiple accept='image/*' type="file">
                         </span>
                         <br/>
+                        <br>
 
-                        <input class="btn btn-default" type="submit" value="Create Post">
+                        <div class="form-group">
+                            <input class="btn btn-default" type="submit" onclick="editNews();" value="Create Post">
+                            <%if (account.hasAccessLevel(12)) {%>
+                            <input style="margin-left: 10px;" id="editNews" class="btn btn-default" type="button" value="Edit News">
+                            <%}%>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
         <script>
+            $("#editNews").click(function ()
+            {
+                window.location = "Admin/News";
+            });
             $("#newsPanel").click(function () {
                 $("#newsEditor").toggle("fast", function () {
                 });
             });
         </script>
+        <%}
+
+            if (account.hasAccessLevel(10)) {%>
         <div class="col-md-12">
             <div style="cursor:pointer" class="panel panel-default">
                 <div class="panel-heading" id="userPanel">
-                    <h4><i class="fa fa-fw fa-check"></i>User Management</h4>
+                    <h4><i class="fa fa-fw fa-check"></i>Account Management</h4>
                 </div>
                 <div id="userEditor" class="panel-body" hidden>
                     <div class='alert alert-danger'>Warning: The button below will reset the points of all users in the database. This action cannot be reversed.</div>
@@ -131,6 +147,8 @@
                 });
             });
         </script>
+        <%}
+            if (account.hasAccessLevel(2)) {%>
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div style="cursor:pointer" class="panel-heading" id="eventsPanel">
@@ -159,72 +177,71 @@
                                 $(function () {
                                     $('#datetimepicker1').datetimepicker();
                                 });
-                            </script>
-                        </div>     
+                            </script>    
 
-                        <label for="datetimepicker2">End date / Time:</label>           
-                        <div class="row">
-                            <div class='col-sm-5'>
-                                <div class="form-group">
-                                    <div class='input-group date' id='datetimepicker2'>
-                                        <input name="enddate" type='text' class="form-control" required />
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
+                            <label for="datetimepicker2">End date / Time:</label>           
+                            <div class="row">
+                                <div class='col-sm-5'>
+                                    <div class="form-group">
+                                        <div class='input-group date' id='datetimepicker2'>
+                                            <input name="enddate" type='text' class="form-control" required />
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <script type="text/javascript">
+                                    $(function () {
+                                        $('#datetimepicker2').datetimepicker();
+                                    });
+                                </script>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label for="eventLocation">Location:</label>
+                                        <input name="eventLocation" id="eventLocation" type="text" class="form-control" id="location" maxlength="45"/>
                                     </div>
                                 </div>
                             </div>
-                            <script type="text/javascript">
-                                $(function () {
-                                    $('#datetimepicker2').datetimepicker();
-                                });
+
+
+
+                            <label for="eventDescription">Description:</label>
+                            <textarea name="eventDescription" id="editor1" rows="10" cols="80"></textarea>
+                            <script>
+                                CKEDITOR.replace('eventDescription');
                             </script>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="form-group">
-                                    <label for="eventLocation">Location:</label>
-                                    <input name="eventLocation" id="eventLocation" type="text" class="form-control" id="location" maxlength="45"/>
-                                </div>
+                            <br/>
+                            <span class="btn btn-default btn-file">
+                                <input name="image" multiple accept='image/*' type="file">
+                            </span>
+                            <br/>
+                            <div class="form-group">
+                                <label for="sel1">Theme:</label>
+                                <select name="eventTheme" class="form-control" id="eventTheme">
+                                    <option value="1">Action</option>
+                                    <option value="2">Practice</option>
+                                    <option value="3">Theory</option>
+                                    <option value="4">Virtual</option>
+                                    <option value="5">Project</option>
+                                </select>
                             </div>
-                        </div>
 
-
-
-                        <label for="eventDescription">Description:</label>
-                        <textarea name="eventDescription" id="editor1" rows="10" cols="80"></textarea>
-                        <script>
-                            CKEDITOR.replace('eventDescription');
-                        </script>
-                        <br/>
-                        <span class="btn btn-default btn-file">
-                            <input name="image" multiple accept='image/*' type="file">
-                        </span>
-                        <br/>
-                        <div class="form-group">
-                            <label for="sel1">Theme:</label>
-                            <select name="eventTheme" class="form-control" id="eventTheme">
-                                <option value="1">Action</option>
-                                <option value="2">Practice</option>
-                                <option value="3">Theory</option>
-                                <option value="4">Virtual</option>
-                                <option value="5">Project</option>
-                            </select>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="form-group">
-                                    <label for="points">Points:</label>
-                                    <input name="points" id="eventLocation" type="number" class="form-control" id="location" maxlength="45" required/>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label for="points">Points:</label>
+                                        <input name="points" id="eventLocation" type="number" class="form-control" id="location" maxlength="45" required/>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>       
+                            </div>       
 
-                        <br>
+                            <br>
 
-                        <input class="btn btn-default" type="submit" value="Create Event">
-                        <br/>
+                            <input class="btn btn-default" type="submit" value="Create Event">
+                            <br/>
                     </form>         
 
                 </div>
@@ -236,8 +253,8 @@
                 });
             });
         </script>
-
-
+        <%}
+            if (account.hasAccessLevel(4)) {%>
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div style="cursor:pointer" class="panel-heading" id="quizPanel">
@@ -255,6 +272,8 @@
             });
         </script>
 
+        <%}
+            if (account.hasAccessLevel(5)) {%>
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div style="cursor:pointer" class="panel-heading" id="quickRegisterPanel">
@@ -296,7 +315,7 @@
                 });
             });
         </script>
-
+        <%}%>
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div style="cursor:pointer" class="panel-heading" id="stats">
