@@ -113,7 +113,7 @@
                 EventEntity p = (EventEntity) iterator.next();
          %>
         <div class="col-md-12" id="AboutText">
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i><%=p.getName()%></h4>
                     </div>
@@ -121,8 +121,13 @@
                         <p>
                         <p><%=p.getDescription()%></p>
                         
-                             <% if (p.getLength()!=0){ %>                    
-                            <img src="${pageContext.request.contextPath}/Events/Picture/<%=p.getID()%>" style="max-height: 500px; max-width: 500px;" class="img-responsive" alt="News Image">
+                             <% if (p.getLength()!=0){ %>   
+                             <div class ="hidden-xs" >
+                            <img src="${pageContext.request.contextPath}/Events/Picture/<%=p.getID()%>" style="max-height: 600px; max-width: 600px;" class="img-responsive" alt="News Image">
+                             </div>
+                             <div class="visible-xs">
+                               <img src="${pageContext.request.contextPath}/Events/Picture/<%=p.getID()%>" style="max-height: 300px; max-width: 300px;" class="img-responsive" alt="News Image">  
+                             </div>
                             <%} %>
                             
                             <%if (attending!=null){
