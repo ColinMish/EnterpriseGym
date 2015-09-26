@@ -48,7 +48,7 @@
                 EventEntity p = (EventEntity) iterator.next();
          %>
         <div class="col-sm-6" id="AboutText">
-                <div class="panel panel-danger">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i><%=p.getName()%></h4>
                     </div>

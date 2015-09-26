@@ -50,7 +50,7 @@
                 NewsEntity p = (NewsEntity) iterator.next();
          %>
         <div class="col-sm-4" id="AboutText">
-                <div class="panel panel-danger">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i><%=p.getTitle()%></h4>
                     </div>
