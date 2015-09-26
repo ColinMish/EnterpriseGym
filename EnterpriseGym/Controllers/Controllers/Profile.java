@@ -71,7 +71,7 @@ public class Profile extends HttpServlet {
 
         if (args.length == 2 && args[1].equals("Profile")) {
             displayprofile(response, request);
-        } else if (args.length == 2 && args[1].equals("EditProfile")) {
+        } else if (args.length >= 2 && args[1].equals("EditProfile")) {
             editdetails(response, request);
         }
 

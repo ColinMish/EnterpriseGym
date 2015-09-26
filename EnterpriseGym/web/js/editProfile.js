@@ -11,13 +11,12 @@ var emailValid = false;
 $(document).ready(function () {
 
     $("#userId").hide();
+    $("#successMessage").hide();
+    $("#errorMessage").hide();
     $("#editDetails").submit(function (e)
     {
-        if (!validateForm())
-        {
-            e.preventDefault();
-            updateDetails();
-        }
+        e.preventDefault();
+        updateDetails();
     });
 
     ///university change
@@ -157,10 +156,10 @@ function updateDetails() {
 
     $.ajax({
         type: "POST",
-        url: "Profile/EditDetails",
+        url: '../EditProfile/EditDetails',
         async: false,
         data: {
-            userId : userId,
+            userId: userId,
             firstname: firstname,
             lastname: lastname,
             email: email,
@@ -172,13 +171,13 @@ function updateDetails() {
             matric: matric},
         cache: false,
         success: function (result) {
-            if(result === "failed")
+            if (result === "failed")
             {
-                console.log("update failed");
+                $("#errorMessage").show();
             }
-            else if(result === "success")
+            else if (result === "success")
             {
-                console.log("update great success!");
+                $("#successMessage").show();
             }
         },
         fail: function () {

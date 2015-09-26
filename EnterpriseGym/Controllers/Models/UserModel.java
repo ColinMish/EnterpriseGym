@@ -10,6 +10,7 @@ import Entities.UserEntity;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Set;
 import lib.Security;
 
 /**
@@ -643,18 +644,19 @@ public class UserModel {
             ResultSet rs;
             Connection con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", "davidkenny", "root1");
             String update = "UPDATE `user` SET ";
-            String[] keys = (String[]) updates.keySet().toArray();
+            Set<String> keys = updates.keySet();
+            String[] keyArray = keys.toArray(new String[keys.size()]);
 
-            for (int i = 0; i < keys.length; i++) {
-                update += keys[i] + "=?";
-                if (i != keys.length - 1) {
+            for (int i = 0; i < keyArray.length; i++) {
+                update += keyArray[i] + "=?";
+                if (i != keyArray.length - 1) {
                     update += ", ";
                 }
             }
             update += " WHERE iduser=?";
             PreparedStatement ps = con.prepareStatement(update);
-            for (int i = 0; i < keys.length; i++) {
-                ps.setString(i, keys[i]);
+            for (int i = 0; i < keyArray.length; i++) {
+                ps.setString(i, keyArray[i]);
             }
             ps.executeUpdate();
             ps.close();

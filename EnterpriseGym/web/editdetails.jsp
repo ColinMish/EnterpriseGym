@@ -16,7 +16,7 @@
 
     <head>
         <title></title>
-        <link href='css/media.css' rel='stylesheet' type='text/css'>
+        <link href=${pageContext.request.contextPath}'/css/media.css' rel='stylesheet' type='text/css'>
         <link href='${pageContext.request.contextPath}/css/carousel.css' rel='stylesheet' type='text/css'>
         <script src="https://code.jquery.com/jquery-1.11.2.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
@@ -133,6 +133,8 @@
                                 <input name="matric" type="number" class="form-control" value="0" id="matricEdit" required/>
                             </div>
                             <input class="btn btn-primary" type="submit" value="Update"><br><br>
+                            <div id="successMessage" class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Updates Saved Successfully.</p></div>
+                            <div id="errorMessage" class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Error Posting News Story.</p></div>
                         </div>
                     </div>
                 </div>
@@ -159,7 +161,6 @@
                                 <label for="usr">New Password Again:</label>
                                 <input type="text" name="newPassword2" class="form-control" id="newpassword">
                             </div>
-
                             <input class="btn btn-primary" type="submit" value="Update"><br><br>
                         </div>
                     </div>
