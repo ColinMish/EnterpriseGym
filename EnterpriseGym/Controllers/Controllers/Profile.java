@@ -9,6 +9,11 @@ import Entities.Account;
 import Entities.UserEntity;
 import Models.UserModel;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -40,7 +45,8 @@ public class Profile extends HttpServlet {
     public Profile() {
         super();
         CommandsMap.put("Points", 1);
-        CommandsMap.put("ChangePassword", 2);
+        CommandsMap.put("EditDetails", 2);
+        CommandsMap.put("ChangePassword", 3);
     }
 
     /**
@@ -159,13 +165,6 @@ public class Profile extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String args[] = Convertors.SplitRequestPath(request);
-
-        if (args.length == 2) {
-            // RequestDispatcher dispatcher = request.getRequestDispatcher("profile.jsp");
-            //   dispatcher.forward(request, response);
-            //displayprofile(response,request);
-        }
-
         int command;
         try {
             command = (Integer) CommandsMap.get(args[2]);
@@ -173,6 +172,8 @@ public class Profile extends HttpServlet {
             return;
         }
         switch (command) {
+            case 2:
+                editDetails(response, request);
             case 3:
                 changePassword(response, request);
                 break;
@@ -199,5 +200,67 @@ public class Profile extends HttpServlet {
             dispatcher.forward(request, response);
         }
         return true;
+    }
+
+    private void editDetails(HttpServletResponse response, HttpServletRequest request) throws IOException {
+        response.setContentType("text/html");  
+            PrintWriter out = response.getWriter(); 
+             
+            String firstname  = request.getParameter("firstname");
+            String lastname  = request.getParameter("lastname"); 
+            String email  = request.getParameter("email");
+            String country  = request.getParameter("country");
+            String year  = request.getParameter("year");
+            String oldpassword  = request.getParameter("password");
+            String newpassword  = request.getParameter("newpassword");
+            String newpasswordagain  = request.getParameter("newpassword");
+         
+            try{
+                
+                
+                Class.forName("com.mysql.jdbc.Driver");
+                
+                
+                
+                
+                //Establish a connection with the database url 
+                 //while attempts to select an appropriate driver from the set of available drivers.
+                Connection database;
+                database = DriverManager.getConnection(
+                        
+                        "jdbc:mysql://localhost/project",
+                        "root", "");
+                
+                
+                //Run the Sql query and returns the result set object obtained from the query
+                PreparedStatement value=database.prepareStatement(
+                        "UPDATE regtable SET first name=?, last name=?, email=?, country=? year=?, password=?, newpassword=?, newpassword=? "); 
+                
+                value.setString(1,firstname); 
+                value.setString(2,lastname);
+                value.setString(3,email);
+                value.setString(4,country);
+                value.setString(5,year);
+                value.setString(6,oldpassword);
+                value.setString(7,newpassword);
+                value.setString(8,newpasswordagain);
+                
+                
+                int i=value.executeUpdate();
+                if(i>0)
+                    
+                    
+                    
+                    out.print("You successfully updated your details " + ""
+                            + "<a href='profile.jsp'>Go to your Profile</a>");
+                
+                
+            }catch (ClassNotFoundException error) {System.out.println(error);} catch (SQLException error) {
+                System.out.println(error);
+                
+            }  
+            
+            out.close();
+            
     }
 }
