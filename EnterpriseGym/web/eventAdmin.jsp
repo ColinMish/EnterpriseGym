@@ -113,7 +113,7 @@
                         <thead>
                             <tr>
                                 <th>Event</th>
-                                <th>Date</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -127,9 +127,9 @@
 
                             <tr>
                                 <td><%=myEvent.getName()%></td>
-                                <td><a role="button" href="${pageContext.request.contextPath}/Admin/Event/Manage/<%=myEvent.getID()%>" class="btn btn-primary">View <span class="glyphicon glyphicon-search" aria-hidden="true"></span></td>
-                                <td><a role="button" href="${pageContext.request.contextPath}/Admin/Event/<%=myEvent.getID()%>" class="btn btn-Warning">Edit <span class="glyphicon glyphicon-cog" aria-hidden="true"></span></td>
-                                <td><a role="button" onclick="checkDelete(<%=myEvent.getID()%>, '<%=myEvent.getName()%>')" class="btn btn-Danger">Delete <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></td>              
+                                <td><a role="button" href="${pageContext.request.contextPath}/Admin/Event/Manage/<%=myEvent.getID()%>" class="btn btn-primary">Manage Attendance <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a></td>
+                                <td><a role="button" href="${pageContext.request.contextPath}/Admin/Event/<%=myEvent.getID()%>" class="btn btn-Warning">Edit <span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></td>
+                                <td><a role="button" onclick="checkDelete(<%=myEvent.getID()%>, '<%=myEvent.getName()%>')" class="btn btn-Danger">Delete <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>              
 
                             <%} %></tbody> <%}%>
                     </table>

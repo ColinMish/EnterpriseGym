@@ -19,6 +19,7 @@
         <link href='css/carousel.css' rel='stylesheet' type='text/css'>
         <link href='${pageContext.request.contextPath}/css/profile.css' rel='stylesheet' type='text/css'>
         <link href='${pageContext.request.contextPath}/css/media.css' rel='stylesheet' type='text/css'>
+        <link href='${pageContext.request.contextPath}/css/style.css' rel='stylesheet' type='text/css'>
     </head>
 <body>
      <%@include file="header.jsp" %>
@@ -48,17 +49,17 @@
             while (iterator.hasNext()) {
                 NewsEntity p = (NewsEntity) iterator.next();
          %>
-        <div class="col-md-4" id="AboutText">
-                <div class="panel panel-default">
+        <div class="col-sm-4" id="AboutText">
+                <div class="panel panel-danger">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i><%=p.getTitle()%></h4>
                     </div>
-                    <div class="panel-body">
+                    <div class="panel-body" class="panel-height">
                         <p>
                         <p><%=p.getContent()%></p>
                         
                              <% if (p.getLength()!=0){ %>                    
-                            <img src="${pageContext.request.contextPath}/News/Picture/<%=p.getId()%>" style="max-height: 100px; max-width: 100px;" class="img-responsive" alt="News Image">
+                            <img src="${pageContext.request.contextPath}/News/Picture/<%=p.getId()%>" style="max-height: 175px; max-width: 175px;" class="img-responsive" alt="News Image">
                             <%} %>
                        
                         <a href="${pageContext.request.contextPath}/News/Article/<%=p.getId()%>" class="btn btn-default">Read More</a>
@@ -68,6 +69,8 @@
         <%}%>
                 <%}%>
     </div>
+    
+   
     <%@include file ="footer.jsp" %>
     </body>
 </html>

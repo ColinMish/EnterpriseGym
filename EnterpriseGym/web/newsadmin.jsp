@@ -117,7 +117,7 @@
                             <thead>
                             <tr>
                                 <th>Article</th>
-                                <th>Date Added</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
