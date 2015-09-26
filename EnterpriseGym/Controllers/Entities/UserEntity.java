@@ -45,17 +45,15 @@ public class UserEntity {
         event_list = null;
     }
 
-    public UserEntity(int id, String firstName, String lastName, String email) 
-    {
-        name  = firstName;
+    public UserEntity(int id, String firstName, String lastName, String email) {
+        name = firstName;
         lastname = lastName;
         this.email = email;
         this.id = id;
     }
-    
-    public UserEntity()
-    {
-        
+
+    public UserEntity() {
+
     }
 
     public int getAccountNo() {
@@ -65,7 +63,7 @@ public class UserEntity {
     public void setAccountNo(int accountNo) {
         this.accountNo = accountNo;
     }
-    
+
     public int getId() {
         return id;
     }
@@ -73,7 +71,7 @@ public class UserEntity {
     public void setId(int id) {
         this.id = id;
     }
-    
+
     public void setName(String new_name) {
         name = new_name;
     }
@@ -231,62 +229,41 @@ public class UserEntity {
     }
 
     public int getProjectPercentage() {
-        float ap = project_points;
-        int percent = 0;
-        float points = ap / 70;
-        points = points * 100;
-        percent = (int) points;
+        int percent = project_points;
         if (percent > 100) {
-            return 100;
+            percent = (percent - (getSilverMedalsByTheme(project_points)* 100));
         }
         return percent;
     }
 
     public int getActionPercentage() {
-        float ap = action_points;
-        int percent = 0;
-        float points = ap / 70;
-        points = points * 100;
-        percent = (int) points;
+        int percent = action_points;
         if (percent > 100) {
-            return 100;
+            percent = (percent - (getSilverMedalsByTheme(action_points)* 100));
         }
-
         return percent;
     }
 
     public int getVirtualPercentage() {
-        float ap = virtual_points;
-        int percent = 0;
-        float points = ap / 70;
-        points = points * 100;
-        percent = (int) points;
+        int percent = virtual_points;
         if (percent > 100) {
-            return 100;
+            percent = (percent - (getSilverMedalsByTheme(virtual_points)* 100));
         }
         return percent;
     }
 
     public int getPracticePercentage() {
-        float ap = practice_points;
-        int percent = 0;
-        float points = ap / 70;
-        points = points * 100;
-        percent = (int) points;
+        int percent = practice_points;
         if (percent > 100) {
-            return 100;
+            percent = (percent - (getSilverMedalsByTheme(practice_points)* 100));
         }
         return percent;
     }
 
     public int getTheoryPercentage() {
-        float ap = theory_points;
-        int percent = 0;
-        float points = ap / 70;
-        points = points * 100;
-        percent = (int) points;
+        int percent = theory_points;
         if (percent > 100) {
-            return 100;
+            percent = (percent - (getSilverMedalsByTheme(theory_points)* 100));
         }
         return percent;
     }
@@ -316,4 +293,19 @@ public class UserEntity {
         event_list.add(add_to_list);
     }
 
+    public int getGoldMedals() {
+        int gold = getTotalPoints() / 200;
+        return gold;
+    }
+
+    public int getSilverMedals() {
+        int silver = getTotalPoints() / 100;
+        silver -= getGoldMedals() * 2;
+        return silver;
+    }
+
+    public int getSilverMedalsByTheme(int themePoints) {
+        int sliver = (themePoints / 100);
+        return sliver;
+    }
 }
