@@ -611,4 +611,24 @@ public class UserModel {
         }
         return accountList;
     }
+
+    public LinkedList<String> getAllAccessTokens() {
+        LinkedList<String> accessTokens = new LinkedList();
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Statement st;
+            ResultSet rs;
+            Connection con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", "davidkenny", "root1");
+            st = con.createStatement();
+            rs = st.executeQuery("select * from accessToken");
+            while (rs.next()) {
+                String description = rs.getString("description");
+                accessTokens.add(description);
+            }
+            con.close();
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return accessTokens;
+    }
 }
