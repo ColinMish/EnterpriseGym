@@ -26,11 +26,8 @@ public class UserEntity {
         this.email = email;
         this.university = university;
         this.country = country;
-        this.status = status;
-        this.password = password;
         this.matriculation_nr = matriculation_nr;
         this.year_of_study = year_of_study;
-        this.user_type = user_type;
         this.gender = gender;
         this.subject = subject;
         this.school = school;

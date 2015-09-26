@@ -122,7 +122,7 @@
                             <tr>
                                 <td><%=nextAccount.getUsername()%></td>
                                 <td><%=nextAccount.getDateJoined()%></td>
-                                <td><a role="button" href="#" class="btn btn-Warning">Edit <span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button></td>
+                                <td><a role="button" href="../EditProfile/<%=account.getUsername()%>" class="btn btn-Warning">Edit <span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button></td>
                                 <%if (account.hasAccessLevel(9)) {%>
                                 <td><a role="button" onclick="checkDelete(<%=account.getId()%>, '<%=account.getUsername()%>')" class="btn btn-Danger">Delete <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>              
                                 <%

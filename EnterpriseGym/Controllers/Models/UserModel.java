@@ -253,6 +253,7 @@ public class UserModel {
             ResultSet rs = ps.executeQuery();
             UserEntity user = new UserEntity();
             rs.next();
+            user.setId(rs.getInt("iduser"));
             user.setName(rs.getString("first_name"));
             user.setLastname(rs.getString("last_name"));
             user.setUniversity(rs.getString("university"));
