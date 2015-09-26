@@ -119,3 +119,13 @@ and open the template in the editor.
 .Carousel  {
         margin-top: 4.4em;
     }
+    
+.panel.height {
+ height: 100px;
+}
+
+    .fixed-panel {
+              min-height: 10;
+              max-height: 10;
+              overflow-y: scroll;
+        }

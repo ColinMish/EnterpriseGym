@@ -47,24 +47,24 @@
             while (iterator.hasNext()) {
                 EventEntity p = (EventEntity) iterator.next();
          %>
-        <div class="col-md-4" id="AboutText">
-                <div class="panel panel-default">
+        <div class="col-sm-6" id="AboutText">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i><%=p.getName()%></h4>
                     </div>
-                    <div class="panel-body">
-                        <p>
-                        <p><%=p.getDescription()%></p>
-                        <p><%=p.getPoints_given()%></p>
+                    <div class="panel-body" class="fixed-panel">
+                        <p><%=p.getEvent_type_name()%> Points Available:<%=p.getPoints_given()%></p>
+                        <p>Date of event: <%=p.getStartdate()%></p>
                         
                              <% if (p.getLength()!=0){ %>                    
-                            <img src="${pageContext.request.contextPath}/Events/Picture/<%=p.getID()%>" style="max-height: 100px; max-width: 100px;" class="img-responsive" alt="News Image">
+                            <img src="${pageContext.request.contextPath}/Events/Picture/<%=p.getID()%>" style="max-height: 300px; max-width: 300px;" class="img-responsive" alt="News Image">
                             <%} %>
                         </p>
                         <a href="${pageContext.request.contextPath}/Events/Event/<%=p.getID()%>" class="btn btn-default">Read More</a>
                     </div>
                 </div>
-            </div>
+         
+         </div>
         <%}%>
                 <%}%>
     </div>
