@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html>
     <%
-        UserEntity user = (UserEntity)request.getAttribute("userdetails");
+        UserEntity user = (UserEntity) request.getAttribute("userdetails");
     %>
 
     <head>
@@ -59,6 +59,7 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
 
+                            <input name="id" type="text" class="form-control" id="userId" />
                             <div class="col-xs-6">
                                 <div class="form-group">
                                     <label for="firstName">First Name:</label>
@@ -88,7 +89,7 @@
 
                             <div class="form-group">
                                 <label for="flagstrap">Country:</label>
-                                <div class="flagstrap" data-input-name="country" data-selected-country=<%if(user == null){%>"GB"<%}else{%><%=user.getCountry()%><%}%> data-scrollable-height="250px"></div>
+                                <div class="flagstrap" data-input-name="country" data-selected-country=<%if (user == null) {%>"GB"<%} else {%><%=user.getCountry()%><%}%> data-scrollable-height="250px"></div>
                             </div>
 
                             <script>
@@ -203,18 +204,19 @@
         </div>
     </article>
     <%
-        if (user != null)
-        {
-            %><script>populateFields("<%=user.getName()%>", "<%=user.getLastname()%>", 
-                        "<%=user.getEmail()%>", 
-                        "<%=user.getGender()%>",
-                        "<%=user.getUniversity()%>",
-                        "<%=user.getSchool()%>",
-                        "<%=user.getSubject()%>",
-                        "<%=user.getYearOfStudy()%>",
-                        "<%=user.getMatric()%>");</script><%
-        }               
-    %>
-    <%@include file ="footer.jsp" %>
+        if (user != null) {
+    %><script>
+        $("#userId").val("<%=user.getId()%>");
+        populateFields("<%=user.getName()%>", "<%=user.getLastname()%>",
+                "<%=user.getEmail()%>",
+                "<%=user.getGender()%>",
+                "<%=user.getUniversity()%>",
+                "<%=user.getSchool()%>",
+                "<%=user.getSubject()%>",
+                "<%=user.getYearOfStudy()%>",
+                "<%=user.getMatric()%>");</script><%
+            }
+        %>
+        <%@include file ="footer.jsp" %>
 </body>
 </html>

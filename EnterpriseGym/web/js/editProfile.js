@@ -10,11 +10,13 @@ var emailValid = false;
 
 $(document).ready(function () {
 
+    $("#userId").hide();
     $("#editDetails").submit(function (e)
     {
         if (!validateForm())
         {
             e.preventDefault();
+            updateDetails();
         }
     });
 
@@ -139,4 +141,48 @@ function populateFields(firstname, lastname, email, gender, uni, school, subject
     $("#subjectEdit").val(subject);
     $("#yosEdit").val(currentYear);
     $("#matricEdit").val(matric);
+}
+
+function updateDetails() {
+    var userId = $("#userId").val();
+    var firstname = $("#firstNameEdit").val();
+    var lastname = $("#lastNameEdit").val();
+    var email = $("#emailEdit").val();
+    var gender = $("#genderEdit").val();
+    var university = $("#universityEdit").val();
+    var school = $("#schoolEdit").val();
+    var subject = $("#subjectEdit").val();
+    var yearOfStudy = $("#yosEdit").val();
+    var matric = $("#matricEdit").val();
+
+    $.ajax({
+        type: "POST",
+        url: "Profile/EditDetails",
+        async: false,
+        data: {
+            userId : userId,
+            firstname: firstname,
+            lastname: lastname,
+            email: email,
+            gender: gender,
+            university: university,
+            school: school,
+            subject: subject,
+            yearOfStudy: yearOfStudy,
+            matric: matric},
+        cache: false,
+        success: function (result) {
+            if(result === "failed")
+            {
+                console.log("update failed");
+            }
+            else if(result === "success")
+            {
+                console.log("update great success!");
+            }
+        },
+        fail: function () {
+            console.log("Ajax error");
+        }
+    });
 }

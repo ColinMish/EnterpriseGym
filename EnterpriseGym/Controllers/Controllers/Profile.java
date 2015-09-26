@@ -23,7 +23,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import javax.servlet.http.HttpSession;
 import lib.Convertors;
@@ -72,7 +71,7 @@ public class Profile extends HttpServlet {
 
         if (args.length == 2 && args[1].equals("Profile")) {
             displayprofile(response, request);
-        } else if (args[1].equals("EditProfile")) {
+        } else if (args.length == 2 && args[1].equals("EditProfile")) {
             editdetails(response, request);
         }
 
@@ -127,14 +126,16 @@ public class Profile extends HttpServlet {
         UserEntity user = null;
         if (userdetails != null && userdetails.size() > 0) {
             user = userdetails.getFirst();
+            if (account.hasAccessLevel(6)) {
+                java.util.LinkedList<String> accessTokens = model.getAllAccessTokens();
+                request.setAttribute("allAccess", accessTokens);
+            }
+            request.setAttribute("userdetails", user);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/editdetails.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            throw new ServletException();
         }
-        if (account.hasAccessLevel(6)) {
-            java.util.LinkedList<String> accessTokens = model.getAllAccessTokens();
-            request.setAttribute("allAccess", accessTokens);
-        }
-        request.setAttribute("userdetails", user);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/editdetails.jsp");
-        dispatcher.forward(request, response);
     }
 
     /**
@@ -207,50 +208,32 @@ public class Profile extends HttpServlet {
 
     private void editDetails(HttpServletResponse response, HttpServletRequest request) throws IOException {
         response.setContentType("text/html");
+        String result = "success";
         UserModel user = new UserModel();
-        PrintWriter out = response.getWriter();
 
+        String userId = request.getParameter("userId");
+        if (userId == null || userId.equals("")) {
+            throw new IOException();
+        }
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
         String email = request.getParameter("email");
-        String country = request.getParameter("country");
-        String year = request.getParameter("year");
+        String gender = request.getParameter("gender");
+        String university = request.getParameter("university");
+        String school = request.getParameter("school");
+        String subject = request.getParameter("subject");
+        String yearOfStudy = request.getParameter("yearOfStudy");
+        String matric = request.getParameter("matric");
 
-        //user.updateUser();
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-
-                //Establish a connection with the database url 
-            //while attempts to select an appropriate driver from the set of available drivers.
-            Connection database;
-            database = DriverManager.getConnection(
-                    "jdbc:mysql://localhost/project",
-                    "root", "");
-
-            //Run the Sql query and returns the result set object obtained from the query
-            PreparedStatement value = database.prepareStatement(
-                    "UPDATE regtable SET first name=?, last name=?, email=?, country=? year=?, password=?, newpassword=?, newpassword=? ");
-
-            value.setString(1, firstname);
-            value.setString(2, lastname);
-            value.setString(3, email);
-            value.setString(4, country);
-            value.setString(5, year);
-
-            int i = value.executeUpdate();
-            if (i > 0) {
-                out.print("You successfully updated your details " + ""
-                        + "<a href='profile.jsp'>Go to your Profile</a>");
-            }
-
-        } catch (ClassNotFoundException error) {
-            System.out.println(error);
-        } catch (SQLException error) {
-            System.out.println(error);
-
+            user.updateUser(userId, firstname, lastname, email, gender, university, school, subject, yearOfStudy, matric);
+        } catch (Exception e) {
+            result = "failed";
         }
-
-        out.close();
-
+        try (PrintWriter out = response.getWriter()) {
+            out.print(result);
+            out.flush();
+            out.close();
+        }
     }
 }
