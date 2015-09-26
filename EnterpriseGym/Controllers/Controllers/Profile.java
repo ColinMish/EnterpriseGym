@@ -9,6 +9,7 @@ import Entities.Account;
 import Entities.UserEntity;
 import Models.UserModel;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -18,7 +19,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import javax.servlet.http.HttpSession;
 import lib.Convertors;
@@ -40,7 +40,8 @@ public class Profile extends HttpServlet {
     public Profile() {
         super();
         CommandsMap.put("Points", 1);
-        CommandsMap.put("ChangePassword", 2);
+        CommandsMap.put("EditDetails", 2);
+        CommandsMap.put("ChangePassword", 3);
     }
 
     /**
@@ -66,7 +67,7 @@ public class Profile extends HttpServlet {
 
         if (args.length == 2 && args[1].equals("Profile")) {
             displayprofile(response, request);
-        } else if (args[1].equals("EditProfile")) {
+        } else if (args.length >= 2 && args[1].equals("EditProfile")) {
             editdetails(response, request);
         }
 
@@ -118,14 +119,19 @@ public class Profile extends HttpServlet {
         Account account = (Account) session.getAttribute("account");
         String username = getUsername(request, account);
         java.util.LinkedList<UserEntity> userdetails = model.getDetails(username);
-        if(account.hasAccessLevel(6))
-        {
-            java.util.LinkedList<String> accessTokens = model.getAllAccessTokens();
-            request.setAttribute("allAccess", accessTokens);
+        UserEntity user = null;
+        if (userdetails != null && userdetails.size() > 0) {
+            user = userdetails.getFirst();
+            if (account.hasAccessLevel(6)) {
+                java.util.LinkedList<String> accessTokens = model.getAllAccessTokens();
+                request.setAttribute("allAccess", accessTokens);
+            }
+            request.setAttribute("userdetails", user);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/editdetails.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            throw new ServletException();
         }
-        request.setAttribute("userdetails", userdetails);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/editdetails.jsp");
-        dispatcher.forward(request, response);
     }
 
     /**
@@ -159,13 +165,6 @@ public class Profile extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String args[] = Convertors.SplitRequestPath(request);
-
-        if (args.length == 2) {
-            // RequestDispatcher dispatcher = request.getRequestDispatcher("profile.jsp");
-            //   dispatcher.forward(request, response);
-            //displayprofile(response,request);
-        }
-
         int command;
         try {
             command = (Integer) CommandsMap.get(args[2]);
@@ -173,6 +172,8 @@ public class Profile extends HttpServlet {
             return;
         }
         switch (command) {
+            case 2:
+                editDetails(response, request);
             case 3:
                 changePassword(response, request);
                 break;
@@ -199,5 +200,36 @@ public class Profile extends HttpServlet {
             dispatcher.forward(request, response);
         }
         return true;
+    }
+
+    private void editDetails(HttpServletResponse response, HttpServletRequest request) throws IOException {
+        response.setContentType("text/html");
+        String result = "success";
+        UserModel user = new UserModel();
+
+        String userId = request.getParameter("userId");
+        if (userId == null || userId.equals("")) {
+            throw new IOException();
+        }
+        String firstname = request.getParameter("firstname");
+        String lastname = request.getParameter("lastname");
+        String email = request.getParameter("email");
+        String gender = request.getParameter("gender");
+        String university = request.getParameter("university");
+        String school = request.getParameter("school");
+        String subject = request.getParameter("subject");
+        String yearOfStudy = request.getParameter("yearOfStudy");
+        String matric = request.getParameter("matric");
+
+        try {
+            user.updateUser(userId, firstname, lastname, email, gender, university, school, subject, yearOfStudy, matric);
+        } catch (Exception e) {
+            result = "failed";
+        }
+        try (PrintWriter out = response.getWriter()) {
+            out.print(result);
+            out.flush();
+            out.close();
+        }
     }
 }

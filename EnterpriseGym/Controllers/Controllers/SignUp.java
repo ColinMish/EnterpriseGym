@@ -109,7 +109,7 @@ public class SignUp extends HttpServlet {
                 //Log the new user into the system here. 
                 request.setAttribute("registered", true);
 
-                if (accountNumber != null) {
+                if (accountNumber != null && accountNumber != "") {
                     int accountNo = Integer.parseInt(accountNumber);
                     String oldUsername = user.getUsernameFromAccountId(accountNo);
                     //get points

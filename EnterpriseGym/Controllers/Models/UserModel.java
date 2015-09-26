@@ -8,7 +8,9 @@ package Models;
 import Entities.Account;
 import Entities.UserEntity;
 import java.sql.*;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Set;
 import lib.Security;
 
 /**
@@ -630,5 +632,79 @@ public class UserModel {
             System.out.println(e.getMessage());
         }
         return accessTokens;
+    }
+
+    public void updateUser(String Id, String firstname, String lastname, String email, String gender, String university, String school, String subject, String yearOfStudy, String matric) {
+        int userId = Integer.parseInt(Id);
+        HashMap<String, String> updates = getAllUpdateFields(firstname, lastname, email, gender, university, school, subject, yearOfStudy, matric);
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Statement st;
+            ResultSet rs;
+            Connection con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", "davidkenny", "root1");
+            String update = "UPDATE `user` SET ";
+            Set<String> keys = updates.keySet();
+            String[] keyArray = keys.toArray(new String[keys.size()]);
+
+            for (int i = 0; i < keyArray.length; i++) {
+                update += keyArray[i] + "=?";
+                if (i != keyArray.length - 1) {
+                    update += ", ";
+                }
+            }
+            update += " WHERE iduser=?";
+            PreparedStatement ps = con.prepareStatement(update);
+            for (int i = 0; i < keyArray.length; i++) {
+                ps.setString(i, keyArray[i]);
+            }
+            ps.executeUpdate();
+            ps.close();
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+        }
+    }
+
+    private HashMap getAllUpdateFields(String firstname, String lastname, String email, String gender, String university, String school, String subject, String yearOfStudy, String matric) {
+        HashMap myUpdates = new HashMap();
+        if (!isNullOrEmpty(firstname)) {
+            myUpdates.put("firstname", firstname);
+        }
+
+        if (!isNullOrEmpty(lastname)) {
+            myUpdates.put("lastname", lastname);
+        }
+
+        if (!isNullOrEmpty(email)) {
+            myUpdates.put("email", email);
+        }
+
+        if (!isNullOrEmpty(gender)) {
+            myUpdates.put("gender", gender);
+        }
+
+        if (!isNullOrEmpty(university)) {
+            myUpdates.put("university", university);
+        }
+
+        if (!isNullOrEmpty(school)) {
+            myUpdates.put("school", school);
+        }
+
+        if (!isNullOrEmpty(subject)) {
+            myUpdates.put("subject", subject);
+        }
+
+        if (!isNullOrEmpty(yearOfStudy)) {
+            myUpdates.put("yearOfStudy", yearOfStudy);
+        }
+
+        if (!isNullOrEmpty(matric)) {
+            myUpdates.put("matric", matric);
+        }
+        return myUpdates;
+    }
+
+    private boolean isNullOrEmpty(String string) {
+        return string == null || string.equals("");
     }
 }
