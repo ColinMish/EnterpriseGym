@@ -32,7 +32,7 @@ import lib.Convertors;
 
 public class Profile extends HttpServlet {
 
-    private HashMap CommandsMap = new HashMap();
+    private final HashMap CommandsMap = new HashMap();
 
     /**
      * Constructor
@@ -42,6 +42,7 @@ public class Profile extends HttpServlet {
         CommandsMap.put("Points", 1);
         CommandsMap.put("EditDetails", 2);
         CommandsMap.put("ChangePassword", 3);
+        CommandsMap.put("EditAccess", 4);
     }
 
     /**
@@ -123,8 +124,10 @@ public class Profile extends HttpServlet {
         if (userdetails != null && userdetails.size() > 0) {
             user = userdetails.getFirst();
             if (account.hasAccessLevel(6)) {
+                Account userAccount = model.getAccount(username);
                 java.util.LinkedList<String> accessTokens = model.getAllAccessTokens();
                 request.setAttribute("allAccess", accessTokens);
+                request.setAttribute("userAccount", userAccount);
             }
             request.setAttribute("userdetails", user);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/editdetails.jsp");
@@ -177,6 +180,9 @@ public class Profile extends HttpServlet {
             case 3:
                 changePassword(response, request);
                 break;
+            case 4:
+                editAccess(response, request);
+                break;
             default:
             //Error message here.
         }
@@ -223,6 +229,30 @@ public class Profile extends HttpServlet {
 
         try {
             user.updateUser(userId, firstname, lastname, email, gender, university, school, subject, yearOfStudy, matric);
+        } catch (Exception e) {
+            result = "failed";
+        }
+        try (PrintWriter out = response.getWriter()) {
+            out.print(result);
+            out.flush();
+            out.close();
+        }
+    }
+
+    private void editAccess(HttpServletResponse response, HttpServletRequest request) throws IOException {
+        response.setContentType("text/html");
+        String result = "success";
+        UserModel user = new UserModel();
+
+        String accountId = request.getParameter("accountId");
+        if (accountId == null || accountId.equals("")) {
+            throw new IOException();
+        }
+        String[] tokensAsString = request.getParameterValues("tokens[]");
+        try {
+            int accountid = Integer.parseInt(accountId);
+            int[] tokens = Convertors.convertStringArrayToInt(tokensAsString);
+            user.updateAccess(accountid, tokens);
         } catch (Exception e) {
             result = "failed";
         }

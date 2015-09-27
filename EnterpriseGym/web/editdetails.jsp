@@ -169,12 +169,14 @@
 
             <%if (account.hasAccessLevel(6)) {
                     LinkedList allAccess = (LinkedList) request.getAttribute("allAccess");
+                    Account userAccount = (Account) request.getAttribute("userAccount");
+                    if (allAccess != null && userAccount != null) {
             %>
-            <form name="UpdateAccess" method="POST" action="UpdateAccess">
+            <form id="UpdateAccess" name="UpdateAccess" method="POST" action="UpdateAccess">
                 <div class="col-md-8" id="accessLevels">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <table class="table table-hover" id="privilages">
+                            <table class="table table-hover">
                                 <thead>
                                     <tr>
                                         <th>Access Level</th>
@@ -190,18 +192,23 @@
                                     <tr>
                                         <td><%=i%></td>
                                         <td><%=accesslevel%></td>
-                                        <td><input type="checkbox" name="accessLevel" value="<%=i%>" <%if (account.hasAccessLevel(i)) {%>checked<%}%>></td>
+                                        <td id="checkbox"><input type="checkbox" name="accessLevel" value="<%=i%>" <%if (userAccount.hasAccessLevel(i)) {%>checked<%}%>></td>
                                     </tr>
                                     <%
                                         }
                                     %>
                                 </tbody> 
                             </table>
+                            <input type="hidden" id="accountId" value="<%=userAccount.getId()%>">
+                            <input class="btn btn-primary" type="submit" value="Update"><br><br>
+                            <div id="tokenSuccessMessage" class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Updates Saved Successfully.</p></div>
+                            <div id="tokenErrorMessage" class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Error Updating access tokens.</p></div>
                         </div>
                     </div>
                 </div>
             </form>
-            <%}%>
+            <%}
+                }%>
         </div>
     </article>
     <%
