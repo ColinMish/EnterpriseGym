@@ -3,11 +3,34 @@ package lib;
 import java.net.URLDecoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.LinkedList;
 import java.util.StringTokenizer;
 //import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 
 public final class Convertors {
+
+    public static int[] convertStringArrayToInt(String[] stringArray) {
+        int[] intarray = new int[stringArray.length];
+        try {
+            for (int i = 0; i < stringArray.length; i++) {
+                intarray[i] = Integer.parseInt(stringArray[i]);
+            }
+        } catch (NumberFormatException e) {
+            throw e;
+        }
+        return intarray;
+    }
+    
+    public static LinkedList<Integer> convertIntArrayToLinkedList(int [] array)
+    {
+        LinkedList<Integer> list = new LinkedList();
+        for(int item : array)
+        {
+            list.push(item);
+        }
+        return list;
+    }
 
     public void Convertors() {
 
@@ -59,7 +82,7 @@ public final class Convertors {
             // System.out.print(Integer.toHexString(val)+",");
         }
 
-	  //System.out.println();
+        //System.out.println();
     }
 
 //From: http://www.captain.at/howto-java-convert-binary-data.php
@@ -108,7 +131,7 @@ public final class Convertors {
 
         StringTokenizer st = SplitString(type);
         args = new String[st.countTokens()];
-		//Lets assume the number is the last argument
+        //Lets assume the number is the last argument
 
         int argv = 0;
         while (st.hasMoreTokens()) {;
@@ -125,17 +148,17 @@ public final class Convertors {
             argv++;
         }
 
-	//so now they'll be in the args array.  
+        //so now they'll be in the args array.  
         // argv[0] should be the user directory
         return args;
     }
-    
+
     public static String[] SplitRequestPath(HttpServletRequest request) {
         String args[] = null;
 
         StringTokenizer st = SplitString(request.getRequestURI());
         args = new String[st.countTokens()];
-		//Lets assume the number is the last argument
+        //Lets assume the number is the last argument
 
         int argv = 0;
         while (st.hasMoreTokens()) {;
@@ -152,7 +175,7 @@ public final class Convertors {
             argv++;
         }
 
-	//so now they'll be in the args array.  
+        //so now they'll be in the args array.  
         // argv[0] should be the user directory
         return args;
     }
@@ -161,23 +184,23 @@ public final class Convertors {
         return new StringTokenizer(str, "/");
 
     }
-        public static String toSHA1(byte[] convertme) {
-	    MessageDigest md = null;
-	    try {
-	        md = MessageDigest.getInstance("SHA1");
-	    }
-	    catch(NoSuchAlgorithmException e) {
-	        e.printStackTrace();
-	    } 
-	    return byteArrayToHexString(md.digest(convertme));
-	}
-	
-	public static String byteArrayToHexString(byte[] b) {
-		  String result = "";
-		  for (int i=0; i < b.length; i++) {
-		    result +=
-		          Integer.toString( ( b[i] & 0xff ) + 0x100, 16).substring( 1 );
-		  }
-		  return result;
-		}
+
+    public static String toSHA1(byte[] convertme) {
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("SHA1");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return byteArrayToHexString(md.digest(convertme));
+    }
+
+    public static String byteArrayToHexString(byte[] b) {
+        String result = "";
+        for (int i = 0; i < b.length; i++) {
+            result
+                    += Integer.toString((b[i] & 0xff) + 0x100, 16).substring(1);
+        }
+        return result;
+    }
 }

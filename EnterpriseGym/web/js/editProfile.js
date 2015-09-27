@@ -13,11 +13,19 @@ $(document).ready(function () {
     $("#userId").hide();
     $("#successMessage").hide();
     $("#errorMessage").hide();
+    $("#tokenSuccessMessage").hide();
+    $("#tokenErrorMessage").hide();
     $("#editDetails").submit(function (e)
     {
         e.preventDefault();
         updateDetails();
     });
+    $("#UpdateAccess").submit(function (e)
+    {
+        e.preventDefault();
+        updatePrivilages();
+    });
+
 
     ///university change
     $("#universityEdit").change(function () {
@@ -184,4 +192,40 @@ function updateDetails() {
             console.log("Ajax error");
         }
     });
+}
+
+function updatePrivilages() {
+
+    var tokens = getChecked();
+    var accountId = $("#accountId").val();
+
+    $.ajax({
+        type: "POST",
+        url: '../EditProfile/EditAccess',
+        async: false,
+        data: {tokens: tokens, accountId: accountId},
+        cache: false,
+        success: function (result) {
+            if (result === "failed")
+            {
+                $("#tokenErrorMessage").show();
+            }
+            else if (result === "success")
+            {
+                $("#tokenSuccessMessage").show();
+            }
+        },
+        fail: function () {
+            console.log("Ajax error");
+        }
+    });
+}
+
+function getChecked()
+{
+    var tokens = [];
+    $('#checkbox :checked').each(function () {
+        tokens.push($(this).val());
+    });
+    return tokens;
 }
