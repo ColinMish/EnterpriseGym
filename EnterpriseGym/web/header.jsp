@@ -206,8 +206,6 @@
                     </div>
                 </div>
 
-
-
                 <!-- Controls -->
                 <a class="left carousel-control visible-lg" href="#myCarousel" data-slide="prev">
                     <span class="icon-prev"></span>

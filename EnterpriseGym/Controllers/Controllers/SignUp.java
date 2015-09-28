@@ -104,12 +104,12 @@ public class SignUp extends HttpServlet {
 
         try {
             if (user.register(username, password, email, first, last, gender, country, university, school, subject, yearofstudy, matric, saltAsString) == false) {
-                request.setAttribute("registered", false);
+                request.setAttribute("registered", Boolean.FALSE);
             } else {
                 //Log the new user into the system here. 
-                request.setAttribute("registered", true);
+                request.setAttribute("registered", Boolean.TRUE);
 
-                if (accountNumber != null && accountNumber != "") {
+                if (accountNumber != null && !accountNumber.equals("")) {
                     int accountNo = Integer.parseInt(accountNumber);
                     String oldUsername = user.getUsernameFromAccountId(accountNo);
                     //get points
