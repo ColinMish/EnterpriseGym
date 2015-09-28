@@ -154,10 +154,7 @@
                                         </span>
                                     </div>
                                 </div>
-                            </div>
-                            <script type="text/javascript">
-                              
-                            </script>    
+                            </div>                          
                         </div>
 
                         <label for="datetimepicker2">End date / Time:</label>           
