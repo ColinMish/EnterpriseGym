@@ -6,11 +6,11 @@
     </head>
     <%@include file="header.jsp" %>
     <div class ="mobile">
-    <%@include file="sidebar.jsp"%>
+        <%@include file="sidebar.jsp"%>
     </div>
 
     <!-- Page Content -->
-    
+
     <div class="content">
         <div class="container">
 
@@ -21,7 +21,7 @@
                 </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i>Enterprise and Being Enterprising? What do we mean?</h4>
@@ -34,16 +34,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                    <div class="col-md-4">
-                        <iframe src="https://www.google.com/calendar/embed?showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=500&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=m9941bpd6nhji35pjjp3blv8do%40group.calendar.google.com&amp;color=%23853104&amp;ctz=Europe%2FLondon" style=" border-width:0 " width="400" height="500" frameborder="0" scrolling="no"></iframe>
-                    </div>
-            </div>
-            </div>
-            <hr>
-
+            <%@include file ="calendar.jsp" %>
         </div>
-    
+        <hr>
+    </div>
 
     <%@include file ="footer.jsp" %>
 
