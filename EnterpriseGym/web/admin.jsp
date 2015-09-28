@@ -13,7 +13,6 @@
        
     </div>
     <script src="${pageContext.request.contextPath}/js/admin.js"></script>
-    <script src="${pageContext.request.contextPath}/js/register.js"></script>
     <%@page import="Entities.Account"%>
 
     <% Boolean storyAdded = (Boolean) request.getAttribute("storyAdded"); %>
@@ -82,7 +81,7 @@
 
                         <textarea name="editor1" id="editor1" rows="10" cols="80"></textarea>
                         <script>
-                            CKEDITOR.replace('editor1');
+                           
                         </script>
                         <br/>
                         <span class="btn btn-default btn-file">
@@ -99,16 +98,7 @@
                 </div>
             </div>
         </div>
-        <script>
-            $("#editNews").click(function ()
-            {
-                window.location = "Admin/News";
-            });
-            $("#newsPanel").click(function () {
-                $("#newsEditor").toggle("fast", function () {
-                });
-            });
-        </script>
+
         <%
             }
             if (account.hasAccessLevel(10)) {
@@ -133,16 +123,7 @@
                 </div>
             </div>
         </div>
-        <script>
-            $("#editAccount").click(function ()
-            {
-                window.location = "Admin/Account";
-            });
-            $("#userPanel").click(function () {
-                $("#userEditor").toggle("fast", function () {
-                });
-            });
-        </script>
+        
         <%}
             if (account.hasAccessLevel(2)) {%>
         <div class="col-md-12">
@@ -175,9 +156,7 @@
                                 </div>
                             </div>
                             <script type="text/javascript">
-                                $(function () {
-                                    $('#datetimepicker1').datetimepicker();
-                                });
+                              
                             </script>    
                         </div>
 
@@ -193,11 +172,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <script type="text/javascript">
-                                $(function () {
-                                    $('#datetimepicker2').datetimepicker();
-                                });
-                            </script>
+                           
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
@@ -212,9 +187,6 @@
 
                         <label for="eventDescription">Description:</label>
                         <textarea name="eventDescription" id="editor1" rows="10" cols="80"></textarea>
-                        <script>
-                            CKEDITOR.replace('eventDescription');
-                        </script>
                         <br/>
                         <span class="btn btn-default btn-file">
                             <input name="image" multiple accept='image/*' type="file">
@@ -249,16 +221,7 @@
                 </div>
             </div>
         </div>                            
-        <script>
-            $("#editEvent").click(function ()
-            {
-                window.location = "Admin/Event";
-            });
-            $("#eventsPanel").click(function () {
-                $("#eventsEditor").toggle("fast", function () {
-                });
-            });
-        </script>
+        
         <%}
             if (account.hasAccessLevel(4)) {%>
         <div class="col-md-12">
@@ -271,12 +234,7 @@
                 </div>
             </div>
         </div>
-        <script>
-            $("#quizPanel").click(function () {
-                $("#quizEditor").toggle("fast", function () {
-                });
-            });
-        </script>
+        
 
         <%}
             if (account.hasAccessLevel(5)) {%>
@@ -315,12 +273,7 @@
                 </div>
             </div>
         </div>
-        <script>
-            $("#quickRegisterPanel").click(function () {
-                $("#quickRegisterEditor").toggle("fast", function () {
-                });
-            });
-        </script>
+       
         <%}%>
         <div class="col-md-12">
             <div class="panel panel-default">
@@ -337,14 +290,7 @@
                 </div>          
             </div>
         </div>
-        <script>
-            $("#stats").click(function () {
-                window.location = "Stats";
-            });
-            $("#leaderboard").click(function(){
-                window.location ="Admin/Leaderboard";
-            })
-        </script>
+       
     </div>
 </body>
 <%@include file ="footer.jsp" %>

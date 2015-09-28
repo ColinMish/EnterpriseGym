@@ -15,6 +15,64 @@ $(document).ready(function ()
         var email = $("#email").val();
         tempSignUp(firstName, lastName, email);
     });
+    
+   CKEDITOR.replace('editor1');
+ CKEDITOR.replace('eventDescription');
+ 
+ 
+
+             $("#editNews").click(function ()
+            {
+                window.location = "Admin/News";
+            });
+            
+            $("#newsPanel").click(function () {
+                $("#newsEditor").toggle("fast", function () {
+                });
+            });
+            
+              $("#editAccount").click(function ()
+            {
+                window.location = "Admin/Account";
+            });
+            $("#userPanel").click(function () {
+                $("#userEditor").toggle("fast", function () {
+                });
+            });
+            
+              $(function () {
+              $('#datetimepicker1').datetimepicker();
+              $('#datetimepicker2').datetimepicker();
+              });
+              
+                 $("#editEvent").click(function ()
+            {
+                window.location = "Admin/Event";
+            });
+            $("#eventsPanel").click(function () {
+                $("#eventsEditor").toggle("fast", function () {
+                });
+            });
+            
+              $("#quizPanel").click(function () {
+                $("#quizEditor").toggle("fast", function () {
+                });
+            });
+            
+              $("#quickRegisterPanel").click(function () {
+                $("#quickRegisterEditor").toggle("fast", function () {
+                });
+            });
+            
+              $("#stats").click(function () {
+                window.location = "Stats";
+            });
+            $("#leaderboard").click(function(){
+                window.location ="Admin/Leaderboard";
+            });
+             
+    
+    
 });
 
 function deleteNews()
@@ -113,3 +171,4 @@ function deleteEvent()
     });
 }
 
+ 
