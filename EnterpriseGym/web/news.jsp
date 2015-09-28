@@ -16,8 +16,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link href='${pageContext.request.contextPath}/css/profile.css' rel='stylesheet' type='text/css'>
-        <link href='${pageContext.request.contextPath}/css/style.css' rel='stylesheet' type='text/css'>
+
     </head>
 <body>
      <%@include file="header.jsp" %>

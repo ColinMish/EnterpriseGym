@@ -12,8 +12,7 @@
 
     <%@include file="header.jsp" %>
     
-       <link href='css/carousel.css' rel='stylesheet' type='text/css'>
-    <link href='css/media.css' rel='stylesheet' type='text/css'>
+
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>

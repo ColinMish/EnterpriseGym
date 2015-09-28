@@ -108,8 +108,9 @@
                             <tr>
                                 <th>UserName</th>
                                 <th>Date Joined</th>
-                                <th>Edit Account</th>
-                                <th>Temp Account</th>                        
+                                <th></th>
+                                <th></th>  
+                                <th>Temp Account</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -134,6 +135,7 @@
                                 }
                             %>
                     </table>
+                    <a href="javascript:history.back()" class="btn btn-danger">Back</a>
                 </div>
             </div>
         </div>  

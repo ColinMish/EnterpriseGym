@@ -8,8 +8,7 @@
 <%@page import="java.util.Iterator"%>
 <%@page import="Entities.UserEntity"%>
 <html>
-    <link href='css/carousel.css' rel='stylesheet' type='text/css'>
-    <link href='css/media.css' rel='stylesheet' type='text/css'>
+
     <%@include file="header.jsp" %>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -106,14 +105,14 @@
                         java.util.LinkedList<EventEntity> event = (java.util.LinkedList<EventEntity>) request.getAttribute("events");
                         if (event.size() == 0) {
                     %>
-                    <p>No News found.</p>
+                    <p>No Events found.</p>
                     <%
                     } else { %>
                     <table class="table table-hover" id="datatable2">
                         <thead>
                             <tr>
                                 <th>Event</th>
-                                <th></th>
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -133,6 +132,7 @@
 
                             <%} %></tbody> <%}%>
                     </table>
+                    <a href="javascript:history.back()" class="btn btn-danger">Back</a>
                 </div>
             </div>
         </div>  

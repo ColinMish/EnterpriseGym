@@ -12,11 +12,8 @@
     <script src="${pageContext.request.contextPath}/js/charts/eventchart.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/js/charts/eventuserchart.js" type="text/javascript"></script>
     <link href="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href='css/carousel.css' rel='stylesheet' type='text/css'>
-    <link href='css/media.css' rel='stylesheet' type='text/css'>
-    <div class="hidden-xs">
-        <%@include file="sidebar.jsp"%>
-    </div>
+
+ 
 <div class="banner"></div>
     <%
         LinkedList<LinkedList<String>> searchTable = new LinkedList();

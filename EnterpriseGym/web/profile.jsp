@@ -9,9 +9,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link href='css/carousel.css' rel='stylesheet' type='text/css'>
+
         <link href='css/profile.css' rel='stylesheet' type='text/css'>
-        <link href='css/media.css' rel='stylesheet' type='text/css'>
+
     </head>
     <body>
         <%@include file="header.jsp" %>

@@ -6,16 +6,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    
-   <head>
-      <link href='${pageContext.request.contextPath}css/media.css' rel='stylesheet' type='text/css'>
-    </head> 
-   
+      
     <body>
     <%@include file="header.jsp" %>
-    <div class ="mobile">
-    <%@include file="sidebar.jsp"%>
-    </div>
+
     
     <!-- Page Content -->
     <div class="container">

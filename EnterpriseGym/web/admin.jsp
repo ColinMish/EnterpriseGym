@@ -92,7 +92,7 @@
                         <br>
 
                         <div class="form-group">
-                            <input class="btn btn-primary" type="submit" value="Submit">
+                            <input class="btn btn-primary" type="submit" value="Create News">
                             
                         </div>
                     </form>
@@ -151,6 +151,11 @@
                     <h4><i class="fa fa-fw fa-check"></i>Events Management</h4>
                 </div>
                 <div id="eventsEditor" class="panel-body" hidden>
+                    <%if (account.hasAccessLevel(13)) {%>
+                    <button style="margin-left: 10px;" id="editEvent" class="btn btn-success" type="button">Event Management <span class="glyphicon glyphicon-pencil" aria-hidden="true"></button>
+                            <%}%>
+                            <hr>
+                            <h3>Add Event </h3>
                     <form action="NewEvent" role="form" id="NewEvent" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="eventTitle">Event Title:</label>
@@ -237,10 +242,7 @@
 
                         <br>
                         <div class="form-group">
-                            <input class="btn btn-default" type="submit" value="Create Event">
-                            <%if (account.hasAccessLevel(13)) {%>
-                            <input style="margin-left: 10px;" id="editEvent" class="btn btn-default" type="button" value="Edit Event">
-                            <%}%>
+                            <input class="btn btn-primary" type="submit" value="Create Event">                          
                             <br/>  
                         </div>
                     </form> 
