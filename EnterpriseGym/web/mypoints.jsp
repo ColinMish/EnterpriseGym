@@ -86,14 +86,14 @@
 </head>
 <body>
     <div class="banner"></div>
-    <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+    <div id="container"></div>
 
 
 
     <div class="col-md-4" id="ConnectText">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h4><i class="fa fa-fw fa-check"></i><strong>Points Table</strong></h4><br>
+                <h4><i class="fa fa-fw fa-check"></i>Points Table</h4>
             </div>
             <div class="panel-body">
                 <table class="table table-hover" id="datatable2">
@@ -141,7 +141,7 @@
     <div class="col-md-8" id="ConnectText2">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h4><i class="fa fa-fw fa-check"></i><strong>Progress Tracker</strong></h4><br>
+                <h4><i class="fa fa-fw fa-check"></i>Progress Tracker</h4>
             </div>
             <div class="panel-body">
                 <table class="table table-hover" id="datatable2">
@@ -205,10 +205,10 @@
     </div>
 
 
-    <div class="col-md-4" id="ConnectText2">
+    <div class="col-md-12" id="ConnectText2">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h4><i class="fa fa-fw fa-check"></i><strong>Medals</strong></h4><br>
+                <h4><i class="fa fa-fw fa-check"></i>Medals</h4>
             </div>
             <div class="panel-body">
                 <% if (user.getTotalPoints() < 100) {
@@ -228,6 +228,7 @@
         </div>
     </div>
     <%}%>
+    <div class="clr"></div>
     <%@include file = "footer.jsp" %>
 </body>
 </html>

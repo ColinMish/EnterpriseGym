@@ -7,7 +7,6 @@
         <link href='${pageContext.request.contextPath}/css/media.css' rel='stylesheet' type='text/css'>
 <footer>
     
-    <!-- TODO: Decide Footer Content -->
     <div class="navbar navbar-fixed-bottom">
         
     </div>
@@ -30,17 +29,3 @@
       </div>
     
 </footer>
-
-<!-- jQuery -->
-    <!--<script src="${pageContext.request.contextPath}/js/jquery.js"></script>-->
-
-    <!-- Bootstrap Core JavaScript -->
-
-
-    <!-- Script to Activate the Carousel
-    <script>
-    $('.carousel').carousel({
-        interval: 5000; //changes the speed
-    });
-    </script>-->
-    

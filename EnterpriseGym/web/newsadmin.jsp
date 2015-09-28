@@ -3,25 +3,22 @@
     Created on : Sep 23, 2015, 1:01:40 PM
     Author     : davidkenny
 --%>
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Entities.NewsEntity"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="Entities.UserEntity"%>
 <html>
+<head>
     <link href='css/carousel.css' rel='stylesheet' type='text/css'>
     <link href='css/media.css' rel='stylesheet' type='text/css'>
-    <%@include file="header.jsp" %>
-
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
     <script src="${pageContext.request.contextPath}/js/admin.js" type="text/javascript"></script>
-
-
 </head>
 <body>
-
+    <%@include file="header.jsp" %>
     <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
@@ -85,7 +82,7 @@
 
         </div>
     </div>
-
+    
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -97,7 +94,7 @@
         <div class="col-md-12" id="ConnectText2">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4><i class="fa fa-fw fa-check"></i><strong>News Admin Panel</strong></h4><br>
+                    <h4><i class="fa fa-fw fa-check"></i>News Admin Panel</h4>
                 </div>
                 <div class="panel-body">
                     <table class="table table-hover" id="datatable2">
