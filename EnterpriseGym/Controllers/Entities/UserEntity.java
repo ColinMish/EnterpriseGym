@@ -226,45 +226,57 @@ public class UserEntity {
     }
 
     public int getProjectPercentage() {
-        int percent = project_points;
+        float pointsAsFloat = (float) project_points;
+        float percent = ((pointsAsFloat / 70) * 100);
         if (percent > 100) {
-            percent = (percent - (getSilverMedalsByTheme(project_points)* 100));
+            percent = (percent - (getSilverMedalsByTheme(project_points) * 100));
         }
-        return percent;
+        return (int) percent;
     }
 
     public int getActionPercentage() {
-        int percent = action_points;
+        float pointsAsFloat = (float) action_points;
+        float percent = ((pointsAsFloat / 70) * 100);
         if (percent > 100) {
-            percent = (percent - (getSilverMedalsByTheme(action_points)* 100));
+            percent = (percent - (getSilverMedalsByTheme(action_points) * 100));
         }
-        return percent;
+        return (int) percent;
     }
 
     public int getVirtualPercentage() {
-        int percent = virtual_points;
+        float pointsAsFloat = (float) virtual_points;
+        float percent = ((pointsAsFloat / 70) * 100);
         if (percent > 100) {
-            percent = (percent - (getSilverMedalsByTheme(virtual_points)* 100));
+            percent = (percent - (getSilverMedalsByTheme(virtual_points) * 100));
         }
-        return percent;
+        return (int) percent;
     }
 
     public int getPracticePercentage() {
-        int percent = practice_points;
+        float pointsAsFloat = (float) practice_points;
+        float percent = ((pointsAsFloat / 70) * 100);
         if (percent > 100) {
-            percent = (percent - (getSilverMedalsByTheme(practice_points)* 100));
+            percent = (percent - (getSilverMedalsByTheme(practice_points) * 100));
         }
-        return percent;
+        return (int) percent;
     }
 
     public int getTheoryPercentage() {
-        int percent = theory_points;
+        float pointsAsFloat = (float) theory_points;
+        float percent = ((pointsAsFloat / 70) * 100);
         if (percent > 100) {
-            percent = (percent - (getSilverMedalsByTheme(theory_points)* 100));
+            percent = (percent - (getSilverMedalsByTheme(theory_points) * 100));
         }
-        return percent;
+        return (int) percent;
     }
 
+    public float getPercentageOfTotal(int points)
+    {
+        int total = getTotalPoints();
+        float decimal = (float)points / (float)total;
+        float percent = decimal * 100;
+        return percent;
+    }
     //Set methods for the points. 
     public void setActionPoints(int new_actionpoints) {
         action_points = new_actionpoints;
@@ -296,13 +308,31 @@ public class UserEntity {
     }
 
     public int getSilverMedals() {
-        int silver = getTotalPoints() / 100;
-        silver -= getGoldMedals() * 2;
-        return silver;
+        int count = 0;
+        if (action_points > 69) {
+            count++;
+        }
+        if (practice_points > 69) {
+            count++;
+        }
+        if (theory_points > 69) {
+            count++;
+        }
+        if (virtual_points > 69) {
+            count++;
+        }
+        if (project_points > 69) {
+            count++;
+        }
+        if (total_points > 69) {
+            count++;
+        }
+        return count;
     }
 
     public int getSilverMedalsByTheme(int themePoints) {
-        int sliver = (themePoints / 100);
-        return sliver;
+        int silver = (themePoints / 70);
+        return silver;
     }
+
 }
