@@ -148,7 +148,7 @@
         
 
                         
-         <div id="headerContent"><img src="${pageContext.request.contextPath}/Pictures/teglogo.png" style="max-height: 60px; max-width: 100px;" class="img-responsive center-block" alt="News Image"></div>  
+         <div id="headerContent"><img src="${pageContext.request.contextPath}/Pictures/teglogo.png" style="max-height: 70px; max-width: 120px;" class="img-responsive center-block" alt="News Image"></div>  
 
 <!--            <header class="hidden-lg hidden-md hidden-sm"> 
                 <div style="height:60px"></div>
