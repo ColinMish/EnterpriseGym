@@ -19,6 +19,7 @@
 
         <!-- Bootstrap Core CSS -->
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/carousel.css" rel="stylesheet">
 
         <!-- Custom CSS -->
         <link href="${pageContext.request.contextPath}/css/half-slider.css" rel="stylesheet">
@@ -137,23 +138,83 @@
 
 
         <!-- Half Page Image Background Carousel Header -->
-
+            
         
 
                         
                         
 
-            <header> 
-                <div style="height:60px"></div>
-            </header>
+             <div class="Carousel">
+        <header data-interval="false" data-wrap="false" id="myCarousel" class="carousel slide visible-lg visible-md visible-sm">
+
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>      
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+             <li data-target="#myCarousel" data-slide-to="3"></li>
+        </ol>
+        
+
+        <!-- Wrapper for Slides -->
+        <div class="carousel-inner" class="visible-lg">
+            <div class="item active">
+                <!-- Set the second background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('${pageContext.request.contextPath}/Pictures/TEG_Logo_07crop.png');"></div>
+                <div class="carousel-caption">
+                    <h2></h2>
+                </div>
+            </div>
+            <div class="item">
+                <!-- Set the first background image using inline CSS below. -->
+                <div class="fill visible-lg" style="background-image:url('${pageContext.request.contextPath}/Pictures/bannerlarge.png');"></div>
+                <div class="fill visible-md" style="background-image:url('${pageContext.request.contextPath}/Pictures/bannermedium.png');"></div>
+                <div class="fill visible-sm" style="background-image:url('${pageContext.request.contextPath}/Pictures/banner.jpg');"></div>
+                <div class="carousel-caption">
+                    <h2></h2>
+                </div>
+            </div>
+            <div class="item">
+                <!-- Set the second background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('${pageContext.request.contextPath}/Pictures/fun-people-only.png');"></div>
+                <div class="carousel-caption">
+                    <h2></h2>
+                </div>
+            </div>
+            <div class="item">
+                <!-- Set the third background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('${pageContext.request.contextPath}/Pictures/TEG_People.png');"></div>
+                <div class="carousel-caption">
+                    <h2></h2>
+                </div>
+            </div>
+            <div class="item">
+                <!-- Set the idle background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('${pageContext.request.contextPath}/Pictures/TEG_Logo_07crop.png');"></div>
+                <div class="carousel-caption">
+                    <h2></h2>
+                </div>
+            </div>
+            </div>
+                
+           
+
+        <!-- Controls -->
+        <a class="left carousel-control visible-lg" href="#myCarousel" data-slide="prev">
+            <span class="icon-prev"></span>
+        </a>
+        <a class="right carousel-control visible-lg" href="#myCarousel" data-slide="next">
+            <span class="icon-next"></span>
+        </a>
+
+        </header>
 
 
             <script type="text/javascript">
                 $(document).ready(function () {
                     $('.carousel').each(function () {
                         $(this).carousel({
-                            pause: true,
-                            interval: false,
+                            interval: 3000,
                             wrap: false
                         });
                     });
