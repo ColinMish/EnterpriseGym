@@ -103,7 +103,7 @@
                 </div>
                 <div class="panel-body">
                     <%
-                        int EventID = (int)request.getAttribute("eventid");
+                        int EventID = Integer.parseInt((String)request.getAttribute("eventid"));
                         java.util.LinkedList<EventUserEntity> eventuser = (java.util.LinkedList<EventUserEntity>) request.getAttribute("eventuser");
                         if (eventuser.size() == 0) {
                     %>
