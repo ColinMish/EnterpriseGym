@@ -14,17 +14,13 @@
         function renderCalendar()
         {
             $('#calendarMain').fullCalendar({
-                eventClick: function (calEvent, jsEvent, view) {
-                    alert('Event: ' + calEvent.title);
-                    alert('id: ' + calEvent.id);
-                    alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-                    alert('View: ' + view.name);
+                eventClick: function (calEvent) {
+                    window.location = "Events/Event/" + calEvent.id;
                 }, header: {
                     left: 'prev,next today',
                     center: 'title',
                     right: 'month,agendaWeek,agendaDay'
                 },
-                defaultDate: '2015-02-12',
                 editable: true,
                 eventLimit: true, // allow "more" link when too many events
                 events: 'Events/All',
@@ -33,22 +29,6 @@
         }
     });
 
-//    function getEvents()
-//    {
-//        var data;
-//        $.ajax({
-//            type: "GET",
-//            url: "Events/All",
-//            async: false,
-//            success: function (returnValue) {
-//                data = returnValue;
-//            },
-//            fail: function () {
-//                console.log("Ajax error");
-//            }
-//        });
-//        return data;
-//    }
 </script>
 <div class="col-md-12">
     <div class="panel panel-default">
