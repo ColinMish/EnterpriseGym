@@ -63,7 +63,7 @@
 
         </div>
     </div>
-    
+
     <div class="modal fade" id="myModal3" role="dialog">
         <div class="modal-dialog">
 
@@ -103,13 +103,21 @@
                 </div>
                 <div class="panel-body">
                     <%
+<<<<<<< HEAD
                         int EventID = (int)request.getAttribute("eventid");
+=======
+                        int eventID = 0;
+                        String eventString = (String) request.getAttribute("eventid").toString();
+                        if (eventString != null && !eventString.isEmpty()) {
+                            eventID = Integer.parseInt(eventString);
+                        }
+>>>>>>> master
                         java.util.LinkedList<EventUserEntity> eventuser = (java.util.LinkedList<EventUserEntity>) request.getAttribute("eventuser");
-                        if (eventuser.size() == 0) {
+                        if (eventuser != null && eventuser.size() == 0) {
                     %>
                     <p>No News found.</p>
                     <%
-                    } else { %>
+                    } else if (eventuser != null) { %>
                     <table class="table table-hover" id="datatable2">
                         <thead>
                             <tr>
@@ -133,25 +141,19 @@
                                 <td><%=myEvent.getFirstname()%></td>
                                 <td><%=myEvent.getUsername()%></td>
                                 <td><%=myEvent.getEmail()%></td>
-                                <td><% if(myEvent.isAttended()){%>
+                                <td><% if (myEvent.isAttended()) {%>
                                     <p id="attended<%=myEvent.getUserid()%>">Attended </p>      
-                                <%}else{%> 
-                                <a role="button" id="notattending<%=myEvent.getUserid()%>" onclick="Attend(<%=myEvent.getUserid()%>,<%=EventID%>)" class="btn btn-success">Mark as Attended </a>  <p id="attending<%=myEvent.getUserid()%>" class="hidden">Attended </p> </td>
-                                <%}%>
+                                    <%} else {%> 
+                                    <a role="button" id="notattending<%=myEvent.getUserid()%>" onclick="Attend(<%=myEvent.getUserid()%>,<%=eventID%>)" class="btn btn-success">Mark as Attended </a>  <p id="attending<%=myEvent.getUserid()%>" class="hidden">Attended </p> 
+                                    <%}%>
+                                </td>
+                            </tr>
                             <%} %></tbody> <%}%>
                     </table>
                 </div>
             </div>
         </div>  
     </div>
-
-
-
-
-
-
-
-
     <%@include file ="footer.jsp" %>
 </body>
 </html>

@@ -98,8 +98,6 @@ function failureSignUpModal()
     $('#myModal3').modal('show');
 }
 
-
-
 function reload()
 {
     location.reload(); 

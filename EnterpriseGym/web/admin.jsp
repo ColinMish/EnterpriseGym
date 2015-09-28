@@ -89,7 +89,7 @@
                         <br>
 
                         <div class="form-group">
-                            <input class="btn btn-default" type="submit" onclick="editNews();" value="Create Post">
+                            <input class="btn btn-default" type="submit" value="Create Post">
                             <%if (account.hasAccessLevel(12)) {%>
                             <input style="margin-left: 10px;" id="editNews" class="btn btn-default" type="button" value="Edit News">
                             <%}%>
@@ -173,76 +173,84 @@
                                     $('#datetimepicker1').datetimepicker();
                                 });
                             </script>    
+                        </div>
 
-                            <label for="datetimepicker2">End date / Time:</label>           
-                            <div class="row">
-                                <div class='col-sm-5'>
-                                    <div class="form-group">
-                                        <div class='input-group date' id='datetimepicker2'>
-                                            <input name="enddate" type='text' class="form-control" required />
-                                            <span class="input-group-addon">
-                                                <span class="glyphicon glyphicon-calendar"></span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <script type="text/javascript">
-                                    $(function () {
-                                        $('#datetimepicker2').datetimepicker();
-                                    });
-                                </script>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <label for="eventLocation">Location:</label>
-                                        <input name="eventLocation" id="eventLocation" type="text" class="form-control" id="location" maxlength="45"/>
+                        <label for="datetimepicker2">End date / Time:</label>           
+                        <div class="row">
+                            <div class='col-sm-5'>
+                                <div class="form-group">
+                                    <div class='input-group date' id='datetimepicker2'>
+                                        <input name="enddate" type='text' class="form-control" required />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
-
-
-
-                            <label for="eventDescription">Description:</label>
-                            <textarea name="eventDescription" id="editor1" rows="10" cols="80"></textarea>
-                            <script>
-                                CKEDITOR.replace('eventDescription');
+                            <script type="text/javascript">
+                                $(function () {
+                                    $('#datetimepicker2').datetimepicker();
+                                });
                             </script>
-                            <br/>
-                            <span class="btn btn-default btn-file">
-                                <input name="image" multiple accept='image/*' type="file">
-                            </span>
-                            <br/>
-                            <div class="form-group">
-                                <label for="sel1">Theme:</label>
-                                <select name="eventTheme" class="form-control" id="eventTheme">
-                                    <option value="1">Action</option>
-                                    <option value="2">Practice</option>
-                                    <option value="3">Theory</option>
-                                    <option value="4">Virtual</option>
-                                    <option value="5">Project</option>
-                                </select>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <label for="points">Points:</label>
-                                        <input name="points" id="eventLocation" type="number" class="form-control" id="location" maxlength="45" required/>
-                                    </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="eventLocation">Location:</label>
+                                    <input name="eventLocation" id="eventLocation" type="text" class="form-control" id="location" maxlength="45"/>
                                 </div>
-                            </div>       
+                            </div>
+                        </div>
 
-                            <br>
 
+
+                        <label for="eventDescription">Description:</label>
+                        <textarea name="eventDescription" id="editor1" rows="10" cols="80"></textarea>
+                        <script>
+                            CKEDITOR.replace('eventDescription');
+                        </script>
+                        <br/>
+                        <span class="btn btn-default btn-file">
+                            <input name="image" multiple accept='image/*' type="file">
+                        </span>
+                        <br/>
+                        <div class="form-group">
+                            <label for="sel1">Theme:</label>
+                            <select name="eventTheme" class="form-control" id="eventTheme">
+                                <option value="1">Action</option>
+                                <option value="2">Practice</option>
+                                <option value="3">Theory</option>
+                                <option value="4">Virtual</option>
+                                <option value="5">Project</option>
+                            </select>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="points">Points:</label>
+                                    <input name="points" id="eventLocation" type="number" class="form-control" required/>
+                                </div>
+                            </div>
+                        </div>       
+
+                        <br>
+                        <div class="form-group">
                             <input class="btn btn-default" type="submit" value="Create Event">
-                            <br/>      
+                            <%if (account.hasAccessLevel(13)) {%>
+                            <input style="margin-left: 10px;" id="editEvent" class="btn btn-default" type="button" value="Edit Event">
+                            <%}%>
+                            <br/>  
                         </div>
                     </form> 
                 </div>
             </div>
-        </div>
+        </div>                            
         <script>
+            $("#editEvent").click(function ()
+            {
+                window.location = "Admin/Event";
+            });
             $("#eventsPanel").click(function () {
                 $("#eventsEditor").toggle("fast", function () {
                 });
