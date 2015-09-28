@@ -318,10 +318,21 @@
                 </div>          
             </div>
         </div>
+        
+         <div class="col-md-12">
+            <div class="panel panel-default">
+                <div style="cursor:pointer" class="panel-heading" id="leaderboard">
+                    <h4><i class="fa fa-fw fa-check"></i>Leaderboard</h4>
+                </div>          
+            </div>
+        </div>
         <script>
             $("#stats").click(function () {
                 window.location = "Stats";
             });
+            $("#leaderboard").click(function(){
+                window.location ="Admin/Leaderboard";
+            })
         </script>
     </div>
 </body>

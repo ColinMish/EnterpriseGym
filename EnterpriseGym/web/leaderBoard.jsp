@@ -11,6 +11,9 @@
 <html>
 
     <%@include file="header.jsp" %>
+    
+       <link href='css/carousel.css' rel='stylesheet' type='text/css'>
+    <link href='css/media.css' rel='stylesheet' type='text/css'>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
@@ -42,7 +45,7 @@
                         java.util.LinkedList<UserEntity> user = (java.util.LinkedList<UserEntity>) request.getAttribute("users");
                         if (user.size() == 0) {
                     %>
-                    <p>No News found.</p>
+                    <p>No Users Found.</p>
                     <%
                     } else { %>
                     <table class="table table-hover" id="datatable2">
@@ -69,8 +72,9 @@
                                 <td><%=p.getLastname()%></td>
                                 <td><%=p.getName()%></td>
                                 <td><%=p.getTotalPoints()%></td>
-                            <% i++; } %></tbody> <%}%>
+                            <% i++;  } %></tbody> <%}%>
                     </table>
+                    <a href="javascript:history.back()" class="btn btn-danger">Back</a>
                 </div>
             </div>
         </div>  
