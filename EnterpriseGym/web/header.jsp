@@ -78,8 +78,12 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
+                            
+                            <li class="visible-sm homeButton${pageContext.request.getServletPath() eq '/index.jsp' ? ' active' : ''}">
+                                <a id="head" href="${pageContext.request.contextPath}/Home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
+                            </li>
 
-                            <li class="hidden-xs homeButton${pageContext.request.getServletPath() eq '/index.jsp' ? ' active' : ''}">
+                            <li class="hidden-xs hidden-sm homeButton${pageContext.request.getServletPath() eq '/index.jsp' ? ' active' : ''}">
                                 <a id="imagehead" href="${pageContext.request.contextPath}/Home"><img src="${pageContext.request.contextPath}/Pictures/logo-eg.png"></a>
                             </li>
                             <li class="aboutButton${pageContext.request.getServletPath() eq '/about.jsp' ? ' active' : ''}">
@@ -113,16 +117,10 @@
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">        
-                            <li id="head" class="logintext"> Logged in as: <%=account.getUsername()%></li>
+                            <li id="head" class="logintext hidden-sm"> Logged in as: <%=account.getUsername()%></li>
                             <li>
                                 <a id="head" href="${pageContext.request.contextPath}/LogOut">Log Out</a></li>                  
-                            <li id="calendar-drop" class="visible-lg">
-                                <a data-toggle="collapse" data-target="#calendar" href="#calendar">
-                                    <div class="header-calendar">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </div>
-                                </a>
-                            </li>
+
                         </ul>
 
                         <%} else {%>
@@ -132,14 +130,6 @@
                             <li><a id="head" href="${pageContext.request.contextPath}/LogIn">Log In</a></li>
                             <li><a id="head" href="${pageContext.request.contextPath}/SignUp">Sign Up</a></li>
 
-
-                            <li id="calendar-drop" class="visible-lg">
-                                <a data-toggle="collapse" data-target="#calendar" href="#calendar">
-                                    <div class="header-calendar">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </div>
-                                </a>
-                            </li>
                         </ul>
                         <%}%>
                     </div>
@@ -150,15 +140,7 @@
                 <!-- /.container -->
             </nav>
         </div>
-
-        <div class="calendar">
-            <div id="calendar" class="collapse">
-                <div class="pull-right">
-                    <iframe src="https://www.google.com/calendar/embed?showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=500&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=m9941bpd6nhji35pjjp3blv8do%40group.calendar.google.com&amp;color=%23853104&amp;ctz=Europe%2FLondon" style=" border-width:0 " width="400" height="500" frameborder="0" scrolling="no"></iframe>
-
-                </div>
-            </div>
-        </div>
+        
 
 
         <!-- Half Page Image Background Carousel Header -->
@@ -217,9 +199,9 @@
             </header>
 
 
-            <header class="hidden-lg hidden-md hidden-sm"> 
+<!--            <header class="hidden-lg hidden-md hidden-sm"> 
                 <div style="height:60px"></div>
-            </header>
+            </header>-->
 
 
             <script type="text/javascript">

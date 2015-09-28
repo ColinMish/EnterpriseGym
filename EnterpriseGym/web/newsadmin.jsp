@@ -108,7 +108,6 @@
                         <thead>
                             <tr>
                                 <th>Article</th>
-                                <th>Date Added</th>
                                 <th>View Article</th>
                                 <th>Edit Article</th>
                             </tr>

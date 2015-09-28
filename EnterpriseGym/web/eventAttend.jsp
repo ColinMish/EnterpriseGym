@@ -103,6 +103,7 @@
                 </div>
                 <div class="panel-body">
                     <%
+
                         int eventID = 0;
                         String eventString = (String) request.getAttribute("eventid").toString();
                         if (eventString != null && !eventString.isEmpty()) {
