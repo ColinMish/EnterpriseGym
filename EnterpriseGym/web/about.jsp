@@ -34,7 +34,7 @@
  
                                          
         <div class="col-md-8" id="AboutText">
-                <div class="panel panel-default panelmobile">
+                <div class="panel panel-primary panelmobile">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i>About the Enterprise Gym</h4>
                     </div>
@@ -97,10 +97,10 @@
             </div>
         
               <div class="col-md-4" id="ConnectText">
-                <div class="panel panel-default panelabout">
+                <div class="panel panel-primary panelabout">
                     
                         <div class="panel-heading">
-                        <h4><i class="fa fa-fw fa-check"></i><strong>Available Options</strong></h4><br>
+                        <h4><i class="fa fa-fw fa-check"></i>Related Pages</h4>
                         </div>
                     
                         <div class="panel-body">

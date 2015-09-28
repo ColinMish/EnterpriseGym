@@ -33,9 +33,9 @@
         </div>
     
         <div class="col-md-12" id="ConnectText">
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h4><i class="fa fa-fw fa-check"></i><strong>Theory</strong></h4><br>
+                        <h4><i class="fa fa-fw fa-check"></i>Theory</h4>
                     </div>
                     <div class="panel-body">
                         <p>
@@ -67,7 +67,7 @@
                             
                              <h4><i class="fa fa-fw fa-check"></i><strong>Quizes you have taken</strong></h4><br>
                              
-                             You have not taken any quizzes yet.<br>
+                             You have not taken any quizzes yet.<br/><br/>
                              
                              <h4><i class="fa fa-fw fa-check"></i><strong>All Quizes</strong></h4><br>
                              

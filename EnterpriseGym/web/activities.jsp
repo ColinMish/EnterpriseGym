@@ -32,7 +32,7 @@
         </div>
     
         <div class="col-md-8" id="ConnectText">
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i>Activities</h4>
                     </div>
@@ -126,7 +126,7 @@
             </div>
         
         <div class="col-md-4" id="AboutText">
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i>We're in the News</h4>
                     </div>
@@ -140,7 +140,7 @@
             </div>
         
         <div class="col-md-4">
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-gift"></i> Some news</h4>
                     </div>
@@ -153,7 +153,7 @@
         </div>
         
             <div class="col-md-4">
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-compass"></i> Some more news</h4>
                     </div>

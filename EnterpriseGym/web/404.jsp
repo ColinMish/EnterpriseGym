@@ -30,7 +30,7 @@
  
                                          
         <div class="col-md-12" id="AboutText">
-                <div class="panel panel-default panelmobile">
+                <div class="panel panel-primary panelmobile">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i>Page Not Found</h4>
                     </div>

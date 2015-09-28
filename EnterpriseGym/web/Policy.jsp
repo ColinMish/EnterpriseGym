@@ -25,7 +25,7 @@
         </div>
         
         <div class="col-md-4">
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
                   
                     </div>
@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
 
                     <div class="panel-body">
                         <p>	<strong>2 </strong><span style="text-decoration: underline;">Reserved places must be claimed until 5 minutes prior to the scheduled start of the event.</span><br>
@@ -53,7 +53,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
 
                     <div class="panel-body">
                        <p>

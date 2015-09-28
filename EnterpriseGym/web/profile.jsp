@@ -40,7 +40,7 @@
 
 
             <div class="col-md-4" id="ConnectText">
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
 
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i><strong></strong></h4><br>
@@ -58,7 +58,7 @@
             </div>
 
             <div class="col-md-8" id="ConnectText">
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i><strong>Account Details</strong></h4><br>
                     </div>

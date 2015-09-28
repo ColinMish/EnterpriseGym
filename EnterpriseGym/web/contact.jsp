@@ -30,7 +30,7 @@
         </div>
     
         <div class="col-md-12" id="ConnectText">
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i>Contact the Enterprise Gym</h4>
                     </div>

@@ -56,7 +56,7 @@
 
             <form name="editDetailsForm" id="editDetails" method="post" action="EditDetails">
                 <div class="col-md-8" id="ConnectText">
-                    <div class="panel panel-default">
+                    <div class="panel panel-primary">
                         <div class="panel-body">
 
                             <input name="id" type="text" class="form-control" id="userId" />
@@ -142,7 +142,7 @@
 
             <form name="ChangePassword" method="POST" action="ChangePassword">
                 <div class="col-md-8" id="ConnectText">
-                    <div class="panel panel-default">
+                    <div class="panel panel-primary">
 
                         <div class="panel-body">
                             <input type="hidden" name="username" value="<%=account.getUsername()%>">
@@ -174,7 +174,7 @@
             %>
             <form id="UpdateAccess" name="UpdateAccess" method="POST" action="UpdateAccess">
                 <div class="col-md-8" id="accessLevels">
-                    <div class="panel panel-default">
+                    <div class="panel panel-primary">
                         <div class="panel-body">
                             <table class="table table-hover">
                                 <thead>

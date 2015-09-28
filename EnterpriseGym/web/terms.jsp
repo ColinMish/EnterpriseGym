@@ -29,7 +29,7 @@
         </div>
     
         <div class="col-md-12" id="ConnectText">
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
                     <div class="panel-body">
                         <p>
                             The personal information provided by you to The Enterprise Gym&trade; will be used for administrative and management purposes. It may also be used to market related services to you and to track the take up of such services. Your information will also be available to staff of The Enterprise Gym and / or academic staff at the University of Dundee for research purposes. The published results of any research will not identify you individually without your explicit consent and your information will not be passed to any third party unless required by law.

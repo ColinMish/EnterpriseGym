@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="col-md-12">
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i>Search</h4>
                         <form id="searchFor" action="Search" role="form" method="POST">
@@ -85,7 +85,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="panel panel-default">
+                    <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h4><i class="fa fa-fw fa-check"></i>Users</h4>
                             <label>Property</label>
@@ -99,7 +99,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="panel panel-default">
+                    <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h4><i class="fa fa-fw fa-check"></i>Events</h4>
                             <label>Property</label>
@@ -113,7 +113,7 @@
                     </div>
                 </div>
                 <div class="col-md-12">
-                    <div class="panel panel-default">
+                    <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h4><i class="fa fa-fw fa-check"></i>Users vs Events</h4>
                             <label>Filter by user:</label>
