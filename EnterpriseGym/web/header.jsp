@@ -78,8 +78,12 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
+                            
+                            <li class="visible-sm homeButton${pageContext.request.getServletPath() eq '/index.jsp' ? ' active' : ''}">
+                                <a id="head" href="${pageContext.request.contextPath}/Home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
+                            </li>
 
-                            <li class="hidden-xs homeButton${pageContext.request.getServletPath() eq '/index.jsp' ? ' active' : ''}">
+                            <li class="hidden-xs hidden-sm homeButton${pageContext.request.getServletPath() eq '/index.jsp' ? ' active' : ''}">
                                 <a id="imagehead" href="${pageContext.request.contextPath}/Home"><img src="${pageContext.request.contextPath}/Pictures/logo-eg.png"></a>
                             </li>
                             <li class="aboutButton${pageContext.request.getServletPath() eq '/about.jsp' ? ' active' : ''}">
@@ -113,7 +117,7 @@
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">        
-                            <li id="head" class="logintext"> Logged in as: <%=account.getUsername()%></li>
+                            <li id="head" class="logintext hidden-sm"> Logged in as: <%=account.getUsername()%></li>
                             <li>
                                 <a id="head" href="${pageContext.request.contextPath}/LogOut">Log Out</a></li>                  
 
