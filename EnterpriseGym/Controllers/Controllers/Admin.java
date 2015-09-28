@@ -4,6 +4,7 @@ import Entities.Account;
 import Entities.EventEntity;
 import Entities.EventUserEntity;
 import Entities.NewsEntity;
+import Entities.UserEntity;
 import Models.AdminModel;
 import Models.EventModel;
 import Models.NewsModel;
@@ -41,6 +42,7 @@ public class Admin extends HttpServlet {
         CommandsMap.put("News", 1);
         CommandsMap.put("Event", 2);
         CommandsMap.put("Account", 3);
+        CommandsMap.put("Leaderboard",4);
     }
 
     /**
@@ -104,6 +106,9 @@ public class Admin extends HttpServlet {
                 } else {
                     //displayEditNews(response, request, args[3]);
                 }
+                break;
+            case 4:
+                displayLeaders(response,request);
                 break;
             default:
                 break;
@@ -232,6 +237,14 @@ public class Admin extends HttpServlet {
 
     private void displayPannel(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/admin.jsp");
+        dispatcher.forward(request, response);
+    }
+    
+    private void displayLeaders(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
+        UserModel model = new UserModel();
+        java.util.LinkedList<UserEntity> useritems = model.getLeaders();
+         RequestDispatcher dispatcher = request.getRequestDispatcher("/leaderBoard.jsp");
+         request.setAttribute("users",useritems);
         dispatcher.forward(request, response);
     }
 
