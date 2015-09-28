@@ -124,7 +124,7 @@ public class SignUp extends HttpServlet {
         } catch (IOException | IllegalArgumentException e) {
             //At this point you need to tell the user that the passwords don't match
             System.out.println("expection thrown");
-            request.setAttribute("registered", false);
+            request.setAttribute("registered", Boolean.FALSE);
         }
     }
 

@@ -52,7 +52,7 @@
         </div>
 
         <div class="container">  
-            <%if (request.getAttribute("registered") != null && !(boolean) request.getAttribute("registered")) {%>            
+            <%if (request.getAttribute("registered") != null && !(Boolean) request.getAttribute("registered")) {%>            
             <div class="error"><strong><font color="red">Registration failed!</font></strong></br></br></div>
                     <% }%>
                     <%if (request.getAttribute("tempAccount") != null) {
