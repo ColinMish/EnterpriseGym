@@ -16,9 +16,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link href='css/carousel.css' rel='stylesheet' type='text/css'>
         <link href='${pageContext.request.contextPath}/css/profile.css' rel='stylesheet' type='text/css'>
-        <link href='${pageContext.request.contextPath}/css/media.css' rel='stylesheet' type='text/css'>
         <link href='${pageContext.request.contextPath}/css/style.css' rel='stylesheet' type='text/css'>
     </head>
 <body>

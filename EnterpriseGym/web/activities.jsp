@@ -9,8 +9,7 @@
 <html>
     <head>
       <link href='css/style.css' rel='stylesheet' type='text/css'>
-      <link href='css/media.css' rel='stylesheet' type='text/css'>
-      <link href='css/carousel.css' rel='stylesheet' type='text/css'>
+      <!--<link href='css/carousel.css' rel='stylesheet' type='text/css'>-->
     </head>
     <body>
 
@@ -151,7 +150,8 @@
                     </div>
                 </div><br><br><br>
         </div>
-        
+
+       
             <div class="col-sm-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -163,7 +163,12 @@
                     </div>
                 </div>
             </div>
+                 
+    
+
     </div>
+            
+   
     
     <%@include file ="footer.jsp" %>
     
