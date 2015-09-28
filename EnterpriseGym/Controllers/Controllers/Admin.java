@@ -26,7 +26,7 @@ import lib.Convertors;
  *
  * @author Andy
  */
-@WebServlet(name = "Admin", urlPatterns = {"/Admin/*", "/AddNews", "/UserPrivileges", "/DeleteUser"})
+@WebServlet(name = "Admin", urlPatterns = {"/Admin/*", "/AddNews", "/UserPrivileges", "/DeleteUser", "/AddEvent"})
 @MultipartConfig(maxFileSize = 16177215) //Set the pictures size up to 16MB  
 
 public class Admin extends HttpServlet {
@@ -279,14 +279,13 @@ public class Admin extends HttpServlet {
     }
 
     private void manageEvent(HttpServletResponse response, HttpServletRequest request, String id) throws ServletException, IOException {
-        int eventID = Integer.parseInt(id);
         EventModel model = new EventModel();
-        java.util.LinkedList<EventUserEntity> eventuser = model.getEventUsers(eventID);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/eventAttend.jsp");
+        int eventId = Integer.parseInt(id);
+        java.util.LinkedList<EventUserEntity> eventuser = model.getEventUsers(eventId);
         request.setAttribute("eventuser", eventuser);
-        request.setAttribute("eventid", eventID);
+        request.setAttribute("eventid", id);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/eventAttend.jsp");
         dispatcher.forward(request, response);
-
     }
 
     private void displayAccountPanel(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
