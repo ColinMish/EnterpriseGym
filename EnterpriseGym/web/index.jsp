@@ -4,13 +4,11 @@
         <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
     </head>
     <%@include file="headerHome.jsp" %>
-    <div class ="mobile">
-        <%@include file="sidebar.jsp"%>
-    </div>
+    
 
     <!-- Page Content -->
 
-    <div class="content">
+   
         <div class="container">
 
             <div class="row">
@@ -35,8 +33,8 @@
             </div>
             <%@include file ="calendar.jsp" %>
         </div>
-        <hr>
-    </div>
+        
+   
 
     <%@include file ="footer.jsp" %>
 
