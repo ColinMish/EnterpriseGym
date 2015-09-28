@@ -103,15 +103,12 @@
                 </div>
                 <div class="panel-body">
                     <%
-<<<<<<< HEAD
-                        int EventID = (int)request.getAttribute("eventid");
-=======
+
                         int eventID = 0;
                         String eventString = (String) request.getAttribute("eventid").toString();
                         if (eventString != null && !eventString.isEmpty()) {
                             eventID = Integer.parseInt(eventString);
                         }
->>>>>>> master
                         java.util.LinkedList<EventUserEntity> eventuser = (java.util.LinkedList<EventUserEntity>) request.getAttribute("eventuser");
                         if (eventuser != null && eventuser.size() == 0) {
                     %>
