@@ -10,7 +10,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     	<link href='${pageContext.request.contextPath}/css/social-sidebar.css' rel='stylesheet' type='text/css'>
-        <link href='${pageContext.request.contextPath}/css/media.css' rel='stylesheet' type='text/css'>
         <title>JSP Page</title>
     </head>
     <body>

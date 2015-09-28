@@ -2,9 +2,8 @@
 <html lang="en">
     <head>
         <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
-        <link href="${pageContext.request.contextPath}/css/media.css" rel="stylesheet">
     </head>
-    <%@include file="header.jsp" %>
+    <%@include file="headerHome.jsp" %>
     <div class ="mobile">
         <%@include file="sidebar.jsp"%>
     </div>
