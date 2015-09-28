@@ -6,8 +6,8 @@
 
 <%@page import="java.util.Iterator"%>
 <html>
-    <link href='css/carousel.css' rel='stylesheet' type='text/css'>
-    <link href='css/media.css' rel='stylesheet' type='text/css'>
+    <link href='${pageContext.request.contextPath}/css/carousel.css' rel='stylesheet' type='text/css'>
+    <link href='${pageContext.request.contextPath}/css/media.css' rel='stylesheet' type='text/css'>
     <%@include file="header.jsp" %>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -17,7 +17,7 @@
     <script src="${pageContext.request.contextPath}/js/admin.js" type="text/javascript"></script>
 </head>
 <body>
-
+    <div class="banner"></div>
     <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
@@ -93,7 +93,7 @@
         <div class="col-md-12" id="ConnectText2">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4><i class="fa fa-fw fa-check"></i><strong>Account Admin Panel</strong></h4><br>
+                    <h4><i class="fa fa-fw fa-check"></i>Account Admin Panel</h4>
                 </div>
                 <div class="panel-body">
                     <table class="table table-hover" id="datatable2">

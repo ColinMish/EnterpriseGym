@@ -8,8 +8,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link href='css/carousel.css' rel='stylesheet' type='text/css'>
-        <link href='css/media.css' rel='stylesheet' type='text/css'>
+        <link href='${pageContext.request.contextPath}/css/carousel.css' rel='stylesheet' type='text/css'>
+        <link href='${pageContext.request.contextPath}/css/media.css' rel='stylesheet' type='text/css'>
     </head>
     <%@include file="header.jsp" %>
     <script src="${pageContext.request.contextPath}/js/resetPassword.js"></script>

@@ -9,8 +9,8 @@
 <%@page import="Entities.UserEntity"%>
 <html>
 <head>
-    <link href='css/carousel.css' rel='stylesheet' type='text/css'>
-    <link href='css/media.css' rel='stylesheet' type='text/css'>
+    <link href='${pageContext.request.contextPath}/css/carousel.css' rel='stylesheet' type='text/css'>
+    <link href='${pageContext.request.contextPath}/css/media.css' rel='stylesheet' type='text/css'>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -19,6 +19,8 @@
 </head>
 <body>
     <%@include file="header.jsp" %>
+    <div class="banner"></div>
+    <br/><br/>
     <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
@@ -84,12 +86,6 @@
     </div>
     
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1></h1>
-                <p></p>
-            </div>
-        </div>
 
         <div class="col-md-12" id="ConnectText2">
             <div class="panel panel-primary">
