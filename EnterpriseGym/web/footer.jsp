@@ -19,13 +19,10 @@
             This website is generously sponsored by <a href="http://www.commercial-properties-scotland.co.uk/">James Keiller Estates</a>.
         </p>
         
-        <div class="visible-xs">
-        
         <a href="https://www.facebook.com/EnterpriseGym"><img src='${pageContext.request.contextPath}/Pictures/icon_fb_small.png'></a>
         <a href="http://www.twitter.com/Enterprise_Gym"><img src='${pageContext.request.contextPath}/Pictures/TwitterIcon.png'></a>
         <a href="http://www.linkedin.com/groups?mostPopular&gid=3278209"><img src='${pageContext.request.contextPath}/Pictures/linkedin-icon-small.png'></a>
         <a href="http://www.youtube.com/EnterpriseGym"><img src='${pageContext.request.contextPath}/Pictures/youtube-icon-small.png'></a>
-        </div>
       </div>
     
 </footer>
