@@ -21,7 +21,7 @@
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Custom CSS -->
-        <link href="${pageContext.request.contextPath}/css/half-slider.css" rel="stylesheet">
+   
         <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 
         <!--ICON-->
@@ -145,79 +145,18 @@
 
         <!-- Half Page Image Background Carousel Header -->
 
-        <div class="Carousel">
-            <header data-interval="false" data-wrap="false" id="myCarousel" class="carousel slide visible-lg visible-md visible-sm">
-
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                    <li data-target="#myCarousel" data-slide-to="2"></li>
-                </ol>
-
-
-                <!-- Wrapper for Slides -->
-                <div class="carousel-inner" class="visible-lg">
-                    <div class="item active">
-                        <!-- Set the first background image using inline CSS below. -->
-                        <div class="fill" style="background-image:url('${pageContext.request.contextPath}/Pictures/banner.jpg');"></div>
-                        <div class="carousel-caption">
-                            <h2></h2>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <!-- Set the second background image using inline CSS below. -->
-                        <div class="fill" style="background-image:url('${pageContext.request.contextPath}/Pictures/fun-people-only.png');"></div>
-                        <div class="carousel-caption">
-                            <h2></h2>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <!-- Set the third background image using inline CSS below. -->
-                        <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Three');"></div>
-                        <div class="carousel-caption">
-                            <h2></h2>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <!-- Set the first background image using inline CSS below. -->
-                        <div class="fill" style="background-image:url('${pageContext.request.contextPath}/Pictures/banner.jpg');"></div> 
-                        <div class="carousel-caption">
-                            <h2></h2>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Controls -->
-                <a class="left carousel-control visible-lg" href="#myCarousel" data-slide="prev">
-                    <span class="icon-prev"></span>
-                </a>
-                <a class="right carousel-control visible-lg" href="#myCarousel" data-slide="next">
-                    <span class="icon-next"></span>
-                </a>
-
-            </header>
+        
 
                         
-                        <header><div id="headerContent"><img src="${pageContext.request.contextPath}/Pictures/teglogo.png" style="max-height: 100px; max-width: 100px;" class="img-responsive center-block" alt="News Image"></div></header>            
+         <div id="headerContent"><img src="${pageContext.request.contextPath}/Pictures/teglogo.png" style="max-height: 60px; max-width: 100px;" class="img-responsive center-block" alt="News Image"></div>  
 
 <!--            <header class="hidden-lg hidden-md hidden-sm"> 
                 <div style="height:60px"></div>
             </header>-->
 
 
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    $('.carousel').each(function () {
-                        $(this).carousel({
-                            pause: true,
-                            interval: false,
-                            wrap: false
-                        });
-                    });
-                });
-            </script>
-        </div>
+         
+        
     </body>
 </html>
 

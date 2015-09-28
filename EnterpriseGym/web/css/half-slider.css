@@ -12,13 +12,14 @@ body {
 /* You can change the height of the carousel by changing the height in the class below. It is set to 50% by default, but can be any height! */
 
 .carousel {
-    height: 50%;
+    height: 200px;
 }
 
 .item,
 .active,
 .carousel-inner {
     height: 100%;
+    max-height: 200px
 }
 
 /* Background images are set within the HTML using inline CSS, not here */
