@@ -11,9 +11,6 @@
     <link href='css/media.css' rel='stylesheet' type='text/css'>
 
     <%@include file="header.jsp" %>
-    <div class ="mobile">
-        <%@include file="sidebar.jsp"%>
-    </div>
     <script src="${pageContext.request.contextPath}/js/admin.js"></script>
     <script src="${pageContext.request.contextPath}/js/register.js"></script>
     <%@page import="Entities.Account"%>

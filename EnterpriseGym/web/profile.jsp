@@ -15,9 +15,6 @@
     </head>
     <body>
         <%@include file="header.jsp" %>
-        <div class ="mobile">
-            <%@include file="sidebar.jsp"%>
-        </div>
 
         <%
             java.util.LinkedList<UserEntity> user = null;

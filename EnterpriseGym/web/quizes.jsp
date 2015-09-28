@@ -14,9 +14,6 @@
     </head>
     <body>
     <%@include file="header.jsp" %>
-    <div class="hidden-xs">
-        <%@include file="sidebar.jsp"%>
-    </div>
         
      <div class ="mobile">
     <%@include file="sidebar.jsp"%>

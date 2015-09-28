@@ -13,9 +13,6 @@
    
     <body>
     <%@include file="header.jsp" %>
-    <div class ="mobile">
-    <%@include file="sidebar.jsp"%>
-    </div>
     
     <!-- Page Content -->
     <div class="container">

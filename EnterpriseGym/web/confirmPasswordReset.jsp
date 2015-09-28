@@ -14,9 +14,6 @@
    
     <body>
     <%@include file="header.jsp" %>
-    <div class ="mobile">
-    <%@include file="sidebar.jsp"%>
-    </div>
     <div class="container">
 
         <p>Your password reset token is: <%=request.getParameter("token")%></p>

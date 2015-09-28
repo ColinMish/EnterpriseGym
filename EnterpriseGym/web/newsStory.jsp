@@ -12,9 +12,6 @@
     <link href='${pageContext.request.contextPath}/css/carousel.css' rel='stylesheet' type='text/css'>
     <link href='${pageContext.request.contextPath}/css/media.css' rel='stylesheet' type='text/css'>
     <%@include file="header.jsp" %>
-    <div class ="mobile">
-    <%@include file="sidebar.jsp"%>
-    </div>
     <div class="banner"></div>
       <div class="container">
 

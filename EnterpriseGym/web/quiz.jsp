@@ -14,9 +14,6 @@
         <link href='css/media.css' rel='stylesheet' type='text/css'>
     </head>
        <%@include file="header.jsp" %>
-    <div class ="mobile">
-    <%@include file="sidebar.jsp"%>
-    </div>
     
     <script src="${pageContext.request.contextPath}/js/quiz.js"></script>
     <% QuizEntity quiz = (QuizEntity) request.getAttribute("quiz");%>
