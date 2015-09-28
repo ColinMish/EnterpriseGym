@@ -20,9 +20,11 @@
         </div>
 
         <%
-            java.util.LinkedList<UserEntity> user = (java.util.LinkedList<UserEntity>) request.getAttribute("userdetails");
+            java.util.LinkedList<UserEntity> user = null;
+            user = (java.util.LinkedList<UserEntity>) request.getAttribute("userdetails");
             Iterator<UserEntity> iterator;
-            iterator = user.iterator();
+            if (user != null) {
+                iterator = user.iterator();
         %>
 
         <!-- Page Content -->
@@ -54,8 +56,6 @@
                     </div>
                 </div>
             </div>
-
-
 
             <div class="col-md-8" id="ConnectText">
                 <div class="panel panel-default">
@@ -106,7 +106,8 @@
                                 <th><%=p.getMatric()%></th>
                             </tr>
                             </thead>
-                            <%}%>
+                            <%}
+            }%>
                         </table>
                     </div>
 

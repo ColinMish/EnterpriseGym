@@ -66,10 +66,12 @@ public class Profile extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String args[] = Convertors.SplitRequestPath(request);
 
-        if (args.length == 2 && args[1].equals("Profile")) {
-            displayprofile(response, request);
-        } else if (args.length >= 2 && args[1].equals("EditProfile")) {
-            editdetails(response, request);
+        if (args != null) {
+            if (args.length == 2 && args[1].equals("Profile")) {
+                displayprofile(response, request);
+            } else if (args.length >= 2 && args[1].equals("EditProfile")) {
+                editdetails(response, request);
+            }
         }
 
         int command;
@@ -88,6 +90,8 @@ public class Profile extends HttpServlet {
     }
 
     private void displayprofile(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
+        try
+        {
         UserModel model = new UserModel();
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("account");
@@ -96,6 +100,11 @@ public class Profile extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("profile.jsp");
         request.setAttribute("userdetails", userdetails);
         dispatcher.forward(request, response);
+        }
+        catch(Exception e)
+        {
+            
+        }
     }
 
     private void displaypoints(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
