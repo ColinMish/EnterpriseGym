@@ -128,14 +128,12 @@ public class EventModel {
 
             return eventdetails;
 
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
             System.out.println("connection to db failed");
-            e.printStackTrace();
             return null;
 
         }
     }
-    
     
      public boolean updateEvent(Part filepart,String title, String description, String location, String startdate, String enddate, int points,int theme,int id) throws IOException
     {
@@ -201,16 +199,9 @@ public class EventModel {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
              System.out.println("expection thrown");
              System.out.println("false, exception");
-             e.printStackTrace();
             return false;
         }
     }
-    
-    //public EventEntity GetEventByName(String name)
-    //{
-     //   EventEntity event = new EventEntity(name, 1, null, 1, null, null);
-     //   return event;
-    //}
     
     public java.util.LinkedList<EventEntity> GetEventByID(int ID)
     {

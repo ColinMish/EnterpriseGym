@@ -786,4 +786,57 @@ public class UserModel {
             throw e;
         }
     }
+    
+    public java.util.LinkedList<UserEntity> getLeaders() {
+        java.util.LinkedList<UserEntity> userdetails = new java.util.LinkedList<>();
+        
+        Connection con = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+            
+            PreparedStatement ps1 = null;
+            String sqlOption1 = "SELECT * FROM user order by action_points + practice_points + virtual_points + project_points + theory_points desc limit 25";
+            
+            ps1 = con.prepareStatement(sqlOption1);
+            ResultSet rs1 = ps1.executeQuery();
+            
+                  if(rs1.wasNull())
+    	{
+            return null;
+    	}
+    	else
+    	{
+    		while(rs1.next())
+    		{
+                UserEntity user = new UserEntity(); 
+                user.setId(rs1.getInt("iduser"));
+            user.setName(rs1.getString("first_name"));
+            user.setLastname(rs1.getString("last_name"));
+            user.setUniversity(rs1.getString("university"));
+            user.setCountry(rs1.getString("country"));
+            user.setEmail(rs1.getString("email"));
+            user.setSchool(rs1.getString("school"));
+            user.setSubject(rs1.getString("subject"));
+            user.setUniversity(rs1.getString("university"));
+            user.setGender(rs1.getString("gender"));
+            user.setYearOfStudy(rs1.getInt("year"));
+            user.setMatric(rs1.getInt("matriculation"));
+            user.setActionPoints(rs1.getInt("action_points"));
+            user.setPractice_points(rs1.getInt("practice_points"));
+            user.setVirtual_points(rs1.getInt("virtual_points"));
+            user.setProject_points(rs1.getInt("project_points"));
+            user.setTheory_points(rs1.getInt("theory_points"));
+            
+    	    	userdetails.add(user);   	  	
+    		}
+                 con.close();
+                return userdetails;
+        }
+          
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+            System.out.println("connection to db failed");
+            return null;
+        }
+    }
 }

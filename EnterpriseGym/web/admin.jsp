@@ -70,6 +70,11 @@
                     <h4><i class="fa fa-fw fa-check"></i>News Management</h4>
                 </div>
                 <div id="newsEditor" class="panel-body" hidden>
+                    <%if (account.hasAccessLevel(12)) {%>
+                    <button style="margin-left: 10px;" id="editNews" class="btn btn-success" type="button" > News Management <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+                            <%}%>
+                    <hr>
+                    <h3> Add News</h3>
                     <form action="AddNews" method="POST" enctype="multipart/form-data">
 
                         <div class="form-group">
@@ -89,10 +94,8 @@
                         <br>
 
                         <div class="form-group">
-                            <input class="btn btn-default" type="submit" value="Create Post">
-                            <%if (account.hasAccessLevel(12)) {%>
-                            <input style="margin-left: 10px;" id="editNews" class="btn btn-default" type="button" value="Edit News">
-                            <%}%>
+                            <input class="btn btn-primary" type="submit" value="Submit">
+                            
                         </div>
                     </form>
                 </div>
@@ -326,10 +329,21 @@
                 </div>          
             </div>
         </div>
+        
+         <div class="col-md-12">
+            <div class="panel panel-default">
+                <div style="cursor:pointer" class="panel-heading" id="leaderboard">
+                    <h4><i class="fa fa-fw fa-check"></i>Leaderboard</h4>
+                </div>          
+            </div>
+        </div>
         <script>
             $("#stats").click(function () {
                 window.location = "Stats";
             });
+            $("#leaderboard").click(function(){
+                window.location ="Admin/Leaderboard";
+            })
         </script>
     </div>
 </body>
