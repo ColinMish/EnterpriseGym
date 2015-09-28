@@ -47,16 +47,15 @@
     </div>  
     <article>
         <div class="banner"></div>
+        <br/><br/>
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1>Edit Details</h1><br>
-                </div>
-            </div>
 
             <form name="editDetailsForm" id="editDetails" method="post" action="EditDetails">
-                <div class="col-md-8" id="ConnectText">
+                <div class="col-md-12" id="ConnectText">
                     <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4><i class="fa fa-fw fa-check"></i>Edit Details</h4>
+                        </div>
                         <div class="panel-body">
 
                             <input name="id" type="text" class="form-control" id="userId" />
@@ -132,7 +131,7 @@
                                 <label for="matric">Matriculation Number:</label>
                                 <input name="matric" type="number" class="form-control" value="0" id="matricEdit" required/>
                             </div>
-                            <input class="btn btn-primary" type="submit" value="Update"><br><br>
+                            <input class="btn btn-primary" type="submit" value="Update"><br/>
                             <div id="successMessage" class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Updates Saved Successfully.</p></div>
                             <div id="errorMessage" class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Error Posting News Story.</p></div>
                         </div>
@@ -141,9 +140,11 @@
             </form>
 
             <form name="ChangePassword" method="POST" action="ChangePassword">
-                <div class="col-md-8" id="ConnectText">
+                <div class="col-md-12" id="ConnectText">
                     <div class="panel panel-primary">
-
+                        <div class="panel-heading">
+                            <h4><i class="fa fa-fw fa-check"></i>Change Password</h4>
+                        </div>
                         <div class="panel-body">
                             <input type="hidden" name="username" value="<%=account.getUsername()%>">
 
@@ -161,7 +162,7 @@
                                 <label for="usr">New Password Again:</label>
                                 <input type="text" name="newPassword2" class="form-control" id="newpassword">
                             </div>
-                            <input class="btn btn-primary" type="submit" value="Update"><br><br>
+                            <input class="btn btn-primary" type="submit" value="Update"><br/>
                         </div>
                     </div>
                 </div>                
@@ -200,7 +201,7 @@
                                 </tbody> 
                             </table>
                             <input type="hidden" id="accountId" value="<%=userAccount.getId()%>">
-                            <input class="btn btn-primary" type="submit" value="Update"><br><br>
+                            <input class="btn btn-primary" type="submit" value="Update"><br/>
                             <div id="tokenSuccessMessage" class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Updates Saved Successfully.</p></div>
                             <div id="tokenErrorMessage" class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Error Updating access tokens.</p></div>
                         </div>

@@ -35,26 +35,7 @@
                 </div>
             </div>
 
-
-            <div class="col-md-4" id="ConnectText">
-                <div class="panel panel-primary">
-
-                    <div class="panel-heading">
-                        <h4><i class="fa fa-fw fa-check"></i><strong></strong></h4><br>
-                    </div>
-
-                    <div class="panel-body">
-                        <div class="usermenu">
-
-                            <a class="btn btn-default one col-lg-12" href="${pageContext.request.contextPath}/Profile/Points">My Points</a><br><br>
-                            <br><br>
-                            <a class="btn btn-default two col-lg-12" href="${pageContext.request.contextPath}/EditProfile/">Edit Details</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-8" id="ConnectText">
+            <div class="col-md-12" id="ConnectText">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i><strong>Account Details</strong></h4><br>
