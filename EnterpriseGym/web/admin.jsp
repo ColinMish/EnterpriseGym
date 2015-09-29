@@ -13,6 +13,7 @@
        
     </div>
     <script src="${pageContext.request.contextPath}/js/admin.js"></script>
+    
     <%@page import="Entities.Account"%>
 
     <% Boolean storyAdded = (Boolean) request.getAttribute("storyAdded"); %>
@@ -72,7 +73,7 @@
                             <%}%>
                     <hr>
                     <h3> Add News</h3>
-                    <form action="AddNews" method="POST" enctype="multipart/form-data">
+                    <form action="${pageContext.request.contextPath}/AddNews" method="POST" enctype="multipart/form-data">
 
                         <div class="form-group">
                             <label for="title">Title:</label>
@@ -219,18 +220,7 @@
             </div>
         </div>                            
         
-        <%}
-            if (account.hasAccessLevel(4)) {%>
-        <div class="col-md-12">
-            <div class="panel panel-primary">
-                <div style="cursor:pointer" class="panel-heading" id="quizPanel">
-                    <h4><i class="fa fa-fw fa-check"></i>Quiz Management</h4>
-                </div>
-                <div id="quizEditor" class="panel-body" hidden>
-
-                </div>
-            </div>
-        </div>
+    
         
 
         <%}

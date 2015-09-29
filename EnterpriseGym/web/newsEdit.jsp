@@ -39,7 +39,7 @@
                         <h4><i class="fa fa-fw fa-check"></i>Edit article</h4>
                     </div>
                     <div class="panel-body">
-                          <form action="${pageContext.request.contextPath}/News/NewsUpdate" method="POST" enctype="multipart/form-data">
+                          <form action="${pageContext.request.contextPath}/NewsUpdate" method="POST" enctype="multipart/form-data">
                         
                               <div class="form-group">
                         <label for="title">Title:</label>
