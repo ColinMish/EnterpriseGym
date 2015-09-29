@@ -48,7 +48,9 @@ $(document).ready(function ()
             });
             
               $(function () {
-              $('#datetimepicker1').datetimepicker();
+              $('#datetimepicker1').datetimepicker({
+                 
+              });
               $('#datetimepicker2').datetimepicker();
               });
               

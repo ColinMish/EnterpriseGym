@@ -11,7 +11,9 @@
 <!DOCTYPE html>
 <html>
 
+    
     <%@include file="header.jsp" %>
+     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.css" />
    <div class="banner"></div>
       <div class="container">
 
