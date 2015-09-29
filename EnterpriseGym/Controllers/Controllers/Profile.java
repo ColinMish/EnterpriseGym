@@ -6,7 +6,9 @@ package Controllers;
  * and open the template in the editor.
  */
 import Entities.Account;
+import Entities.EventUserEntity;
 import Entities.UserEntity;
+import Models.EventModel;
 import Models.UserModel;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -43,6 +45,7 @@ public class Profile extends HttpServlet {
         CommandsMap.put("EditDetails", 2);
         CommandsMap.put("ChangePassword", 3);
         CommandsMap.put("EditAccess", 4);
+        CommandsMap.put("Events",5);
     }
 
     /**
@@ -84,6 +87,9 @@ public class Profile extends HttpServlet {
             case 1:
                 displaypoints(response, request);
                 break;
+            case 5:
+                displayEvent(response,request);
+                break;
             default:
             //Error message here.
         }
@@ -105,6 +111,20 @@ public class Profile extends HttpServlet {
         {
             
         }
+    }
+    
+    private void displayEvent(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
+        
+        EventModel model = new EventModel();
+        HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("account");
+        //Need to pass the profile attributes accross here.
+        java.util.LinkedList<EventUserEntity> eventdetails = model.getEventsByUserId(account.getId());
+        System.out.println(eventdetails);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/profileEvent.jsp");
+        request.setAttribute("eventdetails", eventdetails);
+        dispatcher.forward(request, response);
+        
     }
 
     private void displaypoints(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
