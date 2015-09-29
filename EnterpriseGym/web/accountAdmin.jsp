@@ -10,13 +10,9 @@
     <link href='css/media.css' rel='stylesheet' type='text/css'>
     <%@include file="header.jsp" %>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
+ 
     <script src="${pageContext.request.contextPath}/js/admin.js" type="text/javascript"></script>
-</head>
-<body>
+
 
     <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
@@ -128,7 +124,7 @@
                                 <td><a role="button" onclick="checkDelete(<%=nextAccount.getId()%>, '<%=nextAccount.getUsername()%>')" class="btn btn-Danger">Delete <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>              
                                 <%
                                         }%>
-                                <td><%=nextAccount.isTemp()%></td>
+                                <td><%if (nextAccount.isTemp()){%> <span class="glyphicon glyphicon-ok" aria-hidden="true"> <% }else{ %> <span class="glyphicon glyphicon-remove" aria-hidden="true"> <%}%></td>
                                     <%}
                                 %></tbody> 
                             <%

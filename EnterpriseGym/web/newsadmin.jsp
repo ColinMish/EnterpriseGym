@@ -11,15 +11,9 @@
 
     <%@include file="header.jsp" %>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
     <script src="${pageContext.request.contextPath}/js/admin.js" type="text/javascript"></script>
 
 
-</head>
-<body>
 
     <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
@@ -124,7 +118,6 @@
                             %>       
                             <tr>
                                 <td><%=p.getTitle()%></td>
-                                <td><% if(p.getDate() != null) {p.getDate();} %></td>
                                 <td><a role="button" href="${pageContext.request.contextPath}/News/Article/<%=p.getId()%>" class="btn btn-primary">View <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></td>
                                 <td><a role="button" href="${pageContext.request.contextPath}/Admin/News/<%=p.getId()%>" class="btn btn-Warning">Edit <span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button></td>
                                 <%if (account.hasAccessLevel(7)) {%>

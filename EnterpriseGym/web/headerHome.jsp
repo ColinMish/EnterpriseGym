@@ -224,7 +224,6 @@
                 });
             </script>
         </div>
-    </body>
-</html>
+
 
 
