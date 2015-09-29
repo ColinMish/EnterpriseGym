@@ -118,8 +118,8 @@
                             %>       
                             <tr>
                                 <td><%=p.getTitle()%></td>
-                                <td><a role="button" href="${pageContext.request.contextPath}/News/Article/<%=p.getId()%>" class="btn btn-primary">View <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></td>
-                                <td><a role="button" href="${pageContext.request.contextPath}/Admin/News/<%=p.getId()%>" class="btn btn-Warning">Edit <span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button></td>
+                                <td><a role="button" href="${pageContext.request.contextPath}/News/Article/<%=p.getId()%>" class="btn btn-success">View <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></td>
+                                <td><a role="button" href="${pageContext.request.contextPath}/Admin/News/<%=p.getId()%>" class="btn btn-info">Edit <span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button></td>
                                 <%if (account.hasAccessLevel(7)) {%>
                                 <td><a role="button" onclick="checkDelete(<%=p.getId()%>, '<%=p.getTitle()%>')" class="btn btn-Danger">Delete <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>              
                                 <%

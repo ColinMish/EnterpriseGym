@@ -14,7 +14,6 @@
     <%@include file="header.jsp" %>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
     <script src="http://code.highcharts.com/highcharts.js" type="text/javascript"></script>
     <script src="http://code.highcharts.com/modules/data.js"></script>
     <script src="http://code.highcharts.com/modules/exporting.js" type="text/javascript"></script>
@@ -218,7 +217,7 @@
                     <div class="col-md-2" id="ConnectText2">
                         <div class="panel panel-primary">
                             <div class="panel-heading">
-                                <h3><i class="fa fa-fw fa-check"></i><strong>Medal Cabinet</strong></h3>
+                                <h4><i class="fa fa-fw fa-check"></i><strong>Medal Cabinet</strong></h4>
                             </div>
                             <div class="panel-body">
                                 <% if (user.getSilverMedals() == 0) {

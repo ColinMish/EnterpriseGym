@@ -71,7 +71,7 @@
                 </div>
                 <div id="newsEditor" class="panel-body" hidden>
                     <%if (account.hasAccessLevel(12)) {%>
-                    <button id="editNews" class="btn btn-info" type="button" >Manage News<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+                    <button id="editNews" class="btn btn-primary" type="button" >Manage News<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
                             <%}%>
                     <hr>
                     <h3> Add News</h3>
@@ -136,7 +136,7 @@
                 </div>
                 <div id="eventsEditor" class="panel-body" hidden>
                     <%if (account.hasAccessLevel(13)) {%>
-                    <button id="editEvent" class="btn btn-info" type="button">Manage Events<span class="glyphicon glyphicon-pencil" aria-hidden="true"></button>
+                    <button id="editEvent" class="btn btn-primary" type="button">Manage Events<span class="glyphicon glyphicon-pencil" aria-hidden="true"></button>
                             <%}%>
                             <hr>
                             <h3>Add Event </h3>

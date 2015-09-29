@@ -90,7 +90,7 @@
             </div>
         </div>
 
-        <div class="col-md-12" id="ConnectText2">
+        <div class="col-sm-12" id="ConnectText2">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h4><i class="fa fa-fw fa-check"></i><strong>Event Admin Panel</strong></h4>
@@ -121,8 +121,8 @@
 
                             <tr>
                                 <td><%=myEvent.getName()%></td>
-                                <td><a role="button" href="${pageContext.request.contextPath}/Admin/Event/Manage/<%=myEvent.getID()%>" class="btn btn-primary">Manage Attendance <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a></td>
-                                <td><a role="button" href="${pageContext.request.contextPath}/Admin/Event/<%=myEvent.getID()%>" class="btn btn-Warning">Edit <span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></td>
+                                <td><a role="button" href="${pageContext.request.contextPath}/Admin/Event/Manage/<%=myEvent.getID()%>" class="btn btn-success">Manage Attendance <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a></td>
+                                <td><a role="button" href="${pageContext.request.contextPath}/Admin/Event/<%=myEvent.getID()%>" class="btn btn-info">Edit <span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></td>
                                 <td><a role="button" onclick="checkDelete(<%=myEvent.getID()%>, '<%=myEvent.getName()%>')" class="btn btn-Danger">Delete <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>              
 
                             <%} %></tbody> <%}%>
