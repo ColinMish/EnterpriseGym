@@ -56,7 +56,7 @@
             <div class="forgotPassword"><a href="resetPass.jsp">Have you forgotten your password?</a></div>
             <br>
 
-            <input type="submit" value="Sign In" class="btn btn-primary"/>
+            <input type="submit" value="Sign In" class="btn btn-success"/>
             <hr>
         </form>                        
     </div>
