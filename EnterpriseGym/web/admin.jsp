@@ -68,7 +68,7 @@
                 </div>
                 <div id="newsEditor" class="panel-body" hidden>
                     <%if (account.hasAccessLevel(12)) {%>
-                    <button style="margin-left: 10px;" id="editNews" class="btn btn-success" type="button" > News Management <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+                    <button id="editNews" class="btn btn-info" type="button" >Manage News<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
                             <%}%>
                     <hr>
                     <h3> Add News</h3>
@@ -91,7 +91,7 @@
                         <br>
 
                         <div class="form-group">
-                            <input class="btn btn-primary" type="submit" value="Create News">
+                            <input class="btn btn-success" type="submit" value="Create News">
                             
                         </div>
                     </form>
@@ -133,7 +133,7 @@
                 </div>
                 <div id="eventsEditor" class="panel-body" hidden>
                     <%if (account.hasAccessLevel(13)) {%>
-                    <button style="margin-left: 10px;" id="editEvent" class="btn btn-success" type="button">Event Management <span class="glyphicon glyphicon-pencil" aria-hidden="true"></button>
+                    <button id="editEvent" class="btn btn-info" type="button">Manage Events<span class="glyphicon glyphicon-pencil" aria-hidden="true"></button>
                             <%}%>
                             <hr>
                             <h3>Add Event </h3>
@@ -211,7 +211,7 @@
 
                         <br>
                         <div class="form-group">
-                            <input class="btn btn-primary" type="submit" value="Create Event">                          
+                            <input class="btn btn-success" type="submit" value="Create Event">                          
                             <br/>  
                         </div>
                     </form> 
@@ -262,7 +262,7 @@
                         </div>
                         <div class="col-xs-6">
                             <div class="form-group">
-                                <input class="btn btn-default" type="submit" value="Create Account">
+                                <input class="btn btn-success" type="submit" value="Create Account">
                             </div>
                             <div id="message"><h2></h2></div>
                         </div>
