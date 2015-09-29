@@ -12,7 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Models.UserModel;
 import java.io.PrintWriter;
+import java.util.Properties;
 import java.util.UUID;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import lib.Convertors;
 import lib.Security;
 
@@ -71,15 +78,15 @@ public class SignUp extends HttpServlet {
         String end = parts[parts.length - 1];
         switch (end) {
             case "SignUp":
-                if (parts.length == 3 && parts[2].equals("Temp")) {
-                    registerTempAccount(request, response);
-                } else {
-                    registerNewUser(request, response);
-                }
+                registerNewUser(request, response);
                 break;
             case "CheckUsername":
                 checkUsername(request, response);
                 break;
+            case "Temp":
+                registerTempAccount(request, response);
+                break;
+                    
         }
     }
 
@@ -139,6 +146,7 @@ public class SignUp extends HttpServlet {
     }
 
     private void registerTempAccount(HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("hello");
         UserModel user = new UserModel();
         boolean success = false;
         byte[] salt = Security.generateSalt();
@@ -150,10 +158,11 @@ public class SignUp extends HttpServlet {
         String lastName = request.getParameter("lastName");
         String email = request.getParameter("email");
         String username = firstName + lastName;
+        
         try {
             String password = Security.hashPassword(guid, saltAsString);
             success = user.createTempAccount(username, password, saltAsString, firstName, lastName, email);
-            emailAccountInformationToUser(email, username, password);
+            emailAccountInformationToUser(email, username, guid);
         } catch (Exception e) {
         }
         try (PrintWriter out = response.getWriter()) {
@@ -166,6 +175,72 @@ public class SignUp extends HttpServlet {
     }
 
     private void emailAccountInformationToUser(String email, String username, String password) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        String subject = "Enterprise Gym Account Created";
+        //TODO: Change domain to actual server IP on live version
+        String emailMessage = "Your temporary account has been created with the following details:"
+                + " Username: " + username
+                + " Password: " + password
+                + " Please log in to complete the registration process and reset your password.";
+        
+        // <a href="..">text</a>
+        boolean result;
+        // Recipient's email ID needs to be mentioned.
+        String to = email;
+
+        // Sender's email ID needs to be mentioned
+        String from = "dundeeenterprisegym@gmail.com";
+
+        String host = "smtp.gmail.com";
+
+        // Get system properties object
+        System.setProperty("java.net.preferIPv4Stack", "true");
+        Properties properties = System.getProperties();
+
+        // Setup mail server
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.socketFactory.port", "587");
+        properties.put("mail.smtp.socketFactory.class",
+                "javax.net.ssl.SSLSocketFactory");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.port", "587");
+
+        // Get the default Session object.
+        String pass = "mypassword1";
+        String user = "dundeeenterprisegym@gmail.com";
+      //  EnterpriseAuthentication a = new EnterpriseAuthentication(user, pass);
+
+        Session mailSession = Session.getDefaultInstance(properties);
+
+        try {
+            // Create a default MimeMessage object.
+            MimeMessage message = new MimeMessage(mailSession);
+            
+            // Set To: header field of the header.
+            message.addRecipient(Message.RecipientType.TO,
+                    new InternetAddress(to));
+            
+            // Set Subject: header field
+            message.setSubject(subject);
+            
+            // Now set the actual message
+            message.setText(emailMessage, "UTF-8", "html");
+
+            Transport transport = mailSession.getTransport("smtp");
+            transport.connect(host, user, pass);
+            
+            
+            // Send message
+            transport.sendMessage(message, message.getAllRecipients());
+            result = true;
+            System.out.println("Mail sent");
+            transport.close();
+
+        } catch (MessagingException mex) {
+            mex.printStackTrace();
+            System.out.println("error: messaging exception");
+            result = false;
+        }
     }
 }
