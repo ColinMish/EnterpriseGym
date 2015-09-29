@@ -40,8 +40,8 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <% if (storyAdded != null) { %> <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>News Story Posted Successfully.</p></div> <% } %>
-                <% if (storyNotAdded != null) { %> <div class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Error Posting News Story.</p></div> <% } %>
+                <% if (storyAdded != null) { %> <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Posted Successfully.</p></div> <% } %>
+                <% if (storyNotAdded != null) { %> <div class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Error Posting.</p></div> <% } %>
 
                 <% if (pointsReset != null) { %> <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Points Successfully Reset.</p></div> <% } %>
                 <% if (pointsNotReset != null) { %> <div class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Error Resetting Points.</p></div> <% } %>
@@ -50,7 +50,7 @@
                 <% if (accountNotDeleted != null) { %> <div class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Error Deleting Account.</p></div> <% } %>
 
                 <% if (newsUpdated != null) {
-                        if (newsUpdated == true) { %> <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>News Story Updated Successfully.</p></div>
+                        if (newsUpdated == true) { %> <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Updated Successfully.</p></div>
                 <% } else { %>  <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Update failed please try again.</p></div> <%}
                     }%>
 
@@ -183,7 +183,7 @@
 
 
                         <label for="eventDescription">Description:</label>
-                        <textarea name="eventDescription" id="editor1" rows="10" cols="80"></textarea>
+                        <textarea name="eventDescription" id="eventDescription" rows="10" cols="80"></textarea>
                         <br/>
                         <span class="btn btn-default btn-file">
                             <input name="image" multiple accept='image/*' type="file">

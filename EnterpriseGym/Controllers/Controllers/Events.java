@@ -262,10 +262,15 @@ public class Events extends HttpServlet {
         try {
 
             if (event.newEvent(filePart, title, description, location, startDate, endDate, points, theme) == false) {
-                System.out.println("false");
-                response.sendRedirect(request.getContextPath() + "/FailedNewEvent.jsp");
+                  request.setAttribute("storyNotAdded", true);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
+            dispatcher.forward(request, response);
+            System.out.println("Adding Event failed");
             } else {
-                response.sendRedirect(request.getContextPath() + "/Events");
+                  request.setAttribute("storyAdded", true);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
+            dispatcher.forward(request, response);
+            System.out.println("Event Added.");
             }
 
         } catch (IOException | IllegalArgumentException e) {
@@ -273,7 +278,10 @@ public class Events extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("error", "No event title entered.");
             System.out.println("false, exception");
-            response.sendRedirect(request.getContextPath() + "/FailedNewEvent.jsp");
+                 request.setAttribute("storyNotAdded", true);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
+            dispatcher.forward(request, response);
+            System.out.println("Adding Event failed");
         }
     }
 
