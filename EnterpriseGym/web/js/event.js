@@ -76,19 +76,19 @@ function checkDelete(id,eventid)
 
 function successModal()
 {
-    $("#modalmessage2").text("The content has been deleted.");
+    $("#modalmessage2").text("You can always sign up again if you change your mind.");
     $('#myModal2').modal('show');
 }
 
 function failureModal()
 {
-    $("#modalmessage3").text("The content has not been deleted.");
+    $("#modalmessage3").text("Server error please try again.");
     $('#myModal3').modal('show');
 }
 
 function successSignUpModal()
 {
-    $("#modalmessage2").text("Sign up succeded.");
+    $("#modalmessage2").text("You have now signed up for the event.");
     $('#myModal2').modal('show');
 }
 
