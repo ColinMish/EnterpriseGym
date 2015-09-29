@@ -7,14 +7,14 @@
 <link rel='stylesheet' href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.4.0/fullcalendar.min.css"/>
 <link rel='stylesheet' media="print" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.4.0/fullcalendar.print.css"/>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/calandar.js"></script>
-<div class="col-md-12">
-    <div class="panel panel-default">
+
+    <div class="panel panel-primary">
         <div class="panel-heading">
             <h4><i class="fa fa-fw fa-check"></i>Calendar</h4>
         </div>
         <div class="panel-body">
             <div id="calendarMain"></div>
         </div>
-    </div>
+
 </div>
 

@@ -90,7 +90,7 @@
             <div class="row">
                 <div class="row-height">
                     <div class="col-md-6" id="ConnectText2">
-                        <div class="panel panel-default">
+                        <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <h4><i class="fa fa-fw fa-check"></i><strong>Points</strong></h4><br>
                             </div>
@@ -99,7 +99,7 @@
                     </div>
 
                     <div class="col-md-6" id="ConnectText">
-                        <div class="panel panel-default">
+                        <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <h4><i class="fa fa-fw fa-check"></i><strong>Points Table</strong></h4><br>
                             </div>
@@ -149,7 +149,7 @@
             <div class="row">
                 <div class="row-height">
                     <div class="col-md-10" id="ConnectText2">
-                        <div class="panel panel-default">
+                        <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <h4><i class="fa fa-fw fa-check"></i><strong>Progress Tracker</strong></h4><br>
                             </div>
@@ -216,7 +216,7 @@
 
 
                     <div class="col-md-2" id="ConnectText2">
-                        <div class="panel panel-default">
+                        <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <h3><i class="fa fa-fw fa-check"></i><strong>Medal Cabinet</strong></h3><br>
                             </div>

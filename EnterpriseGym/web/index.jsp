@@ -18,8 +18,8 @@
                 </div>
             </div>
 
-            <div class="col-md-12">
-                <div class="panel panel-default">
+            <div class="col-sm-6">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i>Enterprise and Being Enterprising? What do we mean?</h4>
                     </div>
@@ -31,7 +31,9 @@
                     </div>
                 </div>
             </div>
+            <div class="col-sm-6">
             <%@include file ="calendar.jsp" %>
+            </div>
         </div>
         
    

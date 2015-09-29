@@ -12,9 +12,7 @@
     </head>
     <%@include file="header.jsp" %>
     <script src="${pageContext.request.contextPath}/js/resetPassword.js"></script>
-    <div class ="mobile">
-    <%@include file="sidebar.jsp"%>
-    </div>
+    
 
 <div class="banner"></div>
     <!-- Page Content -->

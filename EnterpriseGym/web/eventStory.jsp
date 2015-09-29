@@ -22,9 +22,7 @@
         <script src="${pageContext.request.contextPath}/js/event.js" type="text/javascript"></script>  
         <script>var ctx = "${pageContext.request.contextPath}"</script>
     
-    <div class ="mobile">
-    <%@include file="sidebar.jsp"%>
-    </div>
+    
     
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">

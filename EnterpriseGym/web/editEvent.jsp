@@ -35,7 +35,7 @@
                 EventEntity p = (EventEntity) iterator.next();
          %>
         <div class="col-md-12" id="AboutText">
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i>Edit Event</h4>
                     </div>

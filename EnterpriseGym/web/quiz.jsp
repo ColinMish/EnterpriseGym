@@ -13,9 +13,7 @@
 
     </head>
        <%@include file="header.jsp" %>
-    <div class ="mobile">
-    <%@include file="sidebar.jsp"%>
-    </div>
+    
     
     <script src="${pageContext.request.contextPath}/js/quiz.js"></script>
     <% QuizEntity quiz = (QuizEntity) request.getAttribute("quiz");%>
@@ -49,7 +47,7 @@
         </div>
 
         <div class="col-md-8" id="ConnectText">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h4 id="quizTitle"><i class="fa fa-fw fa-check"></i><strong><%=quiz.getQuizTitle()%></strong></h4><br>
                 </div>
