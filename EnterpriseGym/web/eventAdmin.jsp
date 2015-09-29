@@ -96,7 +96,7 @@
         </div>
 
         <div class="col-md-12" id="ConnectText2">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h4><i class="fa fa-fw fa-check"></i><strong>Event Admin Pannel</strong></h4><br>
                 </div>

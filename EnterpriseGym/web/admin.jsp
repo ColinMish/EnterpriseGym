@@ -62,7 +62,7 @@
         <%if (account.hasAccessLevel(3)) {%>
 
         <div class="col-md-12">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div style="cursor:pointer" class="panel-heading" id="newsPanel">
                     <h4><i class="fa fa-fw fa-check"></i>News Management</h4>
                 </div>
@@ -104,7 +104,7 @@
             if (account.hasAccessLevel(10)) {
         %>
         <div class="col-md-12">
-            <div style="cursor:pointer" class="panel panel-default">
+            <div style="cursor:pointer" class="panel panel-primary">
                 <div class="panel-heading" id="userPanel">
                     <h4><i class="fa fa-fw fa-check"></i>Account Management</h4>
                 </div>
@@ -127,7 +127,7 @@
         <%}
             if (account.hasAccessLevel(2)) {%>
         <div class="col-md-12">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div style="cursor:pointer" class="panel-heading" id="eventsPanel">
                     <h4><i class="fa fa-fw fa-check"></i>Events Management</h4>
                 </div>
@@ -222,7 +222,7 @@
         <%}
             if (account.hasAccessLevel(4)) {%>
         <div class="col-md-12">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div style="cursor:pointer" class="panel-heading" id="quizPanel">
                     <h4><i class="fa fa-fw fa-check"></i>Quiz Management</h4>
                 </div>
@@ -236,7 +236,7 @@
         <%}
             if (account.hasAccessLevel(5)) {%>
         <div class="col-md-12">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div style="cursor:pointer" class="panel-heading" id="quickRegisterPanel">
                     <h4><i class="fa fa-fw fa-check"></i>Create Temporary Account</h4>
                 </div>
@@ -273,7 +273,7 @@
        
         <%}%>
         <div class="col-md-12">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div style="cursor:pointer" class="panel-heading" id="stats">
                     <h4><i class="fa fa-fw fa-check"></i>View Stats & Search Tool</h4>
                 </div>          
@@ -281,7 +281,7 @@
         </div>
         
          <div class="col-md-12">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div style="cursor:pointer" class="panel-heading" id="leaderboard">
                     <h4><i class="fa fa-fw fa-check"></i>Leaderboard</h4>
                 </div>          

@@ -9,9 +9,7 @@
 
 
     <%@include file="header.jsp" %>
-    <div class="mobile">
-        <%@include file="sidebar.jsp"%>   
-    </div>
+    
     <script src="${pageContext.request.contextPath}/js/login.js"></script>
     <% Boolean registered = (Boolean) request.getAttribute("registered"); %>  
 
@@ -38,8 +36,8 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h1><% if (registered != null) {%>Registration Successful - Please <% }%>Log In</h1>
-                <p></p>
+                <h1><% if (registered != null) {%>Registration Successful - Please Log In </h1> <% }else { %>Log In <%}%></h1>
+              
                 <h2 class="loginfailed" id="fail">Log In failed please try again</h2>
                 <h2 class="loginfailed" id="invalid">The username or password entered is invalid.</h2>
             </div>
@@ -58,7 +56,8 @@
             <div class="forgotPassword"><a href="resetPass.jsp">Have you forgotten your password?</a></div>
             <br>
 
-            <input type="submit" value="Sign In" class="btn btn-default"/>
+            <input type="submit" value="Sign In" class="btn btn-primary"/>
+            <hr>
         </form>                        
     </div>
 

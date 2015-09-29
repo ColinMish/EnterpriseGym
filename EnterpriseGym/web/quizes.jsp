@@ -13,13 +13,9 @@
     </head>
     <body>
     <%@include file="header.jsp" %>
-    <div class="hidden-xs">
-        <%@include file="sidebar.jsp"%>
-    </div>
+    
         
-     <div class ="mobile">
-    <%@include file="sidebar.jsp"%>
-    </div>
+     
     <div class="banner"></div>
             <!-- Page Content -->
     <div class="container">
@@ -32,7 +28,7 @@
         </div>
     
         <div class="col-md-12" id="ConnectText">
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i><strong>Theory</strong></h4><br>
                     </div>

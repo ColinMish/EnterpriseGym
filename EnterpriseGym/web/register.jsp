@@ -18,9 +18,7 @@
     <script src="http://blazeworx.com/jquery.flagstrap.min.js"></script>
     </head>
     <%@include file="header.jsp" %>
-    <div class ="mobile">
-        <%@include file="sidebar.jsp"%>
-    </div>
+   
 
     <script src="${pageContext.request.contextPath}/js/jquery.flagstrap.js"></script>
     <script src="${pageContext.request.contextPath}/js/register.js"></script>

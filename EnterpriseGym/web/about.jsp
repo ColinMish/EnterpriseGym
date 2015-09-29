@@ -14,9 +14,7 @@
    
     <body>
     <%@include file="header.jsp" %>
-    <div class ="mobile">
-    <%@include file="sidebar.jsp"%>
-    </div>
+   
     
     <div class="banner"></div>
     <!-- Page Content -->
@@ -31,8 +29,8 @@
                 
  
                                          
-        <div class="col-md-8" id="AboutText">
-                <div class="panel panel-default panelmobile">
+        <div class="col-sm-8" id="AboutText">
+                <div class="panel panel-primary panelmobile">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i>About the Enterprise Gym</h4>
                     </div>
@@ -94,11 +92,11 @@
                 </div>
             </div>
         
-              <div class="col-md-4" id="ConnectText">
-                <div class="panel panel-default panelabout">
+              <div class="col-sm-4" id="ConnectText">
+                <div class="panel panel-primary panelabout">
                     
                         <div class="panel-heading">
-                        <h4><i class="fa fa-fw fa-check"></i><strong>Available Options</strong></h4><br>
+                        <h4><i class="fa fa-fw fa-check"></i><strong>Related Pages</strong></h4>
                         </div>
                     
                         <div class="panel-body">

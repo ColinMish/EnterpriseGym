@@ -8,9 +8,7 @@
 <html>
    
      <%@include file="header.jsp" %>
-    <div class ="mobile">
-    <%@include file="sidebar.jsp"%>
-    </div>
+    
     
     
   
