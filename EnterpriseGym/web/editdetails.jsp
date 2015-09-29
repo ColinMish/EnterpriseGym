@@ -130,7 +130,7 @@
                                 <label for="matric">Matriculation Number:</label>
                                 <input name="matric" type="number" class="form-control" value="0" id="matricEdit" required/>
                             </div>
-                            <input class="btn btn-primary" type="submit" value="Update"><br/>
+                            <input class="btn btn-success" type="submit" value="Update"><br/>
                             <div id="successMessage" class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Updates Saved Successfully.</p></div>
                             <div id="errorMessage" class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Error Posting News Story.</p></div>
                         </div>
@@ -161,7 +161,7 @@
                                 <label for="usr">New Password Again:</label>
                                 <input type="text" name="newPassword2" class="form-control" id="newpassword">
                             </div>
-                            <input class="btn btn-primary" type="submit" value="Update"><br/>
+                            <input class="btn btn-success" type="submit" value="Update"><br/>
                         </div>
                     </div>
                 </div>                
@@ -173,8 +173,11 @@
                     if (allAccess != null && userAccount != null) {
             %>
             <form id="UpdateAccess" name="UpdateAccess" method="POST" action="UpdateAccess">
-                <div class="col-md-8" id="accessLevels">
+                <div class="col-md-12" id="accessLevels">
                     <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4><i class="fa fa-fw fa-check"></i>Account Privileges</h4>
+                        </div>
                         <div class="panel-body">
                             <table class="table table-hover">
                                 <thead>
@@ -200,7 +203,7 @@
                                 </tbody> 
                             </table>
                             <input type="hidden" id="accountId" value="<%=userAccount.getId()%>">
-                            <input class="btn btn-primary" type="submit" value="Update"><br/>
+                            <input class="btn btn-success" type="submit" value="Update"><br/>
                             <div id="tokenSuccessMessage" class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Updates Saved Successfully.</p></div>
                             <div id="tokenErrorMessage" class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Error Updating access tokens.</p></div>
                         </div>
