@@ -90,7 +90,7 @@ public class SignUp extends HttpServlet {
         }
     }
 
-    private void registerNewUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void registerNewUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         byte[] salt = Security.generateSalt();
         String accountNumber = request.getParameter("oldAccountNo");
         String username = request.getParameter("username");
@@ -114,7 +114,7 @@ public class SignUp extends HttpServlet {
                 request.setAttribute("registered", Boolean.FALSE);
             } else {
                 //Log the new user into the system here. 
-                request.setAttribute("registered", Boolean.TRUE);
+                //request.setAttribute("registered", Boolean.TRUE);
 
                 if (accountNumber != null && !accountNumber.equals("")) {
                     int accountNo = Integer.parseInt(accountNumber);
@@ -125,8 +125,11 @@ public class SignUp extends HttpServlet {
                     //add to account
                     user.addPoints(newUser);
                 }
-                String redirectURL = request.getContextPath() + "/logIn.jsp";
-                response.sendRedirect(redirectURL);
+//                String redirectURL = request.getContextPath() + "/logIn.jsp";
+//                response.sendRedirect(redirectURL);
+                 RequestDispatcher dispatcher = request.getRequestDispatcher("/logIn.jsp");
+                 request.setAttribute("registered", Boolean.TRUE);
+                dispatcher.forward(request, response);
             }
         } catch (IOException | IllegalArgumentException e) {
             //At this point you need to tell the user that the passwords don't match
