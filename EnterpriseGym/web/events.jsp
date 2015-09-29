@@ -9,6 +9,7 @@
 <%@page import="java.util.Map"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="Entities.NewsEntity" %>
+<%@page import="java.text.DateFormatSymbols" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
@@ -40,9 +41,26 @@
         } else {   
                   Iterator<EventEntity> iterator;
             iterator = events.iterator();
+            
             int i = 0;
             while (iterator.hasNext()) {
                 EventEntity p = (EventEntity) iterator.next();
+                String dateString = p.getStartdate();
+                String [] dateParts = new String [3];
+                String  [] splitString = dateString.split("/");
+                String month = splitString[0];
+                String day = splitString[1];
+                String rest = splitString[2];
+                String [] restOfString = rest.split(" ");
+                String year = restOfString[0];
+                String time = restOfString[1];
+                String AMPM = restOfString[2];
+
+                //String dayName = getDay(day);
+                int monthNo = Integer.parseInt(month);
+                String monthName = new DateFormatSymbols().getMonths()[monthNo]; 
+
+                String returnDate = monthName + " " + day + " " + year + " @ " + time + " " + AMPM;
          %>
         <div class="col-sm-6" id="AboutText">
                 <div class="panel panel-primary">
@@ -51,7 +69,7 @@
                     </div>
                     <div class="panel-body" class="fixed-panel">
                         <p><%=p.getEvent_type_name()%> Points Available:<%=p.getPoints_given()%></p>
-                        <p>Date of event: <%=p.getStartdate()%></p>
+                        <p>Date of event: <%=returnDate%></p>
                         
                              <% if (p.getLength()!=0){ %>                    
                             <img src="${pageContext.request.contextPath}/Events/Picture/<%=p.getID()%>" style="max-height: 300px; max-width: 300px;" class="img-responsive" alt="News Image">
