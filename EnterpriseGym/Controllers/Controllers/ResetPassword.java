@@ -24,7 +24,7 @@ import lib.Convertors;
  *
  * @author Kim
  */
-@WebServlet(name = "ResetPassword", urlPatterns = {"/ResetPassword", "/CheckPassword"})
+@WebServlet(name = "ResetPassword", urlPatterns = {"/ResetPassword", "/CheckPassword", "/ChangeForgottenPassword"})
 
 @MultipartConfig
 public class ResetPassword extends HttpServlet {
@@ -47,8 +47,36 @@ public class ResetPassword extends HttpServlet {
             case "CheckPassword":
                 checkPassword(request, response);
                 break;
+            case "ChangeForgottenPassword":
+                changePassword(request, response);
+                break;
         }
 
+    }
+    
+    private void changePassword(HttpServletRequest request, HttpServletResponse response){
+        
+        try {
+            String token = request.getParameter("token");
+            String newPass1 = request.getParameter("newPassword1");
+            String newPass2 = request.getParameter("newPassword2");
+            RequestDispatcher dispatcher;
+            
+            if (newPass1 == newPass2)
+            {
+                UserModel user = new UserModel();
+                user.setPasswordByToken(token, newPass1);
+                dispatcher = request.getRequestDispatcher("index.jsp");
+            }
+            else {
+                dispatcher = request.getRequestDispatcher("resetPass.jsp");
+                System.out.println("Passwords do not match");
+            }
+            
+            dispatcher.forward(request, response);
+            } catch (ServletException | IOException e) {
+
+            }
     }
 
     private void resetPassword(HttpServletRequest request, HttpServletResponse response) {
@@ -58,13 +86,16 @@ public class ResetPassword extends HttpServlet {
             String guid = UUID.randomUUID().toString();
             guid = guid.replaceAll("-", "");
             boolean success = sendResetEmail(guid, email);
+            RequestDispatcher dispatcher;
             
             
             if (success) {
-                RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+                dispatcher = request.getRequestDispatcher("index.jsp");
             }
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher("resetPass.jsp");
+            else
+            {
+                dispatcher = request.getRequestDispatcher("resetPass.jsp");
+            }
             dispatcher.forward(request, response);
         } catch (ServletException | IOException e) {
 

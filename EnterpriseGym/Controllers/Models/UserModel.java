@@ -52,7 +52,10 @@ public class UserModel {
             
             PreparedStatement ps1 = null;
             
-            String UpdateToken = "UPDATE account SET reset_token = ?  WHERE idaccount = (SELECT iduser FROM user WHERE email = ?)";
+            System.out.println(email);
+            System.out.println(searchToken);
+            
+            String UpdateToken = "UPDATE account SET reset_token = ?  WHERE idaccount = (SELECT account_idaccount FROM user WHERE email = ?)";
             
             ps1 = con.prepareStatement(UpdateToken);
             ps1.setString(1, searchToken);
@@ -66,6 +69,36 @@ public class UserModel {
         }
         
         return false;
+    }
+    
+    public boolean setPasswordByToken(String token, String newPassword){
+        
+        Connection con = null;
+        String username;
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+            PreparedStatement ps = null;
+            String sqlOption = "SELECT * WHERE reset_token=?";
+            ps = con.prepareStatement(sqlOption);
+            
+            ps.setString(1, token);
+            
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            
+            username = rs.getString("username");
+            
+            setPassword(username, newPassword);
+            return true;
+            
+        } catch(Exception e){
+            e.printStackTrace();
+            System.out.println("Failed to reset password");
+            return false;
+        }
+
     }
     
     public boolean setPassword(String username, String newPassword) {
