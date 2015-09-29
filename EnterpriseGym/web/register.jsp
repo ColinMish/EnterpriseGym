@@ -170,7 +170,7 @@
                 </div>
                 <div class="g-recaptcha" data-sitekey="6LfgPw0TAAAAANks7kqyif1IyoDAV-JpkCtTSB5q"></div>
                 <br>
-                <input class="btn btn-default" type="submit" value="Sign Up">
+                <input class="btn btn-success" type="submit" value="Sign Up">
                 <br/>
             </form> 
         </div>

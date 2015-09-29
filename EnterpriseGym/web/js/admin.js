@@ -16,8 +16,15 @@ $(document).ready(function ()
         tempSignUp(firstName, lastName, email);
     });
     
-   CKEDITOR.replace('editor1');
+    var myElement = document.getElementById('editor1');
+    if(myElement!==null){
+        CKEDITOR.replace('editor1');
+    }
+    
+   var myElement1 = document.getElementById('eventDescription');
+    if(myElement1 !==null){
  CKEDITOR.replace('eventDescription');
+    }
  
  
 

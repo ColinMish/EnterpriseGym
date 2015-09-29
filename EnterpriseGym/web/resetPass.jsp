@@ -36,7 +36,7 @@
                 <label for="email">Email:</label>
                 <input name="email" type="text" class="form-control" id="em" maxlength="100" required/>
             </div>
-            <input type="submit" value="Reset Password" class="btn btn-default"/>
+            <input type="submit" value="Reset Password" class="btn btn-success"/><br/><br/>
         </form>  
     </div>
 

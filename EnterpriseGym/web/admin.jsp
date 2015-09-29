@@ -40,8 +40,8 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <% if (storyAdded != null) { %> <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>News Story Posted Successfully.</p></div> <% } %>
-                <% if (storyNotAdded != null) { %> <div class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Error Posting News Story.</p></div> <% } %>
+                <% if (storyAdded != null) { %> <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Posted Successfully.</p></div> <% } %>
+                <% if (storyNotAdded != null) { %> <div class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Error Posting.</p></div> <% } %>
 
                 <% if (pointsReset != null) { %> <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Points Successfully Reset.</p></div> <% } %>
                 <% if (pointsNotReset != null) { %> <div class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Error Resetting Points.</p></div> <% } %>
@@ -50,7 +50,7 @@
                 <% if (accountNotDeleted != null) { %> <div class='alert alert-danger fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Error Deleting Account.</p></div> <% } %>
 
                 <% if (newsUpdated != null) {
-                        if (newsUpdated == true) { %> <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>News Story Updated Successfully.</p></div>
+                        if (newsUpdated == true) { %> <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Updated Successfully.</p></div>
                 <% } else { %>  <div class='alert alert-success fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Update failed please try again.</p></div> <%}
                     }%>
 
@@ -68,7 +68,7 @@
                 </div>
                 <div id="newsEditor" class="panel-body" hidden>
                     <%if (account.hasAccessLevel(12)) {%>
-                    <button style="margin-left: 10px;" id="editNews" class="btn btn-success" type="button" > News Management <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+                    <button id="editNews" class="btn btn-info" type="button" >Manage News<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
                             <%}%>
                     <hr>
                     <h3> Add News</h3>
@@ -91,7 +91,7 @@
                         <br>
 
                         <div class="form-group">
-                            <input class="btn btn-primary" type="submit" value="Create News">
+                            <input class="btn btn-success" type="submit" value="Create News">
                             
                         </div>
                     </form>
@@ -133,7 +133,7 @@
                 </div>
                 <div id="eventsEditor" class="panel-body" hidden>
                     <%if (account.hasAccessLevel(13)) {%>
-                    <button style="margin-left: 10px;" id="editEvent" class="btn btn-success" type="button">Event Management <span class="glyphicon glyphicon-pencil" aria-hidden="true"></button>
+                    <button id="editEvent" class="btn btn-info" type="button">Manage Events<span class="glyphicon glyphicon-pencil" aria-hidden="true"></button>
                             <%}%>
                             <hr>
                             <h3>Add Event </h3>
@@ -183,7 +183,7 @@
 
 
                         <label for="eventDescription">Description:</label>
-                        <textarea name="eventDescription" id="editor1" rows="10" cols="80"></textarea>
+                        <textarea name="eventDescription" id="eventDescription" rows="10" cols="80"></textarea>
                         <br/>
                         <span class="btn btn-default btn-file">
                             <input name="image" multiple accept='image/*' type="file">
@@ -211,7 +211,7 @@
 
                         <br>
                         <div class="form-group">
-                            <input class="btn btn-primary" type="submit" value="Create Event">                          
+                            <input class="btn btn-success" type="submit" value="Create Event">                          
                             <br/>  
                         </div>
                     </form> 
@@ -262,7 +262,7 @@
                         </div>
                         <div class="col-xs-6">
                             <div class="form-group">
-                                <input class="btn btn-default" type="submit" value="Create Account">
+                                <input class="btn btn-success" type="submit" value="Create Account">
                             </div>
                             <div id="message"><h2></h2></div>
                         </div>

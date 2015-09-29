@@ -41,6 +41,7 @@
         } else {   
                   Iterator<NewsEntity> iterator;
             iterator = news.iterator();
+            int i = 0;
             while (iterator.hasNext()) {
                 NewsEntity p = (NewsEntity) iterator.next();
          %>
@@ -61,7 +62,13 @@
                     </div>
                 </div>
             </div>
-        <%}%>
+                    
+        <% i++; 
+           if(i == 3 || i == 6)
+           { %>
+                <div class="clr"></div>
+           <%}
+        }%>
                 <%}%>
     </div>
     
