@@ -40,6 +40,7 @@
         } else {   
                   Iterator<EventEntity> iterator;
             iterator = events.iterator();
+            int i = 0;
             while (iterator.hasNext()) {
                 EventEntity p = (EventEntity) iterator.next();
          %>
@@ -61,7 +62,12 @@
                 </div>
          
          </div>
-        <%}%>
+        <% i++; 
+           if(i == 2 || i == 4)
+           { %>
+              <div class="clr"></div> 
+          <% }
+    }%>
                 <%}%>
     </div>
     <%@include file ="footer.jsp" %>
