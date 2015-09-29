@@ -183,7 +183,7 @@
 
 
                         <label for="eventDescription">Description:</label>
-                        <textarea name="eventDescription" id="editor1" rows="10" cols="80"></textarea>
+                        <textarea name="eventDescription" id="eventDescription" rows="10" cols="80"></textarea>
                         <br/>
                         <span class="btn btn-default btn-file">
                             <input name="image" multiple accept='image/*' type="file">
