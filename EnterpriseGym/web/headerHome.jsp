@@ -140,7 +140,7 @@
         <!-- Half Page Image Background Carousel Header -->
             
         
-
+<div id="headerContent" class="visible-xs"><img src="${pageContext.request.contextPath}/Pictures/teglogo.png" style="max-height: 70px; max-width: 120px;" class="img-responsive center-block" alt="News Image"></div>
                         
                         
 
@@ -207,6 +207,8 @@
             <span class="icon-next"></span>
         </a>
 
+        
+        
         </header>
 
 
