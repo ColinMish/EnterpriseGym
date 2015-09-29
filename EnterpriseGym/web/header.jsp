@@ -106,6 +106,7 @@
                                     <li><a href="${pageContext.request.contextPath}/Profile/Points">Points</a></li>
                                     <li><a href="${pageContext.request.contextPath}/Quizes">Online Tests</a></li>
                                     <li><a href="${pageContext.request.contextPath}/EditProfile/<%=account.getUsername()%>">Edit Profile</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/Profile/Events">My Events</a></li>
                                 </ul>
 
                             </li>

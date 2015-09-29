@@ -504,6 +504,49 @@ public class EventModel {
         }
     }
     
+      public java.util.LinkedList<EventUserEntity> getEventsByUserId(int userID){
+          //convert the account id into thr user id. 
+          UserModel userM = new UserModel();
+          int userId = userM.getUserIdByAccountId(userID);
+        java.util.LinkedList<EventUserEntity> eventUsers = new java.util.LinkedList<>();
+         Connection con = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+
+            PreparedStatement ps1 = null;
+            String sqlOption1 = "SELECT e.idevent, e.title, e.points, v.attended\n" +
+                        "FROM event_has_user v\n" +
+                        "INNER JOIN event e ON e.idevent = v.event_idevent\n" +
+                        "WHERE v.user_iduser = ?\n" +
+                        "ORDER BY e.title;";
+
+            ps1 = con.prepareStatement(sqlOption1);
+            
+            ps1.setInt(1,userId);
+
+            ResultSet rs = ps1.executeQuery();
+            
+            
+            while (rs.next()) {
+                EventUserEntity user = new EventUserEntity();
+                user.setEventTitle(rs.getString("title"));
+                user.setEventpoints(rs.getInt("points"));
+                user.setEventid(rs.getInt("idEvent"));
+                user.setAttended(rs.getBoolean("attended"));
+                eventUsers.add(user);
+            }
+
+            return eventUsers;
+
+        } catch (Exception e) {
+            System.out.println("connection to db failed");
+            e.printStackTrace();
+            return null;
+
+        }
+    }
+    
     public boolean awardPoints(int userID, int eventID) {
 	Connection con = null;
 	int theme = 0;
@@ -555,7 +598,7 @@ public class EventModel {
 			AwardPoints = "UPDATE user u SET u.project_points = u.project_points + " + points + " WHERE u.iduser = " + userID;
 		}      
 		
-		SetAttended = "UPDATE event_has_user e SET e.attended = 1 WHERE e.user_iduser = " + userID;
+		SetAttended = "UPDATE event_has_user e SET e.attended = 1 WHERE e.user_iduser = " + userID +" AND e.event_idevent=" +eventID;
 		
 		setAttended = con.prepareStatement(SetAttended);
 		setAttended.executeUpdate();

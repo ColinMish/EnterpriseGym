@@ -14,9 +14,33 @@ package Entities;
 
 public class EventUserEntity {
     
-    public String fristname,lastname,username,email;
-    public int userid;
+    public String fristname,lastname,username,email,eventTitle;
+    public int userid,eventid,eventpoints;
     boolean attended;
+
+    public int getEventpoints() {
+        return eventpoints;
+    }
+
+    public void setEventpoints(int eventpoints) {
+        this.eventpoints = eventpoints;
+    }
+
+    public String getEventTitle() {
+        return eventTitle;
+    }
+
+    public void setEventTitle(String eventTitle) {
+        this.eventTitle = eventTitle;
+    }
+
+    public int getEventid() {
+        return eventid;
+    }
+
+    public void setEventid(int eventid) {
+        this.eventid = eventid;
+    }
 
     public boolean isAttended() {
         return attended;
