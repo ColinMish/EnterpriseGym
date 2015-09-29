@@ -36,10 +36,12 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h1><% if (registered != null) {%>Registration Successful - Please Log In </h1> <% }else { %>Log In <%}%></h1>
+                <h1><% if (registered != null) {%>Registration Successful - Please Log In</h1><% }else { %>Log In <%}%></h1>
               
-                <h2 class="loginfailed" id="fail">Log In failed please try again</h2>
-                <h2 class="loginfailed" id="invalid">The username or password entered is invalid.</h2>
+                
+                <div class='alert alert-danger fade in' id='fail'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Log In Failed. Please Try Again.</p></div>
+                
+                <div class='alert alert-danger fade in' id='invalid'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><p>Invalid Username or Password.</p></div>
             </div>
         </div>
 
