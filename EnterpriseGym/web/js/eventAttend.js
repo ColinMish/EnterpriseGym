@@ -33,6 +33,36 @@ function Attend(id,eventid)
     });
 }
 
+function Leave(id,eventid)
+{
+     $.ajax({
+        type: "POST",
+        url: ctx+"/EventNotAttended",
+        data: { id: id, eventid : eventid},
+        cache: false,
+        success: function (data) {
+            if(data==1)
+            {
+                //Data has been deleted.
+                //Confirmation then reload the page. 
+                userLeave(id); 
+            }else{
+                failureModal();
+                //Data not deleted.
+            }
+        //Show success then reload the page. 
+        },
+        fail: function () {
+            window.alert("Failed");
+        //Show failure. 
+        },
+         error: function(jqXHR, textStatus, errorThrown) {
+        console.log(JSON.stringify(jqXHR));
+        console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+ }
+    });
+}
+
 function failureModal()
 {
     $("#modalmessage3").text("Failed to reach server please try again.");
@@ -40,7 +70,11 @@ function failureModal()
 }
 
 
-
+function userLeave(id)
+{
+    $("#attending"+id).addClass('hidden');
+    $('#notattending'+id).removeClass('hidden');
+}
 
 
 function userAttended(id)

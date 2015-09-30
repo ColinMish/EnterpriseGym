@@ -617,6 +617,76 @@ public class EventModel {
 	}
 }
     
+    public boolean revertPoints(int userID, int eventID) {
+	Connection con = null;
+	int theme = 0;
+	int points = 0;
+        
+        System.out.println(userID+"User id Event id:"+eventID);
+	String AwardPoints = "";
+	String SetAttended = "";
+
+	try {
+		Class.forName("com.mysql.jdbc.Driver").newInstance();
+		con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+
+		PreparedStatement ps = null;
+		PreparedStatement awardPoints = null;
+		PreparedStatement getThemePoints = null;
+		PreparedStatement setAttended = null;
+		
+		String GetThemePoints = "SELECT e.theme_idtheme, e.points FROM event e WHERE e.idevent = " + eventID;
+		
+		ResultSet rs = null;
+		
+		getThemePoints = con.prepareStatement(GetThemePoints);            
+		rs = getThemePoints.executeQuery();
+                
+                rs.next();
+	   
+		theme = rs.getInt("theme_idtheme");
+		points = rs.getInt("points");
+		
+		if(theme == 1)
+		{
+			AwardPoints = "UPDATE user u SET u.action_points = u.action_points - " + points + " WHERE u.iduser = " + userID;
+		}
+		else if(theme == 2)
+		{
+			AwardPoints = "UPDATE user u SET u.practice_points = u.practice_points - " + points + " WHERE u.iduser = " + userID;
+		}
+		else if(theme == 3)
+		{
+			AwardPoints = "UPDATE user u SET u.theory_points = u.theory_points - " + points + " WHERE u.iduser = " + userID;
+		}
+		else if(theme == 4)
+		{
+			AwardPoints = "UPDATE user u SET u.virtual_points = u.virtual_points - " + points + " WHERE u.iduser = " + userID;
+		}
+		else if(theme == 5)
+		{
+			AwardPoints = "UPDATE user u SET u.project_points = u.project_points - " + points + " WHERE u.iduser = " + userID;
+		}      
+		
+		SetAttended = "UPDATE event_has_user e SET e.attended = 0 WHERE e.user_iduser = " + userID +" AND e.event_idevent=" +eventID;
+		
+		setAttended = con.prepareStatement(SetAttended);
+		setAttended.executeUpdate();
+		
+		awardPoints = con.prepareStatement(AwardPoints);
+		awardPoints.executeUpdate();
+		
+		con.close();
+		return true;        
+		
+	} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+		System.out.println("expection thrown");
+		System.out.println("false, exception");
+		e.printStackTrace();
+		return false;
+	}
+}
+    
     
 }
 
