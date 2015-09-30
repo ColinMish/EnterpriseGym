@@ -145,7 +145,7 @@
                         
                         
 
-             <div class="Carousel">
+             <div class="Carousel hidden-xs">
         <header data-interval="false" data-wrap="false" id="myCarousel" class="carousel slide visible-lg visible-md visible-sm">
 
         <!-- Indicators -->

@@ -39,7 +39,7 @@ import lib.Convertors;
  *
  * @author Dave
  */
-@WebServlet(name = "Events", urlPatterns = {"/Events/*", "/EditEvent", "/NewEvent", "/SignUpEvent", "/EventAttended"})
+@WebServlet(name = "Events", urlPatterns = {"/Events/*", "/EditEvent", "/NewEvent", "/SignUpEvent", "/EventAttended","/EventNotAttended"})
 @MultipartConfig(maxFileSize = 16177215)
 public class Events extends HttpServlet {
 
@@ -175,6 +175,9 @@ public class Events extends HttpServlet {
             case "EventAttended":
                 eventAttended(request, response);
                 break;
+            case"EventNotAttended" :
+                eventNotAttended(request,response);
+                break;
         }
     }
 
@@ -195,6 +198,25 @@ public class Events extends HttpServlet {
             response.getWriter().write("0");
         }
     }
+    
+    private void eventNotAttended(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        EventModel model = new EventModel();
+        int userID = Integer.parseInt(request.getParameter("id"));
+        int eventID = Integer.parseInt(request.getParameter("eventid"));
+
+        //System.out.println(userID+"the user id"+ eventID +"the event id");
+        if (model.revertPoints(userID, eventID) == true) {
+            //The content was deleted
+            response.setContentType("text/html;charset=UTF-8");
+            response.getWriter().write("1");
+        } else {
+            //Nothing was deleted
+            response.setContentType("text/html;charset=UTF-8");
+            response.getWriter().write("0");
+        }
+    }
+    
 
     private void signUp(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

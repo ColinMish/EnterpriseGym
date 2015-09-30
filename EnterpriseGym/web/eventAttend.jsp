@@ -133,9 +133,9 @@
                                 <td><%=myEvent.getUsername()%></td>
                                 <td><%=myEvent.getEmail()%></td>
                                 <td><% if (myEvent.isAttended()) {%>
-                                    <p id="attended<%=myEvent.getUserid()%>">Attended </p>      
+                                    <a role="button" id="attending<%=myEvent.getUserid()%>" onclick="Leave(<%=myEvent.getUserid()%>,<%=eventID%>)" class="btn btn-danger">Mark Absent</a> <a role="button" id="notattending<%=myEvent.getUserid()%>" onclick="Attend(<%=myEvent.getUserid()%>,<%=eventID%>)" class="btn btn-success hidden">Mark as Attended </a>   
                                     <%} else {%> 
-                                    <a role="button" id="notattending<%=myEvent.getUserid()%>" onclick="Attend(<%=myEvent.getUserid()%>,<%=eventID%>)" class="btn btn-success">Mark as Attended </a>  <p id="attending<%=myEvent.getUserid()%>" class="hidden">Attended </p> 
+                                    <a role="button" id="notattending<%=myEvent.getUserid()%>" onclick="Attend(<%=myEvent.getUserid()%>,<%=eventID%>)" class="btn btn-success">Mark as Attended </a>       <a role="button" id="attending<%=myEvent.getUserid()%>" onclick="Leave(<%=myEvent.getUserid()%>,<%=eventID%>)" class="btn btn-danger hidden">Mark Absent</a> 
                                     <%}%>
                                 </td>
                             </tr>
