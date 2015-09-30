@@ -146,17 +146,17 @@
 
                             <div class="form-group">
                                 <label for="usr">Old Password:</label>
-                                <input type="text" name="password" class="form-control" id="password">
+                                <input type="password" name="password" class="form-control" id="password">
                             </div>
 
                             <div class="form-group">
                                 <label for="usr">New Password:</label>
-                                <input type="text" name="newPassword1" class="form-control" id="newpassword">
+                                <input type="password" name="newPassword1" class="form-control" id="newpassword">
                             </div>
 
                             <div class="form-group">
                                 <label for="usr">New Password Again:</label>
-                                <input type="text" name="newPassword2" class="form-control" id="newpassword">
+                                <input type="password" name="newPassword2" class="form-control" id="newpassword">
                             </div>
                             <input class="btn btn-success" type="submit" value="Update"><br/>
                         </div>

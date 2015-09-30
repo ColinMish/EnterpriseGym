@@ -27,12 +27,12 @@
 
                             <div class="form-group">
                                 <label for="usr">New Password:</label>
-                                <input type="text" name="newPassword1" class="form-control" id="newpassword">
+                                <input type="password" name="newPassword1" class="form-control" id="newpassword">
                             </div>
 
                             <div class="form-group">
                                 <label for="usr">New Password Again:</label>
-                                <input type="text" name="newPassword2" class="form-control" id="newpassword">
+                                <input type="password" name="newPassword2" class="form-control" id="newpassword">
                             </div>
                             <input class="btn btn-primary" type="submit" value="Update"><br><br>
                         </div>
