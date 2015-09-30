@@ -208,6 +208,7 @@ public class Profile extends HttpServlet {
         switch (command) {
             case 2:
                 editDetails(response, request);
+                break;
             case 3:
                 changePassword(response, request);
                 break;

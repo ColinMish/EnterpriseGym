@@ -692,22 +692,24 @@ public class UserModel {
             update += " WHERE iduser=?";
             PreparedStatement ps = con.prepareStatement(update);
             for (int i = 0; i < keyArray.length; i++) {
-                ps.setString(i, keyArray[i]);
+                ps.setString(i+1, updates.get(keyArray[i]));
             }
+            ps.setInt(keyArray.length+1,userId);
             ps.executeUpdate();
             ps.close();
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+             System.out.println(e.getMessage());
         }
     }
     
     private HashMap getAllUpdateFields(String firstname, String lastname, String email, String gender, String university, String school, String subject, String yearOfStudy, String matric) {
         HashMap myUpdates = new HashMap();
         if (!isNullOrEmpty(firstname)) {
-            myUpdates.put("firstname", firstname);
+            myUpdates.put("first_name", firstname);
         }
         
         if (!isNullOrEmpty(lastname)) {
-            myUpdates.put("lastname", lastname);
+            myUpdates.put("last_name", lastname);
         }
         
         if (!isNullOrEmpty(email)) {
@@ -731,11 +733,11 @@ public class UserModel {
         }
         
         if (!isNullOrEmpty(yearOfStudy)) {
-            myUpdates.put("yearOfStudy", yearOfStudy);
+            myUpdates.put("year", yearOfStudy);
         }
         
         if (!isNullOrEmpty(matric)) {
-            myUpdates.put("matric", matric);
+            myUpdates.put("matriculation", matric);
         }
         return myUpdates;
     }
