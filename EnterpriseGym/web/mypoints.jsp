@@ -25,6 +25,7 @@
         iterator = points.iterator();
         while (iterator.hasNext()) {
             user = (UserEntity) iterator.next();
+            if (user != null) {
     %>
 
     <script type="text/javascript">
@@ -222,19 +223,20 @@
                             <div class="panel-body">
                                 <% if (user.getSilverMedals() == 0) {
                                 %><h3>No medals earned yet</h3><%
-                        } else {%>
+                                } else {%>
                                 <%if (user.getSilverMedals() > 1) {%>
                                 <img style="margin-left: 10px;" width="90" src="${pageContext.request.contextPath}/Pictures/gold.jpg">
                                 <% } else if (user.getSilverMedals() == 1) {%>
                                 <img style="margin-left: 10px;" width="90" src="${pageContext.request.contextPath}/Pictures/silver.jpg">
                                 <% }
-                            }%>
+                                    }%>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <%}%>
+            <%}
+                }%>
         </div>
         <%@include file = "footer.jsp" %>
     </body>
