@@ -157,3 +157,11 @@ and open the template in the editor.
      border-top-left-radius: 5px;
      border-top-right-radius: 5px;
  }
+ 
+
+ select {
+    margin:40px;
+    background: rgba(0,0,0,0.3);
+    color:red;
+    text-shadow:0 1px 0 rgba(0,0,0,0.4);
+}
