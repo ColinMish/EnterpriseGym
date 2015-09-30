@@ -1,6 +1,8 @@
 package Controllers;
 
 
+import Entities.NewsEntity;
+import Models.NewsModel;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -45,7 +47,13 @@ public class Main extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
+                    NewsModel model = new NewsModel();
+        java.util.LinkedList<NewsEntity> newsitems = model.getNewsIndex();
+        request.setAttribute("news", newsitems);
+        
             RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+            
             dispatcher.forward(request, response);
     }
 

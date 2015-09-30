@@ -68,6 +68,7 @@
                       
                         <button class="btn btn-info pull-right" type="submit">Update News <span class="glyphicon glyphicon-upload" aria-hidden="true"></span></button>
                     </form>
+                     <a href="javascript:history.back()" class="btn btn-danger">Back</a>        
                         
                        
                              

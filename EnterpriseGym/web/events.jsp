@@ -60,7 +60,7 @@
                 int monthNo = Integer.parseInt(month);
                 String monthName = new DateFormatSymbols().getMonths()[monthNo]; 
 
-                String returnDate = monthName + " " + day + " " + year + " @ " + time + " " + AMPM;
+                String returnDate = monthName + " " + day + " " + year + " at " + time + " " + AMPM;
          %>
         <div class="col-sm-6" id="AboutText">
                 <div class="panel panel-primary">
@@ -69,7 +69,7 @@
                     </div>
                     <div class="panel-body" class="fixed-panel">
                         <p><%=p.getEvent_type_name()%> Points Available:<%=p.getPoints_given()%></p>
-                        <p>Date of event: <%=returnDate%></p>
+                        <p>Date: <%=returnDate%></p>
                         
                              <% if (p.getLength()!=0){ %>                    
                             <img src="${pageContext.request.contextPath}/Events/Picture/<%=p.getID()%>" style="max-height: 300px; max-width: 300px;" class="img-responsive" alt="News Image">
