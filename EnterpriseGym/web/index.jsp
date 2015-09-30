@@ -21,7 +21,7 @@
             <div class="col-sm-6">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h4><i class="fa fa-fw fa-check"></i>Enterprise and Being Enterprising? What do we mean?</h4>
+                        <h4><i class="fa fa-fw fa-check"></i>Being Enterprising? What do we mean?</h4>
                     </div>
                     <div class="panel-body">
                         <p>This sums what we are trying to achieve at The Enterprise Gym:</p>

@@ -69,7 +69,7 @@ function checkDelete(id,eventid)
 {
         this.myId=id;
         this.eventId=eventid;
-        $("#modalmessage").text("Are you sure you want to leave this event ?");
+        $("#modalmessage").text("Are you sure you want to leave this event?");
         
         $('#myModal').modal('show');
 }
@@ -88,7 +88,7 @@ function failureModal()
 
 function successSignUpModal()
 {
-    $("#modalmessage2").text("You have now signed up for the event.");
+    $("#modalmessage2").text("You have now signed up for the event. We look forward to seeing you there!");
     $('#myModal2').modal('show');
 }
 
