@@ -104,7 +104,9 @@
                         
                             <a class="btn btn-primary btns" href="${pageContext.request.contextPath}/Trainers">Trainers</a><br><br>
                             
-                            <a class="btn btn-primary btns" href="${pageContext.request.contextPath}/Connect">Connect</a>
+                            <a class="btn btn-primary btns" href="${pageContext.request.contextPath}/Connect">Connect</a><br><br>
+                            
+                            <a class="btn btn-primary btns" href="${pageContext.request.contextPath}/Contact">Contact Us</a>
                             
                             </div>
                         </div>
