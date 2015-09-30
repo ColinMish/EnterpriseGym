@@ -93,6 +93,48 @@ public class NewsModel {
 
     }
     
+     public java.util.LinkedList<NewsEntity> getNewsIndex() {
+        
+        java.util.LinkedList<NewsEntity> newsitem = new java.util.LinkedList<>();
+
+        Connection con = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+
+            PreparedStatement ps1 = null;
+            String sqlOption1 = "SELECT * FROM newsItem order by dateAdded DESC limit 2";
+            ps1 = con.prepareStatement(sqlOption1);
+
+            ResultSet rs1 = ps1.executeQuery();
+           
+            if(rs1.wasNull())
+    	{
+    		System.out.println("null result");
+                return null;
+    	}
+    	else
+    	{
+    		while(rs1.next())
+    		{
+                NewsEntity news = new NewsEntity(); 
+    	    	news.setId(rs1.getInt("idnewsItem"));
+    	    	news.setTitle(rs1.getString("title"));
+    	    	news.setContent(rs1.getString("story"));
+                news.setLength(rs1.getInt("image_length"));              
+    	    	newsitem.add(news);   	  	
+    		}
+                return newsitem;
+    	}
+           // return newsitem;
+        } catch (Exception e) {
+            System.out.println("connection to db failed");
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+    
      public boolean updateNewsStory(Part filepart,String newsContent,String title,int id) throws IOException
     {
        

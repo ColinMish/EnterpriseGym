@@ -4,6 +4,7 @@
     Author     : colin
 --%>
 
+<%@page import="java.text.DateFormatSymbols"%>
 <%@page import="Entities.EventEntity"%>
 <%@page import="java.util.Iterator"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -106,6 +107,22 @@
             iterator = event.iterator();
             while (iterator.hasNext()) {
                 EventEntity p = (EventEntity) iterator.next();
+                     String dateString = p.getStartdate();
+                String [] dateParts = new String [3];
+                String  [] splitString = dateString.split("/");
+                String month = splitString[0];
+                String day = splitString[1];
+                String rest = splitString[2];
+                String [] restOfString = rest.split(" ");
+                String year = restOfString[0];
+                String time = restOfString[1];
+                String AMPM = restOfString[2];
+
+                //String dayName = getDay(day);
+                int monthNo = Integer.parseInt(month);
+                String monthName = new DateFormatSymbols().getMonths()[monthNo]; 
+
+                String returnDate = monthName + " " + day + " " + year + " at " + time + " " + AMPM;
          %>
         <div class="col-md-12" id="AboutText">
                 <div class="panel panel-primary">
@@ -113,7 +130,8 @@
                         <h4><i class="fa fa-fw fa-check"></i><%=p.getName()%></h4>
                     </div>
                     <div class="panel-body">
-                        <p>
+                         <p><%=p.getEvent_type_name()%> Points Available:<%=p.getPoints_given()%></p>
+                         <p>Date: <%=returnDate%></p>
                         <p><%=p.getDescription()%></p>
                         
                              <% if (p.getLength()!=0){ %>   

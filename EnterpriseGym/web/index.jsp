@@ -1,3 +1,5 @@
+<%@page import="java.util.Iterator"%>
+<%@page import="Entities.NewsEntity"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -34,6 +36,47 @@
             <div class="col-sm-6">
             <%@include file ="calendar.jsp" %>
             </div>
+            
+     
+            
+            <div class="clr"></div> 
+            <hr>
+            <h3>&nbsp;&nbsp;&nbsp;Recent Articles:</h3>
+                   <%
+            java.util.LinkedList<NewsEntity> news = (java.util.LinkedList<NewsEntity>) request.getAttribute("news");
+            if (news.size() ==0)  {
+        %>
+        <p>No News found.</p>
+        <%
+        } else {   
+                  Iterator<NewsEntity> iterator;
+            iterator = news.iterator();
+            int i = 0;
+            while (iterator.hasNext()) {
+                NewsEntity p = (NewsEntity) iterator.next();
+         %>
+        <div class="col-sm-6" id="AboutText">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-fw fa-check"></i><%=p.getTitle()%></h4>
+                    </div>
+                    <div class="panel-body" class="panel-height">
+                        <p>
+                        <p><%=p.getContent()%></p>
+                        
+                             <% if (p.getLength()!=0){ %>                    
+                            <img src="${pageContext.request.contextPath}/News/Picture/<%=p.getId()%>" style="max-height: 175px; max-width: 175px;" class="img-responsive" alt="News Image">
+                            <%} %>
+                       
+                        <a href="${pageContext.request.contextPath}/News/Article/<%=p.getId()%>" class="btn btn-default">Read More</a>
+                    </div>
+                </div>
+            </div>
+                    
+        <% } }%>
+    </div>
+            
+            
         </div>
         
    

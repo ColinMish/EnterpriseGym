@@ -7,8 +7,10 @@ package Controllers;
  */
 import Entities.Account;
 import Entities.EventUserEntity;
+import Entities.NewsEntity;
 import Entities.UserEntity;
 import Models.EventModel;
+import Models.NewsModel;
 import Models.UserModel;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -228,6 +230,9 @@ public class Profile extends HttpServlet {
         if (newPassword1.equals(newPassword2)) {
             UserModel user = new UserModel();
             user.setPassword(username, newPassword1);
+                NewsModel model = new NewsModel();
+        java.util.LinkedList<NewsEntity> newsitems = model.getNewsIndex();
+        request.setAttribute("news", newsitems);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
             dispatcher.forward(request, response);
         } else {

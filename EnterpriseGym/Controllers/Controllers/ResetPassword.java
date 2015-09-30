@@ -1,5 +1,7 @@
 package Controllers;
 
+import Entities.NewsEntity;
+import Models.NewsModel;
 import Models.UserModel;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -54,34 +56,31 @@ public class ResetPassword extends HttpServlet {
 
     }
     
-    private void changePassword(HttpServletRequest request, HttpServletResponse response){
+    private void changePassword(HttpServletRequest request, HttpServletResponse response) throws IOException{
         
-        try {
+       
             String token = request.getParameter("token");
             String newPass1 = request.getParameter("newPassword1");
             String newPass2 = request.getParameter("newPassword2");
-            RequestDispatcher dispatcher;
+            
             
             if (newPass1 == newPass2)
             {
                 UserModel user = new UserModel();
                 user.setPasswordByToken(token, newPass1);
-                dispatcher = request.getRequestDispatcher("index.jsp");
+                response.sendRedirect(request.getContextPath() + "/Home");
             }
             else {
-                dispatcher = request.getRequestDispatcher("resetPass.jsp");
+                response.sendRedirect(request.getContextPath() + "/resetPass.jsp");
                 System.out.println("Passwords do not match");
             }
             
-            dispatcher.forward(request, response);
-            } catch (ServletException | IOException e) {
-
-            }
+            
     }
 
-    private void resetPassword(HttpServletRequest request, HttpServletResponse response) {
+    private void resetPassword(HttpServletRequest request, HttpServletResponse response) throws IOException {
         /* Get details */
-        try {
+       
             String email = request.getParameter("email");
             String guid = UUID.randomUUID().toString();
             guid = guid.replaceAll("-", "");
@@ -90,16 +89,13 @@ public class ResetPassword extends HttpServlet {
             
             
             if (success) {
-                dispatcher = request.getRequestDispatcher("index.jsp");
+                 response.sendRedirect(request.getContextPath() + "/Home");
             }
             else
             {
-                dispatcher = request.getRequestDispatcher("resetPass.jsp");
+                response.sendRedirect(request.getContextPath() + "/resetPass.jsp");
             }
-            dispatcher.forward(request, response);
-        } catch (ServletException | IOException e) {
-
-        }
+       
     }
 
     private boolean sendResetEmail(String token, String email) {
