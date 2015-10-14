@@ -29,8 +29,9 @@ import lib.Convertors;
  */
 public class EventModel {
     
-    public String user = "davidkenny";
-    public String pass = "root1";
+    public String user = "root";
+    public String pass = "davidkenny1";
+    public String database ="jdbc:mysql://46.101.22.191:3306/Enterprise_Gym";
     
     public static java.sql.Date getEventDate() {
         java.util.Date today = new java.util.Date();
@@ -57,7 +58,7 @@ public class EventModel {
     try {
 
         Class.forName("com.mysql.jdbc.Driver").newInstance();
-        con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+        con = DriverManager.getConnection(database, user, pass);
 
         PreparedStatement ps2 = null;
 
@@ -99,7 +100,7 @@ public class EventModel {
         Connection con = null;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+            con = DriverManager.getConnection(database, user, pass);
 
             PreparedStatement ps1 = null;
             String sqlOption1 = "SELECT * FROM event";
@@ -154,7 +155,7 @@ public class EventModel {
         
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+            con = DriverManager.getConnection(database, user, pass);
               if (inputStream != null && length !=0) {
             PreparedStatement ps = null;
              String sqlOption2 = "UPDATE event SET title=?,description=?,date=?,end_date=?,location=?,points=?,theme_idtheme=?,image=?,image_length=?,image_type=? WHERE idevent=?";
@@ -210,7 +211,7 @@ public class EventModel {
         Connection con = null;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+            con = DriverManager.getConnection(database, user, pass);
 
             PreparedStatement ps1 = null;
             String sqlOption1 = "SELECT * FROM event WHERE idevent = " + ID + ";";
@@ -255,7 +256,7 @@ public class EventModel {
         Connection con = null;
         try{
               Class.forName("com.mysql.jdbc.Driver").newInstance();
-         con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+         con = DriverManager.getConnection(database, user, pass);
             Convertors convertor = new Convertors();
             ResultSet rs = null;
             PreparedStatement ps = null;  
@@ -312,7 +313,7 @@ public class EventModel {
     try {
 
         Class.forName("com.mysql.jdbc.Driver").newInstance();
-        con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+        con = DriverManager.getConnection(database, user, pass);
 
         PreparedStatement ps2 = null;
         int i=0;
@@ -346,7 +347,7 @@ public class EventModel {
          try {
 
         Class.forName("com.mysql.jdbc.Driver").newInstance();
-        con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+        con = DriverManager.getConnection(database, user, pass);
 
         PreparedStatement ps2 = null;
         
@@ -381,7 +382,7 @@ public class EventModel {
 	
 	try {
 		Class.forName("com.mysql.jdbc.Driver").newInstance();
-		con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+		con = DriverManager.getConnection(database, user, pass);
 
 		
 		PreparedStatement deleteNews = null;
@@ -423,7 +424,7 @@ public class EventModel {
        
         try {
              Class.forName("com.mysql.jdbc.Driver").newInstance();
-         con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+         con = DriverManager.getConnection(database, user, pass);
             Convertors convertor = new Convertors();
             ResultSet rs = null;
             PreparedStatement ps = null;  
@@ -464,7 +465,7 @@ public class EventModel {
          Connection con = null;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+            con = DriverManager.getConnection(database, user, pass);
 
             PreparedStatement ps1 = null;
             String sqlOption1 = "SELECT u.last_name, u.first_name, u.email, a.username,u.iduser,e.attended \n" +
@@ -512,7 +513,7 @@ public class EventModel {
          Connection con = null;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+            con = DriverManager.getConnection(database, user, pass);
 
             PreparedStatement ps1 = null;
             String sqlOption1 = "SELECT e.idevent, e.title, e.points, v.attended\n" +
@@ -558,7 +559,7 @@ public class EventModel {
 
 	try {
 		Class.forName("com.mysql.jdbc.Driver").newInstance();
-		con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+		con = DriverManager.getConnection(database, user, pass);
 
 		PreparedStatement ps = null;
 		PreparedStatement awardPoints = null;
@@ -628,7 +629,7 @@ public class EventModel {
 
 	try {
 		Class.forName("com.mysql.jdbc.Driver").newInstance();
-		con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+		con = DriverManager.getConnection(database, user, pass);
 
 		PreparedStatement ps = null;
 		PreparedStatement awardPoints = null;

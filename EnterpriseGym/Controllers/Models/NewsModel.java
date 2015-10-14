@@ -36,8 +36,9 @@ import lib.Bytes;
  */
 public class NewsModel {
     
-    public String user = "davidkenny";
-    public String pass = "root1";
+     public String user = "root";
+    public String pass = "davidkenny1";
+    public String database ="jdbc:mysql://46.101.22.191:3306/Enterprise_Gym";
     
      public java.util.Date convertSqlDateToUtilDate(java.sql.Date date) {
     return new java.util.Date(date.getTime());
@@ -50,7 +51,7 @@ public class NewsModel {
         Connection con = null;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+            con = DriverManager.getConnection(database, user, pass);
 
             PreparedStatement ps1 = null;
             String sqlOption1 = "SELECT * FROM newsItem order by dateAdded DESC limit 6";
@@ -100,7 +101,7 @@ public class NewsModel {
         Connection con = null;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+            con = DriverManager.getConnection(database, user, pass);
 
             PreparedStatement ps1 = null;
             String sqlOption1 = "SELECT * FROM newsItem order by dateAdded DESC limit 2";
@@ -157,7 +158,7 @@ public class NewsModel {
         
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+            con = DriverManager.getConnection(database, user, pass);
               if (inputStream != null && length !=0) {
             PreparedStatement ps = null;
              String sqlOption2 = "UPDATE newsItem SET story=?,title=?,image=?,image_length=?,image_type=? WHERE idnewsItem=?";
@@ -201,7 +202,7 @@ public class NewsModel {
         Connection con = null;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+            con = DriverManager.getConnection(database, user, pass);
 
             PreparedStatement ps1 = null;
             String sqlOption1 = "SELECT * FROM newsItem order by dateAdded DESC";
@@ -251,7 +252,7 @@ public class NewsModel {
         Connection con = null;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+            con = DriverManager.getConnection(database, user, pass);
 
             PreparedStatement ps1 = null;
             String sqlOption1 = "SELECT * FROM newsItem where idnewsItem=?";
@@ -304,7 +305,7 @@ public class NewsModel {
        
         try {
              Class.forName("com.mysql.jdbc.Driver").newInstance();
-         con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+         con = DriverManager.getConnection(database, user, pass);
             Convertors convertor = new Convertors();
             ResultSet rs = null;
             PreparedStatement ps = null;  
@@ -347,7 +348,7 @@ public class NewsModel {
         
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+            con = DriverManager.getConnection(database, user, pass);
 
             PreparedStatement deleteNews = null;
             String DeleteNews = "DELETE FROM newsItem WHERE idnewsItem=?";

@@ -19,8 +19,9 @@ import lib.JsonHighChartConvertor;
  */
 public class AdminModel {
 
-    public String user = "davidkenny";
-    public String pass = "root1";
+    public String user = "root";
+    public String pass = "davidkenny1";
+    public String database ="jdbc:mysql://46.101.22.191:3306/Enterprise_Gym";
 
     public static java.sql.Date getCurrentDate() {
         java.util.Date today = new java.util.Date();
@@ -48,7 +49,7 @@ public class AdminModel {
 
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+            con = DriverManager.getConnection(database, user, pass);
 
             PreparedStatement ps = null;
             PreparedStatement addNewsStory = null;
@@ -79,7 +80,7 @@ public class AdminModel {
 
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+            con = DriverManager.getConnection(database, user, pass);
 
             PreparedStatement ps = null;
             PreparedStatement resetPoints = null;
@@ -101,7 +102,7 @@ public class AdminModel {
         LinkedList tableColumns = new LinkedList();
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+            con = DriverManager.getConnection(database, user, pass);
 
             PreparedStatement ps = null;
             PreparedStatement resetPoints = null;
@@ -129,7 +130,7 @@ public class AdminModel {
         ArrayList data = new ArrayList();
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+            con = DriverManager.getConnection(database, user, pass);
 
             PreparedStatement ps = null;
 
@@ -152,7 +153,7 @@ public class AdminModel {
 
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+            con = DriverManager.getConnection(database, user, pass);
 
             PreparedStatement ps = null;
             PreparedStatement deleteUser = null;
@@ -177,7 +178,7 @@ public class AdminModel {
 
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+            con = DriverManager.getConnection(database, user, pass);
 
             PreparedStatement ps = null;
             PreparedStatement findUser = null;
@@ -214,7 +215,7 @@ public class AdminModel {
 
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+            con = DriverManager.getConnection(database, user, pass);
 
             PreparedStatement ps = null;
 
@@ -249,7 +250,7 @@ public class AdminModel {
 
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+            con = DriverManager.getConnection(database, user, pass);
 
             PreparedStatement ps = null;
 
@@ -285,7 +286,7 @@ public class AdminModel {
 
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+            con = DriverManager.getConnection(database, user, pass);
 
             PreparedStatement ps = null;
 
@@ -311,7 +312,7 @@ public class AdminModel {
         results.add(columns);
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym", user, pass);
+            con = DriverManager.getConnection(database, user, pass);
 
             PreparedStatement ps = null;
 

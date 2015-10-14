@@ -15,8 +15,9 @@ import java.sql.ResultSet;
  * @author Kim
  */
 public class NewPassModel {
-    public String user = "davidkenny";
-    public String pass = "root1";
+    public String user = "root";
+    public String pass = "davidkenny1";
+    public String database ="jdbc:mysql://46.101.22.191:3306/Enterprise_Gym";
 
     public NewPassModel() {
 
@@ -29,7 +30,7 @@ public class NewPassModel {
         try {
             /* Check if in database */
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            con = DriverManager.getConnection("jdbc:mysql://160.153.16.42:3306/Enterprise_Gym",user,pass);
+            con = DriverManager.getConnection(database,user,pass);
 
             String q = "SELECT user FROM Enterprise_Gym WHERE email=?";
 
