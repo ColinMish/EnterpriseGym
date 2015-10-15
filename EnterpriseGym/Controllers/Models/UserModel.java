@@ -360,7 +360,7 @@ public class UserModel {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             Statement st;
             ResultSet rs;
-            Connection con = DriverManager.getConnection(database, "davidkenny", "root1");
+            Connection con = DriverManager.getConnection(database, user, pass);
             st = con.createStatement();
             rs = st.executeQuery("select * from account where username='" + userName + "'");
             
@@ -441,7 +441,7 @@ public class UserModel {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             Statement st;
             ResultSet rs;
-            Connection con = DriverManager.getConnection(database, "davidkenny", "root1");
+            Connection con = DriverManager.getConnection(database, user, pass);
             st = con.createStatement();
             rs = st.executeQuery("select email from user where account_idaccount='" + userId + "'");
             if (rs.next()) {
@@ -460,7 +460,7 @@ public class UserModel {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             Statement st;
             ResultSet rs;
-            Connection con = DriverManager.getConnection(database, "davidkenny", "root1");
+            Connection con = DriverManager.getConnection(database, user, pass);
             st = con.createStatement();
             rs = st.executeQuery("select idaccount from account where username='" + username + "'");
             if (rs.next()) {
@@ -515,7 +515,7 @@ public class UserModel {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             Statement st;
             ResultSet rs;
-            Connection con = DriverManager.getConnection(database, "davidkenny", "root1");
+            Connection con = DriverManager.getConnection(database, user, pass);
             st = con.createStatement();
             rs = st.executeQuery("select username from account where idaccount='" + accountNumber + "'");
             if (rs.next()) {
@@ -546,7 +546,7 @@ public class UserModel {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             PreparedStatement st;
-            Connection con = DriverManager.getConnection(database, "davidkenny", "root1");
+            Connection con = DriverManager.getConnection(database, user, pass);
             String update = "UPDATE user SET action_points=? WHERE iduser=?";
             st = con.prepareStatement(update);
             st.setInt(1, actionPoints);
@@ -560,7 +560,7 @@ public class UserModel {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             PreparedStatement st;
-            Connection con = DriverManager.getConnection(database, "davidkenny", "root1");
+            Connection con = DriverManager.getConnection(database, user, pass);
             String update = "UPDATE user SET practice_points=? WHERE iduser=?";
             st = con.prepareStatement(update);
             st.setInt(1, practicePoints);
@@ -574,7 +574,7 @@ public class UserModel {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             PreparedStatement st;
-            Connection con = DriverManager.getConnection(database, "davidkenny", "root1");
+            Connection con = DriverManager.getConnection(database, user, pass);
             String update = "UPDATE user SET virtual_points=? WHERE iduser=?";
             st = con.prepareStatement(update);
             st.setInt(1, virtualPoints);
@@ -588,7 +588,7 @@ public class UserModel {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             PreparedStatement st;
-            Connection con = DriverManager.getConnection(database, "davidkenny", "root1");
+            Connection con = DriverManager.getConnection(database, user, pass);
             String update = "UPDATE user SET project_points=? WHERE iduser=?";
             st = con.prepareStatement(update);
             st.setInt(1, projectPoints);
@@ -602,7 +602,7 @@ public class UserModel {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             PreparedStatement st;
-            Connection con = DriverManager.getConnection(database, "davidkenny", "root1");
+            Connection con = DriverManager.getConnection(database, user, pass);
             String update = "UPDATE user SET theory_points=? WHERE iduser=?";
             st = con.prepareStatement(update);
             st.setInt(1, theoryPoints);
@@ -618,7 +618,7 @@ public class UserModel {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             Statement st;
             ResultSet rs;
-            Connection con = DriverManager.getConnection(database, "davidkenny", "root1");
+            Connection con = DriverManager.getConnection(database, user, pass);
             st = con.createStatement();
             rs = st.executeQuery("select iduser from user where account_idaccount='" + accountID + "'");
             if (rs.next()) {
@@ -636,7 +636,7 @@ public class UserModel {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             Statement st;
             ResultSet rs;
-            Connection con = DriverManager.getConnection(database, "davidkenny", "root1");
+            Connection con = DriverManager.getConnection(database, user, pass);
             st = con.createStatement();
             rs = st.executeQuery("select username from account");
             while (rs.next()) {
@@ -657,7 +657,7 @@ public class UserModel {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             Statement st;
             ResultSet rs;
-            Connection con = DriverManager.getConnection(database, "davidkenny", "root1");
+            Connection con = DriverManager.getConnection(database, user, pass);
             st = con.createStatement();
             rs = st.executeQuery("select * from accessToken");
             while (rs.next()) {
@@ -679,7 +679,7 @@ public class UserModel {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             Statement st;
             ResultSet rs;
-            Connection con = DriverManager.getConnection(database, "davidkenny", "root1");
+            Connection con = DriverManager.getConnection(database, user, pass);
             String update = "UPDATE `user` SET ";
             Set<String> keys = updates.keySet();
             String[] keyArray = keys.toArray(new String[keys.size()]);
@@ -776,7 +776,7 @@ public class UserModel {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             PreparedStatement ps;
             ResultSet rs;
-            Connection con = DriverManager.getConnection(database, "davidkenny", "root1");
+            Connection con = DriverManager.getConnection(database, user, pass);
             String statement = "SELECT * FROM `accessToken_has_account` WHERE `account_idaccount`=?";
             ps = con.prepareStatement(statement);
             ps.setInt(1, accountId);
@@ -811,7 +811,7 @@ public class UserModel {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             PreparedStatement ps;
-            Connection con = DriverManager.getConnection(database, "davidkenny", "root1");
+            Connection con = DriverManager.getConnection(database, user, pass);
             String statement = "DELETE FROM `accessToken_has_account` WHERE `accessToken_idaccessToken`=? and`account_idaccount`=?";
             ps = con.prepareStatement(statement);
             ps.setInt(1, token);
